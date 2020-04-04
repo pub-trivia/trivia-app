@@ -42,4 +42,4 @@ Susan Marshall - backend (databases and models)
 (screenshot here) 
 
 ## Acknowledgments
-Zack, Carl, Tim and Jon for their help during this course and for being the inspiration for our avatars. 
+Zach, Carl, Tim and Jon for their help during this course and for being the inspiration for our avatars. 
