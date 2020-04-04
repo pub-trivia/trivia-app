@@ -27,6 +27,8 @@ These other apps and websites mainly give you the question with no ability to ad
 ## Data Flow
 ![image](https://user-images.githubusercontent.com/12642091/78456941-d92b5100-7674-11ea-831e-a725273b0936.png)
 
+[Description of data structure](https://github.com/pub-trivia/trivia-app/issues/2)
+
 ## Technologies and Libraries used
 
 * React
