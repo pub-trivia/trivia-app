@@ -33,7 +33,7 @@ These other apps and websites mainly give you the question with no ability to ad
 * Deployed using Heroku
 
 ## Team members and Roles
-Cythia Rich - Websockets and git guru
+- **Cynthia Rich** - integrating websockets for gameplay
 - **Catherine Kretzschmar** - User authentication and quiz creation logic
 - **Mandy Torrence** - frontend design and UX
 **Susan Marshall** - backend (databases and models), question creation and dashboard
