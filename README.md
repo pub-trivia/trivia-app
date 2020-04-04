@@ -34,7 +34,7 @@ These other apps and websites mainly give you the question with no ability to ad
 
 ## Team members and Roles
 Cythia Rich - Websockets and git guru
-Catherine Kretzschmar - Quiz logic and gameplay
+- **Catherine Kretzschmar** - User authentication and quiz creation logic
 - **Mandy Torrence** - frontend design and UX
 **Susan Marshall** - backend (databases and models), question creation and dashboard
 
