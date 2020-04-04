@@ -11,7 +11,7 @@ Not all families and friends live near each other. Family members move away for 
 
 ### Other similar apps
 
-* Jackbox games - paid for games that you can invite other to play with you, lots of little animations, and very fun to play. 
+* [Jackbox games](https://www.jackboxgames.com/) - paid for games that you can invite others to play with you, lots of little animations, and very fun to play. 
 * [Quizlet](https://quizlet.com/) - designed for studying with quizzes for math, history, languages etc. You can also create your own quizzes to suit your own study needs. 
 * QuizUp - IOS app, you can select a catogory and engage in head to head battles with other random users. 
 * Lots of websites where you can take all sorts of quizzes yourself, without competing with anyone else.  
