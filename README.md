@@ -36,7 +36,7 @@ These other apps and websites mainly give you the question with no ability to ad
 Cythia Rich - Websockets and git guru
 Catherine Kretzschmar - Quiz logic and gameplay
 - **Mandy Torrence** - frontend design and UX
-Susan Marshall - backend (databases and models) 
+**Susan Marshall** - backend (databases and models), question creation and dashboard
 
 ## Project Management Board and Schedule
 (screenshot here) 
