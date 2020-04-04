@@ -35,7 +35,7 @@ These other apps and websites mainly give you the question with no ability to ad
 ## Team members and Roles
 Cythia Rich - Websockets and git guru
 Catherine Kretzschmar - Quiz logic and gameplay
-Mandy Torrence - frontend design and UX
+- **Mandy Torrence** - frontend design and UX
 Susan Marshall - backend (databases and models) 
 
 ## Project Management Board and Schedule
