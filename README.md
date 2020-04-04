@@ -29,7 +29,7 @@ These other apps and websites mainly give you the question with no ability to ad
 * React
 * MongoDB
 * 
-* Websockets for synchronous playing
+* [socket.io](https://socket.io/) for synchronous playing
 * Deployed using Heroku
 
 ## Team members and Roles
