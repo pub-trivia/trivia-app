@@ -1,0 +1,42 @@
+.profile-icon {
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+
+.profile-icon img {
+    height: 100%;
+    display: block;
+    margin: auto;
+    object-fit: contain !important;
+}
+
+.profile-icon svg.circle {
+    width: 80%;
+    height: 80%;
+    bottom: 0px;
+    left: 10%;
+    z-index: -1;
+    stroke-width: 3%;
+    stroke: white;
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    bottom: 0px;
+    left: 10%;
+    z-index: -1;
+    -webkit-filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, .7));
+    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, .7));
+    overflow: visible;
+}
+
+svg.ellipse {
+    position: absolute;
+    object-fit: cover;
+    width: 25%;
+    height: 40%;
+    overflow: visible;
+    z-index: -1;
+    top: 11%;
+    left: 25%
+}
