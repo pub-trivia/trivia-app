@@ -40,7 +40,7 @@ These other apps and websites mainly give you the question with no ability to ad
 - **Cynthia Rich** - integrating websockets for gameplay
 - **Catherine Kretzschmar** - User authentication and quiz creation logic
 - **Mandy Torrence** - frontend design and UX
-**Susan Marshall** - backend (databases and models), question creation and dashboard
+- **Susan Marshall** - backend (databases and models), question creation and dashboard
 
 ## Project Management Board and Schedule
 [Project Board](https://github.com/pub-trivia/trivia-app/projects)
