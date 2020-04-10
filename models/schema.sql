@@ -14,7 +14,6 @@ CREATE TABLE users
     gamesWon INTEGER DEFAULT 0, 
     questionsAnswered INTEGER DEFAULT 0,
     correctAnswers INTEGER DEFAULT 0,
-    wins INTEGER DEFAULT 0, 
     isBlocked BOOLEAN DEFAULT FALSE
 );
 
