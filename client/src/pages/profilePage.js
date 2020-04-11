@@ -1,5 +1,8 @@
 import React from "react";
-// import other components here
+// import header component
+// import icon component
+// import stats component
+// import yourquestionscomponent
 // import "../style.css";
 
 function ProfilePage() {
