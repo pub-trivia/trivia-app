@@ -2,7 +2,7 @@ import React from "react";
 
 // componentDidMount() {
 
-function Form() {
+function signupForm() {
     const [state, setState] = React.useState({
         displayName: "",
         email: "",
@@ -40,6 +40,20 @@ return (
           onChange={handleChange}
         />
       </label>
+      <input
+          type="radio"
+          name="avatar"
+          value={state.avatar}
+          onChange={handleChange}
+        />
+        <input
+          type="radio"
+          name="password"
+          value={state.avatarColor}
+          onChange={handleChange}
+        />
+      {/* [#03E4AC, #04D5FB, #F7903E, #FFD72F, #9665D8, #F94141, #4481D8, #F96E99, #FFFFFF, #9FA1A0] */}
+
     </form>
 );
 }
@@ -84,4 +98,5 @@ return (
       $("#alert .msg").text(err.responseJSON);
       $("#alert").fadeIn(500);
     }
- 
+
+export default signupForm; 

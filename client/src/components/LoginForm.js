@@ -1,5 +1,5 @@
       // When the form is submitted, we validate there's an email and password entered
-    function Login() {
+    function LoginForm() {
       const [state, setState ] = React.useState({
         email: "",
         password: ""
@@ -63,3 +63,5 @@ return (
           console.log(err);
         });
     }
+
+export default LoginForm;
