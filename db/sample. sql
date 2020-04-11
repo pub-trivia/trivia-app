@@ -1,0 +1,19 @@
+Sample sql: 
+
+To get usernames and scores for a quiz, by quizid 
+SELECT userName, score FROM quizzes AS q, quizScoresAssoc AS a 
+   WHERE a.quizId = 1 AND q.quizId = 1;   
+
+To get all questions by an author 
+SELECT * FROM questions WHERE authorId = 1;  
+ 
+To get questions for a quiz - pass in number, difficulty, and author 
+
+
+create a quiz - get questions for a quiz (passing in number, difficulty, and author to avoid using their questions)
+ 
+create a user
+create a question
+ 
+mark a question incorrect / inappropriate (are these two different things or just have one needsModeration flag - and if so do we let the complaining user add a comment about what they don't like about the question?
+save a user's score  (pass in quizId, score, username, userid if a registered user), update registered user's stats

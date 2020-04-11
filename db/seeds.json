@@ -1,0 +1,3571 @@
+[
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of the following authors was not born in England? ",
+    "correct_answer": "Arthur Conan Doyle",
+    "incorrect_answers": ["Graham Greene", "H G Wells", "Arthur C Clarke"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who wrote &quot;Harry Potter&quot;?",
+    "correct_answer": "J.K. Rowling",
+    "incorrect_answers": [
+      "J.R.R. Tolkien",
+      "Terry Pratchett",
+      "Daniel Radcliffe"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who wrote the &quot;A Song of Ice And Fire&quot; fantasy novel series?",
+    "correct_answer": "George R. R. Martin",
+    "incorrect_answers": ["George Lucas", "George Orwell", "George Eliot"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "George Orwell wrote this book, which is often considered a statement on government oversight.",
+    "correct_answer": "1984",
+    "incorrect_answers": [
+      "The Old Man and the Sea",
+      "Catcher and the Rye",
+      "To Kill a Mockingbird"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the Beatrix Potter books, what type of animal is Tommy Brock?",
+    "correct_answer": "Badger",
+    "incorrect_answers": ["Fox", "Frog", "Rabbit"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote the novel &quot;Moby-Dick&quot;?",
+    "correct_answer": "Herman Melville",
+    "incorrect_answers": [
+      "William Golding",
+      "William Shakespeare",
+      "J. R. R. Tolkien"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What was the name of Captain Nemo&#039;s submarine in &quot;20,000 Leagues Under the Sea&quot;?",
+    "correct_answer": "The Nautilus",
+    "incorrect_answers": ["The Neptune", "The Poseidon  ", "The Atlantis"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which of the following is the world&#039;s best-selling book?",
+    "correct_answer": "The Lord of the Rings",
+    "incorrect_answers": [
+      "The Little Prince",
+      "Harry Potter and the Philosopher&#039;s Stone",
+      "The Da Vinci Code"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the Harry Potter universe, who does Draco Malfoy end up marrying?",
+    "correct_answer": "Astoria Greengrass",
+    "incorrect_answers": [
+      "Pansy Parkinson",
+      "Millicent Bulstrode",
+      "Hermione Granger"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is Hermione Granger&#039;s middle name?",
+    "correct_answer": "Jean",
+    "incorrect_answers": ["Jane", "Emma", "Jo"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is Ron Weasley&#039;s middle name?",
+    "correct_answer": "Bilius",
+    "incorrect_answers": ["Arthur", "John", "Dominic"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In the Lord of the Rings, who is the father of the dwarf Gimli?",
+    "correct_answer": "Gloin",
+    "incorrect_answers": ["Thorin Oakenshield", "Bombur", "Dwalin"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What position does Harry Potter play in Quidditch?",
+    "correct_answer": "Seeker",
+    "incorrect_answers": ["Beater", "Chaser", "Keeper"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "By what nickname is Jack Dawkins known in the Charles Dickens novel, &#039;Oliver Twist&#039;?",
+    "correct_answer": "The Artful Dodger",
+    "incorrect_answers": ["Fagin", "Bull&rsquo;s-eye", "Mr. Fang"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the fourth book of the Old Testament?",
+    "correct_answer": "Numbers",
+    "incorrect_answers": ["Genesis", "Exodus", "Leviticus"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which famous spy novelist wrote the childrens&#039; story &quot;Chitty-Chitty-Bang-Bang&quot;?",
+    "correct_answer": "Ian Fleming",
+    "incorrect_answers": ["Joseph Conrad", "John Buchan", "Graham Greene"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the pen name of novelist, Mary Ann Evans?",
+    "correct_answer": "George Eliot",
+    "incorrect_answers": [
+      "George Orwell",
+      "George Bernard Shaw",
+      "George Saunders"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who wrote the children&#039;s story &quot;The Little Match Girl&quot;?",
+    "correct_answer": "Hans Christian Andersen",
+    "incorrect_answers": ["Charles Dickens", "Lewis Carroll", "Oscar Wilde"]
+  },
+  {
+    "category": "Books",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "The &quot;Berenstein Bears&quot; is the correct spelling of the educational children&#039;s book series&#039; name.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Books",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "The book 1984 was published in 1949.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "How many Harry Potter books are there?",
+    "correct_answer": "7",
+    "incorrect_answers": ["8", "5", "6"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The novel &quot;Of Mice And Men&quot; was written by what author? ",
+    "correct_answer": "John Steinbeck ",
+    "incorrect_answers": ["George Orwell", "Mark Twain ", "Harper Lee"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who wrote the young adult novel &quot;The Fault in Our Stars&quot;?",
+    "correct_answer": "John Green",
+    "incorrect_answers": [
+      "Stephenie Meyer",
+      "Suzanne Collins",
+      "Stephen Chbosky"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these does Charlie NOT read in The Perks of Being a Wallflower?",
+    "correct_answer": "The Grapes of Wrath",
+    "incorrect_answers": ["Hamlet", "The Great Gatsby", "Peter Pan"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "J.K. Rowling completed &quot;Harry Potter and the Deathly Hallows&quot; in which hotel in Edinburgh, Scotland?",
+    "correct_answer": "The Balmoral",
+    "incorrect_answers": [
+      "The Dunstane Hotel",
+      "Hotel Novotel",
+      "Sheraton Grand Hotel &amp; Spa"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In the year 1818, novelist Mary Shelly is credited with writing a fiction novel and creating this infamous character.",
+    "correct_answer": "Frankenstein&#039;s monster",
+    "incorrect_answers": ["Dracula", "The Thing", "The Invisible Man"]
+  },
+  {
+    "category": "Books",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "&quot;Elementary, my dear Watson&quot; is a phrase that is never truly said within the Conan Doyle books of Sherlock Holmes.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the name of the three headed dog in Harry Potter and the Sorcerer&#039;s Stone?",
+    "correct_answer": "Fluffy",
+    "incorrect_answers": ["Spike", "Poofy", "Spot"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The title of Adolf Hitler&#039;s autobiography &quot;Mein Kampf&quot; is what when translated to English?",
+    "correct_answer": "My Struggle",
+    "incorrect_answers": ["My Hatred", "My Sadness", "My Desire"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the name of the protagonist of J.D. Salinger&#039;s novel Catcher in the Rye?",
+    "correct_answer": "Holden Caulfield",
+    "incorrect_answers": ["Fletcher Christian", "Jay Gatsby", "Randall Flagg"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the title of the first Sherlock Holmes book by Arthur Conan Doyle?",
+    "correct_answer": "A Study in Scarlet",
+    "incorrect_answers": [
+      "The Sign of the Four",
+      "A Case of Identity",
+      "The Doings of Raffles Haw"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "According to The Hitchhiker&#039;s Guide to the Galaxy book, the answer to life, the universe and everything else is...",
+    "correct_answer": "42",
+    "incorrect_answers": ["Loving everyone around you", "Chocolate", "Death"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Where does the book &quot;The Silence of the Lambs&quot; get its title from?",
+    "correct_answer": "The main character&#039;s trauma in childhood",
+    "incorrect_answers": [
+      "The relation it has with killing the innocents",
+      "The villain&#039;s favourite meal",
+      "The voice of innocent people being shut by the powerful"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "boolean",
+    "difficulty": "hard",
+    "question": "Harry Potter was born on July 31st, 1980.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these book series is by James Patterson?",
+    "correct_answer": "Maximum Ride",
+    "incorrect_answers": [
+      "Harry Potter",
+      "The Legend of Xanth",
+      "The Bartemaeus Trilogy"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In the novel &quot;Lord of the Rings&quot;, how many rings of power were given to the race of man?",
+    "correct_answer": "9",
+    "incorrect_answers": ["5", "11", "13"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In Michael Crichton&#039;s novel &quot;Jurassic Park&quot;, John Hammond meets his demise at the claws of which dinosaur?",
+    "correct_answer": "Procompsognathus",
+    "incorrect_answers": ["Dilophosaurus", "Tyrannosaurus Rex", "Velociraptor"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What book series published by Jim Butcher follows a wizard in modern day Chicago?",
+    "correct_answer": "The Dresden Files",
+    "incorrect_answers": [
+      "A Hat in Time",
+      "The Cinder Spires",
+      "My Life as a Teenage Wizard"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the last message of the Dolphins in &quot;The Hitchhiker&#039;s Guide to the Galaxy&quot;?",
+    "correct_answer": "&quot;So long, and thanks for all the fish.&quot;",
+    "incorrect_answers": [
+      "&quot;The answer is 42.&quot;",
+      "&quot;Land of the brave.&quot;",
+      "&quot;Goodbye cruel world!&quot;"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In Margaret Atwood&#039;s &quot;The Handmaid&#039;s Tale&quot;, what is Offred&#039;s real name is implied to be?",
+    "correct_answer": "June",
+    "incorrect_answers": ["August", "April", "May"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In &quot;Little Women&quot;, which of the March sisters married Laurie?",
+    "correct_answer": "Amy",
+    "incorrect_answers": ["Beth", "Jo", "Meg"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the Magic: The Gathering universe,  the Antiquities, Ice Age, and Alliances expansions take place on which continent?",
+    "correct_answer": "Terisiare",
+    "incorrect_answers": ["Aerona", "Shiv", "Jamuraa"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the Magic: The Gathering universe, the Fallen Empires expansion takes place on which continent?",
+    "correct_answer": "Sarpadia",
+    "incorrect_answers": ["Otaria", "Terisiare", "Shiv"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What&#039;s the second book in George R. R. Martin&#039;s &#039;A Song of Ice and Fire&#039; series?",
+    "correct_answer": "A Clash of Kings",
+    "incorrect_answers": [
+      "A Dance with Dragons",
+      "A Storm of Swords",
+      "A Feast for Crows"
+    ]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In which classic novel is there a character named Homer Simpson?",
+    "correct_answer": "The Day of the Locust",
+    "incorrect_answers": ["Catch-22", "Of Mice and Men", "A Separate Peace"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the name of Eragon&#039;s dragon in &quot;Eragon&quot;?",
+    "correct_answer": "Saphira",
+    "incorrect_answers": ["Glaedr", "Thorn", "Arya"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What was the first ever entry written for the SCP Foundation collaborative writing project?",
+    "correct_answer": "SCP-173",
+    "incorrect_answers": ["SCP-001", "SCP-999", "SCP-1459"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which author co-wrote &quot;The Communist Manifesto&quot; alongside Karl Marx?",
+    "correct_answer": "Friedrich Engels",
+    "incorrect_answers": ["Robert Owen", "Alexander Kerensky", "Paul Lafargue"]
+  },
+  {
+    "category": "Books",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which fictional English county was the setting for Thomas Hardy&#039;s novels?",
+    "correct_answer": "Wessex",
+    "incorrect_answers": ["Barsetshire", "Fulchester", "Ambridge"]
+  },
+  {
+    "category": "Books",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "The Harry Potter series of books, combined, are over 1,000,000 words in length.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "When was the movie &#039;Con Air&#039; released?",
+    "correct_answer": "1997",
+    "incorrect_answers": ["1985", "1999", "1990"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which retired American football quarterback played himself in &#039;Ace Ventura: Pet Detective&#039; and &#039;Little Nicky&#039;?",
+    "correct_answer": "Dan Marino",
+    "incorrect_answers": ["John Elway", "Tom Brady", "Joe Montana"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was Marilyn Monroe`s character&#039;s first name in the film &quot;Some Like It Hot&quot;?",
+    "correct_answer": "Sugar",
+    "incorrect_answers": ["Honey", "Caramel", "Candy"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In which 1973 film does Yul Brynner play a robotic cowboy who malfunctions and goes on a killing\tspree?",
+    "correct_answer": "Westworld",
+    "incorrect_answers": ["Runaway", "Android", "The Terminators"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In the 1984 movie &quot;The Terminator&quot;, what model number is the Terminator portrayed by Arnold Schwarzenegger?",
+    "correct_answer": "T-800",
+    "incorrect_answers": ["I-950", "T-888", "T-1000"]
+  },
+  {
+    "category": "Movies",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Leonardo DiCaprio won an Oscar for Best Actor in 2004&#039;s &quot;The Aviator&quot;.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Movies",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "There aren&#039;t any live-action clones in &quot;Star Wars: Episode III - Revenge of the Sith&quot;.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In which 1955 film does Frank Sinatra play Nathan Detroit?",
+    "correct_answer": "Guys and Dolls",
+    "incorrect_answers": [
+      "Anchors Aweigh",
+      "From Here to Eternity",
+      "High Society"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What was Dorothy&#039;s surname in &#039;The Wizard Of Oz&#039;?",
+    "correct_answer": "Gale",
+    "incorrect_answers": ["Perkins", "Day", "Parker"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What was the title of the first Bond movie, released in 1962?",
+    "correct_answer": "Dr. No",
+    "incorrect_answers": ["From Russia with Love", "Goldfinger", "Thunderball"]
+  },
+  {
+    "category": "Movies",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "The word &quot;Inception&quot; came from the 2010 blockbuster hit &quot;Inception&quot;.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Movies",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "The colour of the pills in the Matrix were Blue and Yellow.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In the 1971 film &quot;Willy Wonka &amp; the Chocolate Factory&quot;, who played Willy Wonka?",
+    "correct_answer": "Gene Wilder",
+    "incorrect_answers": ["Shia LeBouf", "Peter Ostrum", "Johnny Depp"]
+  },
+  {
+    "category": "Movies",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "The Xenomorph from the science fiction film &quot;Alien&quot; has acidic blood.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Movies",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Shaquille O&#039;Neal appeared in the 1997 film &quot;Space Jam&quot;.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which one of these action movies are shot entirely in one take?",
+    "correct_answer": "Victoria",
+    "incorrect_answers": [
+      "Ip Man 2",
+      "The Bourne Legacy",
+      "L&eacute;on: The Professional"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which one of these actors is said to be cut from the film &#039;E.T. the Extra-Terrestrial&#039;?",
+    "correct_answer": "Harrison Ford",
+    "incorrect_answers": [
+      "Michael J. Fox",
+      "Andy Kaufman",
+      "Arnold Schwarzenegger"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which movie of film director Stanley Kubrick is known to be an adaptation of a Stephen King novel?",
+    "correct_answer": "The Shining",
+    "incorrect_answers": [
+      "2001: A Space Odyssey",
+      " Dr. Strangelove ",
+      "Eyes Wide Shut"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who is the main protagonist in, the 1985 film, Back to the Future?",
+    "correct_answer": "Marty McFly",
+    "incorrect_answers": [
+      "Emmett &quot;Doc&quot; Brown",
+      "Biff Tannen",
+      "George McFly"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What was the first movie to ever use a Wilhelm Scream?",
+    "correct_answer": "Distant Drums",
+    "incorrect_answers": [
+      "Treasure of the Sierra Madre",
+      "The Charge at Feather River",
+      "Indiana Jones"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who in Pulp Fiction says &quot;No, they got the metric system there, they wouldn&#039;t know what the fuck a Quarter Pounder is.&quot;",
+    "correct_answer": "Vincent Vega",
+    "incorrect_answers": ["Jules Winnfield", "Jimmie Dimmick", "Butch Coolidge"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the movie &quot;Scream&quot; who is Ghost Face?",
+    "correct_answer": "Billy Loomis and Stu Macher",
+    "incorrect_answers": [
+      "Dewey Riley",
+      "Sidney Prescott",
+      "Archie Prescott and Philip Marv"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In The Lord of the Rings: The Fellowship of the Ring, which one of the following characters from the book was left out of the film?",
+    "correct_answer": "Tom Bombadil",
+    "incorrect_answers": ["Strider", "Barliman Butterbur", "Celeborn"]
+  },
+  {
+    "category": "Movies",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Joan Cusack starred in the 2009 disaster movie, &quot;2012&quot;.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In the 2012 film, &quot;The Lorax&quot;, who is the antagonist?",
+    "correct_answer": "Aloysius O&#039;Hare",
+    "incorrect_answers": ["Ted Wiggins", "The Once-Ler", "Grammy Norma"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In the movie &quot;Blade Runner&quot;, what is the term used for human-like androids ?",
+    "correct_answer": "Replicants",
+    "incorrect_answers": ["Cylons", "Synthetics", "Skinjobs"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In the 1995 film &quot;Balto&quot;, who are Steele&#039;s accomplices?",
+    "correct_answer": "Kaltag, Nikki, and Star",
+    "incorrect_answers": [
+      "Dusty, Kirby, and Ralph",
+      "Nuk, Yak, and Sumac",
+      "Jenna, Sylvie, and Dixie"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is the director of the 1991 film &quot;Silence of the Lambs&quot;?",
+    "correct_answer": "Jonathan Demme",
+    "incorrect_answers": ["Stanley Kubrick", "Frank Darabont", "Michael Bay"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In order to cut costs, what were most of the extras of Mad Max (1979) paid with?",
+    "correct_answer": "Beer",
+    "incorrect_answers": ["Fast food", "Food stamps", "They weren&#039;t paid"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In what year did Clint Eastwood star as Inspector Harry Callahan in the film &quot;Dirty Harry&quot;?",
+    "correct_answer": "1971",
+    "incorrect_answers": ["1975", "1983", "1969"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Leonardo Di Caprio won his first Best Actor Oscar for his performance in which film?",
+    "correct_answer": "The Revenant",
+    "incorrect_answers": [
+      "The Wolf Of Wall Street",
+      "Shutter Island",
+      "Inception"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which documentary film maker wrote and starred in the film &quot;My Scientology Movie&quot; which first debuted in 2015?",
+    "correct_answer": "Louis Theroux",
+    "incorrect_answers": ["Errol Morris", "Joe Berlinger", "Adam Curtis"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "According to &quot;Star Wars&quot; lore, which planet does Obi-Wan Kenobi come from?",
+    "correct_answer": "Stewjon",
+    "incorrect_answers": ["Alderaan", "Tatooine", "Naboo"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What three movies, in order from release date, make up the &quot;Dollars Trilogy&quot;?",
+    "correct_answer": "&quot;A Fistful of Dollars&quot;, &quot;For a Few Dollars More&quot;, &quot;The Good, the Bad, and the Ugly&quot;",
+    "incorrect_answers": [
+      "&quot;The Good, the Bad, and the Ugly&quot;, &quot;For A Few Dollars More&quot;, &quot;A Fistful of Dollars&quot;",
+      "&quot;For a Few Dollars More&quot;, &quot;The Good, the Bad, and the Ugly&quot;, &quot;A Fistful of Dollars&quot;",
+      "&quot;For a Few Dollars More&quot;, &quot;A Fistful of Dollars&quot;, &quot;The Good, the Bad, and the Ugly&quot;"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which actors made up the trio in &quot;The Good, the Bad, and the Ugly&quot;? ",
+    "correct_answer": "Clint Eastwood, Eli Wallach, and Lee Van Cleef",
+    "incorrect_answers": [
+      "Sergio Leone, Ennio Morricone, and Tonino Delli Colli",
+      "Yul Brynner, Steve McQueen, and Charles Bronson",
+      "Aldo Giuffr&egrave;, Mario Brega, and Luigi Pistilli"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which actress portrayed Dr. Grace Augustine in the James Cameron movie &quot;Avatar&quot;?",
+    "correct_answer": "Sigourney Weaver",
+    "incorrect_answers": [
+      "Jessica Chastain",
+      "Melissa Beckett",
+      "Alyssa Monroe "
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who plays &quot;Bruce Wayne&quot; in the 2008 movie &quot;The Dark Knight&quot;?",
+    "correct_answer": "Christian Bale",
+    "incorrect_answers": ["Michael Caine", "Ron Dean", "Heath Ledger"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "For the film &quot;Raiders of The Lost Ark&quot;, what was Harrison Ford sick with during the filming of the Cairo chase?",
+    "correct_answer": "Dysentery",
+    "incorrect_answers": ["Anemia", "Constipation", "Acid Reflux "]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What character in the Winnie the Pooh films was added by Disney and does not appear in the original books?",
+    "correct_answer": "Gopher",
+    "incorrect_answers": ["Tigger", "Heffalumps", "Rabbit"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is Lilo&#039;s last name from Lilo and Stitch?",
+    "correct_answer": "Pelekai",
+    "incorrect_answers": ["Anoaʻi", "Kealoha", "Kuʻulei"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In Finding Nemo, what was the name of Nemo&#039;s mom?",
+    "correct_answer": "Coral",
+    "incorrect_answers": ["Sandy", "Pearl", "Shelly"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which director directed the movie &quot;Pan&#039;s Labyrinth&quot;?",
+    "correct_answer": "Guillermo Del Toro",
+    "incorrect_answers": [
+      "Alfonso Cuar&oacute;n",
+      "Alejandro Gonz&aacute;lez I&ntilde;&aacute;rritu",
+      " Alejandro Jodorowsky"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In which film does Humphrey Bogart say the famous line, &quot;Here&#039;s looking at you, kid&quot;?",
+    "correct_answer": "Casablanca",
+    "incorrect_answers": [
+      "The Maltese Falcon",
+      "The Treasure of the Sierra Madre",
+      "Citizen Kane"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these Disney classics was released in 1970?",
+    "correct_answer": "The Aristocats",
+    "incorrect_answers": [
+      "One Hundred and One Dalmatians",
+      "The Fox and the Hound",
+      "The Little Mermaid"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which of these Movies was NOT released in 1996?",
+    "correct_answer": "Gladiator",
+    "incorrect_answers": ["Independence Day", "The Rock", "Mission: Impossible"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which 1994 film did Roger Ebert famously despise, saying &quot;I hated hated hated hated hated this movie&quot;.",
+    "correct_answer": "North",
+    "incorrect_answers": [
+      "3 Ninjas Kick Back",
+      "The Santa Clause",
+      "Richie Rich"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Ed Koch, the Mayor of New York in 1984, played himself in which Muppets movie?",
+    "correct_answer": "The Muppets Take Manhattan",
+    "incorrect_answers": [
+      "The Great Muppet Caper",
+      "The Muppet Christmas Carol",
+      "The Muppet Movie"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who directed the Kill Bill movies?",
+    "correct_answer": "Quentin Tarantino",
+    "incorrect_answers": [
+      "Arnold Schwarzenegger",
+      "David Lean",
+      "Stanley Kubrick"
+    ]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which star actor was in &quot;Top Gun&quot;, &quot;Jerry Maguire&quot; and &quot;Born on the Fourth of July&quot;?",
+    "correct_answer": "Tom Cruise",
+    "incorrect_answers": ["Kelly McGillis", "John Travolta", "George Clooney"]
+  },
+  {
+    "category": "Movies",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What was Humphrey Bogart&#039;s middle name?",
+    "correct_answer": "DeForest",
+    "incorrect_answers": ["DeWinter", "Steven", "Bryce"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is the best selling artist of all time?",
+    "correct_answer": "The Beatles",
+    "incorrect_answers": ["Michael Jackson", "Elton John", "Elvis Presley"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who had a 1969 top 5 hit with the song,  &#039;A Boy Named Sue&#039;?",
+    "correct_answer": "Johnny Cash",
+    "incorrect_answers": ["Bob Dylan", "Willie Nelson", "Kris Kristofferson"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who had a US and UK number 1 hit in 1962 with the instrumental, &#039;Telstar&#039;?",
+    "correct_answer": "The Tornados",
+    "incorrect_answers": ["The Ventures", "The Spotnicks", "The Tremeloes"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who had a 1983 hit with the song &#039;Africa&#039;?",
+    "correct_answer": "Toto",
+    "incorrect_answers": ["Foreigner", "Steely Dan", "Journey"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "&quot;Some people call me the space cowboy&quot; is the first line from what song?",
+    "correct_answer": "The Joker",
+    "incorrect_answers": [
+      "Fandango",
+      "Take The Money and Run",
+      "Fly Like an Eagle"
+    ]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who is the lead singer of Pearl Jam?",
+    "correct_answer": "Eddie Vedder",
+    "incorrect_answers": ["Ozzy Osbourne", "Stone Gossard", "Kurt Cobain"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who is the frontman of the band 30 Seconds to Mars?",
+    "correct_answer": "Jared Leto",
+    "incorrect_answers": ["Gerard Way", "Matthew Bellamy", "Mike Shinoda"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which member of the Foo Fighters was previously the drummer for Nirvana?",
+    "correct_answer": "Dave Grohl",
+    "incorrect_answers": ["Taylor Hawkins", "Nate Mendel", "Chris Shiflett"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who had a 1981 hit with the song &quot;Japanese Boy&quot;?",
+    "correct_answer": "Aneka",
+    "incorrect_answers": ["Toyah", "Sandra", "Madonna"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these artists was NOT a member of the electronic music supergroup Swedish House Mafia, which split up in 2013?",
+    "correct_answer": "Alesso",
+    "incorrect_answers": ["Steve Angello", "Sebastian Ingrosso", "Axwell"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these artists has NOT been a member of dancehall group Major Lazer?",
+    "correct_answer": "Skrillex",
+    "incorrect_answers": ["Diplo", "Jillionaire", "Walshy Fire"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who won the 1989 Drum Corps International championships?",
+    "correct_answer": "Santa Clara Vanguard",
+    "incorrect_answers": ["Blue Devils", "The Academy", "The Bluecoats"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which artist collaborated with American DJ Dillon Francis to release the song 2016 &quot;Need You&quot;?",
+    "correct_answer": "NGHTMRE",
+    "incorrect_answers": ["LOUDPVCK", "KRNE", "DVBBS"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What was the subject of the 2014 song &quot;CoCo&quot; by American rapper O. T. Genasis?",
+    "correct_answer": "Cocaine",
+    "incorrect_answers": [
+      "Conan O&#039;Brien",
+      "Cobalt(II) carbonate",
+      "Coconut cream pie"
+    ]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Johnny Cash did a cover of this song written by lead singer of Nine Inch Nails, Trent Reznor.",
+    "correct_answer": "Hurt",
+    "incorrect_answers": ["Closer", "A Warm Place", "Big Man with a Gun"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these bands are NOT from Australia?",
+    "correct_answer": "The Naked and Famous",
+    "incorrect_answers": ["Cut Copy", "Empire of the Sun", "Tame Impala"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In an orchestra, what is the lowest member of the brass family?",
+    "correct_answer": "Tuba",
+    "incorrect_answers": ["Trombone", "Contrabass", "Bassoon"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Kanye West at 2009 VMA&#039;s interrupted which celebrity?",
+    "correct_answer": "Taylor Swift",
+    "incorrect_answers": ["MF DOOM", "Beyonce", "Beck"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is the frontman of Muse?",
+    "correct_answer": "Matt Bellamy",
+    "incorrect_answers": ["Dominic Howard", "Thom Yorke", "Jonny Greenwood"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which year was the album &quot;Floral Shoppe&quot; by Macintosh Plus released?",
+    "correct_answer": "2011",
+    "incorrect_answers": ["2014", "2013", "2012"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "From which country did the song &quot;Gangnam Style&quot; originate from?",
+    "correct_answer": "South Korea",
+    "incorrect_answers": ["Japan", "North Korea", "China"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is Brian May&#039;s guitar called?",
+    "correct_answer": "Red Special",
+    "incorrect_answers": ["Blue Special", "Green Special", "Yellow Special"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the name of the main character from the music video of &quot;Shelter&quot; by Porter Robinson and A-1 Studios?",
+    "correct_answer": "Rin",
+    "incorrect_answers": ["Rem", "Ren", "Ram"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which Nirvana album had a naked baby on the cover?",
+    "correct_answer": "Nevermind",
+    "incorrect_answers": ["Bleach", "In Utero", "Incesticide"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which album was released by Kanye West in 2013?",
+    "correct_answer": "Yeezus",
+    "incorrect_answers": [
+      "My Beautiful Dark Twisted Fantasy",
+      "The Life of Pablo",
+      "Watch the Throne"
+    ]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What collaborative album was released by Kanye West and Jay-Z in 2011?",
+    "correct_answer": "Watch the Throne",
+    "incorrect_answers": [
+      "Distant Relatives",
+      "What a Time to be Alive",
+      "Unfinished Business"
+    ]
+  },
+  {
+    "category": "Music",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "A Saxophone is a brass instrument.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who was featured in the song &quot;Words&quot; by Feint? ",
+    "correct_answer": "Laura Brehm",
+    "incorrect_answers": ["Anna Yvette ", "Danyka Nadeau", "Veela"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Cryoshell, known for &quot;Creeping in My Soul&quot; did the advertising music for what Lego Theme?",
+    "correct_answer": "Bionicle",
+    "incorrect_answers": ["Hero Factory", "Ben 10 Alien Force", "Star Wars"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is the lead singer of Bastille?",
+    "correct_answer": "Dan Smith",
+    "incorrect_answers": ["Will Farquarson", "Kyle Simmons", "Chris Wood"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who wrote the song &quot;You Know You Like It&quot;?",
+    "correct_answer": "AlunaGeorge",
+    "incorrect_answers": ["DJ Snake", "Steve Aoki", "Major Lazer"]
+  },
+  {
+    "category": "Music",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Scatman John&#039;s real name was John Paul Larkin.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "When was Gangnam Style uploaded to YouTube?",
+    "correct_answer": "2012",
+    "incorrect_answers": ["2013", "2014", "2011"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Electronic artists Boys Noize and Skrillex have collaborated and released tracks under what name?",
+    "correct_answer": "Dog Blood",
+    "incorrect_answers": ["Jack &Uuml;", "What So Not", "Noisia"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which artist or group did John Lennon consider &quot;son(s) of the Beatles&quot;?",
+    "correct_answer": "Jeff Lynne&#039;s Electric Light Orchestra",
+    "incorrect_answers": ["The Rolling Stones", "Pink Floyd", "The Who"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which of the following songs did Elton John perform following Princess Diane&#039;s passing?",
+    "correct_answer": "Candles in the Wind",
+    "incorrect_answers": [
+      "I Guess That&#039;s Why They Call It The Blues",
+      "Your Song",
+      "Island Girl"
+    ]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Bj&ouml;rk&#039;s &quot;Unison&quot; contains a sample of which Oval song?",
+    "correct_answer": "Aero Deck",
+    "incorrect_answers": ["Textuell", "Panorama", "Do While"]
+  },
+  {
+    "category": "Music",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Michael Jackson wrote The Simpsons song &quot;Do the Bartman&quot;.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The band Muse released their first album, Showbiz, in what year?",
+    "correct_answer": "1999",
+    "incorrect_answers": ["1998", "2000", "2001"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these songs is NOT in The Beatles&#039; album &quot;Sgt. Pepper&#039;s Lonely Hearts Club Band&quot;?",
+    "correct_answer": "Strawberry Fields Forever",
+    "incorrect_answers": [
+      "Getting Better",
+      "Fixing a Hole",
+      "Lucy in the Sky with Diamonds"
+    ]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Chino Moreno is the lead singer of which alternative metal band?",
+    "correct_answer": "Deftones",
+    "incorrect_answers": ["Tool", "Korn", "Type O Negative"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which of the following is not a studio album by the band Pink Floyd?",
+    "correct_answer": "Moving Pictures",
+    "incorrect_answers": [
+      "The Dark Side of the Moon",
+      "Wish You Were Here",
+      "Animals"
+    ]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Pamina and Papageno are characters in what Mozart opera?",
+    "correct_answer": "The Magic Flute",
+    "incorrect_answers": [
+      "The Marriage of Figaro",
+      "The Impresario",
+      "The Goose of Cairo"
+    ]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who was walking like an Egyptian in 1981?",
+    "correct_answer": "The Bangles",
+    "incorrect_answers": ["R.E.M.", "The Ocean Blue", "The Connells"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Rick Astley&#039;s hit song &quot;Never Gonna Give You Up&quot; was released in what year?",
+    "correct_answer": "1987",
+    "incorrect_answers": ["1985", "1986", "1988"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which song made by MAN WITH A MISSION was used as the opening for the anime &quot;Log Horizon&quot;?",
+    "correct_answer": "&quot;Database&quot;",
+    "incorrect_answers": [
+      "&quot;Dead End in Tokyo&quot;",
+      "&quot;Raise Your Flag&quot;",
+      "&quot;Out of Control&quot;"
+    ]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the opening track on Lorde&#039;s Pure Heroine?",
+    "correct_answer": "Tennis Court",
+    "incorrect_answers": ["Team", "Royals", "400 Lux"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What Led Zeppelin album contains &quot;Stairway to Heaven&quot;?",
+    "correct_answer": "Led Zeppelin IV",
+    "incorrect_answers": [
+      "Houses of the Holy",
+      "Physical Graffiti",
+      "Led Zeppelin III"
+    ]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What album did Gorillaz release in 2017?",
+    "correct_answer": "Humanz",
+    "incorrect_answers": ["Plastic Beach", "The Fall", "Demon Days"]
+  },
+  {
+    "category": "Music",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "&quot;The Genius&quot; is the original and secondary name of which Wu-Tang Clan member?",
+    "correct_answer": "GZA",
+    "incorrect_answers": [
+      "Ghostface Killah",
+      "Ol&#039; Dirty Bastard",
+      "Raekwon the Chef"
+    ]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which Apollo mission was the first one to land on the Moon?",
+    "correct_answer": "Apollo 11",
+    "incorrect_answers": ["Apollo 10", "Apollo 9", "Apollo 13"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Along with Oxygen, which element is primarily responsible for the sky appearing blue?",
+    "correct_answer": "Nitrogen",
+    "incorrect_answers": ["Helium", "Carbon", "Hydrogen"]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "A person can get sunburned on a cloudy day.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the largest animal currently on Earth?",
+    "correct_answer": "Blue Whale",
+    "incorrect_answers": ["Orca", "Colossal Squid", "Giraffe"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which is the chemical name of H2O?",
+    "correct_answer": "Dihydrogen Monoxide",
+    "incorrect_answers": [
+      "Ammonium chloride",
+      "Anhydrous Sodium Carbonate",
+      "Manganese dioxide"
+    ]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Chickens can live without a head.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Hippopotomonstrosesquippedaliophobia is the irrational fear of long words.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The &#039;Islets of Langerhans&#039; is found in which human organ?",
+    "correct_answer": "Pancreas",
+    "incorrect_answers": ["Kidney", "Liver", "Brain"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the first element on the periodic table?",
+    "correct_answer": "Hydrogen",
+    "incorrect_answers": ["Helium", "Oxygen", "Lithium"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "How many legs is it biologically impossible for a centipede to have?",
+    "correct_answer": "100",
+    "incorrect_answers": ["26", "50", "74"]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "hard",
+    "question": "You can calculate Induced Voltage using: &epsilon; =-N * (d&Phi;B)/(d)",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What mineral has the lowest number on the Mohs scale?",
+    "correct_answer": "Talc",
+    "incorrect_answers": ["Quartz", "Diamond", "Gypsum"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Gannymede is the largest moon of which planet?",
+    "correct_answer": "Jupiter",
+    "incorrect_answers": ["Uranus", "Neptune", "Mars"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "To the nearest minute, how long does it take for light to travel from the Sun to the Earth?",
+    "correct_answer": "8 Minutes",
+    "incorrect_answers": ["6 Minutes", "2 Minutes", "12 Minutes"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the powerhouse of the cell?",
+    "correct_answer": "Mitochondria",
+    "incorrect_answers": ["Ribosome", "Redbull", "Nucleus"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the standard SI unit for temperature?",
+    "correct_answer": "Kelvin",
+    "incorrect_answers": ["Fahrenheit", "Celsius", "Rankine"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "All of the following human genetic haplogroup names are shared between Y-chromosome and mitochondrial DNA haplogroups EXCEPT:",
+    "correct_answer": "Haplogroup U",
+    "incorrect_answers": ["Haplogroup L", "Haplogroup T", "Haplogroup J"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which of the following blood vessels carries deoxygenated blood?",
+    "correct_answer": "Pulmonary Artery",
+    "incorrect_answers": ["Pulmonary Vein", "Aorta", "Coronary Artery"]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Shrimp can swim backwards.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What was the name of the first artificial Earth satellite, launched by the Soviet Union in 1957?",
+    "correct_answer": "Sputnik 1",
+    "incorrect_answers": ["Soyuz 7K-OK", "Zenit-2", "Voskhod 3KV"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these chemical compounds is NOT found in gastric acid?",
+    "correct_answer": "Sulfuric acid",
+    "incorrect_answers": [
+      "Hydrochloric acid",
+      "Potassium chloride",
+      "Sodium chloride"
+    ]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What does DNA stand for?",
+    "correct_answer": "Deoxyribonucleic Acid",
+    "incorrect_answers": [
+      "Deoxyribogenetic Acid",
+      "Deoxyribogenetic Atoms",
+      "Detoxic Acid"
+    ]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Where did the dog breed &quot;Chihuahua&quot; originate?",
+    "correct_answer": "Mexico",
+    "incorrect_answers": ["France", "Spain", "Russia"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which is not a type of neuron?",
+    "correct_answer": "Perceptual Neuron",
+    "incorrect_answers": ["Sensory Neuron", "Motor Neuron", "Interneuron"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The medical condition osteoporosis affects which part of the body?",
+    "correct_answer": "Bones",
+    "incorrect_answers": ["Skin", "Brain", "Heart"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Folic acid is the synthetic form of which vitamin?",
+    "correct_answer": "Vitamin B",
+    "incorrect_answers": ["Vitamin A", "Vitamin C", "Vitamin D"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who is the chemical element Curium named after?",
+    "correct_answer": "Marie &amp; Pierre Curie",
+    "incorrect_answers": [
+      "The Curiosity Rover",
+      "Curious George",
+      "Stephen Curry"
+    ]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these is NOT a part of the structure of a typical neuron?",
+    "correct_answer": "Islets of Langerhans",
+    "incorrect_answers": ["Node of Ranvier", "Schwann cell", "Myelin sheath"]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Salt is 100% composed of Sodium.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Scientists accidentally killed the once known world&#039;s oldest living creature, a mollusc, known to be aged as 507 years old.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which one of these scientists conducted the Gold Foil Experiment which concluded that atoms are mostly made of empty space?",
+    "correct_answer": "Ernest Rutherford",
+    "incorrect_answers": [
+      "Joseph John Thomson",
+      "Archimedes",
+      "Niels Henrik David Bohr"
+    ]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which is the most abundant element in the universe?",
+    "correct_answer": "Hydrogen",
+    "incorrect_answers": ["Helium", "Lithium", "Oxygen"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The medical term for the belly button is which of the following?",
+    "correct_answer": "Umbilicus",
+    "incorrect_answers": ["Nevus", "Nares", "Paxillus"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What stage of development do the majority of eukaryotic cells remain in for most of their life?",
+    "correct_answer": "Interphase",
+    "incorrect_answers": ["Prophase", "Stasis", "Telophase"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "At what temperature does water boil?",
+    "correct_answer": "212&deg;F",
+    "incorrect_answers": ["200&deg;F", "181&deg;F", "178&deg;F"]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "An Astronomical Unit is the distance between Earth and the Moon.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "71% of the Earth&#039;s surface is made up of",
+    "correct_answer": "Water",
+    "incorrect_answers": ["Deserts", "Continents", "Forests"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What element on the periodic table has 92 electrons?",
+    "correct_answer": "Uranium",
+    "incorrect_answers": ["Sulfur", "Hydrogen", "Iron"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What genetic disease is caused by having an extra Y chromosome (XYY)?",
+    "correct_answer": "Jacob&#039;s Syndrome",
+    "incorrect_answers": [
+      "Klinefelter&#039;s Syndrome",
+      "Turner&#039;s Syndrome",
+      "Down Syndrome"
+    ]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the same in Celsius and Fahrenheit?",
+    "correct_answer": "-40",
+    "incorrect_answers": ["32", "-39", "-42"]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "hard",
+    "question": "The chemical element Lithium is named after the country of Lithuania.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the unit of electrical inductance?",
+    "correct_answer": "Henry",
+    "incorrect_answers": ["Weber", "Coulomb", "Mho"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What animal takes part in Schr&ouml;dinger&#039;s most famous thought experiment?",
+    "correct_answer": "Cat",
+    "incorrect_answers": ["Dog", "Bat", "Butterfly"]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Psychology is the science of behavior and mind.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the largest living organism currently known to man?",
+    "correct_answer": "Honey Fungus",
+    "incorrect_answers": ["Blue Whale", "Redwood Tree", "The Coral Reef"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "On which mission did the Space Shuttle Columbia break up upon re-entry?",
+    "correct_answer": "STS-107",
+    "incorrect_answers": ["STS-51-L", "STS-61-C", "STS-109"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is &quot;Stenoma&quot;?",
+    "correct_answer": "A genus of moths",
+    "incorrect_answers": [
+      "A combat stimulant from WW2",
+      "A type of seasoning",
+      "A port city in the carribean"
+    ]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In human biology, a circadium rhythm relates to a period of roughly how many hours?",
+    "correct_answer": "24",
+    "incorrect_answers": ["8", "16", "32"]
+  },
+  {
+    "category": "Science",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The medial meniscus forms which part of what joint in the human body?",
+    "correct_answer": "Knee",
+    "incorrect_answers": ["Elbow", "Ankle", "Shoulder"]
+  },
+  {
+    "category": "Science",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "&quot;Tachycardia&quot; or &quot;Tachyarrhythmia&quot; refers to a resting heart-rate near or over 100 BPM.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which of the following sports is not part of the triathlon?",
+    "correct_answer": "Horse-Riding",
+    "incorrect_answers": ["Cycling", "Swimming", "Running"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which German sportswear company&#039;s logo is the &#039;Formstripe&#039;?",
+    "correct_answer": "Puma",
+    "incorrect_answers": ["Nike", "Adidas", "Reebok"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In golf, what name is given to a hole score of two under par?",
+    "correct_answer": "Eagle",
+    "incorrect_answers": ["Birdie", "Bogey", "Albatross"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these teams isn&#039;t a member of the NHL&#039;s &quot;Original Six&quot; era?",
+    "correct_answer": "Philadelphia Flyers",
+    "incorrect_answers": [
+      "New York Rangers",
+      "Toronto Maple Leafs",
+      "Boston Bruins"
+    ]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which English football club has the nickname &#039;The Foxes&#039;?",
+    "correct_answer": "Leicester City",
+    "incorrect_answers": [
+      "Northampton Town",
+      "Bradford City",
+      "West Bromwich Albion"
+    ]
+  },
+  {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Manchester United won the 2013-14 English Premier League.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "A stimpmeter measures the speed of a ball over what surface?",
+    "correct_answer": "Golf Putting Green",
+    "incorrect_answers": [
+      " Football Pitch",
+      "Cricket Outfield",
+      "Pinball Table"
+    ]
+  },
+  {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Soccer player Cristiano Ronaldo opened a museum dedicated to himself.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which nation hosted the FIFA World Cup in 2006?",
+    "correct_answer": "Germany",
+    "incorrect_answers": ["United Kingdom", "Brazil", "South Africa"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The F1 season of 1994 is remembered for what tragic event?",
+    "correct_answer": "Death of Ayrton Senna (San Marino)",
+    "incorrect_answers": [
+      "The Showdown (Australia)",
+      "Verstappen on Fire (Germany)",
+      "Schumacher&#039;s Ban (Britain)"
+    ]
+  },
+  {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Peyton Manning retired after winning Super Bowl XLIX.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The Rio 2016 Summer Olympics held it&#039;s closing ceremony on what date?",
+    "correct_answer": "August 21",
+    "incorrect_answers": ["August 23", "August 19", "August 17"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which country is hosting the 2022 FIFA World Cup?",
+    "correct_answer": "Qatar",
+    "incorrect_answers": ["Uganda", "Vietnam", "Bolivia"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who won the 2015 Formula 1 World Championship?",
+    "correct_answer": "Lewis Hamilton",
+    "incorrect_answers": ["Nico Rosberg", "Sebastian Vettel", "Jenson Button"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which driver has been the Formula 1 world champion for a record 7 times?",
+    "correct_answer": "Michael Schumacher",
+    "incorrect_answers": ["Ayrton Senna", "Fernando Alonso", "Jim Clark"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Where was the Games of the XXII Olympiad held?",
+    "correct_answer": "Moscow",
+    "incorrect_answers": ["Barcelona", "Tokyo", "Los Angeles"]
+  },
+  {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "The Olympics tennis court is a giant green screen.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which Italian footballer told Neuer where he&#039;s putting his shot and dragging it wide, during the match Italy-Germany, UEFA EURO 2016?",
+    "correct_answer": "Pelle",
+    "incorrect_answers": ["Insigne", "Barzagli", "Giaccherini"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which male player won the gold medal of table tennis singles in 2016 Olympics Games?",
+    "correct_answer": "Ma Long (China)",
+    "incorrect_answers": [
+      "Zhang Jike (China)",
+      "Jun Mizutani (Japan)",
+      "Vladimir Samsonov (Belarus)"
+    ]
+  },
+  {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Roger Federer is a famous soccer player.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which soccer team won the Copa Am&eacute;rica 2015 Championship ?",
+    "correct_answer": "Chile",
+    "incorrect_answers": ["Argentina", "Brazil", "Paraguay"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which soccer team won the Copa Am&eacute;rica Centenario 2016?",
+    "correct_answer": "Chile",
+    "incorrect_answers": ["Argentina", "Brazil", "Colombia"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which team won 2014 FIFA World Cup in Brazil?",
+    "correct_answer": "Germany",
+    "incorrect_answers": ["Argentina", "Brazil", "Netherlands"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What national team won the 2016 edition of UEFA European Championship?",
+    "correct_answer": "Portugal",
+    "incorrect_answers": ["France", "Germany", "England"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who won the 2016 Formula 1 World Driver&#039;s Championship?",
+    "correct_answer": "Nico Rosberg",
+    "incorrect_answers": ["Lewis Hamilton", "Max Verstappen", "Kimi Raikkonen"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the oldest team in Major League Baseball?",
+    "correct_answer": "Atlanta Braves",
+    "incorrect_answers": [
+      "Chicago Cubs",
+      "Cincinnati Reds",
+      "St. Louis Cardinals"
+    ]
+  },
+  {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "In association football, or soccer, a corner kick is when the game restarts after someone scores a goal.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which team has won the most Stanley Cups in the NHL?",
+    "correct_answer": "Montreal Canadians",
+    "incorrect_answers": [
+      "Chicago Blackhawks",
+      "Toronto Maple Leafs",
+      "Detroit Red Wings"
+    ]
+  },
+  {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "In Rugby League, performing a &quot;40-20&quot; is punished by a free kick for the opposing team.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Wilt Chamberlain scored his infamous 100-point-game against the New York Knicks in 1962.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Why was The Green Monster at Fenway Park was originally built?",
+    "correct_answer": "To prevent viewing games from outside the park.",
+    "incorrect_answers": [
+      "To make getting home runs harder.",
+      "To display advertisements.",
+      "To provide extra seating."
+    ]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which sport is NOT traditionally played during the Mongolian Naadam festival?",
+    "correct_answer": "American Football",
+    "incorrect_answers": ["Wrestling", "Archery", "Horse-Racing"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which NBA player won Most Valuable Player for the 1999-2000 season?",
+    "correct_answer": "Shaquille O&#039;Neal",
+    "incorrect_answers": ["Allen Iverson", "Kobe Bryant", "Paul Pierce"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which boxer was banned for taking a bite out of Evander Holyfield&#039;s ear in 1997?",
+    "correct_answer": "Mike Tyson",
+    "incorrect_answers": ["Roy Jones Jr.", "Evander Holyfield", "Lennox Lewis"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the most common type of pitch thrown by pitchers in baseball?",
+    "correct_answer": "Fastball",
+    "incorrect_answers": ["Slowball", "Screwball", "Palmball"]
+  },
+  {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "In 2008, Usain Bolt set the world record for the 100 meters with one shoelace untied.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What team did England beat in the semi-final stage to win in the 1966 World Cup final?",
+    "correct_answer": "Portugal",
+    "incorrect_answers": ["West Germany", "Soviet Union", "Brazil"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In bowling, what is the term used for getting three consecutive strikes?",
+    "correct_answer": "Turkey",
+    "incorrect_answers": ["Flamingo", "Birdie", "Eagle"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "How many French Open&#039;s did Bj&ouml;rn Borg win?",
+    "correct_answer": "6",
+    "incorrect_answers": ["4", "9", "2"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which player holds the NHL record of 2,857 points?",
+    "correct_answer": "Wayne Gretzky",
+    "incorrect_answers": ["Mario Lemieux ", "Sidney Crosby", "Gordie Howe"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which city features all of their professional sports teams&#039; jersey&#039;s with the same color scheme?",
+    "correct_answer": "Pittsburgh",
+    "incorrect_answers": ["New York", "Seattle", "Tampa Bay"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is Manchester United&#039;s top premier league goal scorer?",
+    "correct_answer": "Wayne Rooney",
+    "incorrect_answers": ["Sir Bobby Charlton", "Ryan Giggs", "David Beckham"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who won the premier league title in the 2015-2016 season following a fairy tale run?",
+    "correct_answer": "Leicester City",
+    "incorrect_answers": ["Tottenham Hotspur", "Watford", "Stoke City"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who did Steven Gerrard win the Champions League with?",
+    "correct_answer": "Liverpool",
+    "incorrect_answers": ["Real Madrid", "Chelsea", "Man City"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which professional wrestler fell from the rafters to his death during a live Pay-Per-View event in 1999?",
+    "correct_answer": "Owen Hart",
+    "incorrect_answers": ["Chris Benoit", "Lex Luger", "Al Snow"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "&quot;Stadium of Light&quot; is the home stadium for which soccer team?",
+    "correct_answer": "Sunderland FC",
+    "incorrect_answers": [
+      "Barcelona FC",
+      "Paris Saints-Germain",
+      "Manchester United"
+    ]
+  },
+  {
+    "category": "Sports",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "There are a total of 20 races in Formula One 2016 season.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is Tiger Woods&#039; all-time best career golf-score?",
+    "correct_answer": "61",
+    "incorrect_answers": ["65", "63", "67"]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who won the UEFA Champions League in 2016?",
+    "correct_answer": "Real Madrid C.F.",
+    "incorrect_answers": [
+      "FC Bayern Munich",
+      "Atletico Madrid",
+      "Manchester City F.C."
+    ]
+  },
+  {
+    "category": "Sports",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which two teams played in Super Bowl XLII?",
+    "correct_answer": "The New York Giants &amp; The New England Patriots",
+    "incorrect_answers": [
+      "The Green Bay Packers &amp; The Pittsburgh Steelers",
+      "The Philadelphia Eagles &amp; The New England Patriots",
+      "The Seattle Seahawks &amp; The Denver Broncos"
+    ]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The body of the Egyptian Sphinx was based on which animal?",
+    "correct_answer": "Lion",
+    "incorrect_answers": ["Bull", "Horse", "Dog"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the only country in the world with a flag that doesn&#039;t have four right angles?",
+    "correct_answer": "Nepal",
+    "incorrect_answers": ["Panama", "Angola", "Egypt"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "How many sovereign states are members of the United Nations?",
+    "correct_answer": "195",
+    "incorrect_answers": ["201", "153", "178"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the capital of Indonesia?",
+    "correct_answer": "Jakarta",
+    "incorrect_answers": ["Bandung", "Medan", "Palembang"]
+  },
+  {
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Greenland is almost as big as Africa.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "A group of islands is called an &#039;archipelago&#039;.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these is NOT a city in Saudi Arabia?",
+    "correct_answer": "Dubai",
+    "incorrect_answers": ["Riyadh", "Mecca", "Medina"]
+  },
+  {
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "The surface area of Russia is slightly larger than that of the dwarf planet Pluto.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Vatican City is a country.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In which English county is Stonehenge?",
+    "correct_answer": "Wiltshire",
+    "incorrect_answers": ["Somerset", "Cumbria", "Herefordshire"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the name of the capital of Turkey?",
+    "correct_answer": "Ankara",
+    "incorrect_answers": ["Istanbul", "Izmir", "Bursa"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which country is completely landlocked by South Africa?",
+    "correct_answer": "Lesotho",
+    "incorrect_answers": ["Swaziland", "Botswana", "Zimbabwe"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The mountainous Khyber Pass connects which of the two following countries?",
+    "correct_answer": "Afghanistan and Pakistan",
+    "incorrect_answers": [
+      "India and Nepal",
+      "Pakistan and India",
+      "Tajikistan and Kyrgyzstan"
+    ]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The derisive acronym &quot;PIIGS&quot; refers to which of the following European countries and their economic statuses?",
+    "correct_answer": "Portugal, Ireland, Italy, Greece, Spain",
+    "incorrect_answers": [
+      "Poland, Iceland, Italy, Greece, Serbia",
+      "Poland, Iceland, Italy, Greenland, Spain",
+      "Portugal, Iceland, Ireland, Greece, Serbia"
+    ]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of one of the Neo-Aramaic languages spoken by the Jewish population from Northwestern Iraq?",
+    "correct_answer": "Lishana Deni",
+    "incorrect_answers": [
+      "Hulaul&aacute;",
+      "Lishan Didan",
+      "Chaldean Neo-Aramaic"
+    ]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The following Spanish provinces are located in the northern area of Spain except:",
+    "correct_answer": "Murcia",
+    "incorrect_answers": ["Asturias", "Navarre", "Le&oacute;n"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of the following Inuit languages was the FIRST to use a unique writing system not based on the Latin alphabet?",
+    "correct_answer": "Inuktitut",
+    "incorrect_answers": ["Inuinnaqtun", "Greenlandic", "Inupiat"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these countries is NOT located in Africa?",
+    "correct_answer": "Suriname",
+    "incorrect_answers": ["Burkina Faso", "Mozambique", "Algeria"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The Japanese district Akihabara is also known by what nickname?",
+    "correct_answer": "Electric Town",
+    "incorrect_answers": ["Moon Walk River", "Otaku Central ", "Big Eyes"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of these is NOT an island that is part of the Philippines?",
+    "correct_answer": "Java",
+    "incorrect_answers": ["Luzon", "Mindanao", "Palawan"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which US state has the highest population?",
+    "correct_answer": "California",
+    "incorrect_answers": ["New York", "Texas", "Florida"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What country has a horizontal bicolor red and white flag?",
+    "correct_answer": "Monaco",
+    "incorrect_answers": ["Bahrain", "Malta", "Liechenstein"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What event led to Liechenstein adding a crown to its flag?",
+    "correct_answer": "The 1936 Olympics",
+    "incorrect_answers": [
+      "Coronation of Prince Johann I Joseph in 1805",
+      "Charles VI&#039;s decree in 1719",
+      "Signing of the 1862 Constitution of Liechtenstein"
+    ]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which German city is located on the River Isar?",
+    "correct_answer": "Munich",
+    "incorrect_answers": ["Berlin", "Hamburg", "Dortmund"]
+  },
+  {
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "There are no deserts in Europe.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the Capital of the United States?",
+    "correct_answer": "Washington, D.C.",
+    "incorrect_answers": ["Los Angelas, CA", "New York City, NY", "Houston, TX"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the nickname for the US state Delaware?",
+    "correct_answer": "The First State",
+    "incorrect_answers": [
+      "The Fiftieth State",
+      "The Second State",
+      "The Sixteenth State"
+    ]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the area of Vatican City?",
+    "correct_answer": "0.44km^2",
+    "incorrect_answers": ["0.10km^2", "0.86km^2", "12.00km^2"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Where is the world&#039;s oldest still operational space launch facility located?",
+    "correct_answer": "Kazakhstan",
+    "incorrect_answers": ["Russia", "Iran", "United States"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the name of the peninsula containing Spain and Portugal?",
+    "correct_answer": "Iberian Peninsula",
+    "incorrect_answers": [
+      "European Peninsula",
+      "Peloponnesian Peninsula",
+      "Scandinavian Peninsula"
+    ]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which country has the abbreviation &quot;CH&quot;?",
+    "correct_answer": "Switzerland",
+    "incorrect_answers": ["China", "Canada", "No Country"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the official German name of the Swiss Federal Railways?",
+    "correct_answer": "Schweizerische Bundesbahnen",
+    "incorrect_answers": [
+      "Schweizerische Nationalbahnen",
+      "Bundesbahnen der Schweiz",
+      "Schweizerische Staatsbahnen"
+    ]
+  },
+  {
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Liechtenstein does not have an airport.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the name of rocky region that spans most of eastern Canada?",
+    "correct_answer": "Canadian Shield",
+    "incorrect_answers": [
+      "Rocky Mountains",
+      "Appalachian Mountains",
+      "Himalayas"
+    ]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "How many countries does Mexico border?",
+    "correct_answer": "3",
+    "incorrect_answers": ["2", "4", "1"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What is the second-largest city in Lithuania?",
+    "correct_answer": "Kaunas",
+    "incorrect_answers": ["Panevėžys", "Vilnius", "Klaipėda"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The land mass of modern day Turkey is called what?",
+    "correct_answer": "Anatolia",
+    "incorrect_answers": ["Ismuth of Ottoma", "Ottoma", "Ismuth of Anatolia"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the capital of India?",
+    "correct_answer": "New Delhi",
+    "incorrect_answers": ["Bejing", "Montreal", "Tithi"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Broome is a town in which state of Australia?",
+    "correct_answer": "Western Australia",
+    "incorrect_answers": ["Northern Territory", "South Australia", "Tasmania"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the capital of Estonia?",
+    "correct_answer": "Tallinn",
+    "incorrect_answers": ["Helsinki", "Tartu", "Riga"]
+  },
+  {
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "New Haven is the capital city of the state of Connecticut in the United States.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of the following is the longest river in Europe?",
+    "correct_answer": "Volga",
+    "incorrect_answers": ["Danube", "Ural", "Dnieper"]
+  },
+  {
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Nova Scotia is on the east coast of Canada.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which is the world&#039;s longest river?",
+    "correct_answer": "Nile",
+    "incorrect_answers": ["Missouri", "Amazon", "Yangtze"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which English county will you find the University of East Anglia?",
+    "correct_answer": "Norfolk",
+    "incorrect_answers": ["Suffolk", "Essex", "Cambridgeshire"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The emblem on the flag of the Republic of Tajikistan features a sunrise over mountains below what symbol?",
+    "correct_answer": "Crown",
+    "incorrect_answers": ["Bird", "Sickle", "Tree"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the name of the only remaining Grand Duchy in the world ?",
+    "correct_answer": "Luxembourg",
+    "incorrect_answers": ["Montenegro", "Liechtenstein", "Andorra"]
+  },
+  {
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "There is an island in Japan called Ōkunoshima, A.K.A. &quot;Rabbit Island&quot;, so named because of it&#039;s huge population of rabbits.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of these cities is NOT in England?",
+    "correct_answer": "Edinburgh",
+    "incorrect_answers": ["Oxford", "Manchester", "Southampton"]
+  },
+  {
+    "category": "Geography",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Where is Hadrian&#039;s Wall located?",
+    "correct_answer": "Carlisle, England",
+    "incorrect_answers": ["Rome, Italy", "Alexandria, Egypt", "Dublin, Ireland"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "During the Mongolian invasions of Japan, what were the Mongol boats mostly stopped by?",
+    "correct_answer": "Typhoons",
+    "incorrect_answers": ["Tornados", "Economic depression", "Samurai"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which naval battle was considered the turning point of the Pacific Ocean Theater during World War 2?",
+    "correct_answer": "Battle of Midway",
+    "incorrect_answers": [
+      "Attack on Truk Island",
+      "Attack on Pearl Harbor",
+      "Battle of the Coral Sea"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In what year did Neil Armstrong and Buzz Aldrin land on the moon?",
+    "correct_answer": "1969",
+    "incorrect_answers": ["1965", "1966", "1973"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the year 1900, what were the most popular first names given to boy and girl babies born in the United States?",
+    "correct_answer": "John and Mary",
+    "incorrect_answers": [
+      "Joseph and Catherine",
+      "William and Elizabeth",
+      "George and Anne"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which king was killed at the Battle of Bosworth Field in 1485? ",
+    "correct_answer": "Richard III",
+    "incorrect_answers": ["Edward V", "Henry VII", "James I"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What historical event was Tchaikovsky&#039;s 1812 Overture referencing?",
+    "correct_answer": "The Napoleonic Wars",
+    "incorrect_answers": [
+      "The American War of 1812",
+      "The Russian Revolution",
+      "The Charge of the Light Brigade (Crimean War)"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "The two atomic bombs dropped on Japan by the United States in August 1945 were named &#039;Little Man&#039; and &#039;Fat Boy&#039;.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which one of these tanks was designed and operated by the United Kingdom?",
+    "correct_answer": "Tog II",
+    "incorrect_answers": ["M4 Sherman", "Tiger H1", "T-34"]
+  },
+  {
+    "category": "History",
+    "type": "boolean",
+    "difficulty": "hard",
+    "question": "The Kingdom of Prussia briefly held land in Estonia.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which of the following ancient Near Eastern peoples still exists as a modern ethnic group?",
+    "correct_answer": "Assyrians",
+    "incorrect_answers": ["Babylonians", "Hittites", "Elamites"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "All of the following are names of the Seven Warring States EXCEPT:",
+    "correct_answer": "Zhai (翟)",
+    "incorrect_answers": ["Zhao (趙)", "Qin (秦)", "Qi (齊)"]
+  },
+  {
+    "category": "History",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Sargon II, a king of the Neo-Assyrian Empire, was a direct descendant of Sargon of Akkad.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "History",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "&quot;I disapprove of what you say, but I will defend to the death your right to say it&quot; is a quote from French philosopher Voltaire.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which infamous European traitor was known as &quot;the last person to enter Parliament with honest intentions&quot;?",
+    "correct_answer": "Guy Fawkes",
+    "incorrect_answers": ["Robert Catesby", "Francis Tresham", "Everard Digby"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What age was King Henry V when he died?",
+    "correct_answer": "36",
+    "incorrect_answers": ["62", "87", "73"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "On which day did construction start on &quot;The Pentagon&quot;, the headquarters for the United States Department of Defense?",
+    "correct_answer": "September 11, 1941",
+    "incorrect_answers": [
+      "June 15, 1947",
+      "January 15, 1943",
+      "September 2, 1962"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "When was the SS or Schutzstaffel established?",
+    "correct_answer": "April 4th, 1925",
+    "incorrect_answers": [
+      "September 1st, 1941",
+      "March 8th, 1935",
+      "February 21st, 1926"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "During the Wars of the Roses (1455 - 1487) which Englishman was dubbed &quot;the Kingmaker&quot;?",
+    "correct_answer": "Richard Neville",
+    "incorrect_answers": ["Richard III", "Henry V", "Thomas Warwick"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In what year did the North American Video Game Crash occur?",
+    "correct_answer": "1983",
+    "incorrect_answers": ["1982", "1993", "1970"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Bohdan Khmelnytsky was which of the following?",
+    "correct_answer": "Leader of the Ukrainian Cossacks",
+    "incorrect_answers": [
+      "General Secretary of the Communist Party of the USSR",
+      "Prince of Wallachia",
+      "Grand Prince of Novgorod"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who was the first president of the United States?",
+    "correct_answer": "George Washington",
+    "incorrect_answers": ["James Madison", "Thomas Jefferson", "James K. Polk"]
+  },
+  {
+    "category": "History",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Adolf Hitler was a german soldier in World War I.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "How many sonatas did Ludwig van Beethoven write?",
+    "correct_answer": "32",
+    "incorrect_answers": ["50", "31", "21"]
+  },
+  {
+    "category": "History",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "In 1967, a magazine published a story about extracting hallucinogenic chemicals from bananas to raise moral questions about banning drugs.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who invented the &quot;Flying Shuttle&quot; in 1738; one of the key developments in the industrialization of weaving?",
+    "correct_answer": "John Kay",
+    "incorrect_answers": ["James Hargreaves", "Richard Arkwright", "John Deere"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which WWII tank ace is credited with having destroyed the most tanks?",
+    "correct_answer": "Kurt Knispel",
+    "incorrect_answers": ["Michael Wittmann", "Walter Kniep", "Otto Carius"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the oldest US state?",
+    "correct_answer": "Delaware",
+    "incorrect_answers": ["Rhode Island", "Maine", "Virginia"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What year was the United States Declaration of Independence signed?",
+    "correct_answer": "1776",
+    "incorrect_answers": ["1775", "1774", "1777"]
+  },
+  {
+    "category": "History",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Abraham Lincoln was the first U.S. President to be born outside the borders of the thirteen original states. ",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the bloodiest event in United States history, in terms of casualties?",
+    "correct_answer": "Battle of Antietam",
+    "incorrect_answers": ["Pearl Harbor", "September 11th", "D-Day"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The Hagia Sophia was commissioned by which emperor of the Byzantine Empire?",
+    "correct_answer": "Justinian I",
+    "incorrect_answers": ["Constantine IV", "Arcadius", "Theodosius the Great"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "During the Spanish Civil War (1936), Francisco Franco fought for which political faction?",
+    "correct_answer": "Nationalist Spain",
+    "incorrect_answers": ["Republican Spain", "Popular Front", "Papal State"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "What was found in 1946 by two young shepards near a cave?",
+    "correct_answer": "Dead Sea Scrolls",
+    "incorrect_answers": [
+      "The Blackbeard Chest",
+      "Sheep",
+      "The First Oaxaca Cave Sleeper"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the mnemonic device for remembering the fates of the wives of Henry VIII?",
+    "correct_answer": "Divorced, Beheaded, Died, Divorced, Beheaded, Survived",
+    "incorrect_answers": [
+      "Beheaded, Died, Divorced, Divorced, Beheaded, Survived",
+      "Died, Beheaded, Divorced, Beheaded, Survived, Divorced",
+      "Survived, Beheaded, Died, Divorced, Divorced, Beheaded"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which historical conflict killed the most people?",
+    "correct_answer": "World War II",
+    "incorrect_answers": [
+      "Taiping Rebellion",
+      "Three Kingdoms War",
+      "Mongol conquests"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "When did the United States formally declare war on Japan, entering World War II?",
+    "correct_answer": "December 8, 1941",
+    "incorrect_answers": ["June 6, 1944", "June 22, 1941", "September 1, 1939"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "How many women joined the United States Armed Services during World War II?",
+    "correct_answer": "350,000",
+    "incorrect_answers": ["225,000", "100,000", "500,000"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In which year was Constantinople conquered by the Turks?",
+    "correct_answer": "1453",
+    "incorrect_answers": ["1435", "1454", "1440"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In which years did the Battle of Gallipoli take place?",
+    "correct_answer": "1915 - 1916",
+    "incorrect_answers": ["1914 - 1918", "1914 - 1915", "1915 - 1918"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The United States Army Air Corps became the United States Air Force on what date?",
+    "correct_answer": "September 18, 1947",
+    "incorrect_answers": [
+      "December 14, 1946",
+      "October 27, 1945",
+      "November 08, 1944"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What year did World War I begin?",
+    "correct_answer": "1914",
+    "incorrect_answers": ["1905", "1919", "1925"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "When was the &quot;Siege of Leningrad&quot; lifted during World War II?",
+    "correct_answer": "January 1944",
+    "incorrect_answers": ["September 1943", "November 1943", "March 1944"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of the following was not one of Joseph Stalin&#039;s ten blows during World War II?",
+    "correct_answer": "Vistula-Oder Offensive",
+    "incorrect_answers": [
+      "Crimean Offensive",
+      "Leningrad-Novgorod Offensive",
+      "Operation Bagration"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "The minigun was designed in 1960 by which manufacturer.",
+    "correct_answer": "General Electric",
+    "incorrect_answers": ["Colt Firearms", "Heckler &amp; Koch", "Sig Sauer"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the name of the ship which was only a few miles away from the RMS Titanic when it struck an iceberg on April 14, 1912?",
+    "correct_answer": "Californian",
+    "incorrect_answers": ["Carpathia", "Cristol", "Commerce"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the name of the planned invasion of Japan towards the end of World War II?",
+    "correct_answer": "Operation Downfall",
+    "incorrect_answers": [
+      "Operation Boarding Party",
+      "Operation Ironclad",
+      "Operation Aflame"
+    ]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Who was the first man to travel into outer space twice?",
+    "correct_answer": "Gus Grissom",
+    "incorrect_answers": ["Vladimir Komarov", "Charles Conrad", "Yuri Gagarin"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "The pantheon in Rome was used to worship what god?",
+    "correct_answer": "Any god they wanted",
+    "incorrect_answers": ["Athena", "Zeus", "Both Athena and Zeus"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In what year did Texas secede from Mexico?",
+    "correct_answer": "1835",
+    "incorrect_answers": ["1836", "1845", "1844"]
+  },
+  {
+    "category": "History",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In what year did the Great Northern War, between Russia and Sweden, end?",
+    "correct_answer": "1721",
+    "incorrect_answers": ["1726", "1727", "1724"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "According to the BBPA, what is the most common pub name in the UK?",
+    "correct_answer": "Red Lion",
+    "incorrect_answers": ["Royal Oak", "White Hart", "King&#039;s Head"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which river flows through the Scottish city of Glasgow?",
+    "correct_answer": "Clyde",
+    "incorrect_answers": ["Tay", "Dee", "Tweed"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Rolex is a company that specializes in what type of product?",
+    "correct_answer": "Watches",
+    "incorrect_answers": ["Cars", "Computers", "Sports equipment"]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "&quot;Typewriter&quot; is the longest word that can be typed using only the first row on a QWERTY keyboard.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Coca-Cola&#039;s original colour was green.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Area 51 is located in which US state?",
+    "correct_answer": "Nevada",
+    "incorrect_answers": ["Arizona", "New Mexico", "Utah"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which sign of the zodiac is represented by the Crab?",
+    "correct_answer": "Cancer",
+    "incorrect_answers": ["Libra", "Virgo", "Sagittarius"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which American president appears on a one dollar bill?",
+    "correct_answer": "George Washington",
+    "incorrect_answers": [
+      "Thomas Jefferson",
+      "Abraham Lincoln",
+      "Benjamin Franklin"
+    ]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "hard",
+    "question": "This is the correct spelling of &quot;Supercalifragilisticexpialidocious&quot;.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "The vapor produced by e-cigarettes is actually water.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the name of the Jewish New Year?",
+    "correct_answer": "Rosh Hashanah",
+    "incorrect_answers": ["Elul", "New Year", "Succoss"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "When was &quot;YouTube&quot; founded?",
+    "correct_answer": "February 14, 2005",
+    "incorrect_answers": ["May 22, 2004", "September 12, 2005", "July 19, 2009"]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "The sum of all the numbers on a roulette wheel is 666.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "The word &quot;news&quot; originates from the first letters of the 4 main directions on a compass (North, East, West, South).",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Before the 19th Century, the &quot;Living Room&quot; was originally called the...",
+    "correct_answer": "Parlor",
+    "incorrect_answers": ["Open Room", "Sitting Room", "Loft"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "After how many years would you celebrate your crystal anniversary?",
+    "correct_answer": "15",
+    "incorrect_answers": ["20", "10", "25"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of the following is NOT another name for the eggplant?",
+    "correct_answer": "Potimarron",
+    "incorrect_answers": ["Brinjal", "Guinea Squash", "Melongene"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the unit of currency in Laos?",
+    "correct_answer": "Kip",
+    "incorrect_answers": ["Ruble", "Konra", "Dollar"]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Bulls are attracted to the color red.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is on display in the Madame Tussaud&#039;s museum in London?",
+    "correct_answer": "Wax sculptures",
+    "incorrect_answers": [
+      "Designer clothing",
+      "Unreleased film reels",
+      "Vintage cars"
+    ]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the name given to Indian food cooked over charcoal in a clay oven?",
+    "correct_answer": "Tandoori",
+    "incorrect_answers": ["Biryani", "Pani puri", "Tiki masala"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the German word for &quot;spoon&quot;?",
+    "correct_answer": "L&ouml;ffel",
+    "incorrect_answers": ["Gabel", "Messer", "Essst&auml;bchen"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the romanized Russian word for &quot;winter&quot;?",
+    "correct_answer": "Zima",
+    "incorrect_answers": ["Leto", "Vesna", "Osen&#039;"]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "&quot;Ananas&quot; is mostly used as the word for Pineapple in other languages.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "On average, at least 1 person is killed by a drunk driver in the United States every hour.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Who is the founder of &quot;The Lego Group&quot;?",
+    "correct_answer": "Ole Kirk Christiansen",
+    "incorrect_answers": [
+      " Jens Niels Christiansen",
+      "Kirstine Christiansen",
+      " Gerhardt Kirk Christiansen"
+    ]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the last letter of the Greek alphabet?",
+    "correct_answer": "Omega",
+    "incorrect_answers": ["Mu", "Epsilon", "Kappa"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which of the following languages does NOT use gender as a part of its grammar?",
+    "correct_answer": "Turkish",
+    "incorrect_answers": ["German", "Danish", "Polish"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In what year was McDonald&#039;s founded?",
+    "correct_answer": "1955",
+    "incorrect_answers": ["1964", "1951", "1947"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What do the letters of the fast food chain KFC stand for?",
+    "correct_answer": "Kentucky Fried Chicken",
+    "incorrect_answers": [
+      "Kentucky Fresh Cheese",
+      "Kibbled Freaky Cow",
+      "Kiwi Food Cut"
+    ]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was Mountain Dew&#039;s original slogan?",
+    "correct_answer": "Yahoo! Mountain Dew... It&#039;ll tickle your innards!",
+    "incorrect_answers": [
+      "Give Me A Dew",
+      "Do The Dew",
+      "Get&#039; that barefoot feelin&#039; drinkin&#039; Mountain Dew"
+    ]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the soft drink Pepsi originally introduced as?",
+    "correct_answer": "Brad&#039;s Drink",
+    "incorrect_answers": ["Pepsin Pop", "Carolina Cola", "Pepsin Syrup"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What is the Portuguese word for &quot;Brazil&quot;?",
+    "correct_answer": "Brasil",
+    "incorrect_answers": ["Brazil", "Brasilia", "Bras&iacute;l"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In flight systems, what does the initialism &quot;TCAS&quot; stand for?",
+    "correct_answer": "Traffic Collision Avoidance System",
+    "incorrect_answers": [
+      "Traffic Communication Alert System",
+      "Traffic Configuration Alignment System",
+      "Traffic Call-sign Abbreviation System"
+    ]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which sign of the zodiac comes between Virgo and Scorpio?",
+    "correct_answer": "Libra",
+    "incorrect_answers": ["Gemini", "Taurus", "Capricorn"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "If someone said &quot;you are olid&quot;, what would they mean?",
+    "correct_answer": "You smell extremely unpleasant.",
+    "incorrect_answers": [
+      "You are out of shape/weak.",
+      "Your appearance is repulsive.",
+      "You are incomprehensible/an idiot."
+    ]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Named after the mallow flower, mauve is a shade of what?",
+    "correct_answer": "Purple",
+    "incorrect_answers": ["Red", "Brown", "Pink"]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "Haggis is traditionally eaten on Burns Night.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "Which company&#039;s original slogan was &quot;Don&#039;t be evil&quot;?",
+    "correct_answer": "Google",
+    "incorrect_answers": ["Apple", "Yahoo", "Microsoft"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Nephelococcygia is the practice of doing what?",
+    "correct_answer": "Finding shapes in clouds",
+    "incorrect_answers": [
+      "Sleeping with your eyes open",
+      "Breaking glass with your voice",
+      "Swimming in freezing water"
+    ]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "What is the Zodiac symbol for Gemini?",
+    "correct_answer": "Twins",
+    "incorrect_answers": ["Fish", "Scales", "Maiden"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "The likeness of which president is featured on the rare $2 bill of USA currency?",
+    "correct_answer": "Thomas Jefferson",
+    "incorrect_answers": [
+      "Martin Van Buren",
+      "Ulysses Grant",
+      "John Quincy Adams"
+    ]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What was the name given to Japanese military dictators who ruled the country through the 12th and 19th Century?",
+    "correct_answer": "Shogun",
+    "incorrect_answers": ["Ninja", "Samurai", "Shinobi"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "Which church&#039;s interior in Vatican City was designed in 1503 by renaissance architects including Bramante, Michelangelo and Bernini?",
+    "correct_answer": "St. Peter&#039;s Basilica",
+    "incorrect_answers": [
+      "Catania Cathedral",
+      "St. Mark&rsquo;s Basilica",
+      "The Duomo of Florence"
+    ]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "If you planted the seeds of Quercus robur, what would grow?",
+    "correct_answer": "Trees",
+    "incorrect_answers": ["Grains", "Vegetables", "Flowers"]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Vietnam&#039;s national flag is a red star in front of a yellow background.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "How many notes are there on a standard grand piano?",
+    "correct_answer": "88",
+    "incorrect_answers": ["98", "108", "78"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In the MMO RPG &quot;Realm of the Mad God&quot;, what dungeon is widely considered to be the most difficult?",
+    "correct_answer": "The Shatter&#039;s",
+    "incorrect_answers": [
+      "Snake Pit",
+      "The Tomb of the Acient&#039;s",
+      "The Puppet Master&#039;s Theater"
+    ]
+  },
+  {
+    "category": "General",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Slovakia is a member of the European Union",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "category": "General",
+    "type": "multiple",
+    "difficulty": "hard",
+    "question": "In &quot;Battle Cats&quot;, what is Moneko / MISS Moneko&#039;s critical percentage rate?",
+    "correct_answer": "15%",
+    "incorrect_answers": ["20%", "10%", "25%"]
+  }
+]
