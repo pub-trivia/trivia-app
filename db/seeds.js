@@ -17,7 +17,7 @@ connection.connect(function (err) {
 });
 
 async function loadSeeds() {
-  var inputString = await readFileAsync("./models/seeds.json", "utf8");
+  var inputString = await readFileAsync("./db/seeds.json", "utf8");
   var inputQuestions = JSON.parse(inputString);
   var answers = [];
   var correctIndex = 0;
@@ -50,7 +50,7 @@ async function loadSeeds() {
     seedQuestions.push(seedQuestion);
   }
   let insertCommand =
-    "INSERT INTO questions (question, category, difficulty, authorId, questionType, correctIndex, answer1, answer2, answer3, answer4) VALUES ? ";
+    "INSERT INTO questions (question, category, difficulty, userId, questionType, correctIndex, answer1, answer2, answer3, answer4) VALUES ? ";
   connection.query(insertCommand, [seedQuestions], (err, res) => {
     if (err) {
       console.log(err);
