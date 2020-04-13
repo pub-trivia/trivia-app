@@ -6,7 +6,7 @@ module.exports = function (sequelize, DataTypes) {
         userId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            allowNull: false
+            autoIncrement: true
         },
         displayName: {
             type: DataTypes.STRING,
@@ -57,7 +57,7 @@ module.exports = function (sequelize, DataTypes) {
 
     User.associate = function (models) {
         User.hasMany(models.Question, {
-            as: 'questions'
+            foreignKey: 'userId'
         });
         // User.hasMany(models.Quiz, {
         //     onDelete: "SET NULL"

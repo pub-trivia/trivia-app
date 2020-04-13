@@ -6,8 +6,7 @@ module.exports = function (sequelize, DataTypes) {
     var Question = sequelize.define("Question", {
         questionId: {
             type: DataTypes.INTEGER,
-            primaryKey: true,
-            allowNull: false
+            primaryKey: true
         },
         question: {
             type: DataTypes.STRING,
@@ -57,22 +56,18 @@ module.exports = function (sequelize, DataTypes) {
         incorrectCount: {
             type: DataTypes.INTEGER,
             defaultValue: 0
-        },
-        isBlocked: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
         }
     });
 
     Question.associate = (models) => {
-        Question.belongsToMany(models.Quiz, {
-            through: 'quizQuestionsAssoc',
-            as: 'quizzes',
-            foreignKey: 'questionId',
-            otherKey: 'quizId'
-        });
+        // Question.belongsToMany(models.Quiz, {
+        //     through: 'quizQuestionsAssoc',
+        //     as: 'quizzes',
+        //     foreignKey: 'quizId'
+        // });
         Question.belongsTo(models.User, {
-            onDelete: "SET NULL"
+            onDelete: "SET NULL",
+            foreignKey: 'userId'
         });
 
     }
