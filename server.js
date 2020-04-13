@@ -1,37 +1,74 @@
 const express = require("express");
+const socketio = require("socket.io");
+const http = require('http');
+const cors = require('cors');
+
+const { addUser, removeUser, getUser, getUsersInGame } = require('./controllers/userController');
+const db = require("./models");
+const router = require("./routes/html-routes");
+
 const path = require("path");
 const PORT = process.env.PORT || 3001;
+
 const app = express();
-const db = require("./models");
+const server = http.createServer(app);
+const io = socketio(server);
 
-
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "./client/build"));
-  });
-  // } else {
-  //   app.use(express.static("client/public"));
-  //   app.get("*", function (req, res) {
-  //     res.sendFile(path.join(__dirname, "./client/public"));
-  //   });
-}
-
-// Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 // Routes
 // =============================================================
+app.use(cors());
 require("./routes/api-routes.js")(app);
+app.use(router);
 
-// Send every request to the React app
-// Define any API routes before this runs
 
+// Set up socket handlers
+io.on('connect', (socket) => {
+
+  socket.on('join', ({ game, name, icon, color }, callback) => {
+    
+    const { error, user } = addUser({ id: socket.id, game, name, icon, color });
+
+    if(error) return callback(error);
+
+    socket.join(user.game);
+
+    socket.emit('arrival', { user });
+    socket.broadcast.to(user.game).emit('arrival', { user });
+
+    io.to(user.game).emit('gameData', { game: user.game, users: getUsersInGame(user.game)});
+
+    callback();
+  })
+
+  socket.on('gameResponse', (response, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.game).emit('response', {user: user.name, response: response});
+    io.to(user.game).emit('gameData', {tame: user.game, users: getUsersInGame(user.game)});
+
+    callback();
+  })
+
+  socket.on('disconnect', () => {
+    const user = removeUser(socket.id);
+
+    if(user){
+      io.to(user.game).emit('departure', { user: user.name, text: `${user.name} has left`})
+    }
+  })
+})
+
+//sync the db with sequelize
 db.sequelize.sync().then(function () {
-
-  app.listen(PORT, function () {
+//and if successful, start the app!
+  server.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
 });
