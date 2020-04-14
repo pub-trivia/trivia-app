@@ -10,17 +10,23 @@ module.exports = function (sequelize, DataTypes) {
         displayName: {
             type: DataTypes.STRING
         },
+        avatar: {
+            type: DataTypes.INTEGER
+        },
+        avatarColor: {
+            type: DataTypes.STRING
+        },
         score: {
             type: DataTypes.INTEGER,
             required: true
         }
     });
 
-    // QuizScore.associate = function (models) {
-    //     QuizScore.hasMany(models.Quiz, {
-    //         onDelete: "set null"
-    //     });
-
-    // } 
+    QuizScore.associate = function (models) {
+        QuizScore.belongsTo(models.Quiz, {
+            onDelete: 'CASCADE',
+            foreignKey: 'quizId'
+        });
+    }
     return QuizScore;
 };

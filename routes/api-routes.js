@@ -17,13 +17,14 @@ const { Op } = require("sequelize");
 // *POST /api/createquiz - create a new quiz, pass in number of questions, 
 //       category, difficulty, userId, returns newQuizObject  
 // *POST /api/createquestion - create a new question
-// POST /api/addscore/:quiz - add a score for a quiz
+// *POST /api/addscore/ - add a score for a quiz
 //
 // *PUT /api/question/moderate/:questionid - mark for moderation
 //    can call above but doesn't yet work 
 // PUT /api/userscore/ pass in updates to questions answered, 
 //       correct, games played, games won 
-// PUT /api/question/updatecounts
+// PUT /api/question/updatecounts - update the question - how many answered
+//    correctly / incorrectly 
 
 
 module.exports = function (app) {
@@ -62,6 +63,7 @@ module.exports = function (app) {
   });
 
   app.get("/api/quiz/questions/:quizid", (req, res) => {
+    // not currently saving the questions associated with a quiz
     // db.QuizQuestionAssoc.findAll({
     //   where: { quizId: req.params.quizId }
     // })
@@ -162,7 +164,7 @@ module.exports = function (app) {
       .then(result => {
         res.json(result)
       })
-  })
+  });
 
   app.get("/api/quizbycode/:code", (req, res) => {
     db.Quiz.findOne({
@@ -173,6 +175,42 @@ module.exports = function (app) {
       .then(result => {
         res.json(result)
       })
+  });
+
+  app.post("/api/addscore", (req, res) => {
+    const { quizId, userId, displayName, avatar, avatarColor } = req.body;
+    db.QuizScore.findOne({
+      where: { quizId: quizId, displayName: displayName }
+    })
+      .then(result => {
+        if (result !== null) {
+          // increment existing record
+          // should also be able to search on userid....   
+          console.log("Result when record found:", result);
+          db.QuizScore.update(
+            {
+              userId: result.dataValues.userId,
+              displayName: result.dataValues.displayName,
+              score: result.dataValues.score + 1
+            },
+            { where: { quizId, displayName } }
+          )
+            .then(result => res.json(result));
+        } else {
+          // create a new record           
+          db.QuizScore.create({
+            quizId,
+            userId,
+            displayName,
+            avatar,
+            avatarColor,
+            score: 1
+          })
+            .then(result => {
+              res.json(result);
+            });
+        }
+      });
   })
 
   app.get("/api/getquestions", (req, res) => {
