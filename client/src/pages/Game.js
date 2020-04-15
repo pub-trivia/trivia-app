@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
-import './Game.css';
 
-import WaitingRoom from '../../components/WaitingRoom';
-import { useGameContext } from '../../utils/GlobalState';
+import WaitingRoom from '../components/WaitingRoom';
+import { useGameContext } from '../utils/GlobalState';
 
 let socket;
 
