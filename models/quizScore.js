@@ -1,14 +1,18 @@
 module.exports = function (sequelize, DataTypes) {
     var QuizScore = sequelize.define("QuizScore", {
-        userId: {
-            type: DataTypes.INTEGER
-        },
         quizId: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        userId: {
+            type: DataTypes.INTEGER
+        },
+        questionId: {
+            type: DataTypes.INTEGER
+        },
         displayName: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            required: true
         },
         avatar: {
             type: DataTypes.INTEGER
@@ -16,8 +20,8 @@ module.exports = function (sequelize, DataTypes) {
         avatarColor: {
             type: DataTypes.STRING
         },
-        score: {
-            type: DataTypes.INTEGER,
+        correct: {
+            type: DataTypes.BOOLEAN,
             required: true
         }
     });

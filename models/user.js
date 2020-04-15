@@ -41,14 +41,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             defaultValue: 0
         },
-        questionsAnswered: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0
-        },
-        correctAnswers: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0
-        },
         isBlocked: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
