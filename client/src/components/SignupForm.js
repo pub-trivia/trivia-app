@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import Button from '../components/Button';
+import API from '../utils/API';
 
 const SignupForm = () => {
   const nameRef = useRef();
@@ -8,11 +9,11 @@ const SignupForm = () => {
   const avatarRef = useRef();
   const colorRef = useRef();
 
-  handeChange = event => {
+ const handleChange = event => {
     console.log(event);
   }
   // When the signup button is clicked, we validate the displayname, email and password are not blank
-  handleFormSubmit = event => {
+  const handleFormSubmit = event => {
     event.preventDefault();
 
     if (!emailRef.current.value || !pwRef.current.value || !nameRef.current.value) {
@@ -20,7 +21,7 @@ const SignupForm = () => {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, avatarRef.current.value, colorRef.current.value);
+    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, avatarRef.current.value, colorRef.current.value);
   };
 
   return (
@@ -69,24 +70,24 @@ const SignupForm = () => {
 
 // Does a post to the signup route. If successful, we are redirected to their user page?
 // Otherwise we log any errors
-function signUpUser(displayName, email, password, avatar, avatarColor) {
-  $.post("/api/signup", {
-    displayName,
-    email,
-    password,
-    avatar,
-    avatarColor
-  })
-    .then(data => {
-      window.location.replace("/");
-      // If there's an error, handle it by throwing up an alert
-    })
-    .catch(handleLoginErr);
-}
+// function signUpUser(displayName, email, password, avatar, avatarColor) {
+//   $.post("/api/signup", {
+//     displayName,
+//     email,
+//     password,
+//     avatar,
+//     avatarColor
+//   })
+//     .then(data => {
+//       window.location.replace("/");
+//       // If there's an error, handle it by throwing up an alert
+//     })
+//     .catch(handleLoginErr);
+// }
 
-function handleLoginErr(err) {
-  $("#alert .msg").text(err.responseJSON);
-  $("#alert").fadeIn(500);
-}
+// function handleLoginErr(err) {
+//   $("#alert .msg").text(err.responseJSON);
+//   $("#alert").fadeIn(500);
+// }
 
 export default SignupForm; 

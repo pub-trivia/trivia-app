@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import { GameProvider } from "./utils/GlobalState";
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Game from './pages/Game';
 
 const App = () => {
@@ -19,6 +21,12 @@ const App = () => {
             </Route>
             <Route exact path="/game">
               <Game />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/signup">
+              <Signup />
             </Route>
           </Switch>
         </GameProvider>
