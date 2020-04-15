@@ -1,102 +1,92 @@
-import React from "react";
+import React, { useRef } from "react";
+import Button from '../components/Button';
 
-// componentDidMount() {
+const SignupForm = () => {
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const pwRef = useRef();
+  const avatarRef = useRef();
+  const colorRef = useRef();
 
-function signupForm() {
-    const [state, setState] = React.useState({
-        displayName: "",
-        email: "",
-        password: "",
-        avatar: "",
-        avatarColor: "" 
-    })
+  handeChange = event => {
+    console.log(event);
+  }
+  // When the signup button is clicked, we validate the displayname, email and password are not blank
+  handleFormSubmit = event => {
+    event.preventDefault();
 
-return (
-    <form>
+    if (!emailRef.current.value || !pwRef.current.value || !nameRef.current.value) {
+      alert("Please enter a display name, email and password. Then select an avatar and color!")
+      return;
+    }
+    // If we have an email and password, run the signUpUser function
+    signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, avatarRef.current.value, colorRef.current.value);
+  };
+
+  return (
+    <form onSubmit={(event) => handleFormSubmit(event)}>
       <label>
-        Display name
+        Name
         <input
+          placeholder="Display Name"
           type="text"
-          name="displayName"
-          value={state.displayName}
-          onChange={handleChange}
+          ref={nameRef}
         />
       </label>
       <label>
         Email
         <input
           type="text"
-          name="email"
-          value={state.email}
-          onChange={handleChange}
+          placeholder="email.address@gmail.com"
+          ref={emailRef}
         />
       </label>
       <label>
         Password
         <input
           type="password"
-          name="password"
-          value={state.password}
-          onChange={handleChange}
+          placeholder="**************"
+          ref={pwRef}
         />
       </label>
       <input
-          type="radio"
-          name="avatar"
-          value={state.avatar}
-          onChange={handleChange}
-        />
-        <input
-          type="radio"
-          name="password"
-          value={state.avatarColor}
-          onChange={handleChange}
-        />
+        type="radio"
+        ref={avatarRef}
+        onChange={handleChange}
+      />
+      <input
+        type="radio"
+        ref={colorRef}
+        onChange={handleChange}
+      />
       {/* [#03E4AC, #04D5FB, #F7903E, #FFD72F, #9665D8, #F94141, #4481D8, #F96E99, #FFFFFF, #9FA1A0] */}
-
+      <Button type="submit" text="SIGN UP" />
     </form>
-);
-}
-    handleInputChange = event => {
-        const userData = evt.target.value;
-        setState({
-            ...state,
-            [evt.target.name]: value
-        });
+  );
 }
 
-    // When the signup button is clicked, we validate the displayname, email and password are not blank
-    handleFormSubmit = event => {
-      event.preventDefault();
-  
-      if (!userData.email || !userData.password || !userData.displayName) {
-          alert("please enter a display name, email and password. Then select an avatar and color!")
-        return;
-      }
-      // If we have an email and password, run the signUpUser function
-      signUpUser(userData.displayName, userData.email, userData.password, userData.avatar, userData.avatarColor);
-    };
-  
-    // Does a post to the signup route. If successful, we are redirected to their user page?
-    // Otherwise we log any errors
-    function signUpUser(displayName, email, password, avatar, avatarColor) {
-      $.post("/api/signup", {
-        displayName,
-        email,
-        password,
-        avatar,
-        avatarColor
-      })
-        .then( data => {
-          window.location.replace("/");
-          // If there's an error, handle it by throwing up an alert
-        })
-        .catch(handleLoginErr);
-    }
-  
-    function handleLoginErr(err) {
-      $("#alert .msg").text(err.responseJSON);
-      $("#alert").fadeIn(500);
-    }
 
-export default signupForm; 
+
+// Does a post to the signup route. If successful, we are redirected to their user page?
+// Otherwise we log any errors
+function signUpUser(displayName, email, password, avatar, avatarColor) {
+  $.post("/api/signup", {
+    displayName,
+    email,
+    password,
+    avatar,
+    avatarColor
+  })
+    .then(data => {
+      window.location.replace("/");
+      // If there's an error, handle it by throwing up an alert
+    })
+    .catch(handleLoginErr);
+}
+
+function handleLoginErr(err) {
+  $("#alert .msg").text(err.responseJSON);
+  $("#alert").fadeIn(500);
+}
+
+export default SignupForm; 
