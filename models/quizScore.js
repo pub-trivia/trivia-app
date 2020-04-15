@@ -1,26 +1,36 @@
 module.exports = function (sequelize, DataTypes) {
     var QuizScore = sequelize.define("QuizScore", {
-        userId: {
-            type: DataTypes.INTEGER
-        },
         quizId: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        userId: {
+            type: DataTypes.INTEGER
+        },
+        questionId: {
+            type: DataTypes.INTEGER
+        },
         displayName: {
+            type: DataTypes.STRING,
+            required: true
+        },
+        avatar: {
+            type: DataTypes.INTEGER
+        },
+        avatarColor: {
             type: DataTypes.STRING
         },
-        score: {
-            type: DataTypes.INTEGER,
+        correct: {
+            type: DataTypes.BOOLEAN,
             required: true
         }
     });
 
-    // QuizScore.associate = function (models) {
-    //     QuizScore.hasMany(models.Quiz, {
-    //         onDelete: "set null"
-    //     });
-
-    // } 
+    QuizScore.associate = function (models) {
+        QuizScore.belongsTo(models.Quiz, {
+            onDelete: 'CASCADE',
+            foreignKey: 'quizId'
+        });
+    }
     return QuizScore;
 };

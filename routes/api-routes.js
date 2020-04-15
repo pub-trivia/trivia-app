@@ -2,6 +2,7 @@ var db = require("../models");
 const { Op } = require("sequelize");
 
 // routes:   *'s are working 
+// GET /api/login/ - gets email and password, returns the userid 
 // *GET /api/finduser/:email - find a user by email when they login
 // *GET /api/getscores/:quizid - get all the scores for that quiz 
 // *GET /api/getuser/:userid - get all the data for that user 
@@ -17,17 +18,38 @@ const { Op } = require("sequelize");
 // *POST /api/createquiz - create a new quiz, pass in number of questions, 
 //       category, difficulty, userId, returns newQuizObject  
 // *POST /api/createquestion - create a new question
-// POST /api/addscore/:quiz - add a score for a quiz
+// *POST /api/addscore/ - add a score for a quiz
 //
 // *PUT /api/question/moderate/:questionid - mark for moderation
 //    can call above but doesn't yet work 
 // PUT /api/userscore/ pass in updates to questions answered, 
 //       correct, games played, games won 
-// PUT /api/question/updatecounts
+// PUT /api/question/updatecounts - update the question - how many answered
+//    correctly / incorrectly 
 
 
 module.exports = function (app) {
 
+  app.get("/api/login", (req, res) => {
+    console.log("Login form: ", req.body);
+    const { email, password } = req.body;
+    db.User.findOne({
+      where: { email: email }
+    })
+      .then(result => {
+        console.log(result);
+        if (result === 0) {
+          res.send({ message: "Email not registered." }).end();
+        }
+        else {
+          if (password === result.password) {
+            return res.json(result.userId);
+          } else {
+            return res.send({ message: "Invalid password." }).end();
+          }
+        }
+      });
+  })
   app.get("/api/finduser/:email", (req, res) => {
     db.User.findOne({
       where: { email: req.params.email }
@@ -62,6 +84,7 @@ module.exports = function (app) {
   });
 
   app.get("/api/quiz/questions/:quizid", (req, res) => {
+    // not currently saving the questions associated with a quiz
     // db.QuizQuestionAssoc.findAll({
     //   where: { quizId: req.params.quizId }
     // })
@@ -73,13 +96,21 @@ module.exports = function (app) {
 
   app.get("/api/getscores/:quizId", (req, res) => {
     console.log("/api/getscores/ called: quiz ", req.params);
-    db.QuizScore.findAll({
-      where: { quizId: req.params.quizId }
-    })
-      .then(result => {
-        console.log(result);
-        return res.json(result);
+    const query = `SELECT userId, displayName, SUM(correct) AS correctAnswers, COUNT(createdAt) AS totalAnswers` +
+      ` FROM quizScores WHERE quizId = ${req.params.quizId} group by userId ;`;
+
+    db.sequelize.query(query)
+      .then(results => {
+        return res.json(results[0]);
       });
+
+    // db.QuizScore.findAll({
+    //   where: { quizId: req.params.quizId }
+    // })
+    //   .then(result => {
+    //     console.log(result);
+    //     return res.json(result);
+    //   });
   });
 
   app.post("/api/createuser", (req, res) => {
@@ -142,12 +173,21 @@ module.exports = function (app) {
 
   const generateRandomCode = () => {
     // generate random combination of capitals and numbers
-    var useChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    var useChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var useNums = "0123456789";
     var useCharArray = useChars.split("");
+    var useNumArray = useNums.split("");
     let randomCode = "";
-    for (var i = 0; i < 6; i++) {
-      var pickIndex = Math.floor(Math.random() * useCharArray.length);
-      var charPicked = useCharArray[pickIndex];
+    var pickIndex = 0;
+    var charPicked = "";
+    for (let i = 0; i < 4; i++) {
+      if (i % 2 === 1) {
+        pickIndex = Math.floor(Math.random() * useCharArray.length);
+        charPicked = useCharArray[pickIndex];
+      } else {
+        pickIndex = Math.floor(Math.random() * useNumArray.length);
+        charPicked = useNumArray[pickIndex];
+      }
       randomCode = randomCode + charPicked;
     }
     return randomCode;
@@ -162,7 +202,7 @@ module.exports = function (app) {
       .then(result => {
         res.json(result)
       })
-  })
+  });
 
   app.get("/api/quizbycode/:code", (req, res) => {
     db.Quiz.findOne({
@@ -173,9 +213,26 @@ module.exports = function (app) {
       .then(result => {
         res.json(result)
       })
-  })
+  });
+
+  app.post("/api/addscore", (req, res) => {
+    const { quizId, userId, questionId, displayName, avatar, avatarColor, correct } = req.body;
+    db.QuizScore.create({
+      quizId,
+      userId,
+      questionId,
+      displayName,
+      avatar,
+      avatarColor,
+      correct
+    })
+      .then(result => {
+        res.json(result);
+      });
+  });
 
   app.get("/api/getquestions", (req, res) => {
+    // get questions for a quiz 
     const { quizId, category, difficulty, count, userId } = req.body;
     console.log("/api/getquestions:", req.body);
     db.Question.findAll({
