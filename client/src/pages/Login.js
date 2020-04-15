@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import LoginForm from '../components/LoginForm';
 import Button from '../components/Button';
 // import "../style.css";
@@ -6,8 +7,12 @@ import Button from '../components/Button';
 const Login = () => [
     <div>
         <LoginForm />
-        <Button type="button" text="Skip Log In" />
-        <Button type="button" text="SIGN UP" />
+        <Link to="/">
+            <Button type="button" text="Skip Log In" />
+        </Link>
+        <Link to="/signup">
+            <Button type="button" text="SIGN UP" />
+        </Link>
     </div>
 ]
 
