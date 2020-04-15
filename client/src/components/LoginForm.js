@@ -1,51 +1,38 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import Button from '../components/Button';
+import API from '../utils/API';
 
 // When the form is submitted, we validate there's an email and password entered
 const LoginForm = () => {
-  const [state, setState] = React.useState({
-    email: "",
-    password: ""
-  })
+  const emailRef = useRef();
+  const pwRef = useRef();
 
-  handleInputChange = event => {
-    const userData = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value
-    });
-  }
-
-  handleFormSubmit = event => {
+  const handleFormSubmit = event => {
     event.preventDefault();
   
-    if (!userData.email || !userData.password) {
+    if (!emailRef.current.value || !pwRef.current.value) {
       return;
     }
-
     // If we have an email and password we run the loginUser function and clear the form
-    loginUser(userData.email, userData.password);
-    emailInput.val("");
-    passwordInput.val("");
-  };
+    API.loginUser(emailRef.current.value, pwRef.current.value);
+  }
 
   return (
-    <form>
+    <form onSubmit={(event) => handleFormSubmit(event)}>
       <label>
         Email
         <input
-            type="text"
-            name="email"
-            value={state.email}
-            onChange={handleChange}
-          />
+          type="text"
+          placeholder="email.address@gmail.com"
+          ref={emailRef}
+        />
       </label>
       <label>
         Password
         <input
-            type="password"
-            name="password"
-            value={state.password}
-            onChange={handleChange}
+          type="password"
+          placeholder="**************"
+          ref={pwRef}
         />
       </label>
       <Button type="submit" text="LOG IN" />
@@ -56,19 +43,19 @@ const LoginForm = () => {
 
 
 
-// loginUser does a post to our "api/login" route and if successful, redirects us the the members page
-function loginUser(email, password) {
-  $.post("/api/login", {
-    email,
-    password
-  })
-    .then(() => {
-      window.location.replace("/");
-      // If there's an error, log the error
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-}
+// // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+// function loginUser(email, password) {
+//   $.post("/api/login", {
+//     email,
+//     password
+//   })
+//     .then(() => {
+//       window.location.replace("/");
+//       // If there's an error, log the error
+//     })
+//     .catch(function (err) {
+//       console.log(err);
+//     });
+// }
 
 export default LoginForm;
