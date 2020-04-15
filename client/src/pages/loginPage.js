@@ -1,18 +1,15 @@
 import React from 'react';
 import LoginForm from '../components/LoginForm';
-// import header;
-// import signup button;
-// Import skiplogin button:
-// import signup button:
+import Navbar from '../components/Navbar';
+import Button from '../components/Button';
 // import "../style.css";
 
 const LoginPage = () => [
     <div>
-        <Header />
+        <Navbar />
         <LoginForm />
-        <SignUpButton />
-        <SkipLogInButton />
-        <SignUpButton />
+        <Button type="button" text="Skip Log In" />
+        <Button type="button" text="SIGN UP" />
     </div>
 ]
 
