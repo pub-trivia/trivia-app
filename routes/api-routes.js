@@ -31,8 +31,10 @@ const { Op } = require("sequelize");
 module.exports = function (app) {
 
   app.get("/api/login", (req, res) => {
+    console.log("Login form: ", req.body);
+    const { email, password } = req.body;
     db.User.findOne({
-      where: { email: req.params.email }
+      where: { email: email }
     })
       .then(result => {
         console.log(result);
@@ -40,8 +42,11 @@ module.exports = function (app) {
           res.send({ message: "Email not registered." }).end();
         }
         else {
-          // check the password 
-          return res.json(result);
+          if (password === result.password) {
+            return res.json(result.userId);
+          } else {
+            return res.send({ message: "Invalid password." }).end();
+          }
         }
       });
   })
