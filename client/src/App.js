@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import { GameProvider } from "./utils/GlobalState";
-import Join from './pages/Join';
+import Home from './pages/Home';
 import Game from './pages/Game';
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
           <Navbar />
           <Switch>
             <Route exact path="/">
-              <Join />
+              <Home />
             </Route>
             <Route exact path="/game">
               <Game />
