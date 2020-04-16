@@ -13,7 +13,7 @@ const WaitingRoom = ({ users }) => {
                     {users.map(({ name, icon, color }) => {
                         return (
                             <div key={name}>
-                                {icon}/{color}: {name} is here!
+                                <PlayerIcons icon={icon} color={color} /> {name} has joined
                             </div>
                         )
                     })}
