@@ -1,10 +1,15 @@
 import React from 'react';
+import PlayerIcons from '../PlayerIcons';
+
+import './WaitingRoom.css';
 
 const WaitingRoom = ({ users }) => {
+    
+
     return (
         <div>
             <div>
-                <h1>Wait here while everyone joins ...</h1>
+                <h1>Waiting for your Group...</h1>
             </div>
         { users
          ? (
@@ -13,7 +18,7 @@ const WaitingRoom = ({ users }) => {
                     {users.map(({ name, icon, color }) => {
                         return (
                             <div key={name}>
-                                {icon}/{color}: {name} is here!
+                                <PlayerIcons icon={icon} color={color} /> {name} has joined
                             </div>
                         )
                     })}

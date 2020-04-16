@@ -39,19 +39,25 @@ io.on('connect', (socket) => {
 
     socket.join(user.game);
 
-    socket.emit('arrival', { user });
-    socket.broadcast.to(user.game).emit('arrival', { user });
+    //socket.emit('arrival', { user });
+    //socket.broadcast.to(user.game).emit('arrival', { user });
 
     io.to(user.game).emit('gameData', { game: user.game, users: getUsersInGame(user.game)});
 
     callback();
   })
 
+  socket.on("allHere", ({ game }, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.game).emit("startGame", { game: user.game, users: getUsersInGame(user.game)});
+  })
+
   socket.on('gameResponse', (response, callback) => {
     const user = getUser(socket.id);
 
     io.to(user.game).emit('response', {user: user.name, response: response});
-    io.to(user.game).emit('gameData', {tame: user.game, users: getUsersInGame(user.game)});
+    io.to(user.game).emit('gameData', {game: user.game, users: getUsersInGame(user.game)});
 
     callback();
   })

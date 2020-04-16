@@ -48,6 +48,8 @@ const GameProvider = ({ value = [], ...props }) => {
         icon: '',
         color: ''
     });
+    console.log("==============state================");
+    console.log(state);
 
     return <Provider value={[state, dispatch]} {...props} />;
 };
