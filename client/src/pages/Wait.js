@@ -22,7 +22,6 @@ const Wait = () => {
 
     useEffect(() => {
         socket = io(ENDPOINT);
-        console.log(socket, game, name, icon, color);
         socket.emit('join', { game, name, icon, color }, () => {});
 
         return () => {
