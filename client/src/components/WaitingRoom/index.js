@@ -1,10 +1,21 @@
 import React from 'react';
+import Button from '../Button';
+import PlayerIcons from '../PlayerIcons';
+import { useHistory } from 'react-router-dom';
 
 const WaitingRoom = ({ users }) => {
+    let history = useHistory();
+
+    const handleClick = (event) => {
+        event.preventDefault();
+
+        history.push('/game');
+    }
+
     return (
         <div>
             <div>
-                <h1>Wait here while everyone joins ...</h1>
+                <h1>Waiting for your Group...</h1>
             </div>
         { users
          ? (
