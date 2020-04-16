@@ -211,6 +211,8 @@ module.exports = function (app) {
   });
 
   app.get("/api/quizbycode/:code", (req, res) => {
+    console.log("===========api/quizbycode/:code=======")
+    console.log(req.params.code)
     db.Quiz.findOne({
       where: {
         quizCode: req.params.code

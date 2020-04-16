@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Game from './pages/Game';
+import Wait from './pages/Wait';
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/wait">
+              <Wait />
             </Route>
             <Route exact path="/game">
               <Game />

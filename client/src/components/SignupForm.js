@@ -1,27 +1,27 @@
-import React, { useRef } from "react";
+import React, { createRef, useRef } from "react";
 import Button from '../components/Button';
 import API from '../utils/API';
+
+import ColorPicker from './ColorPicker';
+import IconPicker from './IconPicker';
 
 const SignupForm = () => {
   const nameRef = useRef();
   const emailRef = useRef();
   const pwRef = useRef();
-  const avatarRef = useRef();
-  const colorRef = useRef();
+  const iconRef = createRef();
+  const colorRef = createRef();
 
- const handleChange = event => {
-    console.log(event);
-  }
   // When the signup button is clicked, we validate the displayname, email and password are not blank
   const handleFormSubmit = event => {
     event.preventDefault();
 
     if (!emailRef.current.value || !pwRef.current.value || !nameRef.current.value) {
-      alert("Please enter a display name, email and password. Then select an avatar and color!")
+      alert("Please enter a display name, email and password. Then select an avatar icon and color!")
       return;
     }
     // If we have an email and password, run the signUpUser function
-    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, avatarRef.current.value, colorRef.current.value);
+    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, iconRef.current.value, colorRef.current.value);
   };
 
   return (
@@ -50,17 +50,8 @@ const SignupForm = () => {
           ref={pwRef}
         />
       </label>
-      <input
-        type="radio"
-        ref={avatarRef}
-        onChange={handleChange}
-      />
-      <input
-        type="radio"
-        ref={colorRef}
-        onChange={handleChange}
-      />
-      {/* [#03E4AC, #04D5FB, #F7903E, #FFD72F, #9665D8, #F94141, #4481D8, #F96E99, #FFFFFF, #9FA1A0] */}
+      <IconPicker ref={iconRef}/>
+      <ColorPicker ref={colorRef}/>
       <Button type="submit" text="SIGN UP" />
     </form>
   );

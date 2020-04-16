@@ -1,14 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-import WaitingRoom from '../components/WaitingRoom';
+import Timer from '../components/Timer';
+import Question from '../components/Question';
+import Responses from '../components/Responses';
+import Scoreboard from '../components/Scoreboard';
+
 import { useGameContext } from '../utils/GlobalState';
+import API from '../utils/API';
 
 let socket;
+
 
 const Game = () => {
     const [state, dispatch] = useGameContext();
     const [users, setUsers] = useState('');
+
     let ENDPOINT = "http://localhost:3000"
 
     if(process.env.NODE_ENV === "production"){
@@ -18,28 +25,24 @@ const Game = () => {
     const { game, name, icon, color } = state;
 
     useEffect(() => {
-        socket = io(ENDPOINT);
-        console.log(socket, game, name, icon, color);
-        socket.emit('join', { game, name, icon, color }, () => {});
+        // socket = io(ENDPOINT);
+        // console.log(socket, game, name, icon, color);
+        API.getQuizbyCode(game)
+            .then((result) => {
+                console.log("=========getQuizbyCode=======")
+                //API.getQuestion()
+            }
 
-        return () => {
-            socket.emit('disconnect');
-            socket.off();
-        }
-    }, [ENDPOINT]);
-
-    useEffect(() => {
-        socket.on("gameData", ({ users }) => {
-            setUsers(users);
-        });
+            )
     }, []);
 
     return (
-        <div>
-            <h1>You're in game: {state.game}</h1>
-            <WaitingRoom users={users} />
-        </div>
-        
+        <>
+            <Timer />
+            <Question />
+            <Responses />
+            <Scoreboard />
+        </>
     )
 }
 

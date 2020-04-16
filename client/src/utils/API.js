@@ -13,5 +13,11 @@ export default {
     loginUser: (email, pw) => {
         console.log("==========log in user==========")
         console.log(email, pw)
+    },
+
+    getQuizbyCode: (game) => {
+        console.log("==========getQuizbyCode=========")
+        console.log(game);
+        return axios.get(`/api/quizbycode/${game}`);
     }
 }
