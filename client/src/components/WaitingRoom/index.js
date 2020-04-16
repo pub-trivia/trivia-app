@@ -22,6 +22,8 @@ const WaitingRoom = ({ users }) => {
          )
         
         : null }
+        
+        <Button type="submit" text="EVERYONE IS HERE" handleClick={(event) => handleClick(event)}/>
     </div>
     )
 }
