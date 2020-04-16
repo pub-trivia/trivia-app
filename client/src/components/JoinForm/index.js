@@ -29,7 +29,7 @@ const JoinForm = () => {
                 color: colorRef.current.value
             }
         });
-        history.push('/game');
+        history.push('/wait');
     }
 
     return (
