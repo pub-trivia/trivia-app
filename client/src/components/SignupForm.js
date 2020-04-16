@@ -1,9 +1,11 @@
 import React, { createRef, useRef } from "react";
 import Button from '../components/Button';
 import API from '../utils/API';
-
+import { useGameContext } from '../utils/GlobalState';
 import ColorPicker from './ColorPicker';
 import IconPicker from './IconPicker';
+import { useHistory } from 'react-router-dom';
+import { ADD_USER } from '../utils/actions';
 
 const SignupForm = () => {
   const nameRef = useRef();
@@ -11,6 +13,8 @@ const SignupForm = () => {
   const pwRef = useRef();
   const iconRef = createRef();
   const colorRef = createRef();
+  const [state, dispatch] = useGameContext();
+  let history = useHistory();
 
   // When the signup button is clicked, we validate the displayname, email and password are not blank
   const handleFormSubmit = event => {
@@ -21,8 +25,18 @@ const SignupForm = () => {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, iconRef.current.value, colorRef.current.value);
-  };
+    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, iconRef.current.value, colorRef.current.value)
+    .then(
+    dispatch({
+      type: ADD_USER,
+      post: {
+          name: nameRef.current.value,
+          icon: iconRef.current.value,
+          color: colorRef.current.value
+      }
+  }))
+  history.push('/profile');
+}
 
   return (
     <form onSubmit={(event) => handleFormSubmit(event)}>

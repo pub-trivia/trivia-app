@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Game from './pages/Game';
 import Wait from './pages/Wait';
+import Profile from './pages/Profile';
 
 const App = () => {
   return (
@@ -31,6 +32,9 @@ const App = () => {
             </Route>
             <Route exact path="/signup">
               <Signup />
+            </Route>
+            <Route exact path="/profile">
+              <Profile />
             </Route>
           </Switch>
         </GameProvider>

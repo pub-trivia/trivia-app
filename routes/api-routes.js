@@ -33,12 +33,12 @@ var passport = require("../config/passport");
 
 module.exports = function (app) {
   
-  app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    res.json(req.user);
-  });
+  // app.post("/api/login", passport.authenticate("local"), function(req, res) {
+  //   res.json(req.user);
+  // });
 
 
-  app.get("/original/login", (req, res) => {
+  app.get("/api/login", (req, res) => {
     console.log("Login form: ", req.body);
     const { email, password } = req.body;
     db.User.findOne({
@@ -51,14 +51,14 @@ module.exports = function (app) {
         }
         else {
           if (password === result.password) {
-            return res.json(result.userId);
+            return res.json(result);
           } else {
             return res.send({ message: "Invalid password." }).end();
           }
         }
       });
   })
-  app.get("/original/finduser/:email", (req, res) => {
+  app.get("/api/finduser/:email", (req, res) => {
     db.User.findOne({
       where: { email: req.params.email }
     })
@@ -75,7 +75,7 @@ module.exports = function (app) {
 
   });
 
-  app.get("/original/getuser/:userId", (req, res) => {
+  app.get("/api/getuser/:userId", (req, res) => {
     db.User.findByPk(req.params.userId)
       .then(result => {
         console.log("/api/getuser: ", result);
