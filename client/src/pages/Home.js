@@ -7,10 +7,10 @@ const Home = () => {
     return (
         <div>
           <Link to="/login">
-            <Button type="button" text="LOG IN" path="/login" />
+            <Button type="button" text="LOG IN" />
           </Link>
           <Link to="/signup"> 
-            <Button type="button" text="SIGN UP" path="/signup" />
+            <Button type="button" text="SIGN UP" />
           </Link>
           <h2>OR Play Now...</h2>
           <JoinForm />
