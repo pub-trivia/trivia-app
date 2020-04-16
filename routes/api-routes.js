@@ -275,6 +275,10 @@ module.exports = function (app) {
 
   app.post("/api/createquestion", (req, res) => {
     const { question, category, difficulty, userId, questionType, answer1, answer2, answer3, answer4, correctIndex } = req.body;
+    if (questionType === "tf") {
+      answer1 = "True";
+      answer2 = "False";
+    }
     db.Question.create({
       question,
       category,
