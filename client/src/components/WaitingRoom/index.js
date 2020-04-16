@@ -1,12 +1,10 @@
 import React from 'react';
-import Button from '../Button';
 import PlayerIcons from '../PlayerIcons';
-import { useHistory } from 'react-router-dom';
 
 import './WaitingRoom.css';
 
-        history.push('/game');
-    }
+const WaitingRoom = ({ users }) => {
+    
 
     return (
         <div>
@@ -29,8 +27,6 @@ import './WaitingRoom.css';
          )
         
         : null }
-        
-        <Button type="submit" text="EVERYONE IS HERE" handleClick={(event) => handleClick(event)}/>
     </div>
     )
 }
