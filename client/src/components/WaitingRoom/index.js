@@ -3,11 +3,7 @@ import Button from '../Button';
 import PlayerIcons from '../PlayerIcons';
 import { useHistory } from 'react-router-dom';
 
-const WaitingRoom = ({ users }) => {
-    let history = useHistory();
-
-    const handleClick = (event) => {
-        event.preventDefault();
+import './WaitingRoom.css';
 
         history.push('/game');
     }
