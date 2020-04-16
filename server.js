@@ -1,7 +1,10 @@
 const express = require("express");
+var session = require("express-session");
 const socketio = require("socket.io");
 const http = require('http');
 const cors = require('cors');
+const passport = require("./config/passport");
+require("dotenv");
 
 const { addUser, removeUser, getUser, getUsersInGame } = require('./controllers/userController');
 const db = require("./models");
@@ -16,6 +19,10 @@ const io = socketio(server);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

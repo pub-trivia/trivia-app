@@ -1,5 +1,6 @@
 var db = require("../models");
 const { Op } = require("sequelize");
+var passport = require("../config/passport");
 
 // routes:   *'s are working 
 // *GET /api/login/ - gets email and password, returns the userid 
@@ -31,8 +32,13 @@ const { Op } = require("sequelize");
 
 
 module.exports = function (app) {
+  
+  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    res.json(req.user);
+  });
 
-  app.get("/api/login", (req, res) => {
+
+  app.get("/original/login", (req, res) => {
     console.log("Login form: ", req.body);
     const { email, password } = req.body;
     db.User.findOne({
@@ -52,7 +58,7 @@ module.exports = function (app) {
         }
       });
   })
-  app.get("/api/finduser/:email", (req, res) => {
+  app.get("/original/finduser/:email", (req, res) => {
     db.User.findOne({
       where: { email: req.params.email }
     })
@@ -69,7 +75,7 @@ module.exports = function (app) {
 
   });
 
-  app.get("/api/getuser/:userId", (req, res) => {
+  app.get("/original/getuser/:userId", (req, res) => {
     db.User.findByPk(req.params.userId)
       .then(result => {
         console.log("/api/getuser: ", result);
@@ -127,7 +133,8 @@ module.exports = function (app) {
       })
   })
 
-  app.post("/api/createuser", (req, res) => {
+  // changed createUser to Signup
+  app.post("/api/signup", (req, res) => {
     console.log(req.body);
     const { displayName, email, password, avatar, avatarColor } = req.body;
     db.User.findOne({
@@ -318,4 +325,9 @@ module.exports = function (app) {
       .catch(err => console.log(`Update for question ${req.params.questionid} failed.`))
   });
 
+  // Added a logout route
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+  });
 };
