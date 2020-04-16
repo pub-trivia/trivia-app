@@ -8,12 +8,12 @@ const PlayerIcon = (props) => {
     
     if (icon === "tim") {
         return (
-            <div class="profile-icon">
-                <img src={iconUrl} />
-                <svg class="circle" fill={color || "#03E4AC"}>
+            <div className="profile-icon">
+                <img src={iconUrl} alt={`${icon} avatar`}/>
+                <svg className="circle" fill={color || "#03E4AC"}>
                     <circle cx="50%" cy="50%" r="50%" />
                 </svg>
-                <svg class="ellipse" fill={color || "#03E4AC"}>
+                <svg className="ellipse" fill={color || "#03E4AC"}>
                     <ellipse cx="100%" cy="50%" rx="100%" ry="50%" />
                 </svg>
             </div>
@@ -21,9 +21,9 @@ const PlayerIcon = (props) => {
             
     } else {
         return(
-            <div class="profile-icon">
-                <img src={iconUrl} />
-                <svg class="circle" fill={color || "#03E4AC"}>
+            <div className="profile-icon">
+                <img src={iconUrl} alt={`${icon} avatar`}/>
+                <svg className="circle" fill={color || "#03E4AC"}>
                     <circle cx="50%" cy="50%" r="50%" />
                 </svg>
             </div>
