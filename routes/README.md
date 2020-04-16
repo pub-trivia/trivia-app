@@ -6,7 +6,7 @@
 
 * *GET /api/getuser/:userid - gets data for that user (do we want to include the question counts, currently a separate query below?) 
 
-* *GET /api/questioncounts/:userid - get total questions answered and correct answers by userid 
+* *GET /api/user/data/:userid - get counts for questions answered, correct answers, gamesPlayed, gamesWon by userid 
 
 * *GET /api/getscores/:quizid - returns all the scores for that quiz
 

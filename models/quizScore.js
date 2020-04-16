@@ -14,10 +14,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             required: true
         },
-        avatar: {
-            type: DataTypes.INTEGER
+        icon: {
+            type: DataTypes.STRING
         },
-        avatarColor: {
+        color: {
             type: DataTypes.STRING
         },
         correct: {
