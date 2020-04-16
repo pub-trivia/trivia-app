@@ -4,8 +4,9 @@ import Button from '../components/Button';
 import { Link } from "react-router-dom";
 // import "../style.css";
 
-const Signup = () => [
-    <div>
+const Signup = () => {
+    return (
+        <div>
         <SignupForm />
         <Link to="/">
             <Button type="button" text="Skip Sign Up" />
@@ -14,6 +15,7 @@ const Signup = () => [
             <Button type="button" text="LOG IN" />
         </Link>
     </div>
-]
+    )
+}
 
 export default Signup;
