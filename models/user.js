@@ -25,11 +25,11 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             validate: {}
         },
-        avatar: {
-            type: DataTypes.INTEGER,
+        icon: {
+            type: DataTypes.STRING,
             required: true
         },
-        avatarColor: {
+        color: {
             type: DataTypes.STRING,
             required: true
         },
