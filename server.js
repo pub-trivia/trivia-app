@@ -39,8 +39,8 @@ io.on('connect', (socket) => {
 
     socket.join(user.game);
 
-    socket.emit('arrival', { user });
-    socket.broadcast.to(user.game).emit('arrival', { user });
+    //socket.emit('arrival', { user });
+    //socket.broadcast.to(user.game).emit('arrival', { user });
 
     io.to(user.game).emit('gameData', { game: user.game, users: getUsersInGame(user.game)});
 
