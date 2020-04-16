@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { createRef, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useGameContext } from '../../utils/GlobalState';
 import { ADD_PLAYER } from '../../utils/actions';
@@ -12,8 +12,8 @@ import './JoinForm.css';
 const JoinForm = () => {
     const gameRef = useRef();
     const nameRef = useRef();
-    const iconRef = useRef();
-    const colorRef = useRef();
+    const iconRef = createRef();
+    const colorRef = createRef();
     const [state, dispatch] = useGameContext();
     let history = useHistory();
 

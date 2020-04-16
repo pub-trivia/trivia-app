@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { createRef, useRef } from "react";
 import Button from '../components/Button';
 import API from '../utils/API';
 
@@ -9,22 +9,19 @@ const SignupForm = () => {
   const nameRef = useRef();
   const emailRef = useRef();
   const pwRef = useRef();
-  const avatarRef = useRef();
-  const colorRef = useRef();
+  const iconRef = createRef();
+  const colorRef = createRef();
 
- const handleChange = event => {
-    console.log(event);
-  }
   // When the signup button is clicked, we validate the displayname, email and password are not blank
   const handleFormSubmit = event => {
     event.preventDefault();
 
     if (!emailRef.current.value || !pwRef.current.value || !nameRef.current.value) {
-      alert("Please enter a display name, email and password. Then select an avatar and color!")
+      alert("Please enter a display name, email and password. Then select an avatar icon and color!")
       return;
     }
     // If we have an email and password, run the signUpUser function
-    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, avatarRef.current.value, colorRef.current.value);
+    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, iconRef.current.value, colorRef.current.value);
   };
 
   return (
