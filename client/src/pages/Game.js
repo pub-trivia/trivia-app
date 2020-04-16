@@ -7,6 +7,7 @@ import Responses from '../components/Responses';
 import Scoreboard from '../components/Scoreboard';
 
 import { useGameContext } from '../utils/GlobalState';
+import API from '../utils/API';
 
 let socket;
 
@@ -24,8 +25,15 @@ const Game = () => {
     const { game, name, icon, color } = state;
 
     useEffect(() => {
-        socket = io(ENDPOINT);
-        console.log(socket, game, name, icon, color);
+        // socket = io(ENDPOINT);
+        // console.log(socket, game, name, icon, color);
+        API.getQuizbyCode(game)
+            .then((result) => {
+                console.log("=========getQuizbyCode=======")
+                //API.getQuestion()
+            }
+
+            )
     }, []);
 
     return (
