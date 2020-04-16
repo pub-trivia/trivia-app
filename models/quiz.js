@@ -33,17 +33,8 @@ module.exports = function (sequelize, DataTypes) {
         });
 
     Quiz.associate = function (models) {
-        // Quiz.belongsToMany(models.Question, {
-        //     through: 'quizQuestionsAssoc',
-        //     as: 'questions',
-        //     foreignKey: 'questionId',
-        //     otherKey: 'quizId',
-        //     allowNull: true,
-        //     defaultValue: null,
-        //     onDelete: "set null"
-        // });
         Quiz.hasMany(models.QuizScore, {
-            onDelete: "CASCADE",
+            onDelete: "set null",
             foreignKey: 'quizId'
         });
         Quiz.belongsTo(models.User, {
