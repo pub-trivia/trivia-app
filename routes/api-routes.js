@@ -12,9 +12,9 @@ const { Op } = require("sequelize");
 //    that match the criteria in the form (can pass in quiz record data) 
 // *GET /api/quizbycode/:code - get quiz information by the code 
 // *GET /api/quizbyid/:quizid - get quiz information by the id
-// *GET /api/questioncounts/:userid - get total questions answered and correct
+// *GET /api/user/data/:userid - get total questions answered and correct
 //     answers by userid  
-// *GET /api/quiz/questions/:quizid, only needed if we keep list permanently?  
+// *GET /api/quiz/questions/:quizid, not sure if we need this?   
 // 
 // *POST /api/createuser - create a new user, returns newUserObject
 // *POST /api/createquiz - create a new quiz, pass in number of questions, 
@@ -85,12 +85,12 @@ module.exports = function (app) {
       });
   });
 
-  app.get("/api/questioncounts/:userid", (req, res) => {
+  app.get("/api/user/data/:userid", (req, res) => {
     // following query gets just the question counts 
     // const query = `SELECT userId, SUM(correct) AS correctAnswers, COUNT(createdAt) AS totalAnswers` +
     //   ` FROM quizscores WHERE userId = ${req.params.userid} ;`;
     const query = `SELECT A.userId, SUM(A.correct) AS correctAnswers, COUNT(A.createdAt) AS totalAnswers,` +
-      ` b.displayName, gamesWon, gamesPlayed FROM quizscores AS A INNER JOIN users AS B ` +
+      ` b.displayName, gamesWon, gamesPlayed FROM quizscores AS A INNER JOIN users AS B` +
       ` WHERE A.userId = ${req.params.userid} AND A.userid = B.userId;`;
     db.sequelize.query(query)
       .then(results => {
@@ -107,14 +107,6 @@ module.exports = function (app) {
       .then(results => {
         return res.json(results[0]);
       });
-
-    // db.QuizScore.findAll({
-    //   where: { quizId: req.params.quizId }
-    // })
-    //   .then(result => {
-    //     console.log(result);
-    //     return res.json(result);
-    //   });
   });
 
   app.get("/api/quiz/questions/:quizid", (req, res) => {
@@ -129,7 +121,7 @@ module.exports = function (app) {
 
   app.post("/api/createuser", (req, res) => {
     console.log(req.body);
-    const { displayName, email, password, avatar, avatarColor } = req.body;
+    const { displayName, email, password, icon, color } = req.body;
     db.User.findOne({
       where: { email }
     })
@@ -141,8 +133,8 @@ module.exports = function (app) {
           displayName,
           email,
           password,
-          avatar,
-          avatarColor
+          icon,
+          color
         })
           .then(response => {
             console.log("userId of new user: ", response.userId);
@@ -232,14 +224,14 @@ module.exports = function (app) {
   });
 
   app.post("/api/addquestionscore", (req, res) => {
-    const { quizId, userId, questionId, displayName, avatar, avatarColor, correct } = req.body;
+    const { quizId, userId, questionId, displayName, icon, color, correct } = req.body;
     db.QuizScore.create({
       quizId,
       userId,
       questionId,
       displayName,
-      avatar,
-      avatarColor,
+      icon,
+      color,
       correct
     })
       .then(result => {
@@ -277,6 +269,10 @@ module.exports = function (app) {
 
   app.post("/api/createquestion", (req, res) => {
     const { question, category, difficulty, userId, questionType, answer1, answer2, answer3, answer4, correctIndex } = req.body;
+    if (questionType === "tf") {
+      answer1 = "True";
+      answer2 = "False";
+    }
     db.Question.create({
       question,
       category,
