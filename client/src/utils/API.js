@@ -19,5 +19,19 @@ export default {
         console.log("==========getQuizbyCode=========")
         console.log(game);
         return axios.get(`/api/quizbycode/${game}`);
+    },
+
+    getquizCode: () => {
+        console.log("==========getQuizCode=========");
+        return axios.get('/api/getcode');
+    },
+
+    getCategories: () => {
+        console.log("==========getCategories========");
+        return axios.get('/api/categories');
+    },
+
+    saveQuiz: (userid, category, difficulty, questionCount, quizCode) => {
+      
     }
 }
