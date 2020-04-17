@@ -1,5 +1,6 @@
 var db = require("../models");
 const { Op } = require("sequelize");
+var passport = require("../config/passport");
 
 // routes:   *'s are working
 // *GET /api/login/ - gets email and password, returns the userid
@@ -30,44 +31,6 @@ const { Op } = require("sequelize");
 //    correctly / incorrectly
 
 module.exports = function (app) {
-  app.get("/api/login", (req, res) => {
-    console.log("Login form: ", req.body);
-    const { email, password } = req.body;
-    db.User.findOne({
-      where: { email: email },
-    }).then((result) => {
-      console.log(result);
-      if (result === 0) {
-        res.send({ message: "Email not registered." }).end();
-      } else {
-        if (password === result.password) {
-          return res.json(result.userId);
-        } else {
-          return res.send({ message: "Invalid password." }).end();
-        }
-      }
-    });
-  });
-  app.get("/api/finduser/:email", (req, res) => {
-    db.User.findOne({
-      where: { email: req.params.email },
-    }).then((result) => {
-      console.log(result);
-      if (result === 0) {
-        // not found
-        return res.status(404).end();
-      } else {
-        return res.json(result);
-      }
-    });
-  });
-
-  app.get("/api/getuser/:userId", (req, res) => {
-    db.User.findByPk(req.params.userId).then((result) => {
-      console.log("/api/getuser: ", result);
-      return res.json(result);
-    });
-  });
 
   app.get("/api/categories", (req, res) => {
     db.sequelize
@@ -129,30 +92,6 @@ module.exports = function (app) {
         return res.json(questions);
       })
   })
-
-  app.post("/api/createuser", (req, res) => {
-    console.log(req.body);
-    const { displayName, email, password, icon, color } = req.body;
-    db.User.findOne({
-      where: { email }
-    })
-      .then(result => {
-        if (result !== null) {
-          res.send({ message: "Email already registered." }).end();
-        }
-        db.User.create({
-          displayName,
-          email,
-          password,
-          icon,
-          color
-        })
-          .then(response => {
-            console.log("userId of new user: ", response.userId);
-            res.json(response);
-          });
-      })
-  });
 
   app.post("/api/createquiz", (req, res) => {
     console.log("/api/createquiz/ ", req);
@@ -335,5 +274,11 @@ module.exports = function (app) {
       .catch((err) =>
         console.log(`Update for question ${req.params.questionid} failed.`)
       );
+  });
+
+  // Added a logout route
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
   });
 };
