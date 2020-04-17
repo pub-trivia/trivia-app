@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
 import Button from '../components/Button';
 import API from '../utils/API';
 import { useHistory } from 'react-router-dom';
 import { ADD_USER } from '../utils/actions';
 import { useGameContext } from '../utils/GlobalState';
+import setAuthToken from '../utils/setAuthToken';
 
 // When the form is submitted, we validate there's an email and password entered
 const LoginForm = () => {
@@ -12,30 +14,43 @@ const LoginForm = () => {
   const [state, dispatch] = useGameContext();
   let history = useHistory();
 
+  useEffect(() => {
+    if(localStorage.jwtToken){
+      processToken(localStorage.jwtToken);
+   }
+ }, []);
+
   const handleFormSubmit = event => {
     event.preventDefault();
   
     if (!emailRef.current.value || !pwRef.current.value) {
       return;
     }
-    // If we have an email and password we run the loginUser function and clear the form
+
     API.loginUser(emailRef.current.value, pwRef.current.value)
-    .then((res) => {
-        if(!res.message){
-          dispatch({
-            type: ADD_USER,
-            post: {
-                name: res.displayName,
-                icon: res.avatar,
-                color: res.avatarColor
-            }
-          })
-          history.push('/profile');
-        } else {
-        console.log(res.message);
+      .then((res) => {
+        const { token } = res.data;
+        processToken(token);
+      })
+  }
+
+  const processToken = (token) => { 
+    //set local token
+    localStorage.setItem('jwtToken', token);
+    setAuthToken(token);
+    
+    const decoded = jwt_decode(token);
+    //set global state
+    if(decoded){
+      dispatch({
+        type: ADD_USER,
+        post: {
+            ...decoded,
+            auth: true
         }
-    }
-    );
+      })
+      history.push('/profile');
+    } 
   }
 
   return (
@@ -60,23 +75,5 @@ const LoginForm = () => {
     </form>
   );
 }
-
-
-
-
-// // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
-// function loginUser(email, password) {
-//   $.post("/api/login", {
-//     email,
-//     password
-//   })
-//     .then(() => {
-//       window.location.replace("/");
-//       // If there's an error, log the error
-//     })
-//     .catch(function (err) {
-//       console.log(err);
-//     });
-// }
 
 export default LoginForm;

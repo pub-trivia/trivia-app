@@ -26,16 +26,19 @@ const SignupForm = () => {
     }
     // If we have an email and password, run the signUpUser function
     API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, iconRef.current.value, colorRef.current.value)
-    .then(
-    dispatch({
-      type: ADD_USER,
-      post: {
-          name: nameRef.current.value,
-          icon: iconRef.current.value,
-          color: colorRef.current.value
-      }
-  }))
-  history.push('/profile');
+      .then(result => {
+        dispatch({
+          type: ADD_USER,
+          post: {
+              id: result.data.userId,
+              name: result.data.displayName,
+              icon: result.data.icon,
+              color: result.data.color, 
+              auth: true
+          }
+        });
+        history.push('/login');
+      })
 }
 
   return (
@@ -70,29 +73,5 @@ const SignupForm = () => {
     </form>
   );
 }
-
-
-
-// Does a post to the signup route. If successful, we are redirected to their user page?
-// Otherwise we log any errors
-// function signUpUser(displayName, email, password, avatar, avatarColor) {
-//   $.post("/api/signup", {
-//     displayName,
-//     email,
-//     password,
-//     avatar,
-//     avatarColor
-//   })
-//     .then(data => {
-//       window.location.replace("/");
-//       // If there's an error, handle it by throwing up an alert
-//     })
-//     .catch(handleLoginErr);
-// }
-
-// function handleLoginErr(err) {
-//   $("#alert .msg").text(err.responseJSON);
-//   $("#alert").fadeIn(500);
-// }
 
 export default SignupForm; 
