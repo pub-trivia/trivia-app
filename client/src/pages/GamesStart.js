@@ -5,7 +5,8 @@ import JoinForm from "../components/JoinForm";
 function GameSetUpPage() {
     return (
         <div>
-          
+          <JoinForm />
+          {/* <PubImage /> */}
         </div>
       );
 }

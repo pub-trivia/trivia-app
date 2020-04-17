@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from '../components/Navbar';
 
 // import icon component
 // import stats component
@@ -9,7 +8,6 @@ import Navbar from '../components/Navbar';
 function ProfilePage() {
     return (
         <div>
-          <Navbar />
           <IconComponent />
           <StatsComponent />
           <YourQuestionsComponent />
