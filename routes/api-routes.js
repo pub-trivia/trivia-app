@@ -32,56 +32,6 @@ var passport = require("../config/passport");
 
 
 module.exports = function (app) {
-  
-  // app.post("/api/login", passport.authenticate("local"), function(req, res) {
-  //   res.json(req.user);
-  // });
-
-
-  app.get("/api/login", (req, res) => {
-    console.log("Login form: ", req.body);
-    const { email, password } = req.body;
-    db.User.findOne({
-      where: { email: email }
-    })
-      .then(result => {
-        console.log(result);
-        if (result === 0) {
-          res.send({ message: "Email not registered." }).end();
-        }
-        else {
-          if (password === result.password) {
-            return res.json(result);
-          } else {
-            return res.send({ message: "Invalid password." }).end();
-          }
-        }
-      });
-  })
-  app.get("/api/finduser/:email", (req, res) => {
-    db.User.findOne({
-      where: { email: req.params.email }
-    })
-      .then(result => {
-        console.log(result);
-        if (result === 0) {
-          // not found 
-          return res.status(404).end();
-        }
-        else {
-          return res.json(result);
-        }
-      });
-
-  });
-
-  app.get("/api/getuser/:userId", (req, res) => {
-    db.User.findByPk(req.params.userId)
-      .then(result => {
-        console.log("/api/getuser: ", result);
-        return res.json(result);
-      });
-  });
 
   app.get("/api/categories", (req, res) => {
     db.sequelize.query("SELECT DISTINCT category FROM questions")
@@ -124,31 +74,6 @@ module.exports = function (app) {
         return res.json(questions);
       })
   })
-
-  // changed createUser to Signup
-  app.post("/api/signup", (req, res) => {
-    console.log(req.body);
-    const { displayName, email, password, icon, color } = req.body;
-    db.User.findOne({
-      where: { email }
-    })
-      .then(result => {
-        if (result !== null) {
-          res.send({ message: "Email already registered." }).end();
-        }
-        db.User.create({
-          displayName,
-          email,
-          password,
-          icon,
-          color
-        })
-          .then(response => {
-            console.log("userId of new user: ", response.userId);
-            res.json(response);
-          });
-      })
-  });
 
   app.post("/api/createquiz", (req, res) => {
     console.log("/api/createquiz/ ", req);
