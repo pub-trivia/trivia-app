@@ -1,11 +1,15 @@
 import React from "react";
-// import other components here
+import Navbar from '../components/Navbar';
+
+// import icon component
+// import stats component
+// import yourquestionscomponent
 // import "../style.css";
 
 function ProfilePage() {
     return (
         <div>
-          <HeaderComponent />
+          <Navbar />
           <IconComponent />
           <StatsComponent />
           <YourQuestionsComponent />

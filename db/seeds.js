@@ -1,13 +1,15 @@
 const mysql = require("mysql");
+require("dotenv").config();
 const fs = require("fs");
 const util = require("util");
 const readFileAsync = util.promisify(fs.readFile);
+
 
 var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "Emrys1960!",
+  password: process.env.DB_PASS,
   database: "pubtrivia",
 });
 

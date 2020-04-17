@@ -106,7 +106,6 @@ module.exports = function (app) {
     const query =
       `SELECT userId, displayName, SUM(correct) AS correctAnswers, COUNT(createdAt) AS totalAnswers` +
       ` FROM quizScores WHERE quizId = ${req.params.quizId} group by userId ;`;
-
     db.sequelize.query(query).then((results) => {
       return res.json(results[0]);
     });
@@ -121,26 +120,38 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/quiz/questions/:quizid", (req, res) => {
+    console.log("GET api/quiz/questions: ", req.params);
+    const query = `SELECT DISTINCT questionId FROM quizScores WHERE quizId = ${req.params.quizid} ;`
+    db.sequelize.query(query)
+      .then(results => {
+        let questions = results[0].map(question => question.questionId);
+        return res.json(questions);
+      })
+  })
+
   app.post("/api/createuser", (req, res) => {
     console.log(req.body);
     const { displayName, email, password, icon, color } = req.body;
     db.User.findOne({
-      where: { email },
-    }).then((result) => {
-      if (result !== null) {
-        res.send({ message: "Email already registered." }).end();
-      }
-      db.User.create({
-        displayName,
-        email,
-        password,
-        icon,
-        color,
-      }).then((response) => {
-        console.log("userId of new user: ", response.userId);
-        res.json(response);
-      });
-    });
+      where: { email }
+    })
+      .then(result => {
+        if (result !== null) {
+          res.send({ message: "Email already registered." }).end();
+        }
+        db.User.create({
+          displayName,
+          email,
+          password,
+          icon,
+          color
+        })
+          .then(response => {
+            console.log("userId of new user: ", response.userId);
+            res.json(response);
+          });
+      })
   });
 
   app.post("/api/createquiz", (req, res) => {
@@ -163,12 +174,11 @@ module.exports = function (app) {
   app.get("/api/getcode", (req, res) => {
     let codeArray = [];
     let quizCode;
-    db.sequelize.query("SELECT quizCode FROM quizzes").then((results) => {
-      // create simple array of existing quizCodes
-      let codeArray = results[0].map((result) => result.quizCode);
-      // make sure generated code doesn't match any other codes
-      quizCode = generateRandomCode();
-      while (codeArray.indexOf(quizCode !== -1)) {
+    db.sequelize.query("SELECT quizCode FROM quizzes")
+      .then(results => {
+        // create simple array of existing quizCodes
+        let codeArray = results[0].map(result => result.quizCode);
+        // make sure generated code doesn't match any other codes   
         quizCode = generateRandomCode();
       }
       res.send(quizCode);
@@ -208,8 +218,8 @@ module.exports = function (app) {
   });
 
   app.get("/api/quizbycode/:code", (req, res) => {
-    console.log("===========api/quizbycode/:code=======");
-    console.log(req.params.code);
+    console.log("===========api/quizbycode/:code=======")
+    console.log(req.params.code)
     db.Quiz.findOne({
       where: {
         quizCode: req.params.code,
@@ -220,15 +230,7 @@ module.exports = function (app) {
   });
 
   app.post("/api/addquestionscore", (req, res) => {
-    const {
-      quizId,
-      userId,
-      questionId,
-      displayName,
-      icon,
-      color,
-      correct,
-    } = req.body;
+    const { quizId, userId, questionId, displayName, icon, color, correct } = req.body;
     db.QuizScore.create({
       quizId,
       userId,
@@ -236,10 +238,11 @@ module.exports = function (app) {
       displayName,
       icon,
       color,
-      correct,
-    }).then((result) => {
-      res.json(result);
-    });
+      correct
+    })
+      .then(result => {
+        res.json(result);
+      });
   });
 
   app.get("/api/getquestions", (req, res) => {
@@ -252,25 +255,26 @@ module.exports = function (app) {
         userId: { [Op.ne]: userId },
         needsModeration: false,
       },
-      limit: count * 2,
-    }).then((results) => {
-      res.json(results);
-    });
+      limit: count * 2
+    })
+      .then(results => {
+        res.json(results);
+      })
+  });
+
+  app.get("/api/user/questions/:userid", (req, res) => {
+    db.Question.findAll({
+      where: {
+        userId: req.params.userid
+      }
+    })
+      .then(results => {
+        res.json(results);
+      })
   });
 
   app.post("/api/createquestion", (req, res) => {
-    const {
-      question,
-      category,
-      difficulty,
-      userId,
-      questionType,
-      answer1,
-      answer2,
-      answer3,
-      answer4,
-      correctIndex,
-    } = req.body;
+    const { question, category, difficulty, userId, questionType, answer1, answer2, answer3, answer4, correctIndex } = req.body;
     if (questionType === "tf") {
       answer1 = "True";
       answer2 = "False";
@@ -304,6 +308,19 @@ module.exports = function (app) {
     db.sequelize.query(query).then((result) => {
       res.json(result[0]);
     });
+  });
+
+  app.put("/api/gameplayed/:userid/:won", (req, res) => {
+    console.log("/api/gameplayed/: ", req.params);
+    const { userid, won } = req.params;
+    var addwin = "";
+    if (won === 'true') addwin = "gamesWon = gamesWon + 1,";
+    let query = `UPDATE users SET ${addwin} gamesPlayed = gamesPlayed + 1 ` +
+      `WHERE userid = ${userid};`;
+    db.sequelize.query(query)
+      .then(result => {
+        res.json(result[0]);
+      });
   });
 
   app.put("/api/question/moderate/:questionid", (req, res) => {

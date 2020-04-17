@@ -26,7 +26,6 @@ CREATE TABLE users
     ('Mandy', 'mandy@test.com', 'mandytpw', "Zach", '#9FA1A0', NOW(), NOW()),
     ('Cynthia', 'cynthia@test.com', 'cynthiapw', "Carl", '#4481D8', NOW(), NOW());
     
-
   CREATE TABLE questions
   (
     questionId INTEGER AUTO_INCREMENT PRIMARY KEY, 
@@ -125,6 +124,7 @@ CREATE TABLE users
           ( 2, 4, 22, "CRich", "Zack", '#9665D8', 0, NOW(), NOW()),
           ( 2, 4, 23, "CRich", "Zack", '#9665D8', 1, NOW(), NOW()),
           ( 2, 4, 14, "CRich", "Zack", '#9665D8', 1, NOW(), NOW()); 
+
 
 
 
