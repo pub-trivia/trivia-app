@@ -1,16 +1,32 @@
-import React, { useEffect } from "react";
-import API from '../../utils/API';
+import React, { useRef, useEffect } from "react";
+import API from "../../utils/API";
+import { ADD_GAME } from "../../utils/actions";
+
+import Button from "../Button";
 
 const SetUpComponent = () => {
+  const gameRef = useRef();
+
   let categories = API.getCategories();
-  let gameCode = API.getQuizCode();
-  console.log("Make a quiz: ", categories, gameCode);
+  let gameRef = API.getQuizCode();
+  console.log("Make a quiz: ", categories, gameRef);
+
+  const handleSubmit = (event) => {
+    dispatchEvent({
+      type: ADD_GAME,
+      post: {
+        game: gameRef.current.value,
+        difficulty: difficulty.value,
+      },
+    });
+    // TODO go to join screen
+  };
 
   return (
     <div>
       <h2>Set up your game!</h2>
-      <form>
-        Select a Topic:
+      <form onSubmit={(event) => handleSubmit(event)}>
+        <label>Select a Topic</label>Select a Topic:
         <div class="dropdown-content" id="pickCategory">
           <select name="categories">
             {categories.map((item) => (
@@ -18,17 +34,19 @@ const SetUpComponent = () => {
             ))}
           </select>
         </div>
-        Difficulty:
+        <label>Difficulty</label>
         <select name="difficulty">
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
         </select>
-        Number of Questions:
+        <label>Number of Questions</label>
         <span> Need spinner here </span>
-        Game Code:
-        <input value="{gameCode}">{gameCode}</input>
-        <button>Join</button>
+        <label>Game Code</label>
+        <input value="{gameCode}" type="text" ref={gameRef}>
+          {gameRef}
+        </input>
+        <Button type="submit" text="Start Game" />
       </form>
     </div>
   );
