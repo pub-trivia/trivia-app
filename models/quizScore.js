@@ -2,7 +2,7 @@ module.exports = function (sequelize, DataTypes) {
     var QuizScore = sequelize.define("QuizScore", {
         quizId: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         userId: {
             type: DataTypes.INTEGER

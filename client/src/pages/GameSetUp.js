@@ -5,9 +5,7 @@ import JoinForm from "../components/JoinForm";
 function GameSetUpPage() {
     return (
         <div>
-          
-        </div>
+          </div>
       );
 }
-
 export default GameSetUpPage;

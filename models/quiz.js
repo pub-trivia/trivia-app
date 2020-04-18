@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     var Quiz = sequelize.define("Quiz", {
-        QuizId: {
+        quizId: {
             type: DataTypes.INTEGER,
             primaryKey: true
         },

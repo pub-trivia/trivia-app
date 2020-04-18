@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useGameContext } from '../../utils/GlobalState';
 import { ADD_PLAYER } from '../../utils/actions';
 
+
 import Button from '../Button';
 import IconPicker from '../IconPicker';
 import ColorPicker from '../ColorPicker';
@@ -18,7 +19,7 @@ const JoinForm = () => {
     let history = useHistory();
 
     const handleSubmit = event => {
-        //event.preventDefault();
+        event.preventDefault();
         //TODO: Add API call to add user to game
         //Then update state to include the player
 

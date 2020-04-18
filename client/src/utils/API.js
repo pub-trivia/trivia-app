@@ -5,14 +5,14 @@ export default {
         console.log("Get user reached");
     },
 
-    signUpUser: (name, email, pw, avatar, color) => {
-        console.log("==========sign up user==========")
-        console.log(name, email, pw, avatar, color)
+    signUpUser: (name, email, pw, icon, color) => {
+
+        return axios.post("/api/signup", {displayName:name, email, password:pw, icon, color })
     },
 
-    loginUser: (email, pw) => {
-        console.log("==========log in user==========")
-        console.log(email, pw)
+    loginUser: (email, password) => {
+        
+        return axios.post("/api/login", {email, password})
     },
 
     getQuizbyCode: (game) => {
@@ -27,4 +27,17 @@ export default {
         return axios.post(`/api/createquestion`, {question, category, difficulty, userId, questionType, answer1, answer2, answer3, answer4, correctIndex});
     },
     
+    getquizCode: () => {
+        console.log("==========getQuizCode=========");
+        return axios.get('/api/getcode');
+    },
+
+    getCategories: () => {
+        console.log("==========getCategories========");
+        return axios.get('/api/categories');
+    },
+
+    saveQuiz: (userid, category, difficulty, questionCount, quizCode) => {
+      
+    }
 }

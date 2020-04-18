@@ -1,18 +1,18 @@
 import React from "react";
-
 // import icon component
 // import stats component
 // import yourquestionscomponent
 // import "../style.css";
 
-function ProfilePage() {
+function Profile() {
     return (
         <div>
-          <IconComponent />
+          <h1>Profile Page!</h1>
+          {/* <IconComponent />
           <StatsComponent />
-          <YourQuestionsComponent />
+          <YourQuestionsComponent /> */}
         </div>
       );
 }
 
-export default ProfilePage;
+export default Profile;

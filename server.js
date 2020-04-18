@@ -2,6 +2,8 @@ const express = require("express");
 const socketio = require("socket.io");
 const http = require('http');
 const cors = require('cors');
+const passport = require('passport');
+require("dotenv");
 
 const { addUser, removeUser, getUser, getUsersInGame } = require('./controllers/userController');
 const db = require("./models");
@@ -16,15 +18,19 @@ const io = socketio(server);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(passport.initialize());
+
+require('./config/passport')(passport);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static(path.join(__dirname, "build")));
 }
 
 // Routes
 // =============================================================
 app.use(cors());
 require("./routes/api-routes.js")(app);
+require("./routes/auth-routes.js")(app);
 app.use(router);
 
 
