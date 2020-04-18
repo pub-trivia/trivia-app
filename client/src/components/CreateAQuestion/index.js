@@ -20,8 +20,8 @@ const CreateAQuestion = () => {
     const handleSubmit = event => {
         alert("Question Saved!")
         API.createquestion(
-            categoryRef.current.value,
             questionRef.current.value,
+            categoryRef.current.value,
             difficultyref.current.value,
             userIdRef.current.value,
             questionTypeRef.current.value,
