@@ -1,6 +1,8 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import API from "../../utils/API";
 import { ADD_GAME } from "../../utils/actions";
+import { useGameContext } from "../../utils/GlobalState";
+
 
 import Button from "../Button";
 
@@ -9,14 +11,22 @@ const SetUpComponent = () => {
 
   let categories = API.getCategories();
   let gameRef = API.getQuizCode();
-  console.log("Make a quiz: ", categories, gameRef);
+  // have to get userId into userId variable, selected category into category
+  // use 2  and "General" for testing   
+  var userId = 2;
+  var category = "General";
+
+  console.log("Make a quiz: ", categories, userId, gameRef);
 
   const handleSubmit = (event) => {
     dispatchEvent({
       type: ADD_GAME,
       post: {
-        game: gameRef.current.value,
+        category: category,
         difficulty: difficulty.value,
+        userid: userId,
+        count: questionCount,
+        quizCode: gameRef.current.value
       },
     });
     // TODO go to join screen
@@ -41,7 +51,7 @@ const SetUpComponent = () => {
           <option value="hard">Hard</option>
         </select>
         <label>Number of Questions</label>
-        <span> Need spinner here </span>
+        <span> Need spinner here - get into questionCount variable </span>
         <label>Game Code</label>
         <input value="{gameCode}" type="text" ref={gameRef}>
           {gameRef}
