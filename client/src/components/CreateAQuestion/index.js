@@ -1,25 +1,29 @@
-import React, { createRef, useRef } from 'react';
-// import { useGameContext } from '../../utils/GlobalState';
+import React, { createRef, useRef, useState } from 'react';
 import { ADD_QUESTION } from '../../utils/actions';
 import Button from "../Button";
 import Toggle from "../Toggle";
 
 const CreateAQuestion = () => {
-    const topicRef = useRef();
+    const categoryRef = useRef();
     const questionRef = useRef();
+    const difficultyref = useRef();
     const questionTypeRef = createRef();
     const answersRef = createRef();
     const correctRef = createRef();
+
+    const [value, setValue] = useState(false);
     
     const handleSubmit = event => {
         alert("Question Saved!")
         
-        dispatch({
+        // pass to API.createQuestion
+        ({
             type: ADD_QUESTION,
             post: {
-                topic: topicRef.current.value,
+                category: categoryRef.current.value,
                 question: questionRef.current.value,
-                questioinType: questionTypeRef.current.value,
+                difficulty: difficultyref.current.value,
+                questionType: questionTypeRef.current.value,
                 answers: answersRef.current.value,
                 correct: correctref.current.value
             }
@@ -50,9 +54,12 @@ const CreateAQuestion = () => {
                     />
                 </label>
                 <label>Type of Question:
-                    <Toggle />
+                    <Toggle 
+                    isOn={value}
+                    handleToggle={() => setValue(!value)}
+                    />
                 </label>
-                <label>Options: Please Select the correct answer
+                {/* <label>Options: Please Select the correct answer
                     <input 
                         type="text" 
                         ref={answersRef} 
@@ -81,7 +88,7 @@ const CreateAQuestion = () => {
                         type="checkbox" 
                         ref={correctRef} 
                     />
-                </label>
+                </label> */}
                 </form>
             <Button type="button" text="SAVE QUESTION" /> 
         </div>
