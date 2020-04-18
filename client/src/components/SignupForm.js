@@ -1,9 +1,11 @@
 import React, { createRef, useRef } from "react";
 import Button from '../components/Button';
 import API from '../utils/API';
-
+import { useGameContext } from '../utils/GlobalState';
 import ColorPicker from './ColorPicker';
 import IconPicker from './IconPicker';
+import { useHistory } from 'react-router-dom';
+import { ADD_USER } from '../utils/actions';
 
 const SignupForm = () => {
   const nameRef = useRef();
@@ -11,6 +13,8 @@ const SignupForm = () => {
   const pwRef = useRef();
   const iconRef = createRef();
   const colorRef = createRef();
+  const [state, dispatch] = useGameContext();
+  let history = useHistory();
 
   // When the signup button is clicked, we validate the displayname, email and password are not blank
   const handleFormSubmit = event => {
@@ -21,8 +25,21 @@ const SignupForm = () => {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, iconRef.current.value, colorRef.current.value);
-  };
+    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, iconRef.current.value, colorRef.current.value)
+      .then(result => {
+        dispatch({
+          type: ADD_USER,
+          post: {
+              id: result.data.userId,
+              name: result.data.displayName,
+              icon: result.data.icon,
+              color: result.data.color, 
+              auth: true
+          }
+        });
+        history.push('/login');
+      })
+}
 
   return (
     <form onSubmit={(event) => handleFormSubmit(event)}>
@@ -56,29 +73,5 @@ const SignupForm = () => {
     </form>
   );
 }
-
-
-
-// Does a post to the signup route. If successful, we are redirected to their user page?
-// Otherwise we log any errors
-// function signUpUser(displayName, email, password, avatar, avatarColor) {
-//   $.post("/api/signup", {
-//     displayName,
-//     email,
-//     password,
-//     avatar,
-//     avatarColor
-//   })
-//     .then(data => {
-//       window.location.replace("/");
-//       // If there's an error, handle it by throwing up an alert
-//     })
-//     .catch(handleLoginErr);
-// }
-
-// function handleLoginErr(err) {
-//   $("#alert .msg").text(err.responseJSON);
-//   $("#alert").fadeIn(500);
-// }
 
 export default SignupForm; 

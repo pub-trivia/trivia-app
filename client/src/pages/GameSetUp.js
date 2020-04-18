@@ -7,7 +7,6 @@ import React from "react";
 function GameSetUpPage() {
     return (
         <div>
-          <HeaderComponent />
           <SetUpComponent />
           <PubImage-maybe />
         </div>

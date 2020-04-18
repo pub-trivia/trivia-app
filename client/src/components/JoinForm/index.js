@@ -3,9 +3,16 @@ import { useHistory } from "react-router-dom";
 import { useGameContext } from "../../utils/GlobalState";
 import { ADD_PLAYER } from "../../utils/actions";
 
+<<<<<<< HEAD
 import Button from "../Button";
 import IconPicker from "../IconPicker";
 import ColorPicker from "../ColorPicker";
+=======
+
+import Button from '../Button';
+import IconPicker from '../IconPicker';
+import ColorPicker from '../ColorPicker';
+>>>>>>> origin/master
 
 import "./JoinForm.css";
 
