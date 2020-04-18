@@ -1,5 +1,5 @@
 import React, { createRef, useRef, useState } from 'react';
-import { ADD_QUESTION } from '../../utils/actions';
+import API from '../utils/API';
 import Button from "../Button";
 import Toggle from "../Toggle";
 
@@ -7,27 +7,34 @@ const CreateAQuestion = () => {
     const categoryRef = useRef();
     const questionRef = useRef();
     const difficultyref = useRef();
+    const userIdref = userIdref();
     const questionTypeRef = createRef();
-    const answersRef = createRef();
+    const answer1Ref = createRef();
+    const answer2Ref = createRef();
+    const answer3Ref = createRef();
+    const answer4Ref = createRef();
     const correctRef = createRef();
 
     const [value, setValue] = useState(false);
     
     const handleSubmit = event => {
         alert("Question Saved!")
-        
-        // pass to API.createQuestion
-        ({
-            type: ADD_QUESTION,
-            post: {
-                category: categoryRef.current.value,
-                question: questionRef.current.value,
-                difficulty: difficultyref.current.value,
-                questionType: questionTypeRef.current.value,
-                answers: answersRef.current.value,
-                correct: correctref.current.value
-            }
-        });
+        API.createquestion(
+            categoryRef.current.value,
+            questionRef.current.value,
+            difficultyref.current.value,
+            userIdRef.current.value,
+            questionTypeRef.current.value,
+            answer1Ref.current.value,
+            answer2Ref.current.value,
+            answer3Ref.current.value,
+            answer4Ref.current.value,
+            correctref.current.value
+        )
+            .then((res) => {
+        const { token } = res.data;
+        processToken(token);
+    })
        deleteFields = () => {
         this.setState({
             
@@ -43,7 +50,7 @@ const CreateAQuestion = () => {
                     <input 
                         placeholder="History" 
                         type="dropdown" 
-                        ref={topicRef} 
+                        ref={categoryRef} 
                     />
                 </label>
                 <label>Question
