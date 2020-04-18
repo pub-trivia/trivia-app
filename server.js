@@ -7,7 +7,6 @@ require("dotenv");
 
 const { addUser, removeUser, getUser, getUsersInGame } = require('./controllers/userController');
 const db = require("./models");
-const router = require("./routes/html-routes");
 
 const path = require("path");
 const PORT = process.env.PORT || 3001;
@@ -23,7 +22,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "build")));
+  app.use(express.static(path.join(__dirname, "client/build")));
 }
 
 // Routes
@@ -31,8 +30,10 @@ if (process.env.NODE_ENV === "production") {
 app.use(cors());
 require("./routes/api-routes.js")(app);
 require("./routes/auth-routes.js")(app);
-app.use(router);
 
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 // Set up socket handlers
 io.on('connect', (socket) => {
