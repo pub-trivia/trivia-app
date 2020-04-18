@@ -19,7 +19,7 @@ const JoinForm = () => {
     let history = useHistory();
 
     const handleSubmit = event => {
-        //event.preventDefault();
+        event.preventDefault();
         //TODO: Add API call to add user to game
         //Then update state to include the player
 

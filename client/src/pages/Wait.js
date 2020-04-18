@@ -40,20 +40,20 @@ const Wait = () => {
         socket.on("startGame", ({ game, users }) => {
             history.push('/game');
         })
-    });
+    }, []);
 
     const handleClick = (event) => {
         event.preventDefault();
         socket.emit("allHere", { game }, () => {});
     }
 
+    
     return (
         <div>
             <h1>You're in game: {state.game}</h1>
             <WaitingRoom users={users} />
             <Button type="submit" text="EVERYONE IS HERE" handleClick={(event) => handleClick(event)}/>
         </div>
-        
     )
 }
 
