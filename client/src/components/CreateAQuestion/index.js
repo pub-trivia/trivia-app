@@ -13,7 +13,7 @@ const CreateAQuestion = () => {
     const answer2Ref = createRef();
     const answer3Ref = createRef();
     const answer4Ref = createRef();
-    const correctRef = createRef();
+    const correctIndexRef = createRef();
 
     const [value, setValue] = useState(false);
     
@@ -29,7 +29,7 @@ const CreateAQuestion = () => {
             answer2Ref.current.value,
             answer3Ref.current.value,
             answer4Ref.current.value,
-            correctref.current.value
+            correctIndexref.current.value
         )
             .then((res) => {
         const { token } = res.data;
