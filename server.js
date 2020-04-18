@@ -22,7 +22,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "build")));
+  app.use(express.static(path.join(__dirname, "client/build")));
 }
 
 // Routes
@@ -32,7 +32,7 @@ require("./routes/api-routes.js")(app);
 require("./routes/auth-routes.js")(app);
 
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 // Set up socket handlers
