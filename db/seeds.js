@@ -40,7 +40,9 @@ async function loadSeeds() {
       correctIndex = Math.floor(Math.random() * 4);
       answers.splice(correctIndex, 0, inputQuestions[i].correct_answer);
     }
+    let currentDate = new Date();
     let seedQuestion = [
+      i,
       inputQuestions[i].question,
       inputQuestions[i].category,
       inputQuestions[i].difficulty,
@@ -48,11 +50,13 @@ async function loadSeeds() {
       inputQuestions[i].type === "multiple" ? "mc" : "tf",
       correctIndex,
       ...answers,
+      currentDate,
+      currentDate
     ];
     seedQuestions.push(seedQuestion);
   }
   let insertCommand =
-    "INSERT INTO questions (question, category, difficulty, userId, questionType, correctIndex, answer1, answer2, answer3, answer4) VALUES ? ";
+    "INSERT INTO questions (questionId, question, category, difficulty, userId, questionType, correctIndex, answer1, answer2, answer3, answer4, createdAt, updatedAt) VALUES ? ";
   connection.query(insertCommand, [seedQuestions], (err, res) => {
     if (err) {
       console.log(err);
