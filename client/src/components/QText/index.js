@@ -1,10 +1,10 @@
 import React from 'react';
 import './qtext.css';
 
-const QText = () => {
+const QText = (props) => {
     return (
         <div className="qbox">
-            <span className="qtext">Question goes here!</span>
+            <span className="qtext">{props.text}</span>
         </div>
     )
 }

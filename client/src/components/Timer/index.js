@@ -31,7 +31,7 @@ const Timer = () => {
     });
 
     return (
-        <h2>{state.seconds > 9 ? `00:${state.seconds}` : `00:0${state.seconds}`}</h2>
+        <div className="timertext">{state.seconds > 9 ? `00:${state.seconds}` : `00:0${state.seconds}`}</div>
     )
 }
 

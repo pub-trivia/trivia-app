@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
+import ws from '../components/socket';
 
 import Timer from '../components/Timer';
 import QText from '../components/QText';
@@ -9,19 +9,11 @@ import Scoreboard from '../components/Scoreboard';
 import { useGameContext } from '../utils/GlobalState';
 import API from '../utils/API';
 
-let socket;
-
 
 const Game = () => {
     const [state, dispatch] = useGameContext();
     const [users, setUsers] = useState('');
 
-    let ENDPOINT = "http://localhost:3000"
-
-    if(process.env.NODE_ENV === "production"){
-        ENDPOINT = "https://pub-trivia.herokuapp.com"
-    }
-    
     const { game, name, icon, color } = state;
     const mockQuestion = {
         questionId: 1,
@@ -41,23 +33,25 @@ const Game = () => {
     }
 
     useEffect(() => {
-        // socket = io(ENDPOINT);
-        // console.log(socket, game, name, icon, color);
         // mocking questio
-        API.getQuizbyCode(game)
-            .then((result) => {
-                console.log("=========getQuizbyCodeResult=======")
-                console.log(result);
-            }
+        // API.getQuizbyCode(game)
+        //     .then((result) => {
+        //         console.log("=========getQuizbyCodeResult=======")
+        //         console.log(result);
+        //     }
 
-            )
+        //     )
     }, []);
+
 
     return (
         <>
             <Timer />
-            <QText />
-            <QResponse />
+            <QText text={mockQuestion.question} />
+            <QResponse responses={[mockQuestion.answer1,
+                mockQuestion.answer2,
+                mockQuestion.answer3,
+                mockQuestion.answer4]} correct={mockQuestion.correctIndex}/>
             <Scoreboard />
         </>
     )

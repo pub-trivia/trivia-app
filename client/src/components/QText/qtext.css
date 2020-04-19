@@ -1,7 +1,7 @@
 .qbox {
     width: 300px;
     display: block;
-    margin: auto;
+    margin: 10px auto;
     padding: 15px;
     border: 1px solid black;
     border-radius: 10px;

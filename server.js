@@ -5,7 +5,7 @@ const cors = require('cors');
 const passport = require('passport');
 require("dotenv");
 
-const { addUser, removeUser, getUser, getUsersInGame } = require('./controllers/userController');
+const { addUser, removeUser, getUser, getUsersInGame, addResponses, getResponses } = require('./controllers/userController');
 const db = require("./models");
 
 const path = require("path");
@@ -60,22 +60,29 @@ io.on('connect', (socket) => {
     io.to(user.game).emit("startGame", { game: user.game, users: getUsersInGame(user.game)});
   })
 
-  socket.on('gameResponse', (response, callback) => {
-    const user = getUser(socket.id);
+  socket.on('response', ({ game, name, icon, color }, callback) => {
+    console.log(`Socket received: ${socket.id}`);
+    console.log(`Data received: ${game}, ${name}, ${icon}, ${color}`);
 
-    io.to(user.game).emit('response', {user: user.name, response: response});
-    io.to(user.game).emit('gameData', {game: user.game, users: getUsersInGame(user.game)});
+    const { error, user } = addResponses({ id: socket.id, game, name, icon, color });
+
+    console.log(getResponses(user.game));
+
+    if(error) return callback(error);
+
+    io.to(user.game).emit('respData', {game: user.game, users: getResponses(user.game)});
 
     callback();
   })
 
-  socket.on('disconnect', () => {
-    const user = removeUser(socket.id);
+  // socket.on('disconnect', () => {
+  //   console.log("socket disconnect request received");
+  //   const user = removeUser(socket.id);
 
-    if(user){
-      io.to(user.game).emit('departure', { user: user.name, text: `${user.name} has left`})
-    }
-  })
+  //   if(user){
+  //     io.to(user.game).emit('departure', { user: user.name, text: `${user.name} has left`})
+  //   }
+  // })
 })
 
 //sync the db with sequelize

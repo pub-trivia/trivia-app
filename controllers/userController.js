@@ -1,4 +1,5 @@
 const users = [];
+const responses = [];
 
 const addUser = ({ id, game, name, icon, color }) => {
     name = name.trim().toLowerCase();
@@ -26,8 +27,17 @@ const removeUser = (id) => {
     }
 }
 
+const addResponses = ({ id, game, name, icon, color }) => {
+    const user = { id, game, name, icon, color };
+    responses.push(user);
+
+    return { user };
+}
+
 const getUser = (id) => users.find((user) => user.id === id);
+
+const getResponses = (game) => responses.filter((user) => user.game === game);
 
 const getUsersInGame = (game) => users.filter((user) => user.game === game);
 
-module.exports = { addUser, removeUser, getUser, getUsersInGame }
+module.exports = { addUser, removeUser, getUser, getUsersInGame, addResponses, getResponses }
