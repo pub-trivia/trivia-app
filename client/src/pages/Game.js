@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
 import Timer from '../components/Timer';
-import Question from '../components/Question';
-import Responses from '../components/Responses';
+import QText from '../components/QText';
+import QResponse from '../components/QResponse';
 import Scoreboard from '../components/Scoreboard';
 
 import { useGameContext } from '../utils/GlobalState';
@@ -39,8 +39,8 @@ const Game = () => {
     return (
         <>
             <Timer />
-            <Question />
-            <Responses />
+            <QText />
+            <QResponse />
             <Scoreboard />
         </>
     )
