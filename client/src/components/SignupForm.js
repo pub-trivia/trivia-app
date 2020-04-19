@@ -12,7 +12,6 @@ const SignupForm = () => {
   const emailRef = useRef();
   const pwRef = useRef();
   const iconRef = createRef();
-  const colorRef = createRef();
   const [state, dispatch] = useGameContext();
   let history = useHistory();
 
@@ -25,7 +24,7 @@ const SignupForm = () => {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, iconRef.current.value, colorRef.current.value)
+    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, iconRef.current.value, state.color)
       .then(result => {
         dispatch({
           type: ADD_USER,
@@ -68,7 +67,7 @@ const SignupForm = () => {
         />
       </label>
       <IconPicker ref={iconRef}/>
-      <ColorPicker ref={colorRef}/>
+      <ColorPicker />
       <Button type="submit" text="SIGN UP" />
     </form>
   );
