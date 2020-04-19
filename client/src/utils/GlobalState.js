@@ -1,50 +1,40 @@
-import React, { createContext, useReducer, useContext } from "react";
-import {
-    SET_GAME,
-    SET_NAME,
-    SET_ICON,
-    SET_COLOR,
-    ADD_GAME,
-    ADD_PLAYER,
-} from "./actions";
+import React, { createContext, useReducer, useContext } from 'react';
+import { SET_AUTH, SET_COLOR, SET_ICON, ADD_PLAYER, ADD_USER } from './actions';
 
 const GameContext = createContext();
 const { Provider } = GameContext;
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case SET_NAME:
-            return {
-                ...state,
-                name: action.post.name,
-            };
-        case SET_GAME:
-            return {
-                ...state,
-                game: action.post.game,
-            };
         case SET_ICON:
             return {
                 ...state,
-                icon: action.post.icon,
+                icon: action.post.icon
             };
         case SET_COLOR:
             return {
                 ...state,
-                color: action.post.color,
+                color: action.post.color
             };
-        case ADD_GAME:
+        case SET_AUTH:
             return {
                 ...state,
-                game: action.post.game,
+                auth: action.post.auth,
             };
         case ADD_PLAYER:
             return {
                 ...state,
                 game: action.post.game,
                 name: action.post.name,
+                icon: action.post.icon
+            };
+        case ADD_USER:
+            return {
+                ...state,
+                id: action.post.id,
+                name: action.post.name,
                 icon: action.post.icon,
-                color: action.post.color,
+                auth: action.post.auth
             };
         default:
             return state;
@@ -53,10 +43,12 @@ const reducer = (state, action) => {
 
 const GameProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
+        id: "",
         game: "",
         name: "",
         icon: "",
         color: "",
+        auth: false
     });
     console.log("==============state================");
     console.log(state);

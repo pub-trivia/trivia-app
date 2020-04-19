@@ -3,10 +3,16 @@ import { useHistory } from "react-router-dom";
 import { useGameContext } from "../../utils/GlobalState";
 import { ADD_PLAYER } from "../../utils/actions";
 
+<<<<<<< HEAD
 
 import Button from "../Button";
 import IconPicker from "../IconPicker";
 import ColorPicker from "../ColorPicker";
+=======
+import Button from '../Button';
+import IconPicker from '../IconPicker';
+import ColorPicker from '../ColorPicker';
+>>>>>>> master
 
 import "./JoinForm.css";
 
@@ -14,12 +20,12 @@ const JoinForm = () => {
     const gameRef = useRef();
     const nameRef = useRef();
     const iconRef = createRef();
-    const colorRef = createRef();
     const [state, dispatch] = useGameContext();
+
     let history = useHistory();
 
-    const handleSubmit = (event) => {
-        //event.preventDefault();
+    const handleSubmit = event => {
+        event.preventDefault();
         //TODO: Add API call to add user to game
         //Then update state to include the player
 
@@ -29,8 +35,7 @@ const JoinForm = () => {
                 game: gameRef.current.value,
                 name: nameRef.current.value,
                 icon: iconRef.current.value,
-                color: colorRef.current.value,
-            },
+            }
         });
         history.push("/wait");
     };
@@ -48,7 +53,7 @@ const JoinForm = () => {
                 </label>
                 <h4>Select a profile icon and color</h4>
                 <IconPicker ref={iconRef} />
-                <ColorPicker ref={colorRef} />
+                <ColorPicker />
                 <Button type="submit" text="Join Now" />
             </form>
         </div>
