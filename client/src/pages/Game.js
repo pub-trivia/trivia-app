@@ -23,14 +23,31 @@ const Game = () => {
     }
     
     const { game, name, icon, color } = state;
+    const mockQuestion = {
+        questionId: 1,
+        question: "Which of the following is correct?",
+        category: "History",
+        difficulty: "easy",
+        userId: 1,
+        needsModeration: false,
+        questionType: "mc",
+        answer1: "Not this one",
+        answer2: "Not this one",
+        answer3: "This one!",
+        answer4: "Not this one",
+        correctIndex: 2,
+        correctCount: 100,
+        incorrectCount: 20
+    }
 
     useEffect(() => {
         // socket = io(ENDPOINT);
         // console.log(socket, game, name, icon, color);
+        // mocking questio
         API.getQuizbyCode(game)
             .then((result) => {
-                console.log("=========getQuizbyCode=======")
-                //API.getQuestion()
+                console.log("=========getQuizbyCodeResult=======")
+                console.log(result);
             }
 
             )
