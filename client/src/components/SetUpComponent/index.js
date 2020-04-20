@@ -19,24 +19,21 @@ const SetUpComponent = () => {
   console.log("Make a quiz: ", categories, userId, gameRef);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     dispatchEvent({
       type: ADD_GAME,
       post: {
-        category: category,
-        difficulty: difficulty.value,
-        userid: userId,
-        count: questionCount,
-        quizCode: gameRef.current.value
-      },
+        game: gameRef.current.value
+      }
     });
-    // TODO go to join screen
+    //history.push('/');
   };
 
   return (
     <div>
       <h2>Set up your game!</h2>
       <form onSubmit={(event) => handleSubmit(event)}>
-        <label>Select a Topic</label>Select a Topic:
+        <label>Select a Topic:</label>
         <div class="dropdown-content" id="pickCategory">
           <select name="categories">
             {categories.map((item) => (
@@ -44,7 +41,7 @@ const SetUpComponent = () => {
             ))}
           </select>
         </div>
-        <label>Difficulty</label>
+        <label>Difficulty:</label>
         <select name="difficulty">
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
