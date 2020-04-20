@@ -19,7 +19,7 @@ const reducer = (state, action) => {
         case SET_AUTH:
             return {
                 ...state,
-                auth: action.post.auth,
+                auth: action.post.auth
             };
         case ADD_PLAYER:
             return {
