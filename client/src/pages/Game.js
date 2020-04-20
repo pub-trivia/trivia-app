@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import ws from '../components/socket';
+import React, { useState, useEffect } from 'react';
+import { ws } from '../components/socket';
 
 import Timer from '../components/Timer';
 import QText from '../components/QText';

@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import { useGameContext } from '../../utils/GlobalState';
 import PlayerIcons from '../PlayerIcons';
 import { ws } from '../socket';
 import './scoreboard.css';
 
 const Scoreboard = () => {
+    const [state, dispatch] = useGameContext();
     const [users, setUsers] = useState('');
 
+    const { game } = state;
+
     useEffect(() => {
-        ws.on("respData", ({ users }) => {
+        console.log('use effect for scoreboard triggered');
+        
+        ws.on('respData', ({ game, users }) => {
             console.log("=============socket received=========");
             console.log(users);
             setUsers(users);
         });
-        
     }, []);
+    
+   
 
     return (
         <div>

@@ -39,7 +39,8 @@ app.get("/*", (req, res) => {
 io.on('connect', (socket) => {
 
   socket.on('join', ({ game, name, icon, color }, callback) => {
-    
+    console.log(`Socket id on join: ${socket.id}`);
+
     const { error, user } = addUser({ id: socket.id, game, name, icon, color });
 
     if(error) return callback(error);
@@ -55,13 +56,14 @@ io.on('connect', (socket) => {
   })
 
   socket.on("allHere", ({ game }, callback) => {
+    console.log(`Socket id on allHere: ${socket.id}`);
     const user = getUser(socket.id);
 
     io.to(user.game).emit("startGame", { game: user.game, users: getUsersInGame(user.game)});
   })
 
   socket.on('response', ({ game, name, icon, color }, callback) => {
-    console.log(`Socket received: ${socket.id}`);
+    console.log(`Socket id on response: ${socket.id}`);
     console.log(`Data received: ${game}, ${name}, ${icon}, ${color}`);
 
     const { error, user } = addResponses({ id: socket.id, game, name, icon, color });
