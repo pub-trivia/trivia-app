@@ -12,9 +12,8 @@ import API from '../utils/API';
 
 const Game = () => {
     const [state, dispatch] = useGameContext();
-    const [users, setUsers] = useState('');
 
-    const { game, name, icon, color } = state;
+    const { game, name, icon, color, users } = state;
     const mockQuestion = {
         questionId: 1,
         question: "Which of the following is correct?",
@@ -46,9 +45,9 @@ const Game = () => {
 
     return (
         <>
-            <Timer />
+            <Timer game={game}/>
             <QText text={mockQuestion.question} />
-            <QResponse responses={[mockQuestion.answer1,
+            <QResponse q="1" responses={[mockQuestion.answer1,
                 mockQuestion.answer2,
                 mockQuestion.answer3,
                 mockQuestion.answer4]} correct={mockQuestion.correctIndex}/>

@@ -1,36 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ws } from '../socket';
 import { useGameContext } from '../../utils/GlobalState';
 import './qresponse.css';
 
 const QResponse = (props) => {
     
-    const { responses, correct } = props;
+    const { q, responses, correct } = props;
     const [state, dispatch] = useGameContext();
     const [selected, setSelected] = useState('');
     
-    const { game, name, icon, color } = state;
-
-    let prevSelected;
-    
-    useEffect(() => {
-        console.log(`use effect selected: ${selected}`);
-        if(selected == correct){
-            console.log("CORRECT!");
-        } else {
-            console.log("INCORRECT");
-        }
-    }, [selected]);
+    const { game, name } = state;
 
     const handleResponse = event => {
-        console.log("================response selected=============")
-        console.log(event.target.id);
-        if(!selected){
-            console.log("triggering socket for first response");
-            ws.emit('response', { game, name, icon, color }, () => {});
+       let resp;
+        setSelected(event.target.id);
+        console.log("triggering socket for response");
+        if(event.target.id == correct){
+            resp = "correct";
+        } else {
+            resp = "incorrect";
         }
-        setSelected(event.target.id);  
-    }
+        ws.emit('response', { game, name, q, resp }, (result) => {
+            //TODO: Use this to update who has responded and who has not
+            console.log("=================emit response result===========");
+            console.log(result);
+        });
+        }
 
     return (
         responses.map((resp, index) => {

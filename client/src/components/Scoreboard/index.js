@@ -6,19 +6,17 @@ import './scoreboard.css';
 
 const Scoreboard = () => {
     const [state, dispatch] = useGameContext();
-    const [users, setUsers] = useState('');
 
-    const { game } = state;
+    const { game, users } = state;
 
-    useEffect(() => {
-        console.log('use effect for scoreboard triggered');
+    // useEffect(() => {
+    //     console.log('use effect for scoreboard triggered');
         
-        ws.on('respData', ({ game, users }) => {
-            console.log("=============socket received=========");
-            console.log(users);
-            setUsers(users);
-        });
-    }, []);
+    //     ws.on('respData', ({ game, users }) => {
+    //         console.log("=============socket received=========");
+    //         console.log(users);
+    //     });
+    // }, []);
     
    
 

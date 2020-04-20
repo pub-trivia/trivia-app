@@ -62,11 +62,11 @@ io.on('connect', (socket) => {
     io.to(user.game).emit("startGame", { game: user.game, users: getUsersInGame(user.game)});
   })
 
-  socket.on('response', ({ game, name, icon, color }, callback) => {
+  socket.on('response', ({ game, name, q, resp }, callback) => {
     console.log(`Socket id on response: ${socket.id}`);
-    console.log(`Data received: ${game}, ${name}, ${icon}, ${color}`);
+    console.log(`Data received: ${game}, ${name}, ${q}, ${resp}`);
 
-    const { error, user } = addResponses({ id: socket.id, game, name, icon, color });
+    const { error, user } = addResponses({ id: socket.id, game, name, q, resp });
 
     console.log(getResponses(user.game));
 
@@ -74,7 +74,7 @@ io.on('connect', (socket) => {
 
     io.to(user.game).emit('respData', {game: user.game, users: getResponses(user.game)});
     
-    callback();
+    callback(getResponses(user.game));
   })
 
   socket.on('disconnect', () => {

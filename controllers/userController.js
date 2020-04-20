@@ -27,10 +27,19 @@ const removeUser = (id) => {
     }
 }
 
-const addResponses = ({ id, game, name, icon, color }) => {
-    const user = { id, game, name, icon, color };
-    responses.push(user);
+const addResponses = ({ id, game, name, q, resp }) => {
+    const user = { id, game, name, q, resp };
 
+    //TODO: only save the last response for a user
+    const existingResp = users.find((user) => user.game === game && user.name === name && user.q === q)
+    
+    if(existingResp){
+        console.log("User has an existing response: ")
+        console.log(existingResp);
+    } else {
+        responses.push(user);
+    }
+    
     return { user };
 }
 

@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { ws } from '../components/socket';
 import { useHistory } from 'react-router-dom';
 
 import WaitingRoom from '../components/WaitingRoom';
 import Button from '../components/Button';
 import { useGameContext } from '../utils/GlobalState';
+import { SET_USERS } from '../utils/actions';
 
 const Wait = () => {
     const [state, dispatch] = useGameContext();
-    const [users, setUsers] = useState('');
     let history = useHistory();
     
-    const { game, name, icon, color } = state;
+    const { game, name, icon, color, users } = state;
 
     useEffect(() => {
         ws.emit('join', { game, name, icon, color }, () => {});
@@ -19,7 +19,12 @@ const Wait = () => {
 
     useEffect(() => {
         ws.on("gameData", ({ users }) => {
-            setUsers(users);
+            dispatch({
+                type: SET_USERS,
+                post: {
+                    users: users
+                }
+            })
         })
 
         ws.on("startGame", ({ game, users }) => {
@@ -35,7 +40,7 @@ const Wait = () => {
     
     return (
         <div>
-            <h2>You're in game: {state.game}</h2>
+            <h2>You're in game: {game}</h2>
             <WaitingRoom users={users} />
             <Button type="submit" text="EVERYONE IS HERE" handleClick={(event) => handleClick(event)}/>
         </div>
