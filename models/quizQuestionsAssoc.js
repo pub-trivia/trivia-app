@@ -7,6 +7,9 @@ module.exports = function (sequelize, DataTypes) {
         questionId: {
             type: DataTypes.INTEGER,
             required: true
+        },
+        order: {
+            type: DataTypes.INTEGER
         }
     },
         { freezeTableName: true });
