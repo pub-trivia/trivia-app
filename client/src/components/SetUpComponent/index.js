@@ -10,7 +10,7 @@ const SetUpComponent = () => {
   const gameRef = useRef();
 
   let categories = API.getCategories();
-  let gameRef = API.getQuizCode();
+  let gameCode = API.getQuizCode();
   // have to get userId into userId variable, selected category into category
   // use 2  and "General" for testing   
   var userId = 2;
