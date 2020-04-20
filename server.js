@@ -71,18 +71,18 @@ io.on('connect', (socket) => {
     if(error) return callback(error);
 
     io.to(user.game).emit('respData', {game: user.game, users: getResponses(user.game)});
-
+    
     callback();
   })
 
-  // socket.on('disconnect', () => {
-  //   console.log("socket disconnect request received");
-  //   const user = removeUser(socket.id);
+  socket.on('disconnect', () => {
+    console.log("socket disconnect request received");
+    const user = removeUser(socket.id);
 
-  //   if(user){
-  //     io.to(user.game).emit('departure', { user: user.name, text: `${user.name} has left`})
-  //   }
-  // })
+    if(user){
+      io.to(user.game).emit('departure', { user: user.name, text: `${user.name} has left`})
+    }
+  })
 })
 
 //sync the db with sequelize
