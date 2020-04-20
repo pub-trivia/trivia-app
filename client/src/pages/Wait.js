@@ -35,7 +35,7 @@ const Wait = () => {
     
     return (
         <div>
-            <h1>You're in game: {state.game}</h1>
+            <h2>You're in game: {state.game}</h2>
             <WaitingRoom users={users} />
             <Button type="submit" text="EVERYONE IS HERE" handleClick={(event) => handleClick(event)}/>
         </div>
