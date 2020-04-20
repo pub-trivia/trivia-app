@@ -8,23 +8,12 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             required: true
         },
-        order: {
+        questionOrder: {
             type: DataTypes.INTEGER
         }
     },
         { freezeTableName: true });
 
-    QuizQuestionsAssoc.associate = function (models) {
-        QuizQuestionsAssoc.hasMany(models.Quiz, {
-            onDelete: "CASCADE",
-            foreignKey: "quizId"
-        });
-        QuizQuestionsAssoc.belongsTo(models.Question, {
-            onDelete: "CASCADE",
-            foreignKey: "questionId"
-        });
-
-    }
     return QuizQuestionsAssoc;
 };
 

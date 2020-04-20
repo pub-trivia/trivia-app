@@ -23,6 +23,10 @@ module.exports = function (sequelize, DataTypes) {
         quizCode: {
             type: DataTypes.STRING
         },
+        currentQuestion: {
+            type: DataTypes.INTEGER,
+            defaultValue: 1
+        },
         isActive: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
