@@ -1,56 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
+import React, { useEffect } from 'react';
+import { ws } from '../components/socket';
 import { useHistory } from 'react-router-dom';
 
 import WaitingRoom from '../components/WaitingRoom';
 import Button from '../components/Button';
 import { useGameContext } from '../utils/GlobalState';
-
-let socket;
+import { SET_USERS } from '../utils/actions';
 
 const Wait = () => {
     const [state, dispatch] = useGameContext();
-    const [users, setUsers] = useState('');
-    let ENDPOINT = "http://localhost:3000";
     let history = useHistory();
-
-    if(process.env.NODE_ENV === "production"){
-        ENDPOINT = "https://pub-trivia.herokuapp.com"
-    }
     
-    const { game, name, icon, color } = state;
+    const { game, name, icon, color, users } = state;
 
     useEffect(() => {
-        socket = io(ENDPOINT);
-        socket.emit('join', { game, name, icon, color }, () => {});
-
-        return () => {
-            socket.emit('disconnect');
-            socket.off();
-        }
-    }, [ENDPOINT]);
-
-    useEffect(() => {
-        socket.on("gameData", ({ users }) => {
-            setUsers(users);
-        });
+        ws.emit('join', { game, name, icon, color }, () => {});
     }, []);
 
     useEffect(() => {
-        socket.on("startGame", ({ game, users }) => {
+        ws.on("gameData", ({ users }) => {
+            dispatch({
+                type: SET_USERS,
+                post: {
+                    users: users
+                }
+            })
+        })
+
+        ws.on("startGame", ({ game, users }) => {
             history.push('/game');
         })
     }, []);
 
     const handleClick = (event) => {
         event.preventDefault();
-        socket.emit("allHere", { game }, () => {});
+        ws.emit("allHere", { game }, () => {});
     }
 
     
     return (
         <div>
-            <h1>You're in game: {state.game}</h1>
+            <h2>You're in game: {game}</h2>
             <WaitingRoom users={users} />
             <Button type="submit" text="EVERYONE IS HERE" handleClick={(event) => handleClick(event)}/>
         </div>
