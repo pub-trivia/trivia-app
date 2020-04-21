@@ -3,7 +3,7 @@ import CreateAQuestion from '../components/CreateAQuestion';
 import Button from '../components/Button';
 // import "../style.css";
 
-const CreateAQuestion = () => {
+const CreateQuestion = () => {
 
     return (
         <div>
@@ -12,4 +12,4 @@ const CreateAQuestion = () => {
     )
 }
 
-export default CreateAQuestion;
+export default CreateQuestion;

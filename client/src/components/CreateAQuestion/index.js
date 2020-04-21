@@ -7,7 +7,7 @@ const CreateAQuestion = () => {
     const categoryRef = useRef();
     const questionRef = useRef();
     const difficultyref = useRef();
-    const userIdref = userIdref();
+    const userIdref = useref();
     const questionTypeRef = createRef();
     const answer1Ref = createRef();
     const answer2Ref = createRef();
@@ -31,7 +31,7 @@ const CreateAQuestion = () => {
             answer4Ref.current.value,
             correctIndexref.current.value
         )
-            .then((res) => {
+        .then((res) => {
         const { token } = res.data;
         processToken(token);
     })
