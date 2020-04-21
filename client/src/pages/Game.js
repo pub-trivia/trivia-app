@@ -12,6 +12,8 @@ import API from '../utils/API';
 
 const Game = () => {
     const [state, dispatch] = useGameContext();
+    const [selected, setSelected] = useState('');
+    const [responded, setScoreboard] = useState('');
 
     const { game, name, icon, color, users } = state;
     const mockQuestion = {
