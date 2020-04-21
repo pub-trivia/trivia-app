@@ -62,19 +62,30 @@ io.on('connect', (socket) => {
     io.to(user.game).emit("startGame", { game: user.game, users: getUsersInGame(user.game)});
   })
 
-  socket.on('response', ({ game, name, q, resp }, callback) => {
+  socket.on('response', async ({ game, name, q, resp }, callback) => {
+    //get the user from the server based on the socket id
+    const user = await getUser(socket.id);
+    //grab the icon and color from the user
+    const { icon, color } = user;
+    
+    //TODO: console log that socket we're getting for troubleshooting
     console.log(`Socket id on response: ${socket.id}`);
-    console.log(`Data received: ${game}, ${name}, ${q}, ${resp}`);
-
-    const { error, user } = addResponses({ id: socket.id, game, name, q, resp });
-
-    console.log(getResponses(user.game));
-
+    //TODO: console log the data we now have for the user
+    console.log(`Data received: ${game}, ${name}, ${icon}, ${color}, ${q}, ${resp}`);
+    
+    //add this user's responses to the array in the userController (returns rUser)
+    const { error, rUser } = await addResponses({ id: socket.id, game, name, icon, color, q, resp });
+    
+    //TODO: handle any error returned
     if(error) return callback(error);
 
-    io.to(user.game).emit('respData', {game: user.game, users: getResponses(user.game)});
-    
-    callback(getResponses(user.game));
+    //TODO: get all of the responses for this game
+    const responses = await getResponses(game);
+
+    //TODO: emit respData back to the game page
+    io.to(game).emit('respData', {game: game, users: responses});
+    //send respData as a callback to the original emit 
+    callback(responses);
   })
 
   socket.on('disconnect', () => {
