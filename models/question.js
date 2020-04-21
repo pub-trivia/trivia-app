@@ -6,7 +6,8 @@ module.exports = function (sequelize, DataTypes) {
     var Question = sequelize.define("Question", {
         questionId: {
             type: DataTypes.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         question: {
             type: DataTypes.STRING,
@@ -56,7 +57,17 @@ module.exports = function (sequelize, DataTypes) {
         incorrectCount: {
             type: DataTypes.INTEGER,
             defaultValue: 0
-        }
+        },
+        createdAt: {
+            type: Sequelize.DATE,
+            allowNull: false,
+            defaultValue: Sequelize.NOW
+        },
+        updatedAt: {
+            type: Sequelize.DATE,
+            allowNull: false,
+            defaultValue: Sequelize.NOW
+        },
     });
 
     Question.associate = (models) => {

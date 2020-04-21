@@ -2,7 +2,8 @@ module.exports = function (sequelize, DataTypes) {
     var Quiz = sequelize.define("Quiz", {
         quizId: {
             type: DataTypes.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         category: {
             type: DataTypes.STRING,
@@ -21,6 +22,10 @@ module.exports = function (sequelize, DataTypes) {
         },
         quizCode: {
             type: DataTypes.STRING
+        },
+        currentQuestion: {
+            type: DataTypes.INTEGER,
+            defaultValue: 1
         },
         isActive: {
             type: DataTypes.BOOLEAN,

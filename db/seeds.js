@@ -3,29 +3,39 @@ require("dotenv").config();
 const fs = require("fs");
 const util = require("util");
 const readFileAsync = util.promisify(fs.readFile);
+const db = require("../models");
 
-
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: process.env.DB_PASS,
-  database: "pubtrivia",
-});
-
-connection.connect(function (err) {
-  if (err) throw err;
-  loadSeeds();
-});
 
 async function loadSeeds() {
+
+  db.User.create({
+    displayName: "External",
+    email: "test@dummy.com",
+    password: "",
+    icon: "",
+    color: ""
+  }).then(response => console.log("External user added"))
+    .catch(err => console.log(err));
+
+  db.User.create({
+    displayName: "Tester",
+    email: "tesert@dummy.com",
+    password: "",
+    icon: "",
+    color: ""
+  }).then(response => console.log("External user added"))
+    .catch(err => console.log(err));
+
+
   var inputString = await readFileAsync("./db/seeds.json", "utf8");
   var inputQuestions = JSON.parse(inputString);
   var answers = [];
   var correctIndex = 0;
   var seedQuestions = [];
+  var questionType = "";
   for (let i = 0; i < inputQuestions.length; i++) {
     console.log("Input question: ", inputQuestions[i]);
+    questionType = inputQuestions[i].type === "multiple" ? "mc" : "tf";
     if (inputQuestions[i].type === "boolean") {
       // handle true/false question
       answers[0] = "True";
@@ -40,23 +50,29 @@ async function loadSeeds() {
       correctIndex = Math.floor(Math.random() * 4);
       answers.splice(correctIndex, 0, inputQuestions[i].correct_answer);
     }
-    let seedQuestion = [
-      inputQuestions[i].question,
-      inputQuestions[i].category,
-      inputQuestions[i].difficulty,
-      1,
-      inputQuestions[i].type === "multiple" ? "mc" : "tf",
-      correctIndex,
-      ...answers,
-    ];
-    seedQuestions.push(seedQuestion);
+    let seedQuestion = {
+      question: inputQuestions[i].question,
+      category: inputQuestions[i].category,
+      difficulty: inputQuestions[i].difficulty,
+      userId: 1,
+      questionType: questionType,
+      correctIndex: correctIndex,
+      answer1: answers[0],
+      answer2: answers[1],
+      answer3: answers[2],
+      answer4: answers[3]
+    };
+    console.log("Seed question: ", seedQuestion)
+
+
+    db.Question.create(seedQuestion)
+      .then((newQuestion) => {
+        // do nothing
+      })
+      .catch((err) => console.log(err));
   }
-  let insertCommand =
-    "INSERT INTO questions (question, category, difficulty, userId, questionType, correctIndex, answer1, answer2, answer3, answer4) VALUES ? ";
-  connection.query(insertCommand, [seedQuestions], (err, res) => {
-    if (err) {
-      console.log(err);
-    }
-    // console.log(res);
-  });
-}
+
+};
+
+loadSeeds();
+
