@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useGameContext } from '../../utils/GlobalState';
+import React, { useEffect } from 'react';
 import PlayerIcons from '../PlayerIcons';
-import { ws } from '../socket';
 import './scoreboard.css';
 
-const Scoreboard = () => {
-    const [state, dispatch] = useGameContext();
-
-    const { game, users } = state;
-
-    // useEffect(() => {
-    //     console.log('use effect for scoreboard triggered');
-        
-    //     ws.on('respData', ({ game, users }) => {
-    //         console.log("=============socket received=========");
-    //         console.log(users);
-    //     });
-    // }, []);
+const Scoreboard = (props) => {
+    const { users } = props;
     
-   
+    useEffect(() => {
+        console.log('use effect for scoreboard triggered');
+        console.log(props.users);
+    }, [users]);
 
     return (
         <div>
@@ -29,9 +19,9 @@ const Scoreboard = () => {
          ? (
             <div>
                 <h2>
-                    {users.map(({ name, icon, color }) => {
+                    {users.map(({ name, icon, color }, index) => {
                         return (
-                            <div key={name}>
+                            <div key={index}>
                                 <PlayerIcons icon={icon} color={color} /> {name}
                             </div>
                         )
