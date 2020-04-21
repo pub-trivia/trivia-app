@@ -3,7 +3,7 @@ import { ws } from '../components/socket';
 
 import Timer from '../components/Timer';
 import QText from '../components/QText';
-import QResponse from '../components/QResponse';
+import Button from '../components/Button';
 import Scoreboard from '../components/Scoreboard';
 
 import { useGameContext } from '../utils/GlobalState';
@@ -31,27 +31,56 @@ const Game = () => {
         incorrectCount: 20
     }
 
-    useEffect(() => {
-        // mocking questio
-        // API.getQuizbyCode(game)
-        //     .then((result) => {
-        //         console.log("=========getQuizbyCodeResult=======")
-        //         console.log(result);
-        //     }
+    //TODO: check to make sure this works with tf question types
+    const responses = [mockQuestion.answer1, 
+                        mockQuestion.answer2, 
+                        mockQuestion.answer3,
+                        mockQuestion.answer4
+                    ]
 
-        //     )
+    useEffect(() => {
+        ws.on('respData', ({game, users}) => {
+            console.log("==================resp data received==========")
+            console.log(users);
+            setScoreboard(users);
+        })
     }, []);
 
+    const handleResponse = event => {
+        let resp;
+         setSelected(event.target.id);
+         console.log("triggering socket for response");
+         if(event.target.id == mockQuestion.correctIndex){
+             resp = "correct";
+         } else {
+             resp = "incorrect";
+         }
+         const q = mockQuestion.questionId;
+         ws.emit('response', { game, name, q, resp }, (users) => {
+             //TODO: Use this to update who has responded and who has not
+             console.log("=================emit response result===========");
+             console.log(users);
+             setScoreboard(users);
+         });
+    }
 
     return (
         <>
             <Timer game={game}/>
             <QText text={mockQuestion.question} />
-            <QResponse q="1" responses={[mockQuestion.answer1,
-                mockQuestion.answer2,
-                mockQuestion.answer3,
-                mockQuestion.answer4]} correct={mockQuestion.correctIndex}/>
-            <Scoreboard />
+            {responses.map((resp, index) => {
+                return (
+                    <Button 
+                        className={selected == {index} ? "gamebutton active" : "gamebutton"} 
+                        text={resp} 
+                        handleClick={(event) => handleResponse(event)}
+                        id={index}
+                        key={index}
+                    />  
+                    )
+                })
+            }
+            <Scoreboard users={responded ? responded : null}/>
         </>
     )
 }
