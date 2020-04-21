@@ -1,20 +1,20 @@
-import React, { createRef, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useGameContext } from '../../utils/GlobalState';
-import { ADD_PLAYER } from '../../utils/actions';
+import React, { createRef, useRef } from "react";
+import { useHistory } from "react-router-dom";
+import { useGameContext } from "../../utils/GlobalState";
+import { ADD_PLAYER } from "../../utils/actions";
 
 import Button from '../Button';
 import IconPicker from '../IconPicker';
 import ColorPicker from '../ColorPicker';
 
-import './JoinForm.css';
+import "./JoinForm.css";
 
 const JoinForm = () => {
     const gameRef = useRef();
     const nameRef = useRef();
     const iconRef = createRef();
     const [state, dispatch] = useGameContext();
-    
+
     let history = useHistory();
 
     const handleSubmit = event => {
@@ -30,29 +30,27 @@ const JoinForm = () => {
                 icon: iconRef.current.value,
             }
         });
-        history.push('/wait');
-    }
+        history.push("/wait");
+    };
 
     return (
         <div>
             <form onSubmit={(event) => handleSubmit(event)}>
-                <label>Enter Game Code:
-                    <input 
-                        placeholder="Enter game code" 
-                        type="text" 
-                        ref={gameRef} 
-                    />
+                <label>
+                    Enter Game Code:
+          <input placeholder="Enter game code" type="text" ref={gameRef} />
                 </label>
-                <label>Name
-                    <input placeholder="Display Name" type="text" ref={nameRef} />
+                <label>
+                    Name
+          <input placeholder="Display Name" type="text" ref={nameRef} />
                 </label>
                 <h4>Select a profile icon and color</h4>
-                <IconPicker ref={iconRef}/>
+                <IconPicker ref={iconRef} />
                 <ColorPicker />
                 <Button type="submit" text="Join Now" />
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default JoinForm;

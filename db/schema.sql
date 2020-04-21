@@ -20,7 +20,7 @@ CREATE TABLE users
   INSERT INTO users
     ( displayName, email, password, icon, color, createdAt, updatedAt)
   VALUES
-    ('External', '', '', NULL, ""),
+    ('External', '', '', '', '', NOW(), NOW()),
     ('Susan', 'susan@test.com', 'susanpw', "Tim", '#9665D8', NOW(), NOW()),
     ('Cat', 'cat@test.com', 'catkrspw', "Carl" , '#04D5FB', NOW(), NOW()),
     ('Mandy', 'mandy@test.com', 'mandytpw', "Zach", '#9FA1A0', NOW(), NOW()),
