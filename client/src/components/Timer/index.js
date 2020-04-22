@@ -35,7 +35,7 @@ const Timer = (props) => {
     });
 
     return (
-        <div className="timertext">{state.seconds > 9 ? `00:${state.seconds}` : `00:0${state.seconds}`}</div>
+        <div className="timertext">{state.seconds > 9 ? `00:${state.seconds}` : `00:0${state.seconds > -1 ? state.seconds : "0"}`}</div>
     )
 }
 
