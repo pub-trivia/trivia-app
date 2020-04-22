@@ -117,7 +117,8 @@ module.exports = function (app) {
           return {
             quizId: quizId,
             questionId: question.dataValues.questionId,
-            questionOrder: index + 1
+            questionOrder: index + 1,
+            progress: null
           };
         });
         console.log("Data to go into quizQuestionsAssoc: ", associations);
