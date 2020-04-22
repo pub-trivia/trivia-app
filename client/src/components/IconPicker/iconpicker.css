@@ -1,0 +1,50 @@
+.icon-picker {
+    display: flex;
+    flex-wrap: wrap;
+}
+.icon-picker h6{
+    width: 100%;
+}
+.icon-choice {
+    width: 25%;
+    position: relative;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+.icon-choice label{
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    pointer-events:none;
+}
+  .icon-choice .profile-icon {
+      position: absolute;
+    width: 70px;
+    height: 70px;
+}
+.icon-picker input{
+    opacity: 0;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+.icon-picker input:checked + label:before{
+    content: '';
+    width:75px!important;
+    height:75px!important;
+    border-radius:50%;
+    border: 2px solid gray;
+    position:absolute;
+    z-index:-1;
+    top: -2px;
+    left:-4px;
+    }
+
+.icon-picker input:hover + label .profile-icon svg.circle, .icon-picker input:hover + label .profile-icon svg.ellipse {
+    fill: #9665D8;
+}
+
+.icon-picker label .profile-icon {
+    pointer-events:none;
+}

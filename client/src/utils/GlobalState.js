@@ -5,7 +5,7 @@ const GameContext = createContext();
 const { Provider } = GameContext;
 
 const reducer = (state, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case SET_ICON:
             return {
                 ...state,
@@ -25,22 +25,21 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 game: action.post.game,
-                name: action.post.name,
-                icon: action.post.icon,
+                name: action.post.name
             };
         case ADD_USER:
             return {
                 ...state,
                 id: action.post.id,
                 name: action.post.name,
-                icon: action.post.icon, 
+                icon: action.post.icon,
                 auth: action.post.auth
             };
         default:
             return state;
     }
 
-    
+
 };
 
 const GameProvider = ({ value = [], ...props }) => {
@@ -49,7 +48,7 @@ const GameProvider = ({ value = [], ...props }) => {
         game: '',
         name: '',
         icon: '',
-        color: '', 
+        color: '',
         auth: false
     });
     console.log("==============state================");

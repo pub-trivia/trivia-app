@@ -1,0 +1,12 @@
+.player-status .profile-icon {
+    width: 70px;
+    height:70px;
+    margin-right: 15px;
+}
+.player-status h2{
+    display:flex;
+    flex-wrap:nowrap;
+    align-items: center;
+    justify-content: flex-start;
+
+}
