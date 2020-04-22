@@ -10,8 +10,8 @@ const Header = () => {
             <svg className="mobile" width="1000px" height="300px">
                 <polygon points="0,300 1000,0 1000,300" fill="white" />
             </svg>
-            <img className="logo-background" src="../../assets/logo-background.png" />
-            <img className="logo-image" src="../../assets/PubTriviaLogo.png" />
+            <img className="logo-background" src="../../assets/logo-background.png" alt="logo background"/>
+            <img className="logo-image" src="../../assets/PubTriviaLogo.png" alt="pub trivia logo"/>
         </div>
     );
 }
