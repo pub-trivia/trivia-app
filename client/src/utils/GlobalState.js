@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { SET_AUTH, SET_COLOR, SET_ICON, ADD_PLAYER, ADD_USER } from './actions';
+import { SET_AUTH, SET_COLOR, SET_ICON, SET_USERS, ADD_PLAYER, ADD_USER, ADD_GAME } from './actions';
 
 const GameContext = createContext();
 const { Provider } = GameContext;
@@ -21,6 +21,11 @@ const reducer = (state, action) => {
                 ...state,
                 auth: action.post.auth
             };
+        case SET_USERS:
+            return {
+                ...state,
+                users: action.post.users
+            };
         case ADD_PLAYER:
             return {
                 ...state,
@@ -35,11 +40,14 @@ const reducer = (state, action) => {
                 icon: action.post.icon,
                 auth: action.post.auth
             };
+        case ADD_GAME:
+            return {
+                ...state,
+                game: action.post.game
+            };
         default:
             return state;
     }
-
-
 };
 
 const GameProvider = ({ value = [], ...props }) => {
@@ -48,8 +56,9 @@ const GameProvider = ({ value = [], ...props }) => {
         game: '',
         name: '',
         icon: '',
-        color: '',
-        auth: false
+        color: '', 
+        auth: false,
+        users: []
     });
     console.log("==============state================");
     console.log(state);
@@ -59,6 +68,6 @@ const GameProvider = ({ value = [], ...props }) => {
 
 const useGameContext = () => {
     return useContext(GameContext);
-}
+};
 
 export { GameProvider, useGameContext };

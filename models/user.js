@@ -49,15 +49,13 @@ module.exports = function (sequelize, DataTypes) {
 
     User.associate = function (models) {
         User.hasMany(models.Question, {
-            foreignKey: 'userId'
+            foreignKey: 'userId',
+            onDelete: "SET NULL"
         });
         // User.hasMany(models.Quiz, {
+        //     foreignKey: 'userId',
         //     onDelete: "SET NULL"
         // });
-        // User.hasMany(models.QuizScore, {
-        //     onDelete: "CASCADE"
-        // });
-
     }
     return User;
 };
