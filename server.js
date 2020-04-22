@@ -88,6 +88,14 @@ io.on('connect', (socket) => {
     callback(responses);
   })
 
+  socket.on('timerend', async ({ game }, callback) => {
+    const user = await getUser(socket.id);
+
+    console.log(`Timer is done - socketid: ${socket.id}`)
+
+    io.to(user.game).emit('showAnswers', { text: `Time's up, how did you do?`})
+  })
+
   socket.on('disconnect', () => {
     console.log("socket disconnect request received");
     const user = removeUser(socket.id);

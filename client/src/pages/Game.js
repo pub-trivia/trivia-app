@@ -14,8 +14,8 @@ const Game = () => {
     const [state, dispatch] = useGameContext();
     const [selected, setSelected] = useState('');
     const [responded, setScoreboard] = useState('');
-
-    const { game, name, icon, color, users } = state;
+    const [ques, setQuestion] = useState({});
+    const [scoring, setScoring] = useState(false);
     const mockQuestion = {
         questionId: 1,
         question: "Which of the following is correct?",
@@ -24,34 +24,45 @@ const Game = () => {
         userId: 1,
         needsModeration: false,
         questionType: "mc",
-        answer1: "Not this one",
-        answer2: "Not this one",
-        answer3: "This one!",
-        answer4: "Not this one",
+        responses: ["Not this one", 
+            "Not this one", 
+            "This one!",
+            "Not this one"],
         correctIndex: 2,
         correctCount: 100,
         incorrectCount: 20
     }
 
-    //TODO: check to make sure this works with tf question types
-    const responses = [mockQuestion.answer1, 
-                        mockQuestion.answer2, 
-                        mockQuestion.answer3,
-                        mockQuestion.answer4
-                    ]
+    const { game, name, icon, color, users } = state;
 
     useEffect(() => {
-        ws.on('respData', ({game, users}) => {
+        console.log("============use effect reached=========");
+
+    }, []);
+
+    useEffect(() => {
+         //handle when someone responds
+         ws.on('respData', ({game, users}) => {
             console.log("==================resp data received==========")
             console.log(users);
             setScoreboard(users);
         })
+
+        ws.on('showAnswers', ({ text }) => {
+            console.log("=========Show answers reached!==============")
+            //disable the buttons
+            setScoring(true);
+        })
     }, []);
+
+    const getNextQuestion = () => {
+        console.log("==============getNextQuestion================");
+        setScoring(false);
+    }
 
     const handleResponse = event => {
         let resp;
          setSelected(event.target.id);
-         console.log("triggering socket for response");
          if(event.target.id == mockQuestion.correctIndex){
              resp = "correct";
          } else {
@@ -70,18 +81,20 @@ const Game = () => {
         <>
             <Timer game={game}/>
             <QText text={mockQuestion.question} />
-            {responses.map((resp, index) => {
-                return (
-                    <Button 
-                        className={selected == {index} ? "gamebutton active" : "gamebutton"} 
-                        text={resp} 
-                        handleClick={(event) => handleResponse(event)}
-                        id={index}
-                        key={index}
-                    />  
-                    )
-                })
-            }
+            {mockQuestion.responses.map((resp, index) => {
+                    return (
+                        <Button 
+                            className={`gamebutton 
+                                            ${selected == {index} ? 'active' : null} 
+                                            ${scoring ? `disabled ${index == mockQuestion.correctIndex ? 'correct' : null}` : null}`}
+                            text={resp} 
+                            handleClick={!scoring ? (event) => handleResponse(event) : null }
+                            id={index}
+                            key={index}
+                        />  
+                        )
+                    })
+                }
             <Scoreboard users={responded ? responded : null}/>
         </>
     )

@@ -1,3 +1,14 @@
 .gamebutton {
     background: #000000;
 }
+
+.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.correct {
+    opacity: 1;
+    background: #03E4AC;
+    color: #000000;
+}
