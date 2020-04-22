@@ -32,19 +32,19 @@ VALUES
     ( 2, null, 23, "CRich", "Zack", '#9665D8', 1, NOW(), NOW()),
     ( 2, null, 14, "CRich", "Zack", '#9665D8', 1, NOW(), NOW());
 
-INSERT INTO quizQuestionAssoc
-    ( quizId, questionId, questionOrder, createdAt, updatedAt)
+INSERT INTO quizQuestionsAssoc
+    ( quizId, questionId, questionOrder, progress, createdAt, updatedAt)
 VALUES
-    (1 , 10, 1, NOW(), NOW()),
-    (1 , 11, 2, NOW(), NOW()),
-    (1 , 12, 3, NOW(), NOW()),
-    (1 , 13, 4, NOW(), NOW()),
-    (1 , 14, 5, NOW(), NOW()),
-    (2 , 20, 1, NOW(), NOW()),
-    (2 , 21, 2, NOW(), NOW()),
-    (2 , 22, 3, NOW(), NOW()),
-    (2 , 23, 4, NOW(), NOW()),
-    (2 , 24, 5, NOW(), NOW()); 
+    (1 , 10, 1, null, NOW(), NOW()),
+    (1 , 11, 2, null, NOW(), NOW()),
+    (1 , 12, 3, null, NOW(), NOW()),
+    (1 , 13, 4, null, NOW(), NOW()),
+    (1 , 14, 5, null, NOW(), NOW()),
+    (2 , 20, 1, null, NOW(), NOW()),
+    (2 , 21, 2, null, NOW(), NOW()),
+    (2 , 22, 3, null, NOW(), NOW()),
+    (2 , 23, 4, null, NOW(), NOW()),
+    (2 , 24, 5, null, NOW(), NOW()); 
 
 
 
