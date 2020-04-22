@@ -82,24 +82,20 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/quiz/questions/:quizid/:questionNum", (req, res) => {
-    console.log(`/api/quiz/questions/ getting q: ${req.params.questionNum} for ${req.params.quizid}`);
-    const query = `SELECT * 
-                      FROM QuizQuestionsAssoc o
-                        INNER JOIN quizzes z ON z.quizId = o.quizId
-                        INNER JOIN Questions q ON o.questionId = q.questionId 
-                        WHERE z.quizCode = \"${req.params.quizid}\" AND o.questionOrder = ${req.params.questionNum};`;
-    db.sequelize.query(query)
-      .then((result) => {
-        return res.json(result); 
+  app.get("/api/quiz/scores/:quizid", (req, res) => {
+    const query = `SELECT A.displayName, A.userId, SUM(A.correct) AS correctAnswers, ` +
+      ` COUNT(A.createdAt) AS totalAnswers, B.questionCount ` +
+      ` FROM quizscores AS A JOIN quizzes AS B ` +
+      ` WHERE A.quizId = ${req.params.quizid} AND A.quizID = B.quizId ` +
+      ` GROUP BY A.userId; `;
+    db.sequelize.query(query).then((results) => {
+      return res.json(results[0]);
     })
-  });
+  })
 
-  app.post("/api/createquiz", (req, res) => {
-    console.log("/api/createquiz/ ", req);
-    const { userId, category, difficulty, questionCount } = req.body;
-    let quizCode = getQuizCode();
-
+  app.post("/api/quiz", (req, res) => {
+    console.log("POST /api/quiz/ ", req.body);
+    const { userId, category, difficulty, questionCount, quizCode } = req.body;
     db.Quiz.create({
       userId,
       category,
@@ -107,9 +103,50 @@ module.exports = function (app) {
       questionCount,
       quizCode,
     }).then((response) => {
-      console.log("response from Quiz creation: ", response);
+      console.log("response from Quiz creation: ", response.dataValues);
+      getQuizQuestions(response.dataValues.quizId, category, difficulty, questionCount, userId);
+      res.json(response.quizId);
     });
-    res.status(204).end;
+  });
+
+  function getQuizQuestions(quizId, category, difficulty, questionCount, userId) {
+    // get questions for a quiz 
+    console.log("in getQuizQuestions: ", quizId);
+    db.Question.findAll({
+      where: {
+        category: category,
+        difficulty: difficulty,
+        userId: { [Op.ne]: userId },
+        needsModeration: false
+      },
+      limit: questionCount
+    })
+      .then(results => {
+        console.log("Results from get questions: ", results);
+        let associations = results.map((question, index) => {
+          return {
+            quizId: quizId,
+            questionId: question.dataValues.questionId,
+            questionOrder: index + 1,
+            progress: null
+          };
+        });
+        console.log("Data to go into quizQuestionsAssoc: ", associations);
+        db.QuizQuestionsAssoc.bulkCreate(associations)
+          .then(response => console.log("response from bulkCreate: ", response));
+
+      });
+    return;
+  }
+
+  app.get("/api/question/:id", (req, res) => {
+    db.Question.findOne({
+      where: {
+        questionId: req.params.id
+      }
+    })
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
   });
 
   app.get("/api/getcode", (req, res) => {
@@ -172,15 +209,7 @@ module.exports = function (app) {
   });
 
   app.post("/api/addquestionscore", (req, res) => {
-    const {
-      quizId,
-      userId,
-      questionId,
-      displayName,
-      icon,
-      color,
-      correct,
-    } = req.body;
+    const { quizId, userId, questionId, displayName, icon, color, correct } = req.body;
     db.QuizScore.create({
       quizId,
       userId,
@@ -194,28 +223,15 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/getquestions", (req, res) => {
-    // get questions for a quiz
-    const { quizId, category, difficulty, count, userId } = req.body;
-    db.Question.findAll({
-      where: {
-        category: category,
-        difficulty: difficulty,
-        userId: { [Op.ne]: userId },
-        needsModeration: false,
-      },
-      limit: count * 2,
-    }).then((results) => {
-      res.json(results);
-    });
-  });
 
   app.get("/api/user/questions/:userid", (req, res) => {
+    // add in answer counts for questions 
     db.Question.findAll({
       where: {
         userId: req.params.userid,
       },
     }).then((results) => {
+      results.forEach(row => { row.correctAnswers = 0; row.totalAnswers = 0 })
       res.json(results);
     });
   });
@@ -253,19 +269,6 @@ module.exports = function (app) {
         res.json(newQuestion);
       })
       .catch((err) => res.json(err));
-  });
-
-  app.put("/api/gameplayed/:userid/:won", (req, res) => {
-    console.log("/api/gameplayed/: ", req.params);
-    const { userid, won } = req.params;
-    var addwin = "";
-    if (won === "true") addwin = "gamesWon = gamesWon + 1,";
-    let query =
-      `UPDATE users SET ${addwin} gamesPlayed = gamesPlayed + 1 ` +
-      `WHERE userid = ${userid};`;
-    db.sequelize.query(query).then((result) => {
-      res.json(result[0]);
-    });
   });
 
   app.put("/api/gameplayed/:userid/:won", (req, res) => {
