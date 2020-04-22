@@ -274,16 +274,17 @@ module.exports = function (app) {
   });
 
   app.put("/api/question/moderate/:questionid", (req, res) => {
-    const { questionid } = req.params.questionid;
+    let questionid = parseInt(req.params.questionid);
+    console.log("/api/question/moderate/:questionid", req.params);
     db.Question.update(
       { needsModeration: true },
       { where: { questionId: questionid } }
     )
       .then((response) =>
-        console.log(`Question ${questionid} marked for moderation.`)
+        res.json(`Question ${questionid} marked for moderation.`)
       )
       .catch((err) =>
-        console.log(`Update for question ${req.params.questionid} failed.`)
+        res.json(`Update for question ${req.params.questionid} failed. ${err}`)
       );
   });
 
