@@ -86,7 +86,7 @@ module.exports = function (app) {
     const query = `SELECT A.displayName, A.userId, SUM(A.correct) AS correctAnswers, ` +
       ` COUNT(A.createdAt) AS totalAnswers, B.questionCount ` +
       ` FROM quizscores AS A JOIN quizzes AS B ` +
-      ` WHERE A.quizId = ${req.params.quizid} AND A.quizID = A.quizId ` +
+      ` WHERE A.quizId = ${req.params.quizid} AND A.quizID = B.quizId ` +
       ` GROUP BY A.userId; `;
     db.sequelize.query(query).then((results) => {
       return res.json(results[0]);
