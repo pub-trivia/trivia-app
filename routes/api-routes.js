@@ -82,10 +82,20 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/quiz/scores/:quizid", (req, res) => {
+    const query = `SELECT A.displayName, A.userId, SUM(A.correct) AS correctAnswers, ` +
+      ` COUNT(A.createdAt) AS totalAnswers, B.questionCount ` +
+      ` FROM quizscores AS A JOIN quizzes AS B ` +
+      ` WHERE A.quizId = ${req.params.quizid} AND A.quizID = B.quizId ` +
+      ` GROUP BY A.userId; `;
+    db.sequelize.query(query).then((results) => {
+      return res.json(results[0]);
+    })
+  })
+
   app.post("/api/quiz", (req, res) => {
     console.log("POST /api/quiz/ ", req.body);
     const { userId, category, difficulty, questionCount, quizCode } = req.body;
-
     db.Quiz.create({
       userId,
       category,
