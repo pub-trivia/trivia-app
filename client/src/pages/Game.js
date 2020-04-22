@@ -36,8 +36,11 @@ const Game = () => {
     const { game, name, icon, color, users } = state;
 
     useEffect(() => {
-        console.log("============use effect reached=========");
-
+        console.log("============use effect reached, getting question=========");
+        API.getQuestion(game)
+            .then(result => {
+                console.log(result);
+            })
     }, []);
 
     useEffect(() => {
@@ -95,7 +98,8 @@ const Game = () => {
                         )
                     })
                 }
-            <Scoreboard users={responded ? responded : null}/>
+            {/* Pass an array of user objects showing everyone in the game: name, icon, color, responded (T/F), numCorrect */}
+            <Scoreboard users={responded ? responded : null} questions={totalQuestions}/>
         </>
     )
 }
