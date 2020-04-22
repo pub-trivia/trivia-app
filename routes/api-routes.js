@@ -200,7 +200,8 @@ module.exports = function (app) {
         userId: { [Op.ne]: userId },
         needsModeration: false,
       },
-      limit: count * 2,
+      order: db.sequelize.random(),
+      limit: count
     }).then((results) => {
       res.json(results);
     });
