@@ -10,6 +10,10 @@ module.exports = function (sequelize, DataTypes) {
         },
         questionOrder: {
             type: DataTypes.INTEGER
+        },
+        progress: {
+            type: DataTypes.STRING,
+            defaultValue: ""
         }
     },
         { freezeTableName: true });
