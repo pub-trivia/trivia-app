@@ -11,7 +11,7 @@ const Timer = (props) => {
     const timerReducer = (state, action) => {
         switch(action.type) {
             case 'DECREMENT':
-                return { seconds: state.seconds -1};
+                return { seconds: state.seconds - 1};
             default:
                 throw new Error();
         }
@@ -29,7 +29,7 @@ const Timer = (props) => {
                 handleDecrease();
             } else {
                 clearTimeout(timer);
-                //TODO: when timer runs out, show correct response
+                //when timer runs out, show correct response
                 ws.emit('timerend', { game }, () => {});
             }}, 1000);
     });
