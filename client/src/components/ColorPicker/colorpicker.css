@@ -1,66 +1,3 @@
-
-/*$colors: (
-  green: #03E4AC,
-  blue: #04D5FB,
-  orange: #F7903E,
-  yellow: #FFD72F,
-  purple: #9665DB,
-  red: #F94141,
-  darkblue: #4481DB,
-  pink: #F96E99,
-  white: #FFFFFF,
-  gray: #9FA1AD
-);
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  position: absolute;
-  top: 35%;
-  left: 35%;
-  transform: translate(-35%, -35%);
-  font-family: 'lato';
-  color: #333;
-}
-
-input[type="radio"] {
-  display: none;
-  &:checked + label {
-    span { transform: scale(1.25); }
-    @each $name, $value in $colors {
-      .#{$name} {
-        border: 2px solid darken($value, 25%);
-      }
-    } // !@each
-  } // !&:checked + label
-}
-
-label {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-  cursor: pointer;
-  &:hover {
-    span { 
-      transform: scale(1.25); 
-    }
-  }
-  span {
-    display: block;
-    width: 100%;
-    height: 100%;
-    transition: transform .2s ease-in-out;
-    @each $name, $value in $colors {
-      &.#{$name} {
-        background: $value;
-      }
-    }
-  }
-}*/
-
 .color-choice {
   width: 20%;
   position: relative;
@@ -77,14 +14,17 @@ label {
 }
 .color-picker input{
 position: relative;
+display: block;
+margin:auto;
 width: 100%;
 height: 20px;
-margin: auto;
 }
 .color-picker label {
 width:20px;
 height:20px;
 position: absolute;
+display: block;
+margin:auto;
 border-radius:50%;
 top: calc(50% - 12.5px);
 left: calc(50% - 12.5px);

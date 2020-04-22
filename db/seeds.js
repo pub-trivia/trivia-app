@@ -17,6 +17,15 @@ async function loadSeeds() {
   }).then(response => console.log("External user added"))
     .catch(err => console.log(err));
 
+  db.User.create({
+    displayName: "Tester",
+    email: "tesert@dummy.com",
+    password: "",
+    icon: "",
+    color: ""
+  }).then(response => console.log("External user added"))
+    .catch(err => console.log(err));
+
 
   var inputString = await readFileAsync("./db/seeds.json", "utf8");
   var inputQuestions = JSON.parse(inputString);

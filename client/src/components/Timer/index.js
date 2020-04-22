@@ -1,14 +1,17 @@
 import React, { useEffect, useReducer } from 'react';
+import { ws } from '../socket';
 
 import './timer.css';
 
-const Timer = () => {
+
+const Timer = (props) => {
     const initialState = {seconds: 15};
+    const { game } = props;
 
     const timerReducer = (state, action) => {
         switch(action.type) {
             case 'DECREMENT':
-                return { seconds: state.seconds -1};
+                return { seconds: state.seconds - 1};
             default:
                 throw new Error();
         }
@@ -26,12 +29,13 @@ const Timer = () => {
                 handleDecrease();
             } else {
                 clearTimeout(timer);
-                //TODO: when timer runs out, show correct response
+                //when timer runs out, show correct response
+                ws.emit('timerend', { game }, () => {});
             }}, 1000);
     });
 
     return (
-        <h2>{state.seconds > 9 ? `00:${state.seconds}` : `00:0${state.seconds}`}</h2>
+        <div className="timertext">{state.seconds > 9 ? `00:${state.seconds}` : `00:0${state.seconds > -1 ? state.seconds : "0"}`}</div>
     )
 }
 

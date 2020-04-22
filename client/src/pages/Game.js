@@ -1,47 +1,101 @@
-import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
+import React, { useState, useEffect } from 'react';
+import { ws } from '../components/socket';
 
 import Timer from '../components/Timer';
-import Question from '../components/Question';
-import Responses from '../components/Responses';
+import QText from '../components/QText';
+import Button from '../components/Button';
 import Scoreboard from '../components/Scoreboard';
 
 import { useGameContext } from '../utils/GlobalState';
 import API from '../utils/API';
 
-let socket;
-
 
 const Game = () => {
     const [state, dispatch] = useGameContext();
-    const [users, setUsers] = useState('');
-
-    let ENDPOINT = "http://localhost:3000"
-
-    if(process.env.NODE_ENV === "production"){
-        ENDPOINT = "https://pub-trivia.herokuapp.com"
+    const [selected, setSelected] = useState('');
+    const [responded, setScoreboard] = useState('');
+    const [ques, setQuestion] = useState({});
+    const [scoring, setScoring] = useState(false);
+    const mockQuestion = {
+        questionId: 1,
+        question: "Which of the following is correct?",
+        category: "History",
+        difficulty: "easy",
+        userId: 1,
+        needsModeration: false,
+        questionType: "mc",
+        responses: ["Not this one", 
+            "Not this one", 
+            "This one!",
+            "Not this one"],
+        correctIndex: 2,
+        correctCount: 100,
+        incorrectCount: 20
     }
-    
-    const { game, name, icon, color } = state;
+
+    const { game, name, icon, color, users } = state;
 
     useEffect(() => {
-        // socket = io(ENDPOINT);
-        // console.log(socket, game, name, icon, color);
-        API.getQuizbyCode(game)
-            .then((result) => {
-                console.log("=========getQuizbyCode=======")
-                //API.getQuestion()
-            }
+        console.log("============use effect reached=========");
 
-            )
     }, []);
+
+    useEffect(() => {
+         //handle when someone responds
+         ws.on('respData', ({game, users}) => {
+            console.log("==================resp data received==========")
+            console.log(users);
+            setScoreboard(users);
+        })
+
+        ws.on('showAnswers', ({ text }) => {
+            console.log("=========Show answers reached!==============")
+            //disable the buttons
+            setScoring(true);
+        })
+    }, []);
+
+    const getNextQuestion = () => {
+        console.log("==============getNextQuestion================");
+        setScoring(false);
+    }
+
+    const handleResponse = event => {
+        let resp;
+         setSelected(event.target.id);
+         if(event.target.id == mockQuestion.correctIndex){
+             resp = "correct";
+         } else {
+             resp = "incorrect";
+         }
+         const q = mockQuestion.questionId;
+         ws.emit('response', { game, name, q, resp }, (users) => {
+             //TODO: Use this to update who has responded and who has not
+             console.log("=================emit response result===========");
+             console.log(users);
+             setScoreboard(users);
+         });
+    }
 
     return (
         <>
-            <Timer />
-            <Question />
-            <Responses />
-            <Scoreboard />
+            <Timer game={game}/>
+            <QText text={mockQuestion.question} />
+            {mockQuestion.responses.map((resp, index) => {
+                    return (
+                        <Button 
+                            className={`gamebutton 
+                                            ${selected == {index} ? 'active' : null} 
+                                            ${scoring ? `disabled ${index == mockQuestion.correctIndex ? 'correct' : null}` : null}`}
+                            text={resp} 
+                            handleClick={!scoring ? (event) => handleResponse(event) : null }
+                            id={index}
+                            key={index}
+                        />  
+                        )
+                    })
+                }
+            <Scoreboard users={responded ? responded : null}/>
         </>
     )
 }

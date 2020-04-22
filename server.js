@@ -5,7 +5,7 @@ const cors = require('cors');
 const passport = require('passport');
 require("dotenv");
 
-const { addUser, removeUser, getUser, getUsersInGame } = require('./controllers/userController');
+const { addUser, removeUser, getUser, getUsersInGame, addResponses, getResponses } = require('./controllers/userController');
 const db = require("./models");
 
 const path = require("path");
@@ -39,7 +39,8 @@ app.get("/*", (req, res) => {
 io.on('connect', (socket) => {
 
   socket.on('join', ({ game, name, icon, color }, callback) => {
-    
+    console.log(`Socket id on join: ${socket.id}`);
+
     const { error, user } = addUser({ id: socket.id, game, name, icon, color });
 
     if(error) return callback(error);
@@ -55,21 +56,48 @@ io.on('connect', (socket) => {
   })
 
   socket.on("allHere", ({ game }, callback) => {
+    console.log(`Socket id on allHere: ${socket.id}`);
     const user = getUser(socket.id);
 
     io.to(user.game).emit("startGame", { game: user.game, users: getUsersInGame(user.game)});
   })
 
-  socket.on('gameResponse', (response, callback) => {
-    const user = getUser(socket.id);
+  socket.on('response', async ({ game, name, q, resp }, callback) => {
+    //get the user from the server based on the socket id
+    const user = await getUser(socket.id);
+    //grab the icon and color from the user
+    const { icon, color } = user;
+    
+    //TODO: console log that socket we're getting for troubleshooting
+    console.log(`Socket id on response: ${socket.id}`);
+    //TODO: console log the data we now have for the user
+    console.log(`Data received: ${game}, ${name}, ${icon}, ${color}, ${q}, ${resp}`);
+    
+    //add this user's responses to the array in the userController (returns rUser)
+    const { error, rUser } = await addResponses({ id: socket.id, game, name, icon, color, q, resp });
+    
+    //TODO: handle any error returned
+    if(error) return callback(error);
 
-    io.to(user.game).emit('response', {user: user.name, response: response});
-    io.to(user.game).emit('gameData', {game: user.game, users: getUsersInGame(user.game)});
+    //TODO: get all of the responses for this game
+    const responses = await getResponses(game);
 
-    callback();
+    //TODO: emit respData back to the game page
+    io.to(game).emit('respData', {game: game, users: responses});
+    //send respData as a callback to the original emit 
+    callback(responses);
+  })
+
+  socket.on('timerend', async ({ game }, callback) => {
+    const user = await getUser(socket.id);
+
+    console.log(`Timer is done - socketid: ${socket.id}`)
+
+    io.to(user.game).emit('showAnswers', { text: `Time's up, how did you do?`})
   })
 
   socket.on('disconnect', () => {
+    console.log("socket disconnect request received");
     const user = removeUser(socket.id);
 
     if(user){

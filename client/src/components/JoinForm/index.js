@@ -1,8 +1,7 @@
-import React, { createRef, useRef } from "react";
-import { useHistory } from "react-router-dom";
-import { useGameContext } from "../../utils/GlobalState";
-import { ADD_PLAYER } from "../../utils/actions";
-
+import React, { useRef } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useGameContext } from '../../utils/GlobalState';
+import { ADD_PLAYER } from '../../utils/actions';
 import Button from '../Button';
 import IconPicker from '../IconPicker';
 import ColorPicker from '../ColorPicker';
@@ -12,7 +11,6 @@ import "./JoinForm.css";
 const JoinForm = () => {
     const gameRef = useRef();
     const nameRef = useRef();
-    const iconRef = createRef();
     const [state, dispatch] = useGameContext();
 
     let history = useHistory();
@@ -27,7 +25,6 @@ const JoinForm = () => {
             post: {
                 game: gameRef.current.value,
                 name: nameRef.current.value,
-                icon: iconRef.current.value,
             }
         });
         history.push("/wait");
@@ -36,6 +33,7 @@ const JoinForm = () => {
     return (
         <div>
             <form onSubmit={(event) => handleSubmit(event)}>
+
                 <label>
                     Enter Game Code:
           <input placeholder="Enter game code" type="text" ref={gameRef} />
@@ -45,7 +43,7 @@ const JoinForm = () => {
           <input placeholder="Display Name" type="text" ref={nameRef} />
                 </label>
                 <h4>Select a profile icon and color</h4>
-                <IconPicker ref={iconRef} />
+                <IconPicker />
                 <ColorPicker />
                 <Button type="submit" text="Join Now" />
             </form>
