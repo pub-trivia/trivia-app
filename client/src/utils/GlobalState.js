@@ -30,8 +30,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 game: action.post.game,
-                name: action.post.name,
-                icon: action.post.icon
+                name: action.post.name
             };
         case ADD_USER:
             return {
