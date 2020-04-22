@@ -11,31 +11,65 @@ import API from '../utils/API';
 
 
 const Game = () => {
-    let qNum = 1;
+    let pause;
     const [state, dispatch] = useGameContext();
     const [selected, setSelected] = useState('');
     const [responded, setScoreboard] = useState('');
     const [ques, setQuestion] = useState();
     const [scoring, setScoring] = useState(false);
-    const mockQuestion = {
-        questionId: 1,
-        question: "Which of the following is correct?",
-        questionType: "mc",
-        responses: ["Not this one", 
-            "Not this one", 
-            "This one!",
-            "Not this one"],
-        correctIndex: 2,
-        correctCount: 100,
-        incorrectCount: 20
-    }
+    // const ques = {
+    //     questionId: 1,
+    //     question: "Which of the following is correct?",
+    //     questionType: "mc",
+    //     responses: ["Not this one", 
+    //         "Not this one", 
+    //         "This one!",
+    //         "Not this one"],
+    //     correctIndex: 2,
+    //     correctCount: 100,
+    //     incorrectCount: 20
+    // }
 
     const { game, name, icon, color, users } = state;
 
+    //this use effect should only run the first time
     useEffect(() => {
         console.log("============use effect reached, getting question=========");
+        getQuestion();
+    }, []);
+
+    //this use effect is listening for events coming from the server
+    useEffect(() => {
+         //when someone responds, change their state on the dashboard
+         ws.on('respData', ({game, users}) => {
+            console.log("==================resp data received==========")
+            console.log(users);
+            setScoreboard(users);
+        })
+
+        //time to show the correct response
+        ws.on('showAnswers', ({ text }) => {
+            console.log("=========Show answers reached!==============")
+            setScoring(true);
+            API.saveScores(responded)
+                .then(result => {
+                    //after saving the scores, clear the responded state
+                    setScoreboard('')
+                    //and emit the scoringcomplete event
+                    ws.emit('scoringComplete', { game }, () => {});
+                })
+        })
+
+        ws.on('nextQuestion', ({ game }) => {
+            console.log("================next question reached==============")
+            getQuestion(game);
+        })
+    }, []);
+    
+    const getQuestion = (game) => {
+        console.log("==============getNextQuestion================");
         setScoring(false);
-        API.getQuestion(game, qNum)
+        API.getQuestion(game)
             .then(result => {
                 console.log(result.data[0]);
                 const { questionId, question, correctIndex, answer1, answer2, answer3, answer4 } = result.data[0]
@@ -46,37 +80,17 @@ const Game = () => {
                     responses: [answer1, answer2, answer3, answer4]
                 });
             })
-    }, [qNum]);
-
-    useEffect(() => {
-         //handle when someone responds
-         ws.on('respData', ({game, users}) => {
-            console.log("==================resp data received==========")
-            console.log(users);
-            setScoreboard(users);
-        })
-
-        ws.on('showAnswers', ({ text }) => {
-            console.log("=========Show answers reached!==============")
-            //disable the buttons
-            setScoring(true);
-        })
-    }, []);
-
-    const getNextQuestion = () => {
-        console.log("==============getNextQuestion================");
-        setScoring(false);
     }
 
     const handleResponse = event => {
         let resp;
          setSelected(event.target.id);
-         if(event.target.id == mockQuestion.correctIndex){
+         if(event.target.id == ques.correctIndex){
              resp = "correct";
          } else {
              resp = "incorrect";
          }
-         const q = mockQuestion.questionId;
+         const q = ques.questionId;
          ws.emit('response', { game, name, q, resp }, (users) => {
              //TODO: Use this to update who has responded and who has not
              console.log("=================emit response result===========");
@@ -88,22 +102,9 @@ const Game = () => {
     return (
         <>
             <Timer game={game}/>
-            <QText text={!ques ? mockQuestion.question : ques.question} />
-            {!ques ? 
-                mockQuestion.responses.map((resp, index) => {
-                    return (
-                        <Button 
-                            className={`gamebutton 
-                                            ${selected == {index} ? 'active' : null} 
-                                            ${scoring ? `disabled ${index == mockQuestion.correctIndex ? 'correct' : null}` : null}`}
-                            text={resp} 
-                            handleClick={!scoring ? (event) => handleResponse(event) : null }
-                            id={index}
-                            key={index}
-                        />  
-                        )
-                    })
-                : ques.responses.map((resp, index) => {
+            <QText text={ques ? ques.question : null} />
+            {ques ? 
+                ques.responses.map((resp, index) => {
                     return (
                         <Button 
                             className={`gamebutton 
@@ -116,6 +117,7 @@ const Game = () => {
                         />  
                         )
                     })
+                : null
                 }
             {/* Pass an array of user objects showing everyone in the game: name, icon, color, responded (T/F), numCorrect */}
             <Scoreboard users={responded ? responded : null} questions="5"/>

@@ -30,6 +30,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(cors());
 require("./routes/api-routes.js")(app);
 require("./routes/auth-routes.js")(app);
+require("./routes/game-routes.js")(app);
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
@@ -94,6 +95,14 @@ io.on('connect', (socket) => {
     console.log(`Timer is done - socketid: ${socket.id}`)
 
     io.to(user.game).emit('showAnswers', { text: `Time's up, how did you do?`})
+  })
+
+  socket.on('scoringComplete', async ({ game }, callback) => {
+    const user = await getUser(socket.id);
+
+    console.log(`Scoring is complete - socketid: ${socket.id}`)
+
+    io.to(user.game).emit('nextQuestion', { game: user.game });
   })
 
   socket.on('disconnect', () => {

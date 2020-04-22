@@ -15,6 +15,11 @@ export default {
         return axios.post("/api/login", { email, password })
     },
 
+    joinQuiz: (game, name, icon, color) => {
+
+        return axios.post(`/api/join/${game}`, { displayName: name, icon, color })
+    },
+
     getQuizbyCode: (game) => {
         console.log("==========getQuizbyCode=========")
         console.log(game);
