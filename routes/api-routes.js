@@ -82,13 +82,17 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/quiz/questions/:quizid", (req, res) => {
-    console.log("GET api/quiz/questions: ", req.params);
-    const query = `SELECT DISTINCT questionId FROM quizScores WHERE quizId = ${req.params.quizid} ;`;
-    db.sequelize.query(query).then((results) => {
-      let questions = results[0].map((question) => question.questionId);
-      return res.json(questions);
-    });
+  app.get("/api/quiz/questions/:quizid/:questionNum", (req, res) => {
+    console.log(`/api/quiz/questions/ getting q: ${req.params.questionNum} for ${req.params.quizid}`);
+    const query = `SELECT * 
+                      FROM QuizQuestionsAssoc o
+                        INNER JOIN quizzes z ON z.quizId = o.quizId
+                        INNER JOIN Questions q ON o.questionId = q.questionId 
+                        WHERE z.quizCode = \"${req.params.quizid}\" AND o.questionOrder = ${req.params.questionNum};`;
+    db.sequelize.query(query)
+      .then((result) => {
+        return res.json(result); 
+    })
   });
 
   app.post("/api/createquiz", (req, res) => {

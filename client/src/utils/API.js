@@ -39,6 +39,11 @@ export default {
         return axios.get('/api/categories');
     },
 
+    getQuestion: (game, qNum) => {
+        console.log("=========getQuestion===========");
+        return axios.get(`/api/quiz/questions/${game}/${qNum}`)
+    },
+
     saveQuiz: (userid, category, difficulty, questionCount, quizCode) => {
 
     }

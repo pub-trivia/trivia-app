@@ -11,18 +11,15 @@ import API from '../utils/API';
 
 
 const Game = () => {
+    let qNum = 1;
     const [state, dispatch] = useGameContext();
     const [selected, setSelected] = useState('');
     const [responded, setScoreboard] = useState('');
-    const [ques, setQuestion] = useState({});
+    const [ques, setQuestion] = useState();
     const [scoring, setScoring] = useState(false);
     const mockQuestion = {
         questionId: 1,
         question: "Which of the following is correct?",
-        category: "History",
-        difficulty: "easy",
-        userId: 1,
-        needsModeration: false,
         questionType: "mc",
         responses: ["Not this one", 
             "Not this one", 
@@ -37,11 +34,19 @@ const Game = () => {
 
     useEffect(() => {
         console.log("============use effect reached, getting question=========");
-        API.getQuestion(game)
+        setScoring(false);
+        API.getQuestion(game, qNum)
             .then(result => {
-                console.log(result);
+                console.log(result.data[0]);
+                const { questionId, question, correctIndex, answer1, answer2, answer3, answer4 } = result.data[0]
+                setQuestion({
+                    questionId,
+                    question,
+                    correctIndex,
+                    responses: [answer1, answer2, answer3, answer4]
+                });
             })
-    }, []);
+    }, [qNum]);
 
     useEffect(() => {
          //handle when someone responds
@@ -83,8 +88,9 @@ const Game = () => {
     return (
         <>
             <Timer game={game}/>
-            <QText text={mockQuestion.question} />
-            {mockQuestion.responses.map((resp, index) => {
+            <QText text={!ques ? mockQuestion.question : ques.question} />
+            {!ques ? 
+                mockQuestion.responses.map((resp, index) => {
                     return (
                         <Button 
                             className={`gamebutton 
@@ -97,9 +103,22 @@ const Game = () => {
                         />  
                         )
                     })
+                : ques.responses.map((resp, index) => {
+                    return (
+                        <Button 
+                            className={`gamebutton 
+                                            ${selected == {index} ? 'active' : null} 
+                                            ${scoring ? `disabled ${index == ques.correctIndex ? 'correct' : null}` : null}`}
+                            text={resp} 
+                            handleClick={!scoring ? (event) => handleResponse(event) : null }
+                            id={index}
+                            key={index}
+                        />  
+                        )
+                    })
                 }
             {/* Pass an array of user objects showing everyone in the game: name, icon, color, responded (T/F), numCorrect */}
-            <Scoreboard users={responded ? responded : null} questions={totalQuestions}/>
+            <Scoreboard users={responded ? responded : null} questions="5"/>
         </>
     )
 }
