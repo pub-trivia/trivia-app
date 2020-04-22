@@ -1,7 +1,7 @@
 import React from "react";
 // import icon component
 import StatsComponent from "../components/StatsComponent";
-// import yourquestionscomponent
+import QuestionsSummary from "../components/QuestionsSummary";
 // import "../style.css";
 
 
@@ -15,7 +15,7 @@ function Profile() {
       <h1>Profile Page!</h1>
       {/* <IconComponent /> */}
       <StatsComponent userId={userId} />
-      {/*<YourQuestionsComponent /> */}
+      <QuestionsSummary userId={userId} />
     </div>
   );
 }
