@@ -63,14 +63,17 @@ module.exports = function (app) {
 
   app.get("/api/user/questions/:userid", (req, res) => {
     // add in answer counts for questions 
-    db.Question.findAll({
-      where: {
-        userId: req.params.userid,
-      },
-    }).then((results) => {
-      results.forEach(row => { row.correctAnswers = 0; row.totalAnswers = 0 })
-      res.json(results);
-    });
+    let query = `SELECT Q.question, Q.questionId, SUM(C.correct) AS correctAnswers, COUNT(C.createdAt) AS totalAnswers  
+        FROM questions Q LEFT JOIN quizscores C ON Q.questionId = C.questionId  
+        WHERE Q.userId = ${req.params.userid} GROUP BY Q.question;`;
+    db.sequelize.query(query)
+      .then((results) => {
+        let questions = results[0].map(question => {
+          question.correctAnswers = question.correctAnswers === null ? 0 : question.correctAnswers;
+          return question;
+        });
+        res.json(questions);
+      });
   });
 
   // gets the questions that have been assigned to a quiz
@@ -142,6 +145,8 @@ module.exports = function (app) {
   }
 
   app.get("/api/question/:id", (req, res) => {
+
+    let query = ``
     db.Question.findOne({
       where: {
         questionId: req.params.id
