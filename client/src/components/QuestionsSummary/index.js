@@ -22,17 +22,21 @@ const QuestionsSummary = (props) => {
     return (
         <div>
             <h2>YOUR QUESTIONS</h2>
-            {questions.map((question) =>
-                <QuestionInfo
-                    category={question.category}
-                    question={question.question}
-                    difficulty={question.difficulty}
-                    used={question.answers}
-                    correct={question.correctAnswers}
-                    needsModeration={question.needsModeration}
-                    questionId={question.questionId}
-                />
-            )}
+            {questions.map((question) => {
+                return (
+                    <>
+                        <QuestionInfo
+                            category={question.category}
+                            question={question.question}
+                            difficulty={question.difficulty}
+                            total={question.totalAnswers}
+                            correct={question.correctAnswers}
+                            needsModeration={question.needsModeration}
+                            questionId={question.questionId}
+                        />
+                    </>
+                )
+            })}
             <div>
                 <button>Create New Question</button>
             </div>
