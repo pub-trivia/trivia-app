@@ -7,6 +7,7 @@ import IconPicker from '../IconPicker';
 import ColorPicker from '../ColorPicker';
 
 import "./JoinForm.css";
+import API from '../../utils/API';
 
 const JoinForm = () => {
     const gameRef = useRef();
@@ -17,17 +18,23 @@ const JoinForm = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        //TODO: Add API call to add user to game
-        //Then update state to include the player
-
-        dispatch({
-            type: ADD_PLAYER,
-            post: {
-                game: gameRef.current.value,
-                name: nameRef.current.value,
-            }
-        });
-        history.push("/wait");
+        //TODO: Handle if the quiz code does not match an active quiz
+        //TODO: Handle if the displayName selected is not unique for this quiz
+        API.joinQuiz(
+            gameRef.current.value, 
+            nameRef.current.value, 
+            state.icon, 
+            state.color)
+        .then(result => {
+            dispatch({
+                type: ADD_PLAYER,
+                post: {
+                    game: gameRef.current.value,
+                    name: nameRef.current.value
+                }
+            });
+            history.push("/wait");
+        }) 
     };
 
     return (

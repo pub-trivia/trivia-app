@@ -11,30 +11,16 @@ import API from '../utils/API';
 
 
 const Game = () => {
-    let pause;
     const [state, dispatch] = useGameContext();
     const [selected, setSelected] = useState('');
     const [responded, setScoreboard] = useState('');
     const [ques, setQuestion] = useState();
     const [scoring, setScoring] = useState(false);
-    // const ques = {
-    //     questionId: 1,
-    //     question: "Which of the following is correct?",
-    //     questionType: "mc",
-    //     responses: ["Not this one", 
-    //         "Not this one", 
-    //         "This one!",
-    //         "Not this one"],
-    //     correctIndex: 2,
-    //     correctCount: 100,
-    //     incorrectCount: 20
-    // }
 
     const { game, name, icon, color, users } = state;
 
     //this use effect should only run the first time
     useEffect(() => {
-        console.log("============use effect reached, getting question=========");
         getQuestion();
     }, []);
 
@@ -51,28 +37,27 @@ const Game = () => {
         ws.on('showAnswers', ({ text }) => {
             console.log("=========Show answers reached!==============")
             setScoring(true);
-            API.saveScores(responded)
+            API.getScores(game)
                 .then(result => {
-                    //after saving the scores, clear the responded state
-                    setScoreboard('')
+                    console.log("======scores returned======")
+                    console.log(result.data);
+                    setScoreboard(result.data)
                     //and emit the scoringcomplete event
                     ws.emit('scoringComplete', { game }, () => {});
                 })
         })
 
         ws.on('nextQuestion', ({ game }) => {
-            console.log("================next question reached==============")
-            getQuestion(game);
+            console.log("=========next question reached========")
+            getQuestion();
         })
     }, []);
     
-    const getQuestion = (game) => {
-        console.log("==============getNextQuestion================");
+    const getQuestion = () => {
         setScoring(false);
         API.getQuestion(game)
             .then(result => {
-                console.log(result.data[0]);
-                const { questionId, question, correctIndex, answer1, answer2, answer3, answer4 } = result.data[0]
+                const { questionId, question, correctIndex, answer1, answer2, answer3, answer4 } = result.data;
                 setQuestion({
                     questionId,
                     question,
@@ -83,20 +68,23 @@ const Game = () => {
     }
 
     const handleResponse = event => {
-        let resp;
+        let correct;
          setSelected(event.target.id);
          if(event.target.id == ques.correctIndex){
-             resp = "correct";
+             correct = true;
          } else {
-             resp = "incorrect";
+             correct = false;
          }
-         const q = ques.questionId;
-         ws.emit('response', { game, name, q, resp }, (users) => {
-             //TODO: Use this to update who has responded and who has not
-             console.log("=================emit response result===========");
-             console.log(users);
-             setScoreboard(users);
-         });
+        const q = ques.questionId;
+         ws.emit('response', { game, name, q, correct }, (users) => {
+            setScoreboard(users);
+        });
+         API.saveResponse(game, name, icon, color, correct)
+            .then(result => {
+                console.log("======saveResponse returns======")
+                console.log(result);
+                 
+            })  
     }
 
     return (
@@ -119,8 +107,8 @@ const Game = () => {
                     })
                 : null
                 }
-            {/* Pass an array of user objects showing everyone in the game: name, icon, color, responded (T/F), numCorrect */}
-            <Scoreboard users={responded ? responded : null} questions="5"/>
+            {/* Pass an array of user objects showing everyone in the game: name, icon, color, responded (T/F), %Correct */}
+            <Scoreboard users={responded ? responded : null}/>
         </>
     )
 }
