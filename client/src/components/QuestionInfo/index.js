@@ -8,9 +8,9 @@ const QuestionInfo = (props) => {
     return (
         <div>
             <div>{props.category}:</div>
-            <div>Difficulty level: {props.difficulty}</div>
+            <div>Difficulty: {props.difficulty}</div>
             <div>{props.question}</div>
-            <span>{props.answers}/{props.correct} Correct</span>
+            <span>{props.correct}/{props.total} Correct</span>
             <span>{props.needsModeration ? "Disabled" : "Active"}</span>
             <button>Edit</button>
         </div>

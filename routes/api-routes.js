@@ -63,7 +63,7 @@ module.exports = function (app) {
 
   app.get("/api/user/questions/:userid", (req, res) => {
     // add in answer counts for questions 
-    let query = `SELECT Q.question, Q.questionId, SUM(C.correct) AS correctAnswers, COUNT(C.createdAt) AS totalAnswers  
+    let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctAnswers, COUNT(C.createdAt) AS totalAnswers  
         FROM questions Q LEFT JOIN quizscores C ON Q.questionId = C.questionId  
         WHERE Q.userId = ${req.params.userid} GROUP BY Q.question;`;
     db.sequelize.query(query)
