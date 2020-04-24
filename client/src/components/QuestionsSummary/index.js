@@ -26,6 +26,7 @@ const QuestionsSummary = (props) => {
                 return (
                     <>
                         <QuestionInfo
+                            key={question.questionId}
                             category={question.category}
                             question={question.question}
                             difficulty={question.difficulty}
