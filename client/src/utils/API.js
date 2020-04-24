@@ -21,7 +21,7 @@ export default {
         return axios.get(`/api/quizbycode/${game}`);
     },
 
-    getquizCode: () => {
+    getQuizCode: () => {
         console.log("==========getQuizCode=========");
         return axios.get('/api/getcode');
     },
@@ -39,7 +39,8 @@ export default {
         return axios.get('/api/categories');
     },
 
-    saveQuiz: (userid, category, difficulty, questionCount, quizCode) => {
-
+    saveQuiz: (userId, category, difficulty, questionCount, quizCode) => {
+        console.log("==========saveQuiz========");
+        return axios.post("/api/quiz", { userId, category, difficulty, questionCount, quizCode });
     }
 }
