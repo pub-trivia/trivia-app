@@ -1,4 +1,4 @@
-import React, { createRef, useRef } from "react";
+import React, { useRef } from "react";
 import Button from '../components/Button';
 import API from '../utils/API';
 import { useGameContext } from '../utils/GlobalState';
