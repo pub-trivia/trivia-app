@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import API from "../../utils/API";
+import { useGameContext } from '../../utils/GlobalState';
 import './stats.css';
 
 
@@ -9,10 +10,11 @@ const StatsComponent = (props) => {
     const [gamesWon, setGamesWon] = useState(0);
     const [totalAnswers, setTotalAnswers] = useState(0);
     const [correctAnswers, setCorrectAnswers] = useState(0);
+    const [state, dispatch] = useGameContext();
 
     useEffect(() => {
         console.log("In StatsComponent: ", props);
-        API.getUserData(props.userId)
+        API.getUserData(state.id)
             .then(userData => {
                 setGamesPlayed(userData.data[0].gamesPlayed);
                 setGamesWon(userData.data[0].gamesWon);

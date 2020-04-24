@@ -1,17 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import API from "../../utils/API";
 import QuestionInfo from "../QuestionInfo";
+import { useGameContext } from '../../utils/GlobalState';
 
 const QuestionsSummary = (props) => {
 
     const [questions, setQuestions] = useState([]);
+    const [state, dispatch] = useGameContext();
 
     let test = questions.map(question => question);
     console.log("Questions map:", test);
 
     useEffect(() => {
         console.log("In QuestionsSummary: ", props);
-        API.getUserQuestions(props.userId)
+        API.getUserQuestions(state.id)
             .then(userQuestions => {
                 console.log(userQuestions.data);
                 setQuestions(userQuestions.data);
