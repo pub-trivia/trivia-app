@@ -227,6 +227,7 @@ module.exports = (app) => {
                 ).then(result => {
                     console.log("====next question marked started ====");
                     console.log(questionOrder + 1);
+                    return res.json(result);
                 })
             }
         }
