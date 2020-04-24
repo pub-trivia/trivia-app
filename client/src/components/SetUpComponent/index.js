@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import API from "../../utils/API";
 import { ADD_GAME } from "../../utils/actions";
 import { useGameContext } from "../../utils/GlobalState";
-import { useHistory } from '../../utils/GlobalState';
+import { useHistory } from 'react-router-dom';
 import Button from "../Button";
 import PhoneNumberList from "../PhoneNumberList";
 require('dotenv').config();
@@ -14,7 +14,6 @@ const twilioFrom = process.env.TWILIO_FROM_NUM;
 
 
 const SetUpComponent = () => {
-  const gameRef = useRef();
   const diffRef = useRef();
   const countRef = useRef(1);
   const categoryRef = useRef();
@@ -26,9 +25,8 @@ const SetUpComponent = () => {
     phoneNums: [{ cellNum: "" }]
   });
 
-
-  // To Do: how to get userid? 
   let userId = state.id;
+  let history = useHistory();
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -41,6 +39,8 @@ const SetUpComponent = () => {
       quizCode)
       .then(result => console.log(result))
       .catch(err => console.log("Error: ", err));
+
+    // console.log("List for Twilio: ", playerList.map(player => player.cellNum));
 
     // send Twilio messages 
     // playerList.phoneNums.forEach(function (value) {
@@ -62,8 +62,8 @@ const SetUpComponent = () => {
         game: quizCode
       }
     });
-    // is this the right place to go next? 
-    // history.pushState("/wait");
+
+    history.push("/");
   };
 
   const handleAddNumber = () => {
@@ -89,7 +89,7 @@ const SetUpComponent = () => {
 
   useEffect(() => {
     setPlayerList({
-      phoneNums: [{ cellNum: "+19196968557" }]
+      phoneNums: [{}]
     });
     API.getCategories()
       .then(results => setCategories(results.data));
