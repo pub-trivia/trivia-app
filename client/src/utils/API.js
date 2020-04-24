@@ -33,7 +33,7 @@ export default {
         return axios.get(`/api/quizbycode/${game}`);
     },
 
-    getquizCode: () => {
+    getQuizCode: () => {
         console.log("==========getQuizCode=========");
         return axios.get('/api/getcode');
     },
@@ -49,6 +49,11 @@ export default {
     getCategories: () => {
         console.log("==========getCategories========");
         return axios.get('/api/categories');
+    },
+
+    saveQuiz: (userId, category, difficulty, questionCount, quizCode) => {
+        console.log("==========saveQuiz========");
+        return axios.post("/api/quiz", { userId, category, difficulty, questionCount, quizCode });
     },
 
     getQuestion: (game) => {
@@ -72,7 +77,4 @@ export default {
         return axios.post(`/api/quiz/store/${game}`);
     },
 
-    saveQuiz: (userid, category, difficulty, questionCount, quizCode) => {
-
-    }
 }

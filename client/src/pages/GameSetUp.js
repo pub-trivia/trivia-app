@@ -1,16 +1,12 @@
 import React from "react";
-// import 
-// 
-// 
-// import "../style.css";
+import SetUpComponent from "../components/SetUpComponent";
 
 function GameSetUpPage() {
-    return (
-        <div>
-          <SetUpComponent />
-          <PubImage-maybe />
-        </div>
-      );
+  return (
+    <div>
+      <SetUpComponent />
+    </div>
+  );
 }
 
 export default GameSetUpPage;

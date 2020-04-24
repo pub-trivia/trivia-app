@@ -18,7 +18,6 @@ const StatsComponent = (props) => {
                 setGamesWon(userData.data[0].gamesWon);
                 setTotalAnswers(userData.data[0].totalAnswers);
                 setCorrectAnswers(parseInt(userData.data[0].correctAnswers));
-                console.log(gamesPlayed, gamesWon, totalAnswers, correctAnswers);
             })
     },
         [gamesPlayed, gamesWon, totalAnswers, correctAnswers]);
