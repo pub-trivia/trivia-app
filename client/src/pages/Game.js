@@ -49,10 +49,12 @@ const Game = () => {
                              //and emit the scoringcomplete event
                             console.log("===API.completeQuestion response===")
                             console.log(res)
-                            if(res === "gameover"){
+                            if(res.data.gameStatus === "gameover"){
                                 history.push("/results")
+                            } else {
+                                ws.emit('scoringComplete', { game }, () => {});
                             }
-                            ws.emit('scoringComplete', { game }, () => {});
+                            
                         })
                 })
         })
