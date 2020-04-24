@@ -20,8 +20,8 @@ function Profile() {
         <div className="col user-info-col">
           <PlayerIcon icon={icon} color={color} />
           <h1>{name}</h1>
-          <input value={email} placeholder={email} />
-          {/* <input value={password} placeholder={password} /> */}
+          <input type="text" value={email} placeholder={email} />
+          {/* <input type="password" value={password} placeholder={password} /> */}
         </div>
         <div className="col user-stats-col">
           <StatsComponent />

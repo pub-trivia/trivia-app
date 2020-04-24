@@ -3,7 +3,7 @@ require('dotenv').config();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 
-const gameMaker = require('twilio')(cfg.accountSid, cfg.authToken);
+const gameMaker = require('twilio')(accountSid, authToken);
 
 //number format must be "+19195551212"
 
