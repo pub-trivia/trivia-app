@@ -89,7 +89,7 @@ const Game = () => {
 
     return (
         <>
-            <Timer game={game}/>
+            <Timer />
             <QText text={ques ? ques.question : null} />
             {ques ? 
                 ques.responses.map((resp, index) => {

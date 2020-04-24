@@ -6,6 +6,7 @@ const passport = require('passport');
 require("dotenv");
 
 const { addUser, removeUser, getUser, getUsersInGame, addResponses, getResponses } = require('./controllers/userController');
+const { roomTimer, activeTimer } = require("./controllers/roomTimer");
 const db = require("./models");
 
 const path = require("path");
@@ -89,20 +90,18 @@ io.on('connect', (socket) => {
     callback(responses);
   })
 
-  socket.on('timerend', async ({ game }, callback) => {
+  socket.on("startquestion", async ({ game }, callback) => {
     const user = await getUser(socket.id);
-
-    console.log(`Timer is done - socketid: ${socket.id}`)
-
-    io.to(user.game).emit('showAnswers', { text: `Time's up, how did you do?`})
+    console.log(`Socket id on startquestion: ${socket.id}`);
+    //create a new roomTimer if there isn't already one active
+    roomTimer(user.game, "question", io);
   })
 
   socket.on('scoringComplete', async ({ game }, callback) => {
     const user = await getUser(socket.id);
-
     console.log(`Scoring is complete - socketid: ${socket.id}`)
-
-    io.to(user.game).emit('nextQuestion', { game: user.game });
+    //add a pause so they can see their scores
+    roomTimer(user.game, "pause", io);
   })
 
   socket.on('disconnect', () => {

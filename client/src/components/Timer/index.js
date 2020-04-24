@@ -1,41 +1,24 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ws } from '../socket';
 
 import './timer.css';
 
 
-const Timer = (props) => {
-    const initialState = {seconds: 15};
-    const { game } = props;
-
-    const timerReducer = (state, action) => {
-        switch(action.type) {
-            case 'DECREMENT':
-                return { seconds: state.seconds - 1};
-            default:
-                throw new Error();
-        }
-    }
-
-    const [state, dispatch] = useReducer(timerReducer, initialState);
-
-    const handleDecrease = () => {
-        dispatch({ type: 'DECREMENT'});
-    };
+const Timer = () => {
+    const [timer, setTimer] = useState();
+    //const [timeR, setTimeR] = useState();
+    //const { timeLeft } = props;
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            if (state.seconds > 0){
-                handleDecrease();
-            } else {
-                clearTimeout(timer);
-                //when timer runs out, show correct response
-                ws.emit('timerend', { game }, () => {});
-            }}, 1000);
+        ws.on('updateTimer', ({ text }) => {
+            console.log("=====updateTimer======");
+            console.log(text);
+            setTimer(text);
+        })
     });
 
     return (
-        <div className="timertext">{state.seconds > 9 ? `00:${state.seconds}` : `00:0${state.seconds > -1 ? state.seconds : "0"}`}</div>
+        <div className="timertext">{timer > 9 ? `00:${timer}` : `00:0${timer > -1 ? timer : "0"}`}</div>
     )
 }
 
