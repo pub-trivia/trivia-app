@@ -63,13 +63,13 @@ module.exports = function (app) {
 
   app.get("/api/user/questions/:userid", (req, res) => {
     // add in answer counts for questions 
-    let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctAnswers, COUNT(C.createdAt) AS totalAnswers  
+    let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
         FROM questions Q LEFT JOIN quizscores C ON Q.questionId = C.questionId  
         WHERE Q.userId = ${req.params.userid} GROUP BY Q.question;`;
     db.sequelize.query(query)
       .then((results) => {
         let questions = results[0].map(question => {
-          question.correctAnswers = question.correctAnswers === null ? 0 : question.correctAnswers;
+          question.correctCount = question.correctCount === null ? 0 : question.correctCount;
           return question;
         });
         res.json(questions);
@@ -146,13 +146,11 @@ module.exports = function (app) {
 
   app.get("/api/question/:id", (req, res) => {
 
-    let query = ``
-    db.Question.findOne({
-      where: {
-        questionId: req.params.id
-      }
-    })
-      .then(result => res.json(result))
+    let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
+        FROM questions Q LEFT JOIN quizscores C ON Q.questionId = C.questionId  
+        WHERE Q.questionId = ${req.params.id};`;
+    db.sequelize.query(query)
+      .then(result => res.json(result[0]))
       .catch(err => res.json(err));
   });
 

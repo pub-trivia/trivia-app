@@ -29,8 +29,8 @@ const QuestionsSummary = (props) => {
                             category={question.category}
                             question={question.question}
                             difficulty={question.difficulty}
-                            total={question.totalAnswers}
-                            correct={question.correctAnswers}
+                            total={question.totalCount}
+                            correct={question.correctCount}
                             needsModeration={question.needsModeration}
                             questionId={question.questionId}
                         />
