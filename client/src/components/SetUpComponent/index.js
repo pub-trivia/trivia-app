@@ -6,7 +6,7 @@ import { useHistory } from '../../utils/GlobalState';
 import Button from "../Button";
 import PhoneNumberList from "../PhoneNumberList";
 require('dotenv').config();
-const gameMaker = require('twilio')(accountSid, authToken);
+// const gameMaker = require('twilio')(accountSid, authToken);
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -28,7 +28,7 @@ const SetUpComponent = () => {
 
 
   // To Do: how to get userid? 
-  let userId = 2;
+  let userId = state.id;
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -43,17 +43,17 @@ const SetUpComponent = () => {
       .catch(err => console.log("Error: ", err));
 
     // send Twilio messages 
-    playerList.phoneNums.forEach(function (value) {
-      console.log(value);
+    // playerList.phoneNums.forEach(function (value) {
+    //   console.log(value);
 
-      gameMaker.messages.create({
-        to: value.cellNum,
-        from: twilioFrom,
-        body: `The Quiz Maker has invited you to play Pub Trivia! <Click this link> Enter Code: R2D2`,
-      }, function (err, message) {
-        console.log(err);
-      });
-    });
+    //   gameMaker.messages.create({
+    //     to: value.cellNum,
+    //     from: twilioFrom,
+    //     body: `The Quiz Maker has invited you to play Pub Trivia! <Click this link> Enter Code: R2D2`,
+    //   }, function (err, message) {
+    //     console.log(err);
+    //   });
+    // });
 
     // set gameRef appropriately 
     dispatch({

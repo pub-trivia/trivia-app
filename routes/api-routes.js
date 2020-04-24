@@ -98,7 +98,7 @@ module.exports = function (app) {
     }).then((response) => {
       console.log("response from Quiz creation: ", response.dataValues);
       getQuizQuestions(response.dataValues.quizId, category, difficulty, questionCount, userId);
-      res.json(response.quizId);
+      res.json(response.quizCode);
     });
   });
 
@@ -113,7 +113,7 @@ module.exports = function (app) {
         needsModeration: false
       },
       order: db.sequelize.random(),
-      limit: questionCount
+      limit: parseInt(questionCount)
     })
       .then(results => {
         console.log("Results from get questions: ", results);
