@@ -220,3 +220,21 @@ div#home .row .col.header .logo svg.desktop{
             z-index: 2;
         }
     }
+
+    .userProfile .row {
+        display: flex;
+    }
+    .userProfile .row .col {
+        width: 50%;
+        box-sizing: border-box;
+    }
+    .col.user-info-col{
+        padding: 0px 30px;
+    }
+    .col.user-info-col .profile-icon {
+        display: block;
+        margin: auto;
+    }
+    .col.user-info-col h1{
+        text-align: left;
+    }
