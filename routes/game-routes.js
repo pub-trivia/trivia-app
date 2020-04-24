@@ -22,6 +22,18 @@ module.exports = (app) => {
         return results[0];
     }
 
+    //utility function to save scores after question has been 
+    //used in a quiz
+    const getQuestionScores = async (quizId, questionId) => {
+        //get it from QuizScores table
+        let queryString = `SELECT SUM(u.correct) AS numCorrect, COUNT(u.correct) AS players
+                            FROM QuizScores u
+                            WHERE u.quizId=${quizId} AND u.questionId=${questionId}`
+        const [results, metadata] = await db.sequelize.query(queryString);
+        console.log("=======results of question score========");
+        return results[0];
+    }
+
     // used when a user clicks the 'join' button
     // adds a quizScore record for the first question in the quiz
     // we'll update this record after the first question
@@ -123,9 +135,9 @@ module.exports = (app) => {
                 })
             } else {
                 //if a record already exists, update it
-                db.QuizScore.update({
-                    correct,
-                    where: {
+                db.QuizScore.update(
+                    {correct: correct},
+                    {where: {
                         quizId,
                         questionId,
                         displayName
@@ -141,7 +153,7 @@ module.exports = (app) => {
     //reflects player's score so far in the game
     app.get("/api/quiz/scores/:quizCode", async (req, res) => {
         console.log("get /api/quiz/scores/:quizCode for " + req.params.quizCode);
-        const qInfo = await getStarted(req.params.quizCode)
+        const qInfo = await getStarted(req.params.quizCode);
         const { quizId, questionCount } = qInfo;
         let queryString = `SELECT u.displayName, u.icon, u.color, (100 * SUM(u.correct) / ${questionCount}) AS score
                             FROM Quizzes q
@@ -155,5 +167,69 @@ module.exports = (app) => {
         return res.json(results);
 
 
+    })
+
+    app.post("/api/quiz/store/:quizCode", async (req, res) => {
+        console.log("get /api/quiz/store/:quizCode for " + req.params.quizCode);
+        const qInfo = await getStarted(req.params.quizCode);
+        const { quizId, questionId, questionOrder, questionCount } = qInfo;
+        const scoreCount = await getQuestionScores(quizId, questionId);
+        const { numCorrect, players } = scoreCount;
+        if (players !== 0){
+            //this question is marked as started
+            //but has already been asked, you may proceed
+            //increment totalNum correct/incorrect in the question table
+            db.Question.findOne({ 
+                where: {
+                    questionId
+                    }
+                }).then(ques => {
+                    return ques.increment({
+                        correctCount: numCorrect,
+                        incorrectCount: players - numCorrect
+                    })
+                })
+            //change the progress of the question to completed
+            db.QuizQuestionsAssoc.update(
+                {progress: "completed"},
+                {where: {
+                    quizId,
+                    questionId,
+                    questionOrder
+                    }
+                }).then(result => {
+                    console.log("====Question marked completed====")
+                })
+            
+            if (questionOrder === questionCount){
+                //quiz is finished, store final results
+                //TODO: increment each user's number of games played
+                //TODO: increment winner's games won
+                //mark quiz as inactive
+                db.Quiz.update(
+                    {isActive: false},
+                    {where: {
+                        quizId
+                    }}
+                ).then(result => {
+                    console.log("====quiz is done result====");
+                    console.log(result);
+                    return res.json(result);
+                })
+            } else {
+                //mark next question as started
+                db.QuizQuestionsAssoc.update(
+                    {progress: "started"},
+                    {where: {
+                        quizId,
+                        questionOrder: questionOrder + 1
+                    }}
+                ).then(result => {
+                    console.log("====next question marked started ====");
+                    console.log(questionOrder + 1);
+                })
+            }
+        }
+         
     })
 }

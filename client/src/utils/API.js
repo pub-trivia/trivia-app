@@ -67,6 +67,11 @@ export default {
         return axios.get(`/api/quiz/scores/${game}`);
     },
 
+    completeQuestion: (game) => {
+        console.log("=======completeQuestion======");
+        return axios.post(`/api/quiz/store/${game}`);
+    },
+
     saveQuiz: (userid, category, difficulty, questionCount, quizCode) => {
 
     }

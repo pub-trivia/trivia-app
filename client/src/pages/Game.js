@@ -41,9 +41,12 @@ const Game = () => {
                 .then(result => {
                     console.log("======scores returned======")
                     console.log(result.data);
-                    setScoreboard(result.data)
-                    //and emit the scoringcomplete event
-                    ws.emit('scoringComplete', { game }, () => {});
+                    setScoreboard(result.data);
+                    API.completeQuestion(game)
+                        .then(res => {
+                             //and emit the scoringcomplete event
+                            ws.emit('scoringComplete', { game }, () => {});
+                        })
                 })
         })
 
