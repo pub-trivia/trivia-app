@@ -3,32 +3,43 @@ const { Op } = require("sequelize");
 var passport = require("../config/passport");
 
 // routes:   *'s are working
-// *GET /api/login/ - gets email and password, returns the userid
-// *GET /api/finduser/:email - find a user by email when they login
-// *GET /api/getscores/:quizid - get all the scores for that quiz
-// *GET /api/getuser/:userid - get all the data for that user
+//
+// NOW IN auth-routes.js 
+// *GET /api/login/ - now in auth-routes.js
+// *GET /api/getuser/:userid - now in auth-routes.js 
+// *GET /api/finduser/:email - find a user by email when they attempt
+//      to sign up 
+//
+// ROUTES IN api-routes.js
+//
 // *GET /api/categories/  - returns all question categories
-// *GET /api/user/data/:userid - get total questions answered and correct
-//     answers by userid
+//
+// *GET /api/user/data/:userid - get totals for profile page 
 // *GET /api/user/questions/:userid - returns that user's questions
+//      with answer counts for profile page 
+//  
+// *GET /api/quiz/scores/:quizid - get the scores for each user on a quiz
+// *GET /api/quiz/questions/:quizid - get the questions for a quiz
+
 // *GET /api/getquestions - returns the number of questions specified
 //    that match the criteria in the form (can pass in quiz record data)
 // *GET /api/quizbycode/:code - get quiz information by the code
 // *GET /api/quizbyid/:quizid - get quiz information by the id
-// *GET /api/quiz/questions/:quizid, not sure if we need this?
-//
-// *POST /api/createuser - create a new user, returns newUserObject
-// *POST /api/createquiz - create a new quiz, pass in number of questions,
-//       category, difficulty, userId, returns newQuizObject
+// 
+// *GET /api/getcode - returns a unique 4-digit code for a new quiz
+// *POST /api/quiz - create a new quiz, pass in number of questions,
+//       category, difficulty, userId, returns new QuizId (need to get code first!)
 // *POST /api/createquestion - create a new question
-// *POST /api/addquestionscore/ - add a questionId/correct true/false for a quiz
+// *POST /api/addquestionscore/ - mark a questionId answered with 
+//     correct true/false for a quiz
 //
+// *GET /api/question/:questionid - get all the information about a question
+//    from the questions table 
 // *PUT /api/question/moderate/:questionid - mark for moderation
 //    can call above but doesn't yet work
-// *PUT /api/gameplayed/:userid/:won pass in updates to questions answered,
-//       correct, games played, games won
-// GET /api/question/counts - update the question - how many answered
-//    correctly / incorrectly
+//
+// *PUT /api/gameplayed/:userid/:won  call when a user ends a game, 
+//       updates games played, games won
 
 module.exports = function (app) {
   app.get("/api/categories", (req, res) => {
@@ -41,9 +52,6 @@ module.exports = function (app) {
   });
 
   app.get("/api/user/data/:userid", (req, res) => {
-    // following query gets just the question counts
-    // const query = `SELECT userId, SUM(correct) AS correctAnswers, COUNT(createdAt) AS totalAnswers` +
-    //   ` FROM quizscores WHERE userId = ${req.params.userid} ;`;
     const query =
       `SELECT A.userId, SUM(A.correct) AS correctAnswers, COUNT(A.createdAt) AS totalAnswers,` +
       ` b.displayName, gamesWon, gamesPlayed FROM quizscores AS A INNER JOIN users AS B` +
@@ -54,25 +62,21 @@ module.exports = function (app) {
   });
 
   app.get("/api/user/questions/:userid", (req, res) => {
-    db.Question.findAll({
-      where: {
-        userId: req.params.userid,
-      },
-    }).then((results) => {
-      res.json(results);
-    });
+    // add in answer counts for questions 
+    let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
+        FROM questions Q LEFT JOIN quizscores C ON Q.questionId = C.questionId  
+        WHERE Q.userId = ${req.params.userid} GROUP BY Q.question;`;
+    db.sequelize.query(query)
+      .then((results) => {
+        let questions = results[0].map(question => {
+          question.correctCount = question.correctCount === null ? 0 : question.correctCount;
+          return question;
+        });
+        res.json(questions);
+      });
   });
 
-  app.get("/api/getscores/:quizId", (req, res) => {
-    console.log("/api/getscores/ called: quiz ", req.params);
-    const query =
-      `SELECT userId, displayName, SUM(correct) AS correctAnswers, COUNT(createdAt) AS totalAnswers` +
-      ` FROM quizScores WHERE quizId = ${req.params.quizId} group by userId ;`;
-    db.sequelize.query(query).then((results) => {
-      return res.json(results[0]);
-    });
-  });
-
+  // gets the questions that have been assigned to a quiz
   app.get("/api/quiz/questions/:quizid", (req, res) => {
     console.log("GET api/quiz/questions: ", req.params);
     const query = `SELECT DISTINCT questionId FROM quizScores WHERE quizId = ${req.params.quizid} ;`;
@@ -108,6 +112,7 @@ module.exports = function (app) {
         userId: { [Op.ne]: userId },
         needsModeration: false
       },
+      order: db.sequelize.random(),
       limit: questionCount
     })
       .then(results => {
@@ -129,27 +134,25 @@ module.exports = function (app) {
   }
 
   app.get("/api/question/:id", (req, res) => {
-    db.Question.findOne({
-      where: {
-        questionId: req.params.id
-      }
-    })
-      .then(result => res.json(result))
+
+    let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
+        FROM questions Q LEFT JOIN quizscores C ON Q.questionId = C.questionId  
+        WHERE Q.questionId = ${req.params.id};`;
+    db.sequelize.query(query)
+      .then(result => res.json(result[0]))
       .catch(err => res.json(err));
   });
 
   app.get("/api/getcode", (req, res) => {
     let codeArray = [];
-    let quizCode;
+    let quizCode = "A1B2";
     db.sequelize.query("SELECT quizCode FROM quizzes").then((results) => {
-      let codeArray = results[0].map((result) => result.quizCode);
-      console.log(codeArray);
-      // make sure generated code doesn't match any other codes
+      codeArray = results[0].map((result) => result.quizCode);
       quizCode = generateRandomCode();
-      while (codeArray.indexOf(quizCode !== -1)) {
+      while (codeArray.indexOf(quizCode) !== -1) {
         quizCode = generateRandomCode();
       }
-      res.send(quizCode);
+      res.json(quizCode);
     });
   });
 
@@ -163,7 +166,7 @@ module.exports = function (app) {
     var pickIndex = 0;
     var charPicked = "";
     for (let i = 0; i < 4; i++) {
-      if (i % 2 === 1) {
+      if (i % 2 === 0) {
         pickIndex = Math.floor(Math.random() * useCharArray.length);
         charPicked = useCharArray[pickIndex];
       } else {
@@ -172,6 +175,7 @@ module.exports = function (app) {
       }
       randomCode = randomCode + charPicked;
     }
+    console.log("In generateRandomCode: ", randomCode);
     return randomCode;
   };
 
@@ -212,18 +216,6 @@ module.exports = function (app) {
     });
   });
 
-
-  app.get("/api/user/questions/:userid", (req, res) => {
-    // add in answer counts for questions 
-    db.Question.findAll({
-      where: {
-        userId: req.params.userid,
-      },
-    }).then((results) => {
-      results.forEach(row => { row.correctAnswers = 0; row.totalAnswers = 0 })
-      res.json(results);
-    });
-  });
 
   app.post("/api/createquestion", (req, res) => {
     const {
@@ -274,16 +266,17 @@ module.exports = function (app) {
   });
 
   app.put("/api/question/moderate/:questionid", (req, res) => {
-    const { questionid } = req.params.questionid;
+    let questionid = parseInt(req.params.questionid);
+    console.log("/api/question/moderate/:questionid", req.params);
     db.Question.update(
       { needsModeration: true },
       { where: { questionId: questionid } }
     )
       .then((response) =>
-        console.log(`Question ${questionid} marked for moderation.`)
+        res.json(`Question ${questionid} marked for moderation.`)
       )
       .catch((err) =>
-        console.log(`Update for question ${req.params.questionid} failed.`)
+        res.json(`Update for question ${req.params.questionid} failed. ${err}`)
       );
   });
 

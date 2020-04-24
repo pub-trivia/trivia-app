@@ -4,34 +4,39 @@ import './scoreboard.css';
 
 const Scoreboard = (props) => {
     const { users } = props;
-    
+
     useEffect(() => {
         console.log('use effect for scoreboard triggered');
         console.log(props.users);
     }, [users]);
 
     return (
-        <div>
+        <div className="score-board">
             <div>
                 <h2>SCOREBOARD</h2>
             </div>
-        { users
-         ? (
-            <div>
-                <h2>
-                    {users.map(({ name, icon, color }, index) => {
-                        return (
-                            <div key={index}>
-                                <PlayerIcons icon={icon} color={color} /> {name}
-                            </div>
-                        )
-                    })}
-                </h2>
-            </div>
-         )
-        
-        : null }
-    </div>
+            {users
+                ? (
+                    <div>
+                        {users.map(({ name, icon, color, responded, numCorrect }, index) => {
+                            let iconPosition = `((2 / 10) * 100)%`;
+
+                            return (
+                                <div key={index} className="scores">
+                                    <div className="player-name"> {name} </div>
+                                    <div className="player-icon-container">
+                                        <div className="player-icon-position" left={iconPosition}>
+                                            <PlayerIcons icon={icon} color={color} />
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                )
+
+                : null}
+        </div>
     )
 }
 

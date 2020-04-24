@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import API from "../../utils/API";
+import './stats.css';
+
 
 const StatsComponent = (props) => {
 
@@ -22,12 +24,26 @@ const StatsComponent = (props) => {
         [gamesPlayed, gamesWon, totalAnswers, correctAnswers]);
 
     return (
-        <div>
+        <div className="user-stats">
             <h2>YOUR STATS</h2>
-            <div>NUMBER OF GAMES</div><div>{gamesPlayed}</div>
-            <div>NUMBER OF WINS</div><div>{gamesWon}</div>
-            <div>QUESTIONS PLAYED</div><div>{totalAnswers}</div>
-            <div>CORRECT ANSWERS</div><div>{correctAnswers}</div>
+            <div className="stats">
+                <div className="stat">
+                    <div>{gamesPlayed || 0}</div>
+                    <h4>NUMBER OF GAMES</h4>
+                </div>
+                <div className="stat">
+                    <div>{gamesWon || 0}</div>
+                    <h4>NUMBER OF WINS</h4>
+                </div>
+                <div className="stat">
+                    <div>{totalAnswers || 0}</div>
+                    <h4>QUESTIONS PLAYED</h4>
+                </div>
+                <div className="stat">
+                    <div>{correctAnswers || 0}</div>
+                    <h4>CORRECT ANSWERS</h4>
+                </div>
+            </div>
         </div>
     );
 
