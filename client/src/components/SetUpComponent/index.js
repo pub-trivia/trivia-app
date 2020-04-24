@@ -4,11 +4,13 @@ import { ADD_GAME } from "../../utils/actions";
 import { useGameContext } from "../../utils/GlobalState";
 import { useHistory } from '../../utils/GlobalState';
 import Button from "../Button";
+import PhoneNumberList from "../PhoneNumberList";
 require('dotenv').config();
-// const gameMaker = require('twilio')(cfg.accountSid, cfg.authToken);
+const gameMaker = require('twilio')(accountSid, authToken);
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
+const twilioFrom = process.env.TWILIO_FROM_NUM;
 
 
 const SetUpComponent = () => {
@@ -20,9 +22,10 @@ const SetUpComponent = () => {
   const [state, dispatch] = useGameContext();
   const [categories, setCategories] = useState([]);
   const [quizCode, setQuizCode] = useState('XXXX');
-  // const [playerNumbers, setPlayerNumbers] = useState([]);
+  const [playerList, setPlayerList] = useState({
+    phoneNums: [{ cellNum: "" }]
+  });
 
-  // setPlayerNumbers(["+19196968557", "+17656445606"]);
 
   // To Do: how to get userid? 
   let userId = 2;
@@ -30,9 +33,7 @@ const SetUpComponent = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    console.log("Category ref: ", categoryRef);
-
-    // create the quiz record in the database 
+    // create the quiz records in the database 
     API.saveQuiz(userId,
       categoryRef.current.value,
       diffRef.current.value,
@@ -41,7 +42,18 @@ const SetUpComponent = () => {
       .then(result => console.log(result))
       .catch(err => console.log("Error: ", err));
 
+    // send Twilio messages 
+    playerList.phoneNums.forEach(function (value) {
+      console.log(value);
 
+      gameMaker.messages.create({
+        to: value.cellNum,
+        from: twilioFrom,
+        body: `The Quiz Maker has invited you to play Pub Trivia! <Click this link> Enter Code: R2D2`,
+      }, function (err, message) {
+        console.log(err);
+      });
+    });
 
     // set gameRef appropriately 
     dispatch({
@@ -54,13 +66,31 @@ const SetUpComponent = () => {
     // history.pushState("/wait");
   };
 
-  // const addNumber = () => {
-  //   console.log("In addNumber: ", newNumberRef);
-  //   console.log("playerNumbers: ", playerNumbers);
-  //   // setPlayerNumbers(...playerNumbers, newNumberRef.current.value);
-  // }
+  const handleAddNumber = () => {
+    console.log("In addNumber: ", newNumberRef);
+    console.log("playerList: ", playerList);
+    setPlayerList({ phoneNums: playerList.phoneNums.concat([{ cellNum: newNumberRef.current.value }]) });
+  };
+
+  const handleChangeNumber = index => event => {
+    const newPlayerList = playerList.phoneNums.map((player, sidx) => {
+      if (index !== sidx) return player;
+      return { cellNum: event.target.value };
+    })
+    setPlayerList({ phoneNums: newPlayerList })
+  };
+
+  const handleRemoveNumber = index => () => {
+    setPlayerList({
+      phoneNums: playerList.phoneNums.filter((n, sidx) =>
+        index !== sidx)
+    });
+  };
 
   useEffect(() => {
+    setPlayerList({
+      phoneNums: [{ cellNum: "+19196968557" }]
+    });
     API.getCategories()
       .then(results => setCategories(results.data));
     API.getQuizCode()
@@ -75,8 +105,8 @@ const SetUpComponent = () => {
         <label htmlFor="catPicker"><h6>Select a Topic</h6>
           <select name="catPicker" ref={categoryRef}
           >
-            {categories.map((item) => (
-              <option value={item}>{item}</option>
+            {categories.map((item, index) => (
+              <option value={item} key={index} >{item}</option>
             ))}
           </select>
         </label>
@@ -91,12 +121,12 @@ const SetUpComponent = () => {
           ref={countRef} />
         <label htmlFor="gamecode"><h6>Game Code</h6></label>
         <input name="gamecode" value={quizCode} type="text" readOnly />
-        {/* <label htmlFor="phoneNumbers"><h6>Text to Phone Numbers<br />Enter on separate lines</h6></label>
-        <input className="phonenumber" type="textarea" width="40" ref={newNumberRef}
-          onClick={addNumber()} /> */}
-        {/* {playerNumbers.map((number, index) =>
-          <input className="phonenumber" type="textarea" width="40" readOnly key={index} />
-        )} */}
+        <PhoneNumberList
+          handleAddNumber={handleAddNumber}
+          handleChangeNumber={handleChangeNumber}
+          handleRemoveNumber={handleRemoveNumber}
+          phoneList={playerList.phoneNums}
+        />
         <Button type="submit" text="Start Game" />
       </form>
     </div>
