@@ -67,6 +67,7 @@ const Game = () => {
                     correctIndex,
                     responses: [answer1, answer2, answer3, answer4]
                 });
+                ws.emit('startquestion', { game }, () => {});
             })
     }
 
