@@ -214,7 +214,7 @@ module.exports = (app) => {
                 ).then(result => {
                     console.log("====quiz is done result====");
                     console.log(result);
-                    return res.json(result);
+                    return "gameover";
                 })
             } else {
                 //mark next question as started
