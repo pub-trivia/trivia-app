@@ -25,7 +25,7 @@ const Navbar = () => {
                     <a href="/question">Create a Question</a>
                     {/* <a href="javascript:void(0);" style="font-size:15px;" className="icon" onclick="myFunction()">&#9776;</a> */}
                 </div>
-                <div classNae="profile-icon"><a href="/profile"><PlayerIcon icon={icon} color={color} /></a></div>
+                <div className="profile-icon"><a href="/profile"><PlayerIcon icon={icon} color={color} /></a></div>
             </div>
 
         </div>

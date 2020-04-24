@@ -238,3 +238,18 @@ div#home .row .col.header .logo svg.desktop{
     .col.user-info-col h1{
         text-align: left;
     }
+
+    @media only screen and (max-width: 767px){
+        .userProfile .row {
+            flex-wrap: wrap;
+        }
+        .userProfile .row .col{
+            width: 100%;
+        }
+        .userProfile{
+            max-width: 80vw;
+            display: block;
+            margin: auto;
+            padding-top: 50px;
+        }
+    }
