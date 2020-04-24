@@ -21,11 +21,11 @@ const Navbar = () => {
             <div className="main-menu">
                 <div className="topnav" id="myTopnav">
                     <a href="/">Home</a>
-                    <a href="/game">Create a Game</a>
+                    <a href="/new">Create a Game</a>
                     <a href="/question">Create a Question</a>
                     {/* <a href="javascript:void(0);" style="font-size:15px;" className="icon" onclick="myFunction()">&#9776;</a> */}
                 </div>
-                <div classNae="profile-icon"><a href="/profile"><PlayerIcon icon={icon} color={color} /></a></div>
+                <div className="profile-icon"><a href="/profile"><PlayerIcon icon={icon} color={color} /></a></div>
             </div>
 
         </div>
