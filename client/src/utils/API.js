@@ -77,4 +77,9 @@ export default {
         return axios.post(`/api/quiz/store/${game}`);
     },
 
+    quizComplete: (game) => {
+        console.log("===========quizComplete========");
+        return axios.post(`/api/quiz/end/${game}`);
+    }
+
 }

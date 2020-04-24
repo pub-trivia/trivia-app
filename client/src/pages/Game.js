@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { ws } from '../components/socket';
 
 import Timer from '../components/Timer';
@@ -16,6 +17,7 @@ const Game = () => {
     const [responded, setScoreboard] = useState('');
     const [ques, setQuestion] = useState();
     const [scoring, setScoring] = useState(false);
+    let history = useHistory();
 
     const { game, name, icon, color } = state;
 
@@ -45,7 +47,14 @@ const Game = () => {
                     API.completeQuestion(game)
                         .then(res => {
                              //and emit the scoringcomplete event
-                            ws.emit('scoringComplete', { game }, () => {});
+                            console.log("===API.completeQuestion response===")
+                            console.log(res)
+                            if(res.data.gameStatus === "gameover"){
+                                history.push("/results")
+                            } else {
+                                ws.emit('scoringComplete', { game }, () => {});
+                            }
+                            
                         })
                 })
         })
