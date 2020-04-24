@@ -67,12 +67,18 @@ const Game = () => {
         setScoring(false);
         API.getQuestion(game)
             .then(result => {
-                const { questionId, question, correctIndex, answer1, answer2, answer3, answer4 } = result.data;
+                const { questionId, question, questionType, correctIndex, answer1, answer2, answer3, answer4 } = result.data;
+                let responses = [];
+                if(questionType === "tf"){
+                    responses = [answer1, answer2]
+                } else {
+                    responses = [answer1, answer2, answer3, answer4]
+                }
                 setQuestion({
                     questionId,
                     question,
                     correctIndex,
-                    responses: [answer1, answer2, answer3, answer4]
+                    responses 
                 });
                 ws.emit('startquestion', { game }, () => {});
             })
