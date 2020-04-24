@@ -68,7 +68,11 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             defaultValue: Sequelize.NOW
         },
-    });
+    },
+        {
+            freezeTableName: true,
+            tableName: 'questions'
+        });
 
     Question.associate = (models) => {
         // Question.belongsToMany(models.Quiz, {

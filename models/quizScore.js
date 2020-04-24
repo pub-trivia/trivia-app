@@ -24,7 +24,11 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             required: true
         }
-    });
+    },
+        {
+            freezeTableName: true,
+            tableName: 'quizscores'
+        });
 
     QuizScore.associate = function (models) {
         QuizScore.belongsTo(models.Quiz, {
