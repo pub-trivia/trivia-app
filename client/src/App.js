@@ -28,7 +28,7 @@ const App = () => {
           <Route exact path="/game" component={Game} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/gameSetUp" component={GameSetUp} />
+          <Route exact path="/new" component={GameSetUp} />
           <Switch>
             <PrivateRoute exact path="/profile" component={Profile} />
           </Switch>
