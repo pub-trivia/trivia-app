@@ -69,8 +69,8 @@ CREATE TABLE users
       INSERT INTO quizzes
         ( quizId, userId, category, difficulty, questionCount, quizCode, createdAt, updatedAt)
       VALUES
-        (1, 1, "History", "Medium", 5, "R2D2"),
-        (2, 2, "Music", "Medium", 5, "C3PO");
+        (1, 1, "History", "Medium", 5, "R2D2", NOW(), NOW()),
+        (2, 2, "Music", "Medium", 5, "C3PO", NOW(), NOW());
 
 
       CREATE TABLE quizScores

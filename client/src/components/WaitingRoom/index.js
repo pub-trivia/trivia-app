@@ -13,17 +13,17 @@ const WaitingRoom = ({ users }) => {
             </div>
             {users
                 ? (
-                    <div class="player-status">
+                    <div className="player-status">
                         <h2>
-                            {users.map(({ name, icon, color }) => {
+                            {users.map(({ displayName, icon, color }, index) => {
                                 return (
                                     <>
-                                        <div key={name}>
+                                        <div key={index}>
                                             <PlayerIcons icon={icon} color={color} />
                                         </div>
                                         <div>
-                                            {name} has joined
-                                    </div>
+                                            {displayName} has joined
+                                        </div>
                                     </>
                                 )
                             })}

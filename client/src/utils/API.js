@@ -15,6 +15,18 @@ export default {
         return axios.post("/api/login", { email, password })
     },
 
+    joinQuiz: (game, displayName, icon, color) => {
+        return axios.post(`/api/join/${game}`, { displayName, icon, color })
+    },
+
+    startQuiz: (game) => {
+        return axios.post(`/api/quiz/start/${game}`);
+    },
+
+    getAllPlayers: (game) => {
+        return axios.get(`/api/quiz/users/${game}`);
+    },
+
     getQuizbyCode: (game) => {
         console.log("==========getQuizbyCode=========")
         console.log(game);
@@ -37,6 +49,27 @@ export default {
     getCategories: () => {
         console.log("==========getCategories========");
         return axios.get('/api/categories');
+    },
+
+    getQuestion: (game) => {
+        console.log("=========getQuestion===========");
+        console.log("game: " + game)
+        return axios.get(`/api/quiz/question/${game}`);
+    },
+
+    saveResponse: (game, displayName, icon, color, correct) => {
+        console.log("======saveResponse======");
+        return axios.post(`/api/quiz/response/${game}`, { displayName, icon, color, correct });
+    },
+
+    getScores: (game) => {
+        console.log("=======getScores=====");
+        return axios.get(`/api/quiz/scores/${game}`);
+    },
+
+    completeQuestion: (game) => {
+        console.log("=======completeQuestion======");
+        return axios.post(`/api/quiz/store/${game}`);
     },
 
     saveQuiz: (userid, category, difficulty, questionCount, quizCode) => {
