@@ -12,7 +12,7 @@ function Profile() {
 
   const [state, dispatch] = useGameContext();
 
-  const { name, icon, color, email, password, users } = state;
+  const { name, icon, color, email, users } = state;
 
   return (
     <div className="userProfile">
