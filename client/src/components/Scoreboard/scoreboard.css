@@ -1,0 +1,47 @@
+.score-board {
+    max-width: 90vw;
+    display: block;
+    margin: auto;
+}
+.scores .profile-icon {
+    width: 50px;
+    height: 50px
+}
+.scores {
+    width: 100%;
+    display: flex;
+    position: relative;
+    height: 60px;
+    align-items: center;
+}
+.scores .player-name {
+    width: 10%;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+}
+.scores:after {
+    content:'';
+    width: 86%;
+    height: 10px;
+    display: block;
+    background-color: #8564bf;
+    border-radius: 10px;
+    bottom: 37%;
+    right: 0px;
+    z-index: -2;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+    position: absolute;
+}
+.scores .player-icon-container {
+    position: absolute;
+    margin-left: 12%;
+}
+.scores .profile-icon {
+    opacity: 50%;
+    margin-left: 14%;
+}
+.score-board h2 {
+    max-width: 90vw;
+    margin-top: 100px;
+}

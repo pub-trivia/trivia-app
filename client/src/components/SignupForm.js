@@ -1,4 +1,4 @@
-import React, { createRef, useRef } from "react";
+import React, { useRef } from "react";
 import Button from '../components/Button';
 import API from '../utils/API';
 import { useGameContext } from '../utils/GlobalState';
@@ -11,7 +11,6 @@ const SignupForm = () => {
   const nameRef = useRef();
   const emailRef = useRef();
   const pwRef = useRef();
-  const iconRef = createRef();
   const [state, dispatch] = useGameContext();
   let history = useHistory();
 
@@ -24,21 +23,21 @@ const SignupForm = () => {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, iconRef.current.value, state.color)
+    API.signUpUser(nameRef.current.value, emailRef.current.value, pwRef.current.value, state.icon, state.color)
       .then(result => {
         dispatch({
           type: ADD_USER,
           post: {
-              id: result.data.userId,
-              name: result.data.displayName,
-              icon: result.data.icon,
-              color: result.data.color, 
-              auth: true
+            id: result.data.userId,
+            name: result.data.displayName,
+            icon: result.data.icon,
+            color: result.data.color,
+            auth: true
           }
         });
         history.push('/login');
       })
-}
+  }
 
   return (
     <form onSubmit={(event) => handleFormSubmit(event)}>
@@ -66,7 +65,7 @@ const SignupForm = () => {
           ref={pwRef}
         />
       </label>
-      <IconPicker ref={iconRef}/>
+      <IconPicker />
       <ColorPicker />
       <Button type="submit" text="SIGN UP" />
     </form>
