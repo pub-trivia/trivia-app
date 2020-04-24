@@ -14,7 +14,7 @@ inviteeArray.forEach(function (value) {
 
     gameMaker.messages.create({
         to: value,
-        from: userPhone,
+        from: +19199444504,
         body: `The Quiz Maker has invited you to play Pub Trivia! <Click this link> Enter Code: R2D2`,
     }, function (err, message) {
         console.log(err);
