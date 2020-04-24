@@ -17,7 +17,7 @@ const Game = () => {
     const [ques, setQuestion] = useState();
     const [scoring, setScoring] = useState(false);
 
-    const { game, name, icon, color, users } = state;
+    const { game, name, icon, color } = state;
 
     //this use effect should only run the first time
     useEffect(() => {
