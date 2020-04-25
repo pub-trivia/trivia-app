@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, $ } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import API from "../../utils/API";
 import { ADD_GAME } from "../../utils/actions";
 import { useGameContext } from "../../utils/GlobalState";
