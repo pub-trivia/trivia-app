@@ -3,19 +3,16 @@
     display: block;
     margin: auto;
 }
-
 .score-board h2 {
     text-align: left;
     max-width: 90vw;
 }
-
-.player-section {
+.score-board .player-section {
     display: flex;
     height: 80px;
     align-items: center;
 }
-
-.player-name {
+.score-board .player-name {
     width: 90px;
     text-transform: uppercase;
     text-align: right;
@@ -24,22 +21,19 @@
     font-size: 14px;
     box-sizing: border-box;
 }
-
-.player-icon-container {
+.score-board .player-icon-container {
     background-color: #9665D8;
     height: 10px;
     width: 100%;
     border-radius: 5px;
 }
-
-.player-icon-position {
+.score-board .player-icon-position {
     position: relative;
     margin-left: 50px;
     height: 10px;
     transition-duration: 0.5s;
 }
-
-.profile-icon {
+.score-board .profile-icon {
     position: absolute;
     width: 50px;
     height: 50px;
