@@ -36,8 +36,6 @@ const Game = () => {
          ws.on('respData', ({game}) => {
             API.getResponses(game)
                 .then(result => {
-                    console.log("=====responses returned======");
-                    console.log(result.data);
                     setScoreboard(result.data);
                 })
             
@@ -45,18 +43,13 @@ const Game = () => {
 
         //time to show the correct response
         ws.on('showAnswers', ({ text }) => {
-            console.log("=========Show answers reached!==============")
             setScoring(true);
             API.getScores(game)
                 .then(result => {
-                    console.log("======scores returned======")
-                    console.log(result.data);
                     setScoreboard(result.data);
                     API.completeQuestion(game)
                         .then(res => {
                              //and emit the scoringcomplete event
-                            console.log("===API.completeQuestion response===")
-                            console.log(res)
                             if(res.data.gameStatus === "gameover"){
                                 history.push("/results")
                             } else {
@@ -68,13 +61,13 @@ const Game = () => {
         })
 
         ws.on('nextQuestion', ({ game }) => {
-            console.log("=========next question reached========")
             getQuestion();
         })
     }, []);
     
     const getQuestion = () => {
         setScoring(false);
+        setSelected('');
         API.getQuestion(game)
             .then(result => {
                 const { questionId, question, questionType, correctIndex, answer1, answer2, answer3, answer4 } = result.data;
@@ -97,7 +90,7 @@ const Game = () => {
     const handleResponse = event => {
         let correct;
          setSelected(event.target.id);
-         if(event.target.id == ques.correctIndex){
+         if(parseInt(event.target.id) === parseInt(ques.correctIndex)){
              correct = true;
          } else {
              correct = false;
@@ -105,8 +98,6 @@ const Game = () => {
          
          API.saveResponse(game, name, icon, color, correct)
             .then(result => {
-                console.log("======saveResponse returns======")
-                console.log(result);
                 ws.emit('response', { game }, () => {});
             })  
     }
@@ -120,7 +111,7 @@ const Game = () => {
                     return (
                         <Button 
                             className={`gamebutton 
-                                            ${selected == {index} ? 'active' : null} 
+                                            ${parseInt(selected) === parseInt(index) ? 'focus' : null} 
                                             ${scoring ? `disabled ${index == ques.correctIndex ? 'correct' : null}` : null}`}
                             text={resp} 
                             handleClick={!scoring ? (event) => handleResponse(event) : null }
