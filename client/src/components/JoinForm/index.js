@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useGameContext } from '../../utils/GlobalState';
 import { ADD_PLAYER } from '../../utils/actions';
@@ -13,8 +13,11 @@ const JoinForm = () => {
     const gameRef = useRef();
     const nameRef = useRef();
     const [state, dispatch] = useGameContext();
-
     let history = useHistory();
+
+    useEffect(() => {
+        localStorage.removeItem('currentGame');
+    }, []);
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -26,6 +29,7 @@ const JoinForm = () => {
             state.icon, 
             state.color)
         .then(result => {
+            localStorage.setItem('currentGame', gameRef.current.value);
             dispatch({
                 type: ADD_PLAYER,
                 post: {
