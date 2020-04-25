@@ -48,6 +48,9 @@
 .scores .player-icon-position{
     position: absolute;
     max-width: 80vw;
-    left: 100%;
     top: -25px;
+}
+
+.scores .player-icon-container {
+    max-width: 80vw;
 }
