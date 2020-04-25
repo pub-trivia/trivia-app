@@ -148,6 +148,23 @@ module.exports = (app) => {
             }
         })
     })
+
+    //get the list of users who have responded to the current question
+    //and show them on the scoreboard
+    app.get("/api/quiz/responses/:quizCode", async (req, res) => {
+        console.log("get /api/quiz/responses/:quizCode " + req.params.quizCode)
+        const qInfo = await getStarted(req.params.quizCode)
+        const { quizId, questionId } = qInfo;
+        db.QuizScore.findAll({
+            where: {
+                quizId,
+                questionId
+            },
+            order: [['updatedAt', 'DESC']]
+        }).then(result => {
+            return res.json(result);
+        })
+    })
     
     //used to grab scores after a question has been "closed"
     //reflects player's score so far in the game

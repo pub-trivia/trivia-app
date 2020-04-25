@@ -33,10 +33,14 @@ const Game = () => {
     //this use effect is listening for events coming from the server
     useEffect(() => {
          //when someone responds, change their state on the dashboard
-         ws.on('respData', ({game, users}) => {
-            console.log("==================resp data received==========")
-            console.log(users);
-            setScoreboard(users);
+         ws.on('respData', ({game}) => {
+            API.getResponses(game)
+                .then(result => {
+                    console.log("=====responses returned======");
+                    console.log(result.data);
+                    setScoreboard(result.data);
+                })
+            
         })
 
         //time to show the correct response
@@ -98,15 +102,12 @@ const Game = () => {
          } else {
              correct = false;
          }
-        const q = ques.questionId;
-         ws.emit('response', { game, name, q, correct }, (users) => {
-            setScoreboard(users);
-        });
+         
          API.saveResponse(game, name, icon, color, correct)
             .then(result => {
                 console.log("======saveResponse returns======")
                 console.log(result);
-                 
+                ws.emit('response', { game }, () => {});
             })  
     }
 

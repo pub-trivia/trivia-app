@@ -1,8 +1,10 @@
 import axios from "axios";
 
 export default {
-    getUser: () => {
+    getUser: (id) => {
         console.log("Get user reached");
+
+        return axios.get(`/api/getuser/${id}`);
     },
 
     signUpUser: (name, email, pw, icon, color) => {
@@ -80,6 +82,11 @@ export default {
     quizComplete: (game) => {
         console.log("===========quizComplete========");
         return axios.post(`/api/quiz/end/${game}`);
+    },
+
+    getResponses: (game) => {
+        console.log("===========getResponses========");
+        return axios.get(`/api/quiz/responses/${game}`);
     }
 
 }
