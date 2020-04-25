@@ -6,8 +6,6 @@ import { useHistory } from 'react-router-dom';
 import Button from "../Button";
 import PhoneNumberList from "../PhoneNumberList";
 import './setup.css';
-require('dotenv').config();
-
 
 const SetUpComponent = () => {
 
