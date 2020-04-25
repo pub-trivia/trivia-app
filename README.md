@@ -47,6 +47,8 @@ These other apps and websites mainly give you the question with no ability to ad
 
 ![Screenshot 2020-04-04 at 13 03 03](https://user-images.githubusercontent.com/12642091/78456905-ab460c80-7674-11ea-96f3-6015286cda94.png)
 
+## Slide Deck
+[Google slides](https://docs.google.com/presentation/d/1PgSCFu8Rch2u85F34-6fOSoaV5ooC6wpw4qyO9vooO8/edit?usp=sharing)
 
 ## Acknowledgments
 Zach, Carl, Tim and Jon for their help during this course and for being the inspiration for our avatars. 
