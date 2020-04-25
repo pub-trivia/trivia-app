@@ -13,6 +13,7 @@ import Wait from './pages/Wait';
 import Profile from './pages/Profile';
 import GameSetUp from './pages/GameSetUp';
 import PrivateRoute from './components/PrivateRoute';
+import Question from "./pages/Question";
 
 
 
@@ -31,6 +32,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/new" component={GameSetUp} />
+          <Route exact path="/question" component={Question} />
           <Switch>
             <PrivateRoute exact path="/profile" component={Profile} />
           </Switch>
