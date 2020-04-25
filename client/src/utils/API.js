@@ -1,8 +1,10 @@
 import axios from "axios";
 
 export default {
-    getUser: () => {
+    getUser: (id) => {
         console.log("Get user reached");
+
+        return axios.get(`/api/getuser/${id}`);
     },
 
     signUpUser: (name, email, pw, icon, color) => {
