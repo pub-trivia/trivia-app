@@ -3,54 +3,46 @@
     display: block;
     margin: auto;
 }
-.scores .profile-icon {
-    width: 50px;
-    height: 50px
+
+.score-board h2 {
+    text-align: left;
+    max-width: 90vw;
 }
-.scores {
-    width: 90vw!important;
+
+.player-section {
     display: flex;
-    position: relative;
-    height: 60px;
+    height: 80px;
     align-items: center;
 }
-.scores .player-name {
-    width: 10%;
+
+.player-name {
+    width: 90px;
+    text-transform: uppercase;
+    text-align: right;
+    padding-right: 10px;
     font-weight: bold;
     font-size: 14px;
-    position: relative;
+    box-sizing: border-box;
 }
-.scores:after {
-    content:'';
-    width: calc(80vw - 80px);
+
+.player-icon-container {
+    background-color: #9665D8;
     height: 10px;
-    display: block;
-    background-color: #8564bf;
-    border-radius: 10px;
-    bottom: 37%;
-    right: 6vw;
-    z-index: -2;
-    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
-    position: absolute;
-}
-.scores .profile-icon {
-    opacity: 1!important;
-}
-.score-board h2 {
-    max-width: 90vw;
-    margin-top: 100px;
+    width: 100%;
+    border-radius: 5px;
 }
 
-.scores .player-icon-container{
+.player-icon-position {
     position: relative;
-    width: 80vw;
-    }
-.scores .player-icon-position{
-    position: absolute;
-    max-width: 80vw;
-    top: -25px;
+    margin-left: 50px;
+    height: 10px;
+    transition-duration: 0.5s;
 }
 
-.scores .player-icon-container {
-    max-width: 80vw;
-}
+.profile-icon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+    right: 50px;
+    top: -25px;
