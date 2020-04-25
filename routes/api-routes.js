@@ -136,7 +136,7 @@ module.exports = function (app) {
   // app.get("/api/question/:id", (req, res) => {
 
   //   let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
-  //       FROM questions Q LEFT JOIN QuizScores C ON Q.questionId = C.questionId  
+  //       FROM Questions Q LEFT JOIN QuizScores C ON Q.questionId = C.questionId  
   //       WHERE Q.questionId = ${req.params.id};`;
   //   db.sequelize.query(query)
   //     .then(result => res.json(result[0]))
