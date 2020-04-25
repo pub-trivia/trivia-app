@@ -259,3 +259,19 @@ div#home .row .col.header .logo svg.desktop{
         margin-bottom: 10px;
         font-weight: 500;
     }
+    .results-page {
+        margin-top: 120px;
+    }
+    .results-page .winner .profile-icon {
+        display: block;
+        margin: auto;
+        max-width: 75vw;
+        max-height: 75vw;
+        margin: auto;
+    }
+    .results-page h2{
+        text-align: center;
+    }
+    .score-board h2 {
+        text-align: left;
+    }

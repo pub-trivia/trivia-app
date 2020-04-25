@@ -6,7 +6,7 @@ import Scoreboard from '../components/Scoreboard';
 import API from '../utils/API';
 
 const GameResults = () => {
-    
+
     const [state, dispatch] = useGameContext();
     const [responded, setScoreboard] = useState('');
     const { game } = state;
@@ -25,17 +25,21 @@ const GameResults = () => {
                 API.quizComplete(game);
             })
     };
-    
+
     return (
-        <div>
-            <h2>The winner of { game } is:</h2>
+        <div className="results-page">
+            <h2>The winner of {game} is:</h2>
             {responded ?
-            <>
-                <PlayerIcon icon={responded[0].icon} color={responded[0].color} />
-                <h2>{responded[0].displayName}</h2>
-                <Scoreboard users={responded }/>
-            </>
-            : null}
+                <>
+                    <div className="winner">
+                        <PlayerIcon icon={responded[0].icon} color={responded[0].color} />
+                        <h2>{responded[0].displayName}</h2>
+                    </div>
+                    <div className="final-scores">
+                        <Scoreboard users={responded} />
+                    </div>
+                </>
+                : null}
         </div>
     )
 }
