@@ -21,8 +21,6 @@ const CreateAQuestion = () => {
     const correctIndexRef = useRef();
     const [categories, setCategories] = useState([]);
 
-    const [value, setValue] = useState(false);
-
     const handleSubmit = event => {
         event.preventdefault()
         API.createquestion(
