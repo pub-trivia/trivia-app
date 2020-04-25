@@ -38,7 +38,7 @@
     margin-left: 12%;
 }
 .scores .profile-icon {
-    opacity: 50%;
+    opacity: 1;
     margin-left: 14%;
 }
 .score-board h2 {
@@ -46,7 +46,7 @@
     margin-top: 100px;
 }
 .profile-icon {
-    opacity: 100%!important;
+    opacity: 1!important;
 }
 
 .player-icon-container{
