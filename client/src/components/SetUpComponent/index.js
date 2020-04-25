@@ -7,14 +7,10 @@ import Button from "../Button";
 import PhoneNumberList from "../PhoneNumberList";
 import './setup.css';
 require('dotenv').config();
-// const gameMaker = require('twilio')(accountSid, authToken);
-
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const twilioFrom = process.env.TWILIO_FROM_NUM;
-
 
 const SetUpComponent = () => {
+
+
   const diffRef = useRef();
   const countRef = useRef(1);
   const categoryRef = useRef();
@@ -46,22 +42,11 @@ const SetUpComponent = () => {
       .then(result => console.log(result))
       .catch(err => console.log("Error: ", err));
 
-    console.log(playerList);
+    const phoneNums = playerList.phoneNums.map(player => player.cellNum);
 
-    console.log("List for Twilio: ", playerList.phoneNums.map(player => player.cellNum));
-
-    // send Twilio messages 
-    // playerList.phoneNums.forEach(function (value) {
-    //   console.log(value);
-
-    //   gameMaker.messages.create({
-    //     to: value.cellNum,
-    //     from: twilioFrom,
-    //     body: `The Quiz Maker has invited you to play Pub Trivia! <Click this link> Enter Code: R2D2`,
-    //   }, function (err, message) {
-    //     console.log(err);
-    //   });
-    // });
+    API.message(quizCode, phoneNums)
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
 
     // set game in 
     dispatch({

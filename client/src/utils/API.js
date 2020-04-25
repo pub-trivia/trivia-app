@@ -17,6 +17,10 @@ export default {
         return axios.post("/api/login", { email, password })
     },
 
+    message: (quizCode, phoneNums) => {
+        return axios.post("/api/messages", { quizCode, phoneNums });
+    },
+
     joinQuiz: (game, displayName, icon, color) => {
         return axios.post(`/api/join/${game}`, { displayName, icon, color })
     },

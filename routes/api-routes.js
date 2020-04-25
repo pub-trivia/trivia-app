@@ -1,3 +1,5 @@
+require('dotenv').config();
+const bodyParser = require('body-parser');
 var db = require("../models");
 const { Op } = require("sequelize");
 var passport = require("../config/passport");
@@ -64,7 +66,7 @@ module.exports = function (app) {
   app.get("/api/user/questions/:userid", (req, res) => {
     // add in answer counts for questions 
     let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
-        FROM Questions Q LEFT JOIN QuizScores C ON Q.questionId = C.questionId  
+    FROM Questions Q LEFT JOIN QuizScores C ON Q.questionId = C.questionId  
         WHERE Q.userId = ${req.params.userid} GROUP BY Q.question, Q.questionId;`;
     db.sequelize.query(query)
       .then((results) => {
@@ -285,4 +287,27 @@ module.exports = function (app) {
     req.logout();
     res.redirect("/");
   });
+
+  // send message via Twilio 
+  app.post("/api/messages", (req, res) => {
+
+    const twilioFrom = process.env.TWILIO_FROM_NUM;
+    const gameMaker = require('twilio')
+      (process.env.TWILIO_ACCOUNT_SID,
+        process.env.TWILIO_AUTH_TOKEN);
+
+    const textList = req.body.phoneNums;
+    textList.forEach(function (value) {
+      console.log(value);
+
+      gameMaker.messages.create({
+        to: value,
+        from: twilioFrom,
+        body: `The Quiz Maker has invited you to play Pub Trivia! Click this <a href="https://pub-trivia.herokuapp.com"> link </a> Enter Code: ${req.body.quizCode}`,
+      }, function (err, message) {
+        console.log(err);
+      });
+    });
+
+  })
 };
