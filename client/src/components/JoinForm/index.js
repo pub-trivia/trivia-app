@@ -13,12 +13,12 @@ const JoinForm = () => {
     const gameRef = useRef();
     const nameRef = useRef();
     const [state, dispatch] = useGameContext();
-
     let history = useHistory();
 
     const handleSubmit = event => {
         event.preventDefault();
         //TODO: Handle if the quiz code does not match an active quiz
+        localStorage.setItem('currentGame', gameRef.current.value);
         //TODO: Handle if the displayName selected is not unique for this quiz
         API.joinQuiz(
             gameRef.current.value, 
