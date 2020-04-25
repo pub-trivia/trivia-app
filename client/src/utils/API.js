@@ -29,6 +29,10 @@ export default {
         return axios.post(`/api/quiz/start/${game}`);
     },
 
+    createquestion: (question, category, difficulty, userId, questionType, answer1, answer2, answer3, answer4, correctIndex) => {
+        return axios.post(`/api/createquestion`, {question, category, difficulty, userId, questionType, answer1, answer2, answer3, answer4, correctIndex});
+    },
+
     getAllPlayers: (game) => {
         return axios.get(`/api/quiz/users/${game}`);
     },
