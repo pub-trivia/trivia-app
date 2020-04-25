@@ -1,7 +1,7 @@
 import React, { createRef, useRef, useState } from 'react';
 import API from '../../utils/API';
 // import Cat from "../Cat";
-// import Toggle from "../Toggle";
+import Toggle from "../Toggle";
 import Button from "../Button";
 // const [state, dispatch] = useGameContext();
 // const [categories] = useState([]);
@@ -20,6 +20,7 @@ const CreateAQuestion = () => {
     const correctIndexRef = useRef();
 
     const [value, setValue] = useState(false);
+    let isOn = true;
     
     const handleSubmit = event => {
         event.preventdefault()
@@ -42,7 +43,7 @@ const CreateAQuestion = () => {
 
     return (
         <div>
-             <h1>Create A Question Page</h1>
+             <h1>Create Your Own Question</h1>
             <form onSubmit={(event) => handleSubmit(event)}>
                 {/* <Cat ref={categoryRef}/>
                 <label>Question
@@ -77,11 +78,11 @@ const CreateAQuestion = () => {
                 </label>
                 {/* <label>Type of Question:
                     <Toggle 
-                    let isOn={value}
+                    isOn={value}
                     handleToggle={() => setValue(!value)}
                     />
                 </label>
-                {isOn ? 
+                {isOn ?  */}
                 <div>
                 <label>Options: Please Select the correct answer
                     <input 
@@ -96,7 +97,7 @@ const CreateAQuestion = () => {
                     />
                 </label>
                 </div>
-                :
+                {/* : */}
                 <div>
                 <label>Options: Please Select the correct answer
                     <input 
@@ -116,7 +117,8 @@ const CreateAQuestion = () => {
                         ref={answer4Ref} 
                     />
                 </label>
-                </div> } */}
+                </div> 
+                {/* } */}
                 </form>
             <Button type="submit" text="SAVE QUESTION" /> 
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Toggle.css';
 
-const Toggle = ({isOn, handleToggle}) => {
+const Toggle = ({isOn}) => {
 
   const handleToggle = event => {
 
