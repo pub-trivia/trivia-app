@@ -52,7 +52,9 @@ module.exports = (app) => {
             correct: false
         }).then(result => {
             return res.json(result.dataValues);
-        }) 
+        }).catch(err => {
+            next(err);
+        })
     })
 
     // marks the first question in the quiz as started
@@ -69,6 +71,8 @@ module.exports = (app) => {
             }).then(result => {
                 console.log(`${result} rows updated`)
                 return res.json(result);
+            }).catch(err => {
+                next(err);
             })
     }) 
 
@@ -84,6 +88,8 @@ module.exports = (app) => {
             }
         }).then(result => {
             return res.json(result);
+        }).catch(err => {
+            next(err);
         })
     })
     
@@ -101,6 +107,8 @@ module.exports = (app) => {
             console.log("=========== question retrieved =========")
             console.log(result.dataValues);
             return res.json(result.dataValues);
+        }).catch(err => {
+            next(err);
         })
     })
 
@@ -132,6 +140,8 @@ module.exports = (app) => {
                     correct
                 }).then(result => {
                     return res.json(result);
+                }).catch(err => {
+                    next(err);
                 })
             } else {
                 //if a record already exists, update it
@@ -144,8 +154,12 @@ module.exports = (app) => {
                     }
                 }).then(result => {
                     return res.json(result);
+                }).catch(err => {
+                    next(err);
                 })
             }
+        }).catch(err => {
+            next(err);
         })
     })
 
@@ -163,6 +177,8 @@ module.exports = (app) => {
             order: [['updatedAt', 'DESC']]
         }).then(result => {
             return res.json(result);
+        }).catch(err => {
+            next(err);
         })
     })
     
@@ -194,16 +210,18 @@ module.exports = (app) => {
             //this question is marked as started
             //but has already been asked, you may proceed
             //increment totalNum correct/incorrect in the question table
-            db.Question.findOne({ 
-                where: {
-                    questionId
-                    }
-                }).then(ques => {
-                    return ques.increment({
-                        correctCount: numCorrect,
-                        incorrectCount: players - numCorrect
-                    })
-                })
+            // db.Question.findOne({ 
+            //     where: {
+            //         questionId
+            //         }
+            //     }).then(ques => {
+            //         return ques.increment({
+            //             correctCount: numCorrect,
+            //             incorrectCount: players - numCorrect
+            //         })
+            //     }).catch(err => {
+            //         next(err);
+            //     })
             //change the progress of the question to completed
             await db.QuizQuestionsAssoc.update(
                 {progress: "completed"},
@@ -214,6 +232,8 @@ module.exports = (app) => {
                     }
                 }).then(result => {
                     console.log("====Question marked completed====")
+                }).catch(err => {
+                    next(err);
                 })
             
             if (questionOrder === questionCount){
@@ -231,6 +251,8 @@ module.exports = (app) => {
                     console.log("====next question marked started ====");
                     console.log(questionOrder + 1);
                     return res.json(result);
+                }).catch(err => {
+                    next(err);
                 })
             }
         }
@@ -250,7 +272,8 @@ module.exports = (app) => {
             }}
         ).then(result => {
             return res.json(result);
-           
+        }).catch(err => {
+            next(err);
         })
         //TODO: increment winner's games won
     }) 
