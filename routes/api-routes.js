@@ -258,7 +258,7 @@ module.exports = function (app) {
     var addwin = "";
     if (won === "true") addwin = "gamesWon = gamesWon + 1,";
     let query =
-      `UPDATE users SET ${addwin} gamesPlayed = gamesPlayed + 1 ` +
+      `UPDATE Users SET ${addwin} gamesPlayed = gamesPlayed + 1 ` +
       `WHERE userid = ${userid};`;
     db.sequelize.query(query).then((result) => {
       res.json(result[0]);
