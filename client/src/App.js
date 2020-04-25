@@ -28,10 +28,15 @@ const App = () => {
           <Route exact path="/results" component={GameResults} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/new" component={GameSetUp} />
-          <Route exact path="/question" component={Question} />
+          
           <Switch>
             <PrivateRoute exact path="/profile" component={Profile} />
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path="/new" component={GameSetUp} />
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path="/question" component={Question} />
           </Switch>
         </GameProvider>
       </div>
