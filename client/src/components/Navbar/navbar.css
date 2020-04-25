@@ -57,3 +57,55 @@ body:after{
     height: 60px;
     padding-top: 10px;
 }
+
+/* Responsive Mobile Nav */
+@media only screen and (max-width: 800px){
+    .main-menu {
+        align-items: start;
+        padding-top: 15px;
+    }
+    div#myTopnav {
+        position: relative;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        width: 50px;
+        max-width: 200px;
+    }
+    div#myTopnav::before{
+        content:'\f0c9';
+        position: absolute;
+        font-family: 'Font Awesome 5 Free';
+        top: 0px;
+        right: 30px;
+        font-size: 30px;
+        display: block;
+        font-weight: 900;
+        color: #000;
+    }
+    div#myTopnav a{
+        display: none;
+    }
+    div#myTopnav a:hover{
+        color: #707070;
+    }
+    
+    div#myTopnav:hover {
+        position: relative;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        width: 200px;
+        max-width: 200px;
+    }
+    div#myTopnav:hover a{
+        display: block;
+        width: 100%;
+        padding: 15px 10px;
+        color: #fff;
+        background-color: #03E4AC;
+        border: 2px solid #03E4AC;
+    }
+    
+    div#myTopnav:hover a:hover{
+        color: #707070;
+    }
+    }
