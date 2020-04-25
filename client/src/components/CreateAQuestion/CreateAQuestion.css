@@ -1,0 +1,49 @@
+.switch-input {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    top: -2px;
+    left: -2px;
+  }
+  .switch-input:before{
+      content: "";
+    display: block;
+      position: relative;
+      width: 80px;
+      height: 40px;
+      background-color: #dedede;
+      border-radius: 20px;
+  }
+  .switch-input:after {
+    content: "";
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+    border-radius: 50%;
+    background-color: #04D5FB;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+    -webkit-transition: left 0.25s ease;
+    transition: left 0.25s ease;
+  }
+  .switch-input:checked:after {
+    left: 40px;
+    background-color: #9665D8;
+  }
+  
+  .switch-input ~ .true-false-question {
+    display: block;
+  }
+  .switch-input ~ .multi-choice-question {
+    display: none;
+  }
+  .switch-input:checked ~ .true-false-question {
+    display: none;
+  }
+  .switch-input:checked ~ .multi-choice-question {
+    display: block;
+  }
