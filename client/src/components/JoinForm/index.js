@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useGameContext } from '../../utils/GlobalState';
 import { ADD_PLAYER } from '../../utils/actions';
@@ -10,31 +10,39 @@ import "./JoinForm.css";
 import API from '../../utils/API';
 
 const JoinForm = () => {
-    const gameRef = useRef();
-    const nameRef = useRef();
     const [state, dispatch] = useGameContext();
+    console.log("In JoinForm: state: ", state);
+    let gameRef = useRef();
+    let nameRef = useRef();
+
     let history = useHistory();
+
+    useEffect(() => {
+        console.log("In useEffect, state:", state);
+        gameRef.current.value = state.game;
+        nameRef.current.value = state.name;
+        console.log("Check settings: ", gameRef.current, nameRef.current);
+    }, []);
 
     const handleSubmit = event => {
         event.preventDefault();
         //TODO: Handle if the quiz code does not match an active quiz
-        localStorage.setItem('currentGame', gameRef.current.value);
         //TODO: Handle if the displayName selected is not unique for this quiz
         API.joinQuiz(
-            gameRef.current.value, 
-            nameRef.current.value, 
-            state.icon, 
+            gameRef.current.value,
+            nameRef.current.value,
+            state.icon,
             state.color)
-        .then(result => {
-            dispatch({
-                type: ADD_PLAYER,
-                post: {
-                    game: gameRef.current.value,
-                    name: nameRef.current.value
-                }
-            });
-            history.push("/wait");
-        }) 
+            .then(result => {
+                dispatch({
+                    type: ADD_PLAYER,
+                    post: {
+                        game: gameRef.current.value,
+                        name: nameRef.current.value
+                    }
+                });
+                history.push("/wait");
+            })
     };
 
     return (
