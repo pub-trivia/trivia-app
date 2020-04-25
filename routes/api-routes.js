@@ -54,7 +54,7 @@ module.exports = function (app) {
   app.get("/api/user/data/:userid", (req, res) => {
     const query =
       `SELECT A.userId, SUM(A.correct) AS correctAnswers, COUNT(A.createdAt) AS totalAnswers,` +
-      ` b.displayName, gamesWon, gamesPlayed FROM QuizScores AS A INNER JOIN users AS B` +
+      ` b.displayName, gamesWon, gamesPlayed FROM QuizScores AS A INNER JOIN Users AS B` +
       ` WHERE A.userId = ${req.params.userid} AND A.userid = B.userId;`;
     db.sequelize.query(query).then((results) => {
       return res.json(results[0]);
@@ -258,7 +258,7 @@ module.exports = function (app) {
     var addwin = "";
     if (won === "true") addwin = "gamesWon = gamesWon + 1,";
     let query =
-      `UPDATE users SET ${addwin} gamesPlayed = gamesPlayed + 1 ` +
+      `UPDATE Users SET ${addwin} gamesPlayed = gamesPlayed + 1 ` +
       `WHERE userid = ${userid};`;
     db.sequelize.query(query).then((result) => {
       res.json(result[0]);
