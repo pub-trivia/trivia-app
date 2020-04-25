@@ -1,0 +1,76 @@
+button.small {
+    background: transparent;
+    border: 2px solid #F94141;
+    border-radius: 50%;
+    color: #F94141;
+    font-size: 20px;
+    line-height: 0px;
+    padding: 0px 0px 2px 0px;
+    height: 22px;
+    width: 25px;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+}
+button.small:hover {
+    background: #F94141;
+    border: 2px solid #F94141;
+    color: #fff;
+}
+button.addnum {
+    display: block;
+    width: auto;
+    background: transparent;
+    color: #707070;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+button.addnum:before {
+    content: '+';
+    background: transparent;
+    border: 2px solid #03E4AC;
+    border-radius: 50%;
+    color: #03E4AC;
+    font-size: 16px;
+    line-height: 0px;
+    padding: 2px 4px 0px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+}
+button.addnum:hover{
+    display: block;
+    width: auto;
+    background: transparent;
+    color: #707070;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+button.addnum:hover:before {
+    background: #03E4AC;
+    border: 2px solid #03E4AC;
+    color: #fff;
+}
+.pnum input{
+    margin-bottom: 0px;
+}
+h6{
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+select {
+    width: 300px;
+    height: 40px;
+    border-radius: 0px;
+    border: none;
+    border-bottom: 1px solid #000;
+    margin-bottom: 30px;
+}
+input[name="gamecode"]{
+    color: #707070;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}

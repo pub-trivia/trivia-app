@@ -1,10 +1,11 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, $ } from "react";
 import API from "../../utils/API";
 import { ADD_GAME } from "../../utils/actions";
 import { useGameContext } from "../../utils/GlobalState";
 import { useHistory } from '../../utils/GlobalState';
 import Button from "../Button";
 import PhoneNumberList from "../PhoneNumberList";
+import './scoreboard.css';
 require('dotenv').config();
 // const gameMaker = require('twilio')(accountSid, authToken);
 
@@ -117,7 +118,7 @@ const SetUpComponent = () => {
           <option value="hard">Hard</option>
         </select>
         <label htmlFor="counter"><h6>Number of Questions</h6></label>
-        <input name="counter" type="number" min="1" max="20" placeholder="Number of questions"
+        <input type="number" pattern="[0-9]*" id="spinner" name="value" value="1" min="1" max="20" step="1" oninput="maxLengthCheck(this)" maxlength="2"
           ref={countRef} />
         <label htmlFor="gamecode"><h6>Game Code</h6></label>
         <input name="gamecode" value={quizCode} type="text" readOnly />
@@ -131,6 +132,7 @@ const SetUpComponent = () => {
       </form>
     </div>
   );
+
 };
 
 export default SetUpComponent;

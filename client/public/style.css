@@ -253,3 +253,9 @@ div#home .row .col.header .logo svg.desktop{
             padding-top: 50px;
         }
     }
+   
+    label, h6{
+        font-size: 16px;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }

@@ -36,7 +36,7 @@
     border: 2px solid gray;
     position:absolute;
     z-index:-1;
-    top: -2px;
+    top: 3px;
     left:-4px;
 }
 
