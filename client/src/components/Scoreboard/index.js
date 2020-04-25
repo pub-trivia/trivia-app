@@ -25,7 +25,7 @@ const Scoreboard = (props) => {
                                 <div key={index} className="scores">
                                     <div className="player-name"> {displayName} </div>
                                     <div className="player-icon-container">
-                                        <div className="player-icon-position" left={iconPosition}>
+                                        <div className="player-icon-position" style={{ left={ iconPosition } }}>
                                             <PlayerIcon icon={icon} color={color} />
                                         </div>
                                     </div>
