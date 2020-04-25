@@ -4,45 +4,6 @@ import React, { useState } from "react";
 import "./phoneNumberList.css";
 
 const PhoneNumberList = (props) => {
-    //   constructor() {
-    //     super();
-    //     this.state = {
-    //       name: "",
-    //       shareholders: [{ name: "" }]
-    //     };
-    //   }
-
-    //   const [phoneList, setPhoneList ] = useState
-
-    //   handleNameChange = evt => {
-    //     this.setState({ name: evt.target.value });
-    //   };
-
-    //   handleShareholderNameChange = idx => evt => {
-    //     const newShareholders = this.state.shareholders.map((shareholder, sidx) => {
-    //       if (idx !== sidx) return shareholder;
-    //       return { ...shareholder, name: evt.target.value };
-    //     });
-
-    //     this.setState({ shareholders: newShareholders });
-    //   };
-
-    //   handleSubmit = evt => {
-    //     const { name, shareholders } = this.state;
-    //     alert(`Incorporated: ${name} with ${shareholders.length} shareholders`);
-    //   };
-
-    //   handleAddShareholder = () => {
-    //     this.setState({
-    //       shareholders: this.state.shareholders.concat([{ name: "" }])
-    //     });
-    //   };
-
-    //   handleRemoveShareholder = idx => () => {
-    //     this.setState({
-    //       shareholders: this.state.shareholders.filter((s, sidx) => idx !== sidx)
-    //     });
-    //   };
 
     return (
         <>

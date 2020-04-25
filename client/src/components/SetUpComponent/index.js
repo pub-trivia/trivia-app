@@ -32,6 +32,11 @@ const SetUpComponent = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
+    if (!countRef.current.value > 0 || !categoryRef.current.value || !diffRef.current.value) {
+      alert("Please select a category, difficulty leve, and number of questions!")
+      return;
+    }
+
     // create the quiz records in the database 
     API.saveQuiz(userId,
       categoryRef.current.value,
@@ -41,7 +46,9 @@ const SetUpComponent = () => {
       .then(result => console.log(result))
       .catch(err => console.log("Error: ", err));
 
-    // console.log("List for Twilio: ", playerList.map(player => player.cellNum));
+    console.log(playerList);
+
+    console.log("List for Twilio: ", playerList.phoneNums.map(player => player.cellNum));
 
     // send Twilio messages 
     // playerList.phoneNums.forEach(function (value) {
@@ -118,7 +125,7 @@ const SetUpComponent = () => {
           <option value="hard">Hard</option>
         </select>
         <label htmlFor="counter"><h6>Number of Questions</h6></label>
-        <input type="number" min="5" max="20" ref={countRef} />
+        <input type="number" min="5" max="20" default="5" ref={countRef} />
         <label htmlFor="gamecode"><h6>Game Code</h6></label>
         <input name="gamecode" value={quizCode} type="text" readOnly />
         <PhoneNumberList
