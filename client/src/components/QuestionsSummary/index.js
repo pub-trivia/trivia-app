@@ -40,9 +40,6 @@ const QuestionsSummary = (props) => {
                     </>
                 )
             })}
-            <div>
-                <button>Create New Question</button>
-            </div>
         </div>
     );
 
