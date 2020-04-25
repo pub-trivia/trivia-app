@@ -11,10 +11,8 @@ import API from '../../utils/API';
 
 const JoinForm = () => {
     const [state, dispatch] = useGameContext();
-    console.log("In JoinForm: state: ", state);
     let gameRef = useRef();
     let nameRef = useRef();
-
     let history = useHistory();
 
     useEffect(() => {
@@ -27,6 +25,7 @@ const JoinForm = () => {
     const handleSubmit = event => {
         event.preventDefault();
         //TODO: Handle if the quiz code does not match an active quiz
+        localStorage.setItem('currentGame', gameRef.current.value);
         //TODO: Handle if the displayName selected is not unique for this quiz
         API.joinQuiz(
             gameRef.current.value,
