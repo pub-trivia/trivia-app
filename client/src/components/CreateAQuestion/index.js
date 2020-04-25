@@ -84,37 +84,46 @@ const CreateAQuestion = () => {
                 </label>
                 {isOn ?  */}
                 <div>
-                <label>Options: Please Select the correct answer
-                    <input 
-                        type="text" 
-                        ref={answer1Ref} 
-                    />
-                </label>
-                <label>Options: Please Select the correct answer
-                    <input 
-                        type="checkbox" 
-                        ref={answer2Ref} 
-                    />
-                </label>
+                    <label>Options: Please Select the correct answer
+                    </label>
+                    <br />
+                    <label>True
+                        <input
+                            type="checkbox" 
+                            ref={correctIndexRef} >
+                        </input>
+                    </label>
+                    <label>False  
+                        <input 
+                            type="checkbox" 
+                            ref={correctIndexRef} >
+                        </input>
+                    </label>
                 </div>
                 {/* : */}
                 <div>
-                <label>Options: Please Select the correct answer
+                <label>What is the correct answer
                     <input 
+                        placeholder="William Henry Harrison"
+                        type="text" 
+                        ref={correctIndexRef} 
+                    />
+                </label>
+                <label> Suggest some incorrect answers
+                    <input 
+                        placeholder="William Howard Taft"
                         type="text" 
                         ref={answer1Ref} 
                     />
                     <input 
+                        placeholder="George Washington"
                         type="text" 
                         ref={answer2Ref} 
                     />
                     <input 
+                        placeholder="Barack Obama"
                         type="text" 
                         ref={answer3Ref} 
-                    />
-                    <input 
-                        type="text" 
-                        ref={answer4Ref} 
                     />
                 </label>
                 </div> 
