@@ -15,7 +15,7 @@ const GameResults = () => {
 
     //this use effect should only run the first time
     useEffect(() => {
-        if(localStorage.currentGame === game){
+        if (localStorage.currentGame === game) {
             getWinner();
         } else {
             history.push('/');
@@ -34,7 +34,7 @@ const GameResults = () => {
 
     return (
         <div className="results-page">
-            <h2>WINNER</h2>
+            <h2 className="winner">WINNER</h2>
             {responded ?
                 <>
                     <div className="winner">
@@ -45,10 +45,10 @@ const GameResults = () => {
                         <Scoreboard users={responded} />
                     </div>
                     <Link to="/">
-                      <Button type="button" text="NEW GAME" /> 
+                        <Button type="button" text="NEW GAME" />
                     </Link>
                 </>
-                : null}        
+                : null}
         </div>
     )
 }

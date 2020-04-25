@@ -292,3 +292,13 @@ div#home .row .col.header .logo svg.desktop{
         width: 20vw!important;
     }
     }
+
+    .profile-name {
+        text-align: center;
+    }
+    
+    .profile-eail {
+        text-align: left;
+        font-weight: normal;
+        font-size: 18px;
+    }
