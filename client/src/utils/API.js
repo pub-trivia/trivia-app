@@ -27,11 +27,11 @@ export default {
         return axios.get(`/api/quiz/users/${game}`);
     },
 
-    getQuizbyCode: (game) => {
-        console.log("==========getQuizbyCode=========")
-        console.log(game);
-        return axios.get(`/api/quizbycode/${game}`);
-    },
+    // getQuizbyCode: (game) => {
+    //     console.log("==========getQuizbyCode=========")
+    //     console.log(game);
+    //     return axios.get(`/api/quizbycode/${game}`);
+    // },
 
     getQuizCode: () => {
         console.log("==========getQuizCode=========");
