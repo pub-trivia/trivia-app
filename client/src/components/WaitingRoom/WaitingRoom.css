@@ -22,9 +22,9 @@
     display: flex;
     flex-wrap: wrap;
 }
-.player-status h2 div:nth-child(even){
+.player-status h2 div:nth-child(odd){
     width: 50px;
 }
-.player-status h2 div:nth-child(odd){
+.player-status h2 div:nth-child(even){
     width: calc(100% - 50px);
 }
