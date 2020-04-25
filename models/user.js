@@ -45,7 +45,11 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }
-    });
+    },
+        {
+            freezeTableName: true,
+            tableName: 'users'
+        });
 
     User.associate = function (models) {
         User.hasMany(models.Question, {
