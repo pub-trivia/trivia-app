@@ -16,10 +16,7 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: ""
         }
     },
-        {
-            freezeTableName: true,
-            tableName: 'quizquestionsassoc'
-        });
+        { freezeTableName: true });
 
     return QuizQuestionsAssoc;
 };
