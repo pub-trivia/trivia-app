@@ -8,7 +8,7 @@
     height: 50px
 }
 .scores {
-    width: 100%;
+    width: 90vw!important;
     display: flex;
     position: relative;
     height: 60px;
@@ -22,39 +22,32 @@
 }
 .scores:after {
     content:'';
-    width: 86%;
+    width: calc(80vw - 80px);
     height: 10px;
     display: block;
     background-color: #8564bf;
     border-radius: 10px;
     bottom: 37%;
-    right: 0px;
+    right: 6vw;
     z-index: -2;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
     position: absolute;
 }
-.scores .player-icon-container {
-    position: absolute;
-    margin-left: 12%;
-}
 .scores .profile-icon {
-    opacity: 1;
-    margin-left: 14%;
+    opacity: 1!important;
 }
 .score-board h2 {
     max-width: 90vw;
     margin-top: 100px;
 }
-.profile-icon {
-    opacity: 1!important;
-}
 
-.player-icon-container{
+.scores .player-icon-container{
     position: relative;
-    width: 100%;
-}
-.player-icon-position{
+    width: 80vw;
+    }
+.scores .player-icon-position{
     position: absolute;
-    left: 30%;
+    max-width: 80vw;
+    left: 100%;
     top: -25px;
 }
