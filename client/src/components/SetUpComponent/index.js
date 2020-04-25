@@ -118,7 +118,7 @@ const SetUpComponent = () => {
           <option value="hard">Hard</option>
         </select>
         <label htmlFor="counter"><h6>Number of Questions</h6></label>
-        <input type="number" pattern="[0-9]*" id="spinner" name="value" value="1" min="1" max="20" step="1" oninput="maxLengthCheck(this)" maxlength="2"
+        <input type="number" id="spinner" name="value" value="1" min="1" max="20" step="1" maxlength="2"
           ref={countRef} />
         <label htmlFor="gamecode"><h6>Game Code</h6></label>
         <input name="gamecode" value={quizCode} type="text" readOnly />
