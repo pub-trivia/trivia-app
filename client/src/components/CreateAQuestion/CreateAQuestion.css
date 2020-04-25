@@ -47,3 +47,42 @@
   .switch-input:checked ~ .multi-choice-question {
     display: block;
   }
+  .multi-choice-question, .true-false-question {
+    position: relative;
+}
+.multi-choice-question h3, .true-false-question h3{
+    position: absolute;
+    left: 100px;
+    top: -90px;
+}
+.multi-choice-question h3{
+    color: #9665d8;
+}
+.true-false-question h3{
+    color: #04D5FB;
+}
+.true-false-question{
+    padding-bottom: 50px;
+}
+.true-false-question label:nth-child(4) {
+    position: relative;
+    padding-left: 40px;
+    padding-right: 60px;
+    padding-top: 30px;
+}
+.true-false-question label:nth-child(5) {
+    position: relative;
+    padding-left: 40px;
+    padding-right: 60px;
+    padding-top: 30px;
+}
+.true-false-question input {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 0px;
+}
+.true-false-question label{
+    padding-left: 0px;
+    padding-right: 0px;
+}
