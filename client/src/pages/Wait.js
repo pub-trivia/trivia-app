@@ -16,12 +16,16 @@ const Wait = () => {
 
     //general useEffect for first run
     useEffect(() => {
-        ws.emit('join', { game, name, icon, color }, () => {});
-        API.startQuiz(game)
-            .then(result => {
-                console.log("======marked question as started=========")
-                console.log(result);
-            })
+        if(localStorage.currentGame === game){
+            ws.emit('join', { game, name, icon, color }, () => {});
+            API.startQuiz(game)
+                .then(result => {
+                    console.log("======marked question as started=========")
+                    console.log(result);
+                })
+        } else {
+            history.push('/');
+        } 
     }, []);
 
     useEffect(() => {

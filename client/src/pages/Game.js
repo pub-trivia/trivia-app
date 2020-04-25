@@ -23,7 +23,11 @@ const Game = () => {
 
     //this use effect should only run the first time
     useEffect(() => {
-        getQuestion();
+        if(localStorage.currentGame === game){
+            getQuestion();
+        } else {
+            history.push('/');
+        }
     }, []);
 
     //this use effect is listening for events coming from the server
