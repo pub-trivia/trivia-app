@@ -21,14 +21,16 @@ const CreateAQuestion = () => {
     const correctIndexRef = useRef();
     const [categories, setCategories] = useState([]);
 
+    // let userId = state.id;
+
     const handleSubmit = event => {
         event.preventdefault()
         console.log("got here");
         API.createquestion(
+            // userId,
             categoryRef.current.value,
             questionRef.current.value,
             diffRef.current.value,
-            userIdRef.current.value,
             questionTypeRef.current.value,
             answer1Ref.current.value,
             answer2Ref.current.value,
@@ -36,6 +38,7 @@ const CreateAQuestion = () => {
             answer4Ref.current.value,
             correctIndexRef.current.value
         )
+        console.log("results: ", )
             .then(results => 
                 alert("Question Saved")
             )
@@ -75,7 +78,7 @@ const CreateAQuestion = () => {
 
                 <input type="checkbox" class="switch-input" />
 
-                <div class="true-false-question">
+                <div class="true-false-question" ref={questionTypeRef} value={"tf"}>
                     <h3>True False</h3>
                     <label>Options: Please Select the correct answer
         </label>
@@ -91,9 +94,9 @@ const CreateAQuestion = () => {
                 </div>
 
                 <div class="multi-choice-question">
-                    <h3>Multiple Choice</h3>
+                    <h3 ref={questionTypeRef} value={"mc"}>Multiple Choice</h3>
                     <label>What is the correct answer
-            <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} />
+            <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} ref={answer4Ref}/>
                     </label>
                     <label> Suggest some incorrect answers
             <input placeholder="William Howard Taft" type="text" ref={answer1Ref} />
