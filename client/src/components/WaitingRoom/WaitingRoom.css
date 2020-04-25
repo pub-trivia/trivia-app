@@ -26,5 +26,6 @@
     width: 50px;
 }
 .player-status h2 div:nth-child(even){
-    width: calc(100% - 50px);
+    width: calc(100% - 80px);
+    padding-left: 30px;
 }
