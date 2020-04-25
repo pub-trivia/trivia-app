@@ -21,7 +21,7 @@ const CreateAQuestion = () => {
 
     const [value, setValue] = useState(false);
     let isOn = true;
-    
+
     const handleSubmit = event => {
         event.preventdefault()
         API.createquestion(
@@ -36,14 +36,14 @@ const CreateAQuestion = () => {
             answer4Ref.current.value,
             correctIndexRef.current.value
         )
-        .then(res => {
-            alert("Question Saved")
-        })
+            .then(res => {
+                alert("Question Saved")
+            })
     };
 
     return (
         <div>
-             <h1>Create Your Own Question</h1>
+            <h1>Create Your Own Question</h1>
             <form onSubmit={(event) => handleSubmit(event)}>
                 {/* <Cat ref={categoryRef}/>
                 <label>Question
@@ -53,7 +53,7 @@ const CreateAQuestion = () => {
                         ref={questionRef} 
                     />
                 </label> */}
-        {/* <h1>Create A Question Page</h1>
+                {/* <h1>Create A Question Page</h1>
             <form onSubmit={(event) => handleSubmit(event)}>
             <label htmlFor="catPicker"><h6>Select a Topic</h6>
           <select name="catPicker" ref={categoryRef}
@@ -63,17 +63,17 @@ const CreateAQuestion = () => {
             ))}
           </select>
         </label> */}
-        {/* <label><h6>Difficulty</h6></label>
+                {/* <label><h6>Difficulty</h6></label>
         <select name="difficulty" ref={diffRef}>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
         </select> */}
                 <label>Question
-                    <input 
-                        placeholder="Which president served the shortest time in office?" 
-                        type="text" 
-                        ref={questionRef} 
+                    <input
+                        placeholder="Which president served the shortest time in office?"
+                        type="text"
+                        ref={questionRef}
                     />
                 </label>
                 {/* <label>Type of Question:
@@ -83,53 +83,55 @@ const CreateAQuestion = () => {
                     />
                 </label>
                 {isOn ?  */}
-                <div>
+                <div className="question-type-toggle"><label class="switch"></label><input type="checkbox"><span class="slider round"></span></input></div>
+
+                <div className="true-false-question">
                     <label>Options: Please Select the correct answer
                     </label>
                     <br />
                     <label>True
                         <input
-                            type="checkbox" 
+                            type="checkbox"
                             ref={correctIndexRef} >
                         </input>
                     </label>
-                    <label>False  
-                        <input 
-                            type="checkbox" 
+                    <label>False
+                        <input
+                            type="checkbox"
                             ref={correctIndexRef} >
                         </input>
                     </label>
                 </div>
                 {/* : */}
-                <div>
-                <label>What is the correct answer
-                    <input 
-                        placeholder="William Henry Harrison"
-                        type="text" 
-                        ref={correctIndexRef} 
-                    />
-                </label>
-                <label> Suggest some incorrect answers
-                    <input 
-                        placeholder="William Howard Taft"
-                        type="text" 
-                        ref={answer1Ref} 
-                    />
-                    <input 
-                        placeholder="George Washington"
-                        type="text" 
-                        ref={answer2Ref} 
-                    />
-                    <input 
-                        placeholder="Barack Obama"
-                        type="text" 
-                        ref={answer3Ref} 
-                    />
-                </label>
-                </div> 
+                <div className="multi-choice-question">
+                    <label>What is the correct answer
+                    <input
+                            placeholder="William Henry Harrison"
+                            type="text"
+                            ref={correctIndexRef}
+                        />
+                    </label>
+                    <label> Suggest some incorrect answers
+                    <input
+                            placeholder="William Howard Taft"
+                            type="text"
+                            ref={answer1Ref}
+                        />
+                        <input
+                            placeholder="George Washington"
+                            type="text"
+                            ref={answer2Ref}
+                        />
+                        <input
+                            placeholder="Barack Obama"
+                            type="text"
+                            ref={answer3Ref}
+                        />
+                    </label>
+                </div>
                 {/* } */}
-                </form>
-            <Button type="submit" text="SAVE QUESTION" /> 
+            </form>
+            <Button type="submit" text="SAVE QUESTION" />
         </div>
     )
 

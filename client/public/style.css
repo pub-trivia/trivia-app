@@ -43,7 +43,11 @@ label, input{
 }
 input{
     border-bottom: 1px solid #000;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    border-radius: 0px;
+}
+select{
+    border-radius: 0px;
 }
 div#home {
     max-width: 100vw;
@@ -274,4 +278,17 @@ div#home .row .col.header .logo svg.desktop{
     }
     .score-board h2 {
         text-align: left;
+    }
+
+    div#root {
+        padding-bottom: 100px;
+    }
+    @media only screen and (max-width: 430px){
+        body {
+        max-width: 100vw!important;
+        }
+    
+    div#myTopnav {
+        width: 20vw!important;
+    }
     }
