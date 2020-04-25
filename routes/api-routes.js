@@ -54,7 +54,7 @@ module.exports = function (app) {
   app.get("/api/user/data/:userid", (req, res) => {
     const query =
       `SELECT A.userId, SUM(A.correct) AS correctAnswers, COUNT(A.createdAt) AS totalAnswers,` +
-      ` b.displayName, gamesWon, gamesPlayed FROM QuizScores AS A INNER JOIN Users AS B` +
+      ` B.displayName, gamesWon, gamesPlayed FROM QuizScores AS A INNER JOIN users AS B` +
       ` WHERE A.userId = ${req.params.userid} AND A.userid = B.userId;`;
     db.sequelize.query(query).then((results) => {
       return res.json(results[0]);
