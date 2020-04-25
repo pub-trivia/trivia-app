@@ -54,8 +54,8 @@ module.exports = function (app) {
   app.get("/api/user/data/:userid", (req, res) => {
     const query =
       `SELECT A.userId, SUM(A.correct) AS correctAnswers, COUNT(A.createdAt) AS totalAnswers,` +
-      ` B.displayName, gamesWon, gamesPlayed FROM QuizScores AS A INNER JOIN users AS B` +
-      ` WHERE A.userId = ${req.params.userid} AND A.userid = B.userId;`;
+      ` B.displayName, gamesWon, gamesPlayed FROM QuizScores AS A INNER JOIN Users AS B` +
+      ` WHERE A.userId = ${req.params.userid} AND A.userId = B.userId;`;
     db.sequelize.query(query).then((results) => {
       return res.json(results[0]);
     });
@@ -65,7 +65,7 @@ module.exports = function (app) {
     // add in answer counts for questions 
     let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
         FROM Questions Q LEFT JOIN QuizScores C ON Q.questionId = C.questionId  
-        WHERE Q.userId = ${req.params.userid} GROUP BY Q.question;`;
+        WHERE Q.userId = ${req.params.userid} GROUP BY Q.question, Q.questionId;`;
     db.sequelize.query(query)
       .then((results) => {
         let questions = results[0].map(question => {
