@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useGameContext } from '../../utils/GlobalState';
 import { ADD_PLAYER } from '../../utils/actions';
