@@ -14,9 +14,6 @@ import Profile from './pages/Profile';
 import GameSetUp from './pages/GameSetUp';
 import PrivateRoute from './components/PrivateRoute';
 
-
-
-
 const App = () => {
 
   return (
@@ -25,7 +22,7 @@ const App = () => {
         <GameProvider>
           <Navbar />
           <Route exact path="/" component={Home} />
-          <Route path="/wait" component={Wait} />
+          <Route exact path="/wait" component={Wait} />
           <Route exact path="/game" component={Game} />
           <Route exact path="/results" component={GameResults} />
           <Route exact path="/login" component={Login} />

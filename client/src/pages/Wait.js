@@ -25,8 +25,7 @@ const Wait = () => {
                 })
         } else {
             history.push('/');
-        }
-        
+        } 
     }, []);
 
     useEffect(() => {
