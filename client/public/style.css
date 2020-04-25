@@ -302,3 +302,8 @@ div#home .row .col.header .logo svg.desktop{
         font-weight: normal;
         font-size: 18px;
     }
+
+    .results-page h2.winner {
+        font-size: 60px;
+        color: #9665D8;
+    }
