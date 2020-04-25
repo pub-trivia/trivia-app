@@ -76,60 +76,35 @@ const CreateAQuestion = () => {
                         ref={questionRef}
                     />
                 </label>
-                {/* <label>Type of Question:
-                    <Toggle 
-                    isOn={value}
-                    handleToggle={() => setValue(!value)}
-                    />
-                </label>
-                {isOn ?  */}
-                <div className="question-type-toggle"><label class="switch"></label><input type="checkbox"><span class="slider round"></span></input></div>
 
-                <div className="true-false-question">
+                <input type="checkbox" class="switch-input" />
+
+                <div class="true-false-question">
+                    <h3>True False</h3>
                     <label>Options: Please Select the correct answer
-                    </label>
+        </label>
                     <br />
                     <label>True
-                        <input
-                            type="checkbox"
-                            ref={correctIndexRef} >
+            <input type="checkbox" ref={correctIndexRef}>
                         </input>
                     </label>
                     <label>False
-                        <input
-                            type="checkbox"
-                            ref={correctIndexRef} >
+            <input type="checkbox" ref={correctIndexRef}>
                         </input>
                     </label>
                 </div>
-                {/* : */}
-                <div className="multi-choice-question">
+
+                <div class="multi-choice-question">
+                    <h3>Multiple Choice</h3>
                     <label>What is the correct answer
-                    <input
-                            placeholder="William Henry Harrison"
-                            type="text"
-                            ref={correctIndexRef}
-                        />
+            <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} />
                     </label>
                     <label> Suggest some incorrect answers
-                    <input
-                            placeholder="William Howard Taft"
-                            type="text"
-                            ref={answer1Ref}
-                        />
-                        <input
-                            placeholder="George Washington"
-                            type="text"
-                            ref={answer2Ref}
-                        />
-                        <input
-                            placeholder="Barack Obama"
-                            type="text"
-                            ref={answer3Ref}
-                        />
+            <input placeholder="William Howard Taft" type="text" ref={answer1Ref} />
+                        <input placeholder="George Washington" type="text" ref={answer2Ref} />
+                        <input placeholder="Barack Obama" type="text" ref={answer3Ref} />
                     </label>
                 </div>
-                {/* } */}
             </form>
             <Button type="submit" text="SAVE QUESTION" />
         </div>
