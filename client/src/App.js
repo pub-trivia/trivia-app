@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Game from './pages/Game';
+import GameResults from './pages/GameResults';
 import Wait from './pages/Wait';
 import Profile from './pages/Profile';
 import GameSetUp from './pages/GameSetUp';
@@ -26,6 +27,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route path="/wait" component={Wait} />
           <Route exact path="/game" component={Game} />
+          <Route exact path="/results" component={GameResults} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/new" component={GameSetUp} />

@@ -4,7 +4,7 @@ module.exports = (app) => {
 
     //utility function to grab quizId and questionIds
     const getQuizDetails = async (quiz, qNum) => {
-        let queryString = `SELECT q.quizId, u.questionId
+        let queryString = `SELECT q.quizId, u.questionId, q.questionCount
                             FROM Quizzes q
                             INNER JOIN quizQuestionsAssoc u ON q.quizId = u.quizId
                             WHERE q.quizCode=\"${quiz}\" AND q.isActive=1 AND u.questionOrder=${qNum};`
@@ -153,7 +153,7 @@ module.exports = (app) => {
     //reflects player's score so far in the game
     app.get("/api/quiz/scores/:quizCode", async (req, res) => {
         console.log("get /api/quiz/scores/:quizCode for " + req.params.quizCode);
-        const qInfo = await getStarted(req.params.quizCode);
+        const qInfo = await getQuizDetails(req.params.quizCode, 1);
         const { quizId, questionCount } = qInfo;
         let queryString = `SELECT u.displayName, u.icon, u.color, (100 * SUM(u.correct) / ${questionCount}) AS score
                             FROM Quizzes q
@@ -165,8 +165,6 @@ module.exports = (app) => {
         console.log("=======results of score========");
         console.log(results);
         return res.json(results);
-
-
     })
 
     app.post("/api/quiz/store/:quizCode", async (req, res) => {
@@ -190,7 +188,7 @@ module.exports = (app) => {
                     })
                 })
             //change the progress of the question to completed
-            db.QuizQuestionsAssoc.update(
+            await db.QuizQuestionsAssoc.update(
                 {progress: "completed"},
                 {where: {
                     quizId,
@@ -202,20 +200,8 @@ module.exports = (app) => {
                 })
             
             if (questionOrder === questionCount){
-                //quiz is finished, store final results
-                //TODO: increment each user's number of games played
-                //TODO: increment winner's games won
-                //mark quiz as inactive
-                db.Quiz.update(
-                    {isActive: false},
-                    {where: {
-                        quizId
-                    }}
-                ).then(result => {
-                    console.log("====quiz is done result====");
-                    console.log(result);
-                    return res.json(result);
-                })
+                //quiz is finished, tell the app to move to results
+                return res.json({ gameStatus: "gameover"});
             } else {
                 //mark next question as started
                 db.QuizQuestionsAssoc.update(
@@ -233,4 +219,22 @@ module.exports = (app) => {
         }
          
     })
+
+   // marks the first question in the quiz as started
+   app.post("/api/quiz/end/:quizCode", async (req, res) => {
+        console.log("post /api/quiz/end/:quizCode " + req.params.quizCode);
+        const quizInfo = await getQuizDetails(req.params.quizCode, 1)
+        const { quizId } = quizInfo;
+        //mark quiz as inactive
+        db.Quiz.update(
+            {isActive: false},
+            {where: {
+                quizId
+            }}
+        ).then(result => {
+            return res.json(result);
+           
+        })
+        //TODO: increment winner's games won
+    }) 
 }
