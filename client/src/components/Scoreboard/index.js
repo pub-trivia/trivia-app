@@ -19,7 +19,7 @@ const Scoreboard = (props) => {
                 ? (
                     <div>
                         {users.map(({ name, icon, color, responded, numCorrect }, index) => {
-                            let iconPosition = `((2 / 10) * 100)%`;
+                            let iconPosition = `${numCorrect}%`;
 
                             return (
                                 <div key={index} className="scores">

@@ -17,7 +17,7 @@
 .scores .player-name {
     width: 10%;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
     position: relative;
 }
 .scores:after {
@@ -44,4 +44,17 @@
 .score-board h2 {
     max-width: 90vw;
     margin-top: 100px;
+}
+.profile-icon {
+    opacity: 100%!important;
+}
+
+.player-icon-container{
+    position: relative;
+    width: 100%;
+}
+.player-icon-position{
+    position: absolute;
+    left: 30%;
+    top: -25px;
 }
