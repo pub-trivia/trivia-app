@@ -1,4 +1,4 @@
-import React, { createRef, useRef, useState } from 'react';
+import React, { createRef, useRef, useState, useEffect } from 'react';
 import API from '../../utils/API';
 // import Cat from "../Cat";
 import Toggle from "../Toggle";
@@ -19,9 +19,9 @@ const CreateAQuestion = () => {
     const answer3Ref = useRef();
     const answer4Ref = useRef();
     const correctIndexRef = useRef();
+    const [categories, setCategories] = useState([]);
 
     const [value, setValue] = useState(false);
-    let isOn = true;
 
     const handleSubmit = event => {
         event.preventdefault()
@@ -37,39 +37,35 @@ const CreateAQuestion = () => {
             answer4Ref.current.value,
             correctIndexRef.current.value
         )
-            .then(res => {
+            .then(res => 
                 alert("Question Saved")
-            })
+            )
+            .catch(err => console.log("Error: ", err ));
     };
+
+    useEffect(() => {
+        API.getCategories()
+          .then(results => setCategories(results.data));
+      }, []);
 
     return (
         <div>
-            <h1>Create Your Own Question</h1>
-            <form onSubmit={(event) => handleSubmit(event)}>
-                {/* <Cat ref={categoryRef}/>
-                <label>Question
-                    <input 
-                        placeholder="Which president served the shortest time in office?" 
-                        type="text" 
-                        ref={questionRef} 
-                    />
-                </label> */}
-                {/* <h1>Create A Question Page</h1>
+            <h2>Create Your Own Question</h2>
             <form onSubmit={(event) => handleSubmit(event)}>
             <label htmlFor="catPicker"><h6>Select a Topic</h6>
-          <select name="catPicker" ref={categoryRef}
-          >
-            {categories.map((item, index) => (
-              <option value={item} key={index} >{item}</option>
-            ))}
-          </select>
-        </label> */}
-                {/* <label><h6>Difficulty</h6></label>
-        <select name="difficulty" ref={diffRef}>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select> */}
+                <select name="catPicker" ref={categoryRef}
+                >
+                    {categories.map((item, index) => (
+                    <option value={item} key={index} >{item}</option>
+                    ))}
+                </select>
+             </label>    
+                <label><h6>Difficulty</h6></label>
+                    <select name="difficulty" ref={diffRef}>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
                 <label>Question
                     <input
                         placeholder="Which president served the shortest time in office?"
