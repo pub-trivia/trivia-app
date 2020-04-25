@@ -38,6 +38,7 @@ const reducer = (state, action) => {
                 id: action.post.id,
                 name: action.post.name,
                 icon: action.post.icon,
+                color: action.post.color,
                 auth: action.post.auth
             };
         case ADD_GAME:
