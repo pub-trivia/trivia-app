@@ -5,7 +5,7 @@ import { useGameContext } from "../../utils/GlobalState";
 import { useHistory } from 'react-router-dom';
 import Button from "../Button";
 import PhoneNumberList from "../PhoneNumberList";
-import './scoreboard.css';
+import './setup.css';
 require('dotenv').config();
 // const gameMaker = require('twilio')(accountSid, authToken);
 
