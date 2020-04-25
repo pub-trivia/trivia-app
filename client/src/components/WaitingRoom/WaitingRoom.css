@@ -5,8 +5,26 @@
 }
 .player-status h2{
     display:flex;
-    flex-wrap:nowrap;
     align-items: center;
     justify-content: flex-start;
 
+}
+.waiting-room {
+    max-width: 300px;
+    display: block;
+    margin: auto;
+}
+.waiting-room h1 {
+    font-size: 24px;
+}
+
+.player-status h2{
+    display: flex;
+    flex-wrap: wrap;
+}
+.player-status h2 div:nth-child(even){
+    width: 50px;
+}
+.player-status h2 div:nth-child(odd){
+    width: calc(100% - 50px);
 }
