@@ -1,18 +1,17 @@
-import React, { useEffect, useState, useRef } from "react";
-import API from "../../utils/API";
+import React from "react";
+import './QuestionInfo.css';
 
 const QuestionInfo = (props) => {
 
-    // need the edit button to go to the screen to edit the question
-
     return (
-        <div>
-            <div>{props.category}:</div>
-            <div>Difficulty: {props.difficulty}</div>
-            <div>{props.question}</div>
-            <span>{props.correct}/{props.total} Correct</span>
-            <span>{props.needsModeration ? "Disabled" : "Active"}</span>
-            <button>Edit</button>
+        <div className="question-card">
+            <div className="question category">{props.category}:</div>
+            <div className="question">{props.question}</div>
+            <div className="button-bar">
+                <span className="badge purple">{props.correct}/{props.total} Correct</span>
+                <span className="badge blue">{props.needsModeration ? "Disabled" : "Active"}</span>
+                <button className="edit-button" type="button"><i class="fas fa-pencil-alt"></i></button>
+            </div>
         </div>
     );
 
