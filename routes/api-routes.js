@@ -44,7 +44,7 @@ var passport = require("../config/passport");
 module.exports = function (app) {
   app.get("/api/categories", (req, res) => {
     db.sequelize
-      .query("SELECT DISTINCT category FROM questions")
+      .query("SELECT DISTINCT category FROM Questions")
       .then((results) => {
         let categories = results[0].map((result) => result.category);
         return res.json(categories);
@@ -54,7 +54,7 @@ module.exports = function (app) {
   app.get("/api/user/data/:userid", (req, res) => {
     const query =
       `SELECT A.userId, SUM(A.correct) AS correctAnswers, COUNT(A.createdAt) AS totalAnswers,` +
-      ` b.displayName, gamesWon, gamesPlayed FROM quizscores AS A INNER JOIN users AS B` +
+      ` b.displayName, gamesWon, gamesPlayed FROM QuizScores AS A INNER JOIN users AS B` +
       ` WHERE A.userId = ${req.params.userid} AND A.userid = B.userId;`;
     db.sequelize.query(query).then((results) => {
       return res.json(results[0]);
@@ -64,7 +64,7 @@ module.exports = function (app) {
   app.get("/api/user/questions/:userid", (req, res) => {
     // add in answer counts for questions 
     let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
-        FROM questions Q LEFT JOIN quizscores C ON Q.questionId = C.questionId  
+        FROM Questions Q LEFT JOIN QuizScores C ON Q.questionId = C.questionId  
         WHERE Q.userId = ${req.params.userid} GROUP BY Q.question;`;
     db.sequelize.query(query)
       .then((results) => {
@@ -76,15 +76,15 @@ module.exports = function (app) {
       });
   });
 
-  // gets the questions that have been assigned to a quiz
-  app.get("/api/quiz/questions/:quizid", (req, res) => {
-    console.log("GET api/quiz/questions: ", req.params);
-    const query = `SELECT DISTINCT questionId FROM quizScores WHERE quizId = ${req.params.quizid} ;`;
-    db.sequelize.query(query).then((results) => {
-      let questions = results[0].map((question) => question.questionId);
-      return res.json(questions);
-    });
-  });
+  // // gets the questions that have been assigned to a quiz
+  // app.get("/api/quiz/questions/:quizid", (req, res) => {
+  //   console.log("GET api/quiz/questions: ", req.params);
+  //   const query = `SELECT DISTINCT questionId FROM QuizScores WHERE quizId = ${req.params.quizid} ;`;
+  //   db.sequelize.query(query).then((results) => {
+  //     let questions = results[0].map((question) => question.questionId);
+  //     return res.json(questions);
+  //   });
+  // });
 
   app.post("/api/quiz", (req, res) => {
     console.log("POST /api/quiz/ ", req.body);
@@ -133,15 +133,15 @@ module.exports = function (app) {
     return;
   }
 
-  app.get("/api/question/:id", (req, res) => {
+  // app.get("/api/question/:id", (req, res) => {
 
-    let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
-        FROM questions Q LEFT JOIN quizscores C ON Q.questionId = C.questionId  
-        WHERE Q.questionId = ${req.params.id};`;
-    db.sequelize.query(query)
-      .then(result => res.json(result[0]))
-      .catch(err => res.json(err));
-  });
+  //   let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
+  //       FROM Questions Q LEFT JOIN QuizScores C ON Q.questionId = C.questionId  
+  //       WHERE Q.questionId = ${req.params.id};`;
+  //   db.sequelize.query(query)
+  //     .then(result => res.json(result[0]))
+  //     .catch(err => res.json(err));
+  // });
 
   app.get("/api/getcode", (req, res) => {
     let codeArray = [];
@@ -179,42 +179,42 @@ module.exports = function (app) {
     return randomCode;
   };
 
-  app.get("/api/quizbyid/:quizid", (req, res) => {
-    db.Quiz.findOne({
-      where: {
-        quizId: req.params.quizid,
-      },
-    }).then((result) => {
-      res.json(result);
-    });
-  });
+  // app.get("/api/quizbyid/:quizid", (req, res) => {
+  //   db.Quiz.findOne({
+  //     where: {
+  //       quizId: req.params.quizid,
+  //     },
+  //   }).then((result) => {
+  //     res.json(result);
+  //   });
+  // });
 
-  app.get("/api/quizbycode/:code", (req, res) => {
-    console.log("===========api/quizbycode/:code=======");
-    console.log(req.params.code);
-    db.Quiz.findOne({
-      where: {
-        quizCode: req.params.code,
-      },
-    }).then((result) => {
-      res.json(result);
-    });
-  });
+  // app.get("/api/quizbycode/:code", (req, res) => {
+  //   console.log("===========api/quizbycode/:code=======");
+  //   console.log(req.params.code);
+  //   db.Quiz.findOne({
+  //     where: {
+  //       quizCode: req.params.code,
+  //     },
+  //   }).then((result) => {
+  //     res.json(result);
+  //   });
+  // });
 
-  app.post("/api/addquestionscore", (req, res) => {
-    const { quizId, userId, questionId, displayName, icon, color, correct } = req.body;
-    db.QuizScore.create({
-      quizId,
-      userId,
-      questionId,
-      displayName,
-      icon,
-      color,
-      correct,
-    }).then((result) => {
-      res.json(result);
-    });
-  });
+  // app.post("/api/addquestionscore", (req, res) => {
+  //   const { quizId, userId, questionId, displayName, icon, color, correct } = req.body;
+  //   db.QuizScore.create({
+  //     quizId,
+  //     userId,
+  //     questionId,
+  //     displayName,
+  //     icon,
+  //     color,
+  //     correct,
+  //   }).then((result) => {
+  //     res.json(result);
+  //   });
+  // });
 
 
   app.post("/api/createquestion", (req, res) => {

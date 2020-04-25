@@ -5,8 +5,8 @@ module.exports = (app) => {
     //utility function to grab quizId and questionIds
     const getQuizDetails = async (quiz, qNum) => {
         let queryString = `SELECT q.quizId, u.questionId, q.questionCount
-                            FROM Quizzes q
-                            INNER JOIN quizQuestionsAssoc u ON q.quizId = u.quizId
+                            FROM quizzes q
+                            INNER JOIN QuizQuestionsAssoc u ON q.quizId = u.quizId
                             WHERE q.quizCode=\"${quiz}\" AND q.isActive=1 AND u.questionOrder=${qNum};`
         const [results, metadata] = await db.sequelize.query(queryString)
         return results[0];
@@ -15,8 +15,8 @@ module.exports = (app) => {
     //utility function to grab started question
     const getStarted = async (quiz) => {
         let queryString = `SELECT q.quizId, u.questionId, u.questionOrder, q.questionCount
-                            FROM Quizzes q
-                            INNER JOIN quizQuestionsAssoc u ON q.quizId = u.quizId
+                            FROM quizzes q
+                            INNER JOIN QuizQuestionsAssoc u ON q.quizId = u.quizId
                             WHERE q.quizCode=\"${quiz}\" AND q.isActive=1 AND u.progress="started";`
         const [results, metadata] = await db.sequelize.query(queryString)
         return results[0];
@@ -156,7 +156,7 @@ module.exports = (app) => {
         const qInfo = await getQuizDetails(req.params.quizCode, 1);
         const { quizId, questionCount } = qInfo;
         let queryString = `SELECT u.displayName, u.icon, u.color, (100 * SUM(u.correct) / ${questionCount}) AS score
-                            FROM Quizzes q
+                            FROM quizzes q
                             INNER JOIN QuizScores u ON q.quizId = u.quizId
                             WHERE q.quizId=${quizId}
                             GROUP BY u.displayName, u.icon, u.color
