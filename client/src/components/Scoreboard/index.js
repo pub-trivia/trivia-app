@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PlayerIcons from '../PlayerIcons';
+import PlayerIcon from '../PlayerIcons';
 import './scoreboard.css';
 
 const Scoreboard = (props) => {
@@ -26,7 +26,7 @@ const Scoreboard = (props) => {
                                     <div className="player-name"> {name} </div>
                                     <div className="player-icon-container">
                                         <div className="player-icon-position" left={iconPosition}>
-                                            <PlayerIcons icon={icon} color={color} />
+                                            <PlayerIcon icon={icon} color={color} />
                                         </div>
                                     </div>
                                 </div>
