@@ -1,7 +1,7 @@
-import React, { createRef, useRef, useState } from 'react';
+import React, { createRef, useRef, useState, useEffect } from 'react';
 import API from '../../utils/API';
 // import Cat from "../Cat";
-import Toggle from "../Toggle";
+// import Toggle from "../Toggle";
 import Button from "../Button";
 import './CreateAQuestion.css';
 // const [state, dispatch] = useGameContext();
@@ -19,17 +19,18 @@ const CreateAQuestion = () => {
     const answer3Ref = useRef();
     const answer4Ref = useRef();
     const correctIndexRef = useRef();
+    const [categories, setCategories] = useState([]);
 
-    const [value, setValue] = useState(false);
-    let isOn = true;
+    // let userId = state.id;
 
     const handleSubmit = event => {
         event.preventdefault()
+        console.log("got here");
         API.createquestion(
+            // userId,
             categoryRef.current.value,
             questionRef.current.value,
             diffRef.current.value,
-            userIdRef.current.value,
             questionTypeRef.current.value,
             answer1Ref.current.value,
             answer2Ref.current.value,
@@ -37,39 +38,36 @@ const CreateAQuestion = () => {
             answer4Ref.current.value,
             correctIndexRef.current.value
         )
-            .then(res => {
+        console.log("results: ", )
+            .then(results => 
                 alert("Question Saved")
-            })
+            )
+            .catch(err => console.log("Error: ", err ));
     };
+
+    useEffect(() => {
+        API.getCategories()
+          .then(results => setCategories(results.data));
+      }, []);
 
     return (
         <div>
-            <h1>Create Your Own Question</h1>
-            <form onSubmit={(event) => handleSubmit(event)}>
-                {/* <Cat ref={categoryRef}/>
-                <label>Question
-                    <input 
-                        placeholder="Which president served the shortest time in office?" 
-                        type="text" 
-                        ref={questionRef} 
-                    />
-                </label> */}
-                {/* <h1>Create A Question Page</h1>
+            <h2>Create Your Own Question</h2>
             <form onSubmit={(event) => handleSubmit(event)}>
             <label htmlFor="catPicker"><h6>Select a Topic</h6>
-          <select name="catPicker" ref={categoryRef}
-          >
-            {categories.map((item, index) => (
-              <option value={item} key={index} >{item}</option>
-            ))}
-          </select>
-        </label> */}
-                {/* <label><h6>Difficulty</h6></label>
-        <select name="difficulty" ref={diffRef}>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select> */}
+                <select name="catPicker" ref={categoryRef}
+                >
+                    {categories.map((item, index) => (
+                    <option value={item} key={index} >{item}</option>
+                    ))}
+                </select>
+             </label>    
+                <label><h6>Difficulty</h6></label>
+                    <select name="difficulty" ref={diffRef}>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
                 <label>Question
                     <input
                         placeholder="Which president served the shortest time in office?"
@@ -80,7 +78,7 @@ const CreateAQuestion = () => {
 
                 <input type="checkbox" class="switch-input" />
 
-                <div class="true-false-question">
+                <div class="true-false-question" ref={questionTypeRef} value={"tf"}>
                     <h3>True False</h3>
                     <label>Options: Please Select the correct answer
         </label>
@@ -96,9 +94,9 @@ const CreateAQuestion = () => {
                 </div>
 
                 <div class="multi-choice-question">
-                    <h3>Multiple Choice</h3>
+                    <h3 ref={questionTypeRef} value={"mc"}>Multiple Choice</h3>
                     <label>What is the correct answer
-            <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} />
+            <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} ref={answer4Ref}/>
                     </label>
                     <label> Suggest some incorrect answers
             <input placeholder="William Howard Taft" type="text" ref={answer1Ref} />
@@ -106,8 +104,8 @@ const CreateAQuestion = () => {
                         <input placeholder="Barack Obama" type="text" ref={answer3Ref} />
                     </label>
                 </div>
-            </form>
             <Button type="submit" text="SAVE QUESTION" />
+            </form>
         </div>
     )
 
