@@ -10,7 +10,6 @@ require('dotenv').config();
 
 const SetUpComponent = () => {
 
-
   const diffRef = useRef();
   const countRef = useRef(1);
   const categoryRef = useRef();
