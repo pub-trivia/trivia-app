@@ -33,7 +33,7 @@ const SetUpComponent = () => {
     event.preventDefault();
 
     if (!countRef.current.value > 0 || !categoryRef.current.value || !diffRef.current.value) {
-      alert("Please select a category, difficulty leve, and number of questions!")
+      alert("Please select a category, difficulty level, and number of questions!")
       return;
     }
 
@@ -63,7 +63,7 @@ const SetUpComponent = () => {
     //   });
     // });
 
-    // set gameRef appropriately 
+    // set game in 
     dispatch({
       type: ADD_GAME,
       post: {
