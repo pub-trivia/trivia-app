@@ -210,18 +210,18 @@ module.exports = (app) => {
             //this question is marked as started
             //but has already been asked, you may proceed
             //increment totalNum correct/incorrect in the question table
-            db.Question.findOne({ 
-                where: {
-                    questionId
-                    }
-                }).then(ques => {
-                    return ques.increment({
-                        correctCount: numCorrect,
-                        incorrectCount: players - numCorrect
-                    })
-                }).catch(err => {
-                    next(err);
-                })
+            // db.Question.findOne({ 
+            //     where: {
+            //         questionId
+            //         }
+            //     }).then(ques => {
+            //         return ques.increment({
+            //             correctCount: numCorrect,
+            //             incorrectCount: players - numCorrect
+            //         })
+            //     }).catch(err => {
+            //         next(err);
+            //     })
             //change the progress of the question to completed
             await db.QuizQuestionsAssoc.update(
                 {progress: "completed"},
