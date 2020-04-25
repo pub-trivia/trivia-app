@@ -80,6 +80,11 @@ export default {
     quizComplete: (game) => {
         console.log("===========quizComplete========");
         return axios.post(`/api/quiz/end/${game}`);
+    },
+
+    getResponses: (game) => {
+        console.log("===========getResponses========");
+        return axios.get(`/api/quiz/responses/${game}`);
     }
 
 }
