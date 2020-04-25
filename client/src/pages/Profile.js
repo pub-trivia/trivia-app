@@ -31,14 +31,14 @@ function Profile() {
       <div className="row">
         <div className="col user-info-col">
           <PlayerIcon icon={icon} color={color} />
-          <h2>{name}</h2>
-          <h2>{email}</h2>
+          <h2 className="profile-name">{name}</h2>
+          <div className="profile-email">{email}</div>
           <Link to='/new'>
-              <Button text="CREATE NEW GAME" />
-            </Link>
-            <Link to='/question'>
-              <Button text="CREATE NEW QUESTION" />
-            </Link>
+            <Button text="CREATE NEW GAME" />
+          </Link>
+          <Link to='/question'>
+            <Button text="CREATE NEW QUESTION" />
+          </Link>
         </div>
         <div className="col user-stats-col">
           <StatsComponent />

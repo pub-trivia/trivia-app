@@ -98,7 +98,8 @@ body:after{
     }
     div#myTopnav:hover a{
         display: block;
-        width: 100%;
+        width: 200px;
+        margin-top: -1px;
         padding: 15px 10px;
         color: #fff;
         background-color: #03E4AC;

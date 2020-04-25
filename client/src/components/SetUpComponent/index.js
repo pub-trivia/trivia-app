@@ -7,10 +7,12 @@ import Button from "../Button";
 import PhoneNumberList from "../PhoneNumberList";
 import './setup.css';
 require('dotenv').config();
-// const gameMaker = require('twilio')(accountSid, authToken);
+console.log('Your environment variable TWILIO_ACCOUNT_SID has the value: ', process.env.TWILIO_ACCOUNT_SID);
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
+
+const gameMaker = require('twilio')(accountSid, authToken);
 const twilioFrom = process.env.TWILIO_FROM_NUM;
 
 
