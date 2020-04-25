@@ -1,7 +1,7 @@
 import React, { createRef, useRef, useState, useEffect } from 'react';
 import API from '../../utils/API';
 // import Cat from "../Cat";
-import Toggle from "../Toggle";
+// import Toggle from "../Toggle";
 import Button from "../Button";
 import './CreateAQuestion.css';
 // const [state, dispatch] = useGameContext();
@@ -23,6 +23,7 @@ const CreateAQuestion = () => {
 
     const handleSubmit = event => {
         event.preventdefault()
+        console.log("got here");
         API.createquestion(
             categoryRef.current.value,
             questionRef.current.value,
@@ -35,7 +36,7 @@ const CreateAQuestion = () => {
             answer4Ref.current.value,
             correctIndexRef.current.value
         )
-            .then(res => 
+            .then(results => 
                 alert("Question Saved")
             )
             .catch(err => console.log("Error: ", err ));
@@ -100,8 +101,8 @@ const CreateAQuestion = () => {
                         <input placeholder="Barack Obama" type="text" ref={answer3Ref} />
                     </label>
                 </div>
-            </form>
             <Button type="submit" text="SAVE QUESTION" />
+            </form>
         </div>
     )
 
