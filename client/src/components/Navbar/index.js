@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
+import { Link } from 'react-router-dom';
 
 import PlayerIcon from '../PlayerIcons';
 import { useGameContext } from '../../utils/GlobalState';
 import { ADD_USER } from '../../utils/actions';
 import setAuthToken from '../../utils/setAuthToken';
 import './navbar.css';
-
-
-
-
 
 const Navbar = () => {
 
@@ -50,9 +47,9 @@ const Navbar = () => {
                     </div>
                     <div className="main-menu">
                         <div className="topnav" id="myTopnav">
-                            <a href="/">Home</a>
-                            <a href="/new">Create a Game</a>
-                            <a href="/question">Create a Question</a>
+                            <Link to="/">Home</Link>
+                            <Link to="/new">Create a Game</Link>
+                            <Link to="/question">Create a Question</Link>
                             {/* <a href="javascript:void(0);" style="font-size:15px;" className="icon" onclick="myFunction()">&#9776;</a> */}
                         </div>
                         <div className="profile-icon"><a href="/profile"><PlayerIcon icon={icon} color={color} /></a></div>
