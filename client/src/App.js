@@ -17,7 +17,7 @@ import Question from "./pages/Question";
 
 const App = () => {
 
-  const Join = ({ match }) => { match.params.quizCod };
+  const Join = ({ match }) => { match.params.quizCode };
 
   return (
     <Router>
