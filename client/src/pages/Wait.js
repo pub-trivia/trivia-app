@@ -18,11 +18,6 @@ const Wait = () => {
     useEffect(() => {
         if(localStorage.currentGame === game){
             ws.emit('join', { game, name, icon, color }, () => {});
-            API.startQuiz(game)
-                .then(result => {
-                    console.log("======marked question as started=========")
-                    console.log(result);
-                })
         } else {
             history.push('/');
         } 
@@ -50,7 +45,14 @@ const Wait = () => {
 
     const handleClick = (event) => {
         event.preventDefault();
-        ws.emit("allHere", { game }, () => { });
+        API.startQuiz(game)
+        .then(result => {
+            console.log("======marked question as started=========")
+            console.log(result);
+            //TODO: handle error in starting game
+            ws.emit("allHere", { game }, () => { });
+        })
+        
     }
 
 
