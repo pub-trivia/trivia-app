@@ -25,7 +25,7 @@ const App = () => {
         <GameProvider>
           <Navbar />
           <Route exact path="/" component={Home} />
-          <Route exact path="/join/:quizCod" component={Join} />
+          <Route exact path="/join/:quizCode" component={Join} />
           <Route exact path="/wait" component={Wait} />
           <Route exact path="/game" component={Game} />
           <Route exact path="/results" component={GameResults} />
