@@ -64,25 +64,42 @@
 .true-false-question{
     padding-bottom: 50px;
 }
-.true-false-question label:nth-child(4) {
-    position: relative;
-    padding-left: 40px;
-    padding-right: 60px;
-    padding-top: 30px;
+.tf-options {
+  display: flex;
+  margin-top: 20px;
 }
-.true-false-question label:nth-child(5) {
-    position: relative;
-    padding-left: 40px;
-    padding-right: 60px;
-    padding-top: 30px;
+span.instructions {
+  font-weight: 300;
+  font-style: italic;
+  font-size: 16px;
+  display: block;
 }
-.true-false-question input {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 0px;
+.tf-option{
+  width: 50%;
+  position: relative;
 }
-.true-false-question label{
-    padding-left: 0px;
-    padding-right: 0px;
+.tf-option input{
+  opacity: 0;
+  margin-right: 10px!important;
+}
+.tf-option label:before {
+  content: '';
+  display: flex;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #04d5fb;
+  border-radius: 5px;
+  top:0px;
+  left: 0px;
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+}
+.tf-option input:checked + label:before {
+  content: '\f00c';
+  position: absolute;
+  font-family: 'FontAwesome';
+  color: #04d5fb;
+  font-size: 16px;
 }

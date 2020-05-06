@@ -11,7 +11,7 @@ const Scoreboard = (props) => {
     }, [users]);
 
     return (
-        <div class="score-board">
+        <div className="score-board">
             <div>
                 <h2>SCOREBOARD</h2>
             </div>
@@ -19,17 +19,22 @@ const Scoreboard = (props) => {
                 ? (
                     <div>
                         {users.map(({ displayName, icon, color, score }, index) => {
-                            let scoreTrackStyles = {
-                                width: { score },
-                                minWidth: '50px',
-                            };
+
+                            if (!score) {
+                                score = 0;
+                            }
+                            
+                            var scoreTrackStyles = {
+                                minWidth: '50px',    
+                                width: `${score}%`
+                            }
 
                             return (
-                                <div class="scores">
-                                    <div class="player-section">
-                                        <div class="player-name"> {displayName} </div>
-                                        <div class="player-icon-container">
-                                            <div class="player-icon-position" style={scoreTrackStyles}>
+                                <div className="scores">
+                                    <div className="player-section">
+                                        <div className="player-name"> {displayName} </div>
+                                        <div className="player-icon-container">
+                                            <div className="player-icon-position" style={scoreTrackStyles}>
                                                 <PlayerIcon icon={icon} color={color} />
                                             </div>
                                         </div>

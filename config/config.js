@@ -11,10 +11,10 @@ module.exports =
     "operatorsAliases": false
   },
   "production": {
-    "username": process.env.DB_USER,
-    "password": process.env.DB_PASS,
-    "database": process.env.JAWSDB_URL,
-    "host": process.env.DB_HOST,
+    "username": process.env.MYSQL_USER,
+    "password": process.env.MYSQL_PASSWORD,
+    "database": process.env.MYSQL_DATABASE,
+    "host": process.env.MYSQL_HOST,
     "dialect": "mysql"
   }
 }
