@@ -19,17 +19,20 @@ const Scoreboard = (props) => {
                 ? (
                     <div>
                         {users.map(({ displayName, icon, color, score }, index) => {
-                            let scoreTrackStyles = {
-                                width: { score },
-                                minWidth: '50px',
+
+                            var scope = {
+                                scoreTrackStyles: {
+                                    width: { score }
+                                }
                             };
+
 
                             return (
                                 <div class="scores">
                                     <div class="player-section">
                                         <div class="player-name"> {displayName} </div>
                                         <div class="player-icon-container">
-                                            <div class="player-icon-position" style={scoreTrackStyles}>
+                                            <div class="player-icon-position" style={scoreTrackStyles} style={{ "minWidth": "50px" }}>
                                                 <PlayerIcon icon={icon} color={color} />
                                             </div>
                                         </div>
