@@ -312,6 +312,7 @@ div#home .row .col.header .logo svg.desktop{
         padding-top: 10px;
         max-width: 300px;
         display: flex;
+        margin: auto;
         justify-content: space-between;
         font-size: 14px;
         color: #707070;
