@@ -38,36 +38,36 @@ const CreateAQuestion = () => {
             answer4Ref.current.value,
             correctIndexRef.current.value
         )
-        console.log("results: ", )
-            .then(results => 
+        console.log("results: ")
+            .then(results =>
                 alert("Question Saved")
             )
-            .catch(err => console.log("Error: ", err ));
+            .catch(err => console.log("Error: ", err));
     };
 
     useEffect(() => {
         API.getCategories()
-          .then(results => setCategories(results.data));
-      }, []);
+            .then(results => setCategories(results.data));
+    }, []);
 
     return (
         <div>
             <h2>Create Your Own Question</h2>
             <form onSubmit={(event) => handleSubmit(event)}>
-            <label htmlFor="catPicker"><h6>Select a Topic</h6>
-                <select name="catPicker" ref={categoryRef}
-                >
-                    {categories.map((item, index) => (
-                    <option value={item} key={index} >{item}</option>
-                    ))}
-                </select>
-             </label>    
-                <label><h6>Difficulty</h6></label>
-                    <select name="difficulty" ref={diffRef}>
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
+                <label htmlFor="catPicker"><h6>Select a Topic</h6>
+                    <select name="catPicker" ref={categoryRef}
+                    >
+                        {categories.map((item, index) => (
+                            <option value={item} key={index} >{item}</option>
+                        ))}
                     </select>
+                </label>
+                <label><h6>Difficulty</h6></label>
+                <select name="difficulty" ref={diffRef}>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
                 <label>Question
                     <input
                         placeholder="Which president served the shortest time in office?"
@@ -80,23 +80,23 @@ const CreateAQuestion = () => {
 
                 <div class="true-false-question" ref={questionTypeRef} value={"tf"}>
                     <h3>True False</h3>
-                    <label>Options: Please Select the correct answer
-        </label>
-                    <br />
-                    <label>True
-            <input type="checkbox" ref={correctIndexRef}>
-                        </input>
-                    </label>
-                    <label>False
-            <input type="checkbox" ref={correctIndexRef}>
-                        </input>
-                    </label>
+                    <label>Options: <span class="instructions">Please Select the correct answer</span></label>
+                    <div class="tf-options">
+                        <div class="tf-option">
+                            <input type="radio" name="truefalse" ref={correctIndexRef}></input>
+                            <label>True</label>
+                        </div>
+                        <div class="tf-option">
+                            <input type="radio" name="truefalse" ref={correctIndexRef}></input>
+                            <label>False</label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="multi-choice-question">
                     <h3 ref={questionTypeRef} value={"mc"}>Multiple Choice</h3>
                     <label>What is the correct answer
-            <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} ref={answer4Ref}/>
+            <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} ref={answer4Ref} />
                     </label>
                     <label> Suggest some incorrect answers
             <input placeholder="William Howard Taft" type="text" ref={answer1Ref} />
@@ -104,7 +104,7 @@ const CreateAQuestion = () => {
                         <input placeholder="Barack Obama" type="text" ref={answer3Ref} />
                     </label>
                 </div>
-            <Button type="submit" text="SAVE QUESTION" />
+                <Button type="submit" text="SAVE QUESTION" />
             </form>
         </div>
     )

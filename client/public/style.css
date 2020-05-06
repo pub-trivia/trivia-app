@@ -307,3 +307,15 @@ div#home .row .col.header .logo svg.desktop{
         font-size: 60px;
         color: #9665D8;
     }
+
+    .bottom-links{
+        padding-top: 10px;
+        max-width: 300px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #707070;
+    }
+    .bottom-links div:hover{
+        color: #F96E99;
+    }
