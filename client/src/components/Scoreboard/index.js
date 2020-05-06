@@ -19,8 +19,6 @@ const Scoreboard = (props) => {
                 ? (
                     <div>
                         {users.map(({ displayName, icon, color, score }, index) => {
-                            console.log("----showing score----");
-                            console.log(score);
 
                             if (!score) {
                                 score = 0;
