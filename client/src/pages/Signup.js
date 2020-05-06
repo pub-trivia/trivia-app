@@ -18,8 +18,8 @@ const Signup = () => {
                         <Link to="/login">
                             <div>LOG IN</div>
                         </Link>
-                        <Link to="/signup">
-                            <div>SIGN UP</div>
+                        <Link to="/">
+                            <div>Skip Sign Up</div>
                         </Link>
                     </div>
                 </div>

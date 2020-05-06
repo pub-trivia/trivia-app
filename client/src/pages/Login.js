@@ -14,12 +14,14 @@ const Login = () => {
                 </div>
                 <div className="col">
                     <LoginForm />
-                    <Link to="/">
-                        <Button type="button" text="Skip Log In" />
-                    </Link>
-                    <Link to="/signup">
-                        <Button type="button" text="SIGN UP" />
-                    </Link>
+                    <div className="bottom-links">
+                        <Link to="/signup">
+                            <div>SIGN UP</div>
+                        </Link>
+                        <Link to="/">
+                            <div>Skip Log In</div>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
