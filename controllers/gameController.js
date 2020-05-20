@@ -1,9 +1,8 @@
-const { roomTimer } = require("/roomTimer");
 const db = require('../models');
 
-const getQuestion = (game, io) => {
+const getQuestion = async (game) => {
     const { quizId, questionCount } = getQuizId(game);
-    db.Questions.findOne({
+    await db.Questions.findOne({
         include: [{ 
             model: QuizQuestionsAssoc,
             where: {
@@ -14,15 +13,40 @@ const getQuestion = (game, io) => {
     })
 }
 
-
-const getQuizId = (game) => {
-    db.quizzes.findOne({
+const getQuizId = async (game, callback) => {
+    console.log("reached getQuizId")
+    console.log(game);
+    await db.Quiz.findOne({
         attributes: ['quizId', 'questionCount'],
         where: {
             quizCode: game,
             isActive: 1  
         }
     }).then(result => {
-        return result.dataValues;
+        console.log("returning from getQuizId");
+        console.log(result.dataValues);
+        return callback(result.dataValues);
+    }).catch(err => {
+        next(err)
     })
 }
+
+const getQuestionId = async (quizId, qNum, callback) => {
+    console.log("reached getQuestionId")
+    console.log(quizId);
+    await db.QuizQuestionsAssoc.findOne({
+        attributes: ['questionId'],
+        where: {
+            quizId,
+            questionOrder: qNum
+        }
+    }).then(result => {
+        console.log("=====returning from getQuestionId=====");
+        console.log(result.dataValues);
+        return callback(result.dataValues);
+    }).catch(err => {
+        next(err)
+    })
+}
+
+module.exports = { getQuizId, getQuestionId, getQuestion }

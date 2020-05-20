@@ -1,29 +1,32 @@
 const { addUser, removeUser, getUser, getUsersInGame } = require('./userController');
+const { getQuizId } = require('./gameController')
 const { roomTimer } = require("./roomTimer");
+const db = require('../models');
 
 module.exports = (io) => {
     // Set up socket handlers
     io.on('connect', (socket) => {
 
-        socket.on('join', ({ game, name, icon, color }, callback) => {
-        console.log(`Socket id on join: ${socket.id}`);
-    
-        const { error, user } = addUser({ id: socket.id, game, name, icon, color });
-    
-        if(error) return callback(error);
-    
-        socket.join(user.game);
-    
-        io.to(user.game).emit('gameData', { game: user.game, users: getUsersInGame(user.game)});
-    
-        callback();
+        socket.on('join', async ({ game, name, icon, color }, callback) => {
+            console.log(`Socket id on join: ${socket.id}`);
+            //creates a record of which socket belongs to this user
+            const { error, user } = await addUser({ id: socket.id, game, name, icon, color })
+            //throws error if someone in the game
+            //is already using this name
+            if(error) return callback(error);
+            //registers the socket to a specific game
+            socket.join(game);
+            //emits an event telling the client to get all 
+            //users in the game
+            io.to(game).emit('gameData');
+            
         })
     
         socket.on("allHere", ({ game }, callback) => {
-        console.log(`Socket id on allHere: ${socket.id}`);
-        const user = getUser(socket.id);
-    
-        io.to(user.game).emit("startGame", { game: user.game, users: getUsersInGame(user.game)});
+            console.log(`Socket id on allHere: ${socket.id}`);
+            const user = getUser(socket.id);
+        
+            io.to(user.game).emit("startGame");
         })
     
         socket.on('response', async ({ game }, callback) => {

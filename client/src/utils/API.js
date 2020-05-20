@@ -21,10 +21,6 @@ export default {
         return axios.post("/api/messages", { quizCode, phoneNums });
     },
 
-    joinQuiz: (game, displayName, icon, color) => {
-        return axios.post(`/api/join/${game}`, { displayName, icon, color })
-    },
-
     startQuiz: (game) => {
         return axios.post(`/api/quiz/start/${game}`);
     },

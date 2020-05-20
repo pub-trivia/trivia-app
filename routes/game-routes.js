@@ -34,29 +34,6 @@ module.exports = (app) => {
         return results[0];
     }
 
-    // used when a user clicks the 'join' button
-    // adds a quizScore record for the first question in the quiz
-    // we'll update this record after the first question
-    // we also use this data in a later call to pull which users
-    // are in the quiz and whether they've responded to the question
-    app.post("/api/join/:quizCode", async (req, res) => {
-        const { displayName, icon, color } = req.body;
-        const quizInfo = await getQuizDetails(req.params.quizCode, 1)
-        const { quizId, questionId } = quizInfo;
-        db.QuizScore.create({
-            quizId,
-            questionId,
-            displayName,
-            icon,
-            color,
-            correct: false
-        }).then(result => {
-            return res.json(result.dataValues);
-        }).catch(err => {
-            next(err);
-        })
-    })
-
     // marks the first question in the quiz as started
     app.post("/api/quiz/start/:quizCode", async (req, res) => {
         console.log("post /api/quiz/start/:quizCode " + req.params.quizCode);
