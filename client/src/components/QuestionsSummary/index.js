@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
 import QuestionInfo from "../QuestionInfo";
 import { useGameContext } from '../../utils/GlobalState';
