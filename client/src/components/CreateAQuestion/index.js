@@ -68,17 +68,17 @@ const CreateAQuestion = () => {
                     <option value="medium">Medium</option>
                     <option value="hard">Hard</option>
                 </select>
-                <label>Question
-                    <input
-                        placeholder="Which president served the shortest time in office?"
-                        type="text"
-                        ref={questionRef}
-                    />
-                </label>
 
                 <input type="checkbox" class="switch-input" />
 
                 <div class="true-false-question" ref={questionTypeRef} value={"tf"}>
+                    <label>Question
+                        <input
+                            placeholder="Romania is in the European Union"
+                            type="text"
+                            ref={questionRef}
+                        />
+                    </label>
                     <h3>True False</h3>
                     <label>Options: <span class="instructions">Please Select the correct answer</span></label>
                     <div class="tf-options">
@@ -95,6 +95,13 @@ const CreateAQuestion = () => {
 
                 <div class="multi-choice-question">
                     <h3 ref={questionTypeRef} value={"mc"}>Multiple Choice</h3>
+                    <label>Question
+                        <input
+                            placeholder="Which president served the shortest time in office?"
+                            type="text"
+                            ref={questionRef}
+                        />
+                    </label>
                     <label>What is the correct answer
             <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} ref={answer4Ref} />
                     </label>
