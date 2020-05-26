@@ -22,13 +22,6 @@ module.exports = (io) => {
             
         })
     
-        socket.on("allHere", ({ game }, callback) => {
-            console.log(`Socket id on allHere: ${socket.id}`);
-            const user = getUser(socket.id);
-        
-            io.to(user.game).emit("startGame");
-        })
-    
         socket.on('response', async ({ game }, callback) => {
         //get the user from the server based on the socket id
         const user = await getUser(socket.id);

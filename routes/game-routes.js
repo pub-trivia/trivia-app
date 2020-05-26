@@ -1,7 +1,8 @@
 const db = require('../models');
 
-module.exports = (app) => {
+module.exports = (app, io) => {
 
+    app.io = io;
     //utility function to grab quizId and questionIds
     const getQuizDetails = async (quiz, qNum) => {
         let queryString = `SELECT q.quizId, u.questionId, q.questionCount
@@ -47,6 +48,7 @@ module.exports = (app) => {
                 }
             }).then(result => {
                 console.log(`${result} rows updated`)
+                req.app.io.to(req.params.quizCode).emit('startGame')
                 return res.json(result);
             }).catch(err => {
                 next(err);

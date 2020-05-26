@@ -18,9 +18,6 @@ const Wait = () => {
     useEffect(() => {
         if(localStorage.currentGame !== game){
             history.push('/');
-            //this is the first emit from the client
-            //registers the user's socket to this game
-            //ws.emit('join', { game, name, icon, color }, () => {});
         } 
     }, []);
 
@@ -56,7 +53,6 @@ const Wait = () => {
                 console.log("======marked question as started=========")
                 console.log(result);
                 //TODO: handle error in starting game
-                ws.emit("allHere", { game }, () => { });
             })
         
     }

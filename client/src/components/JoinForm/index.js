@@ -27,7 +27,6 @@ const JoinForm = () => {
         event.preventDefault();
         //TODO: Handle if the quiz code does not match an active quiz
         localStorage.setItem('currentGame', gameRef.current.value);
-        //TODO: Handle if the displayName selected is not unique for this quiz
         dispatch({
             type: ADD_PLAYER,
             post: {
