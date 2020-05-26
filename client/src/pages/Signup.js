@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from "../components/Header";
 import SignupForm from '../components/SignupForm';
-import Button from '../components/Button';
 import { Link } from "react-router-dom";
 // import "../style.css";
 
