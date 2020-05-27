@@ -13,7 +13,7 @@ const PhoneNumberList = (props) => {
                 <div className="pnum" key={idx}>
                     <input
                         type="text"
-                        placeholder={`Player #${idx + 1} number`}
+                        placeholder={`+1nnnnnnnnnn`}
                         value={number.cellNum}
                         onChange={props.handleChangeNumber(idx)}
                     />
