@@ -295,9 +295,10 @@ module.exports = function (app) {
         process.env.TWILIO_AUTH_TOKEN);
 
     const textList = req.body.phoneNums;
-    textList.forEach(function (value) {
-      console.log(value);
-
+    let currentNumber = "";
+    for (let i = 0; i < textList.length; i++) {
+      currentNumber = textList[i];
+      if (currentNumber === null) continue;
       gameMaker.messages.create({
         to: value,
         from: twilioFrom,
@@ -305,7 +306,8 @@ module.exports = function (app) {
       }, function (err, message) {
         console.log(err);
       });
-    });
+
+    }
 
   })
 };
