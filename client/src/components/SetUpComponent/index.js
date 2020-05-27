@@ -20,8 +20,6 @@ const SetUpComponent = () => {
     phoneNums: []
   });
 
-  console.log("At initialization:", playerList.phoneNums.length, playerList.phoneNums);
-
   let userId = state.id;
   let history = useHistory();
 
@@ -42,9 +40,7 @@ const SetUpComponent = () => {
       .then(result => console.log(result))
       .catch(err => console.log("Error: ", err));
     if (playerList.phoneNums.length > 0) {
-      console.log("TWILIO: ", playerList.phoneNums.length, playerList.phoneNums);
       const phoneNums = playerList.phoneNums.map(player => player.cellNum);
-      console.log("TWILIO: phone numbers length: ", phoneNums.length, phoneNums);
       API.message(quizCode, phoneNums)
         .then(result => console.log(result))
         .catch(err => console.log(err));
@@ -62,14 +58,12 @@ const SetUpComponent = () => {
   };
 
   const handleAddNumber = () => {
-    console.log("In addNumber: ", newNumberRef);
     if (playerList.phoneNums.length === 0) {
       setPlayerList({ phoneNums: [{ cellNum: newNumberRef.current.value }] });
     }
     else {
       setPlayerList({ phoneNums: playerList.phoneNums.concat([{ cellNum: newNumberRef.current.value }]) });
     }
-    console.log("playerList: ", playerList);
   };
 
   const handleChangeNumber = index => event => {

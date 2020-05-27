@@ -297,7 +297,6 @@ module.exports = function (app) {
         process.env.TWILIO_AUTH_TOKEN);
 
     const textList = req.body.phoneNums;
-    console.log("IN /api/messages: ", textList);
     let currentNumber = "";
     for (let i = 0; i < textList.length; i++) {
       currentNumber = textList[i];
