@@ -44,7 +44,6 @@ const addUser = async ({ id, game, name, icon, color }, cb) => {
     })
 
     return { user };
-
     
 }
 

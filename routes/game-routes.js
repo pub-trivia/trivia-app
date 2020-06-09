@@ -1,4 +1,5 @@
 const db = require('../models');
+const { getQuestion } = require('../controllers/gameController');
 
 module.exports = (app, io) => {
 
@@ -76,20 +77,11 @@ module.exports = (app, io) => {
     //based on the question marked as 'started'
     app.get("/api/quiz/question/:quizCode", async (req, res) => {
         console.log("get /api/quiz/question/:quizCode " + req.params.quizCode)
-        const qInfo = await getStarted(req.params.quizCode)
-        const { questionId } = qInfo;
-        db.Question.findOne({
-            where: {
-                questionId
-            }
-        }).then(result => {
-            console.log("=========== question retrieved =========")
-            console.log(result.dataValues);
-            return res.json(result.dataValues);
-        }).catch(err => {
-            next(err);
+        await getQuestion(req.params.quizCode, callback => {
+            console.log("=======getQuestion returned ======");
+            console.log(callback)
         })
-    })
+    });
 
     //checks to see if a quizScore record already exists 
     //based on displayName, quizId, and questionId

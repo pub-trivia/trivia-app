@@ -1,15 +1,28 @@
 const db = require('../models');
 
-const getQuestion = async (game) => {
-    const { quizId, questionCount } = getQuizId(game);
-    await db.Questions.findOne({
-        include: [{ 
+const getQuestion = async (game, callback) => {
+    let quizId;
+    
+    await getQuizId(game, res => {
+        console.log("====quizId made it back======");
+        console.log(res.quizId);
+        quizId = res.quizId
+    });
+    
+    await db.Question.findOne({
+        include: { 
             model: QuizQuestionsAssoc,
             where: {
                 quizId,
                 progress: 'started'
             }
-        }]
+        }
+    }).then(result => {
+        console.log("returning from getQuestion");
+        console.log(result.dataValues);
+        return callback(result.dataValues);
+    }).catch(err => {
+        next(err);
     })
 }
 
