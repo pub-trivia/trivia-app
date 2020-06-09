@@ -1,8 +1,6 @@
 require('dotenv').config();
-const bodyParser = require('body-parser');
 var db = require("../models");
 const { Op } = require("sequelize");
-var passport = require("../config/passport");
 
 // routes:   *'s are working
 //

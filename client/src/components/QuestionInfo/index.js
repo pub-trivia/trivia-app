@@ -10,7 +10,7 @@ const QuestionInfo = (props) => {
             <div className="button-bar">
                 <span className="badge purple">{props.correct}/{props.total} Correct</span>
                 <span className="badge blue">{props.needsModeration ? "Disabled" : "Active"}</span>
-                <button className="edit-button" type="button"><i class="fas fa-pencil-alt"></i></button>
+                <button className="edit-button" type="button"><i className="fas fa-pencil-alt"></i></button>
             </div>
         </div>
     );
