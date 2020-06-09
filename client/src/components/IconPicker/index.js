@@ -20,7 +20,7 @@ const IconPicker = () => {
         { name: "cat" },
         { name: "puppy" },
         { name: "octopus" },
-        { name: "squirell" }]
+        { name: "squirrel" }]
 
     const toggleIcon = event => {
         dispatch({
