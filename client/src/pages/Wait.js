@@ -16,20 +16,16 @@ const Wait = () => {
 
     //general useEffect for first run
     useEffect(() => {
-        if(localStorage.currentGame === game){
-            ws.emit('join', { game, name, icon, color }, () => {});
-            API.startQuiz(game)
-                .then(result => {
-                    console.log("======marked question as started=========")
-                    console.log(result);
-                })
-        } else {
+        if(localStorage.currentGame !== game){
             history.push('/');
         } 
     }, []);
 
     useEffect(() => {
-        ws.on("gameData", ({ users }) => {
+        //client receives websocket for gameData
+        //get all players registered to this game from the db
+        //writes the array of users to state
+        ws.on("gameData", () => {
             API.getAllPlayers(game)
                 .then(result => {
                     console.log("===== socket gameData received =======")
@@ -43,14 +39,22 @@ const Wait = () => {
                 })
         })
 
-        ws.on("startGame", ({ game, users }) => {
+        //client receives websocket to start game
+        //user is pushed to /game route
+        ws.on("startGame", () => {
             history.push('/game');
         })
     }, []);
 
     const handleClick = (event) => {
         event.preventDefault();
-        ws.emit("allHere", { game }, () => { });
+        API.startQuiz(game)
+            .then(result => {
+                console.log("======marked question as started=========")
+                console.log(result);
+                //TODO: handle error in starting game
+            })
+        
     }
 
 

@@ -62,6 +62,7 @@ const GameProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
         id: '',
         game: '',
+        gameid: '',
         name: '',
         email: '',
         icon: '',

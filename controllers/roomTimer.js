@@ -4,10 +4,10 @@ const roomTimer = (game, type, io) => {
         
     if(type === "question") {
         totalTime = 16000;
-        timerValue = 16;
+        timerValue = 15;
     } else {
         totalTime = 4000;
-        timerValue = 4;
+        timerValue = 3;
     }
 
     let timer = setInterval(() => {

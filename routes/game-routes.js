@@ -1,7 +1,9 @@
 const db = require('../models');
+const { getQuestion } = require('../controllers/gameController');
 
-module.exports = (app) => {
+module.exports = (app, io) => {
 
+    app.io = io;
     //utility function to grab quizId and questionIds
     const getQuizDetails = async (quiz, qNum) => {
         let queryString = `SELECT q.quizId, u.questionId, q.questionCount
@@ -34,29 +36,6 @@ module.exports = (app) => {
         return results[0];
     }
 
-    // used when a user clicks the 'join' button
-    // adds a quizScore record for the first question in the quiz
-    // we'll update this record after the first question
-    // we also use this data in a later call to pull which users
-    // are in the quiz and whether they've responded to the question
-    app.post("/api/join/:quizCode", async (req, res) => {
-        const { displayName, icon, color } = req.body;
-        const quizInfo = await getQuizDetails(req.params.quizCode, 1)
-        const { quizId, questionId } = quizInfo;
-        db.QuizScore.create({
-            quizId,
-            questionId,
-            displayName,
-            icon,
-            color,
-            correct: false
-        }).then(result => {
-            return res.json(result.dataValues);
-        }).catch(err => {
-            next(err);
-        })
-    })
-
     // marks the first question in the quiz as started
     app.post("/api/quiz/start/:quizCode", async (req, res) => {
         console.log("post /api/quiz/start/:quizCode " + req.params.quizCode);
@@ -70,6 +49,7 @@ module.exports = (app) => {
                 }
             }).then(result => {
                 console.log(`${result} rows updated`)
+                req.app.io.to(req.params.quizCode).emit('startGame')
                 return res.json(result);
             }).catch(err => {
                 next(err);
@@ -97,20 +77,11 @@ module.exports = (app) => {
     //based on the question marked as 'started'
     app.get("/api/quiz/question/:quizCode", async (req, res) => {
         console.log("get /api/quiz/question/:quizCode " + req.params.quizCode)
-        const qInfo = await getStarted(req.params.quizCode)
-        const { questionId } = qInfo;
-        db.Question.findOne({
-            where: {
-                questionId
-            }
-        }).then(result => {
-            console.log("=========== question retrieved =========")
-            console.log(result.dataValues);
-            return res.json(result.dataValues);
-        }).catch(err => {
-            next(err);
+        await getQuestion(req.params.quizCode, callback => {
+            console.log("=======getQuestion returned ======");
+            console.log(callback)
         })
-    })
+    });
 
     //checks to see if a quizScore record already exists 
     //based on displayName, quizId, and questionId
