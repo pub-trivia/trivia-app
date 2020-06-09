@@ -4,15 +4,16 @@ import API from '../../utils/API';
 // import Toggle from "../Toggle";
 import Button from "../Button";
 import './CreateAQuestion.css';
-// const [state, dispatch] = useGameContext();
+import { useGameContext } from "../../utils/GlobalState";
 // const [categories] = useState([]);
 // import processToken from "../../utils/setAuthToken";
 
 const CreateAQuestion = () => {
+    const [state, dispatch] = useGameContext();
     const categoryRef = createRef();
     const questionRef = useRef();
     const diffRef = useRef();
-    const userIdRef = useRef();
+    // const userIdRef = useRef();
     const questionTypeRef = useRef();
     const answer1Ref = useRef();
     const answer2Ref = useRef();
@@ -21,13 +22,13 @@ const CreateAQuestion = () => {
     const correctIndexRef = useRef();
     const [categories, setCategories] = useState([]);
 
-    // let userId = state.id;
+    let userId = state.id;
 
     const handleSubmit = event => {
         event.preventdefault()
         console.log("got here");
         API.createquestion(
-            // userId,
+            userId,
             categoryRef.current.value,
             questionRef.current.value,
             diffRef.current.value,
@@ -53,7 +54,7 @@ const CreateAQuestion = () => {
     return (
         <div>
             <h2>Create Your Own Question</h2>
-            <form onSubmit={(event) => handleSubmit(event)}>
+            <form onSubmit={(event) => handleSubmit(event)} >
                 <label htmlFor="catPicker"><h6>Select a Topic</h6>
                     <select name="catPicker" ref={categoryRef}
                     >
@@ -111,7 +112,7 @@ const CreateAQuestion = () => {
                         <input placeholder="Barack Obama" type="text" ref={answer3Ref} />
                     </label>
                 </div>
-                <Button type="submit" text="SAVE QUESTION" />
+                <Button type="submit" text="SAVE QUESTION" onSubmit={(event) => handleSubmit(event)} />
             </form>
         </div>
     )
