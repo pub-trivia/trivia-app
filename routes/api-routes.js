@@ -146,7 +146,7 @@ module.exports = function (app) {
   app.get("/api/getcode", (req, res) => {
     let codeArray = [];
     let quizCode = "A1B2";
-    db.sequelize.query("SELECT quizCode FROM quizzes").then((results) => {
+    db.sequelize.query("SELECT quizCode FROM quizzes WHERE isActive=true").then((results) => {
       codeArray = results[0].map((result) => result.quizCode);
       quizCode = generateRandomCode();
       while (codeArray.indexOf(quizCode) !== -1) {
