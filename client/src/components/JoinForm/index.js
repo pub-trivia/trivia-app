@@ -25,12 +25,13 @@ const JoinForm = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        let gameCode = gameRef.current.value.toUpperCase();
         //TODO: Handle if the quiz code does not match an active quiz
-        localStorage.setItem('currentGame', gameRef.current.value);
+        localStorage.setItem('currentGame', gameCode);
         dispatch({
             type: ADD_PLAYER,
             post: {
-                game: gameRef.current.value,
+                game: gameCode,
                 name: nameRef.current.value
             }
         });
@@ -38,7 +39,7 @@ const JoinForm = () => {
         console.log(state.game, state.name)
         //this is the first emit from the client
         //registers the user's socket to this game
-        ws.emit('join', { game: gameRef.current.value, name: nameRef.current.value, icon: state.icon, color: state.color }, () => {
+        ws.emit('join', { game: gameCode, name: nameRef.current.value, icon: state.icon, color: state.color }, () => {
             //TODO: this should handle if someone is already using this name
         });
         //this pushes the player to the wait screen
