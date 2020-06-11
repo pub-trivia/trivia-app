@@ -32,13 +32,11 @@ module.exports = (app, io) => {
                             FROM QuizScores u
                             WHERE u.quizId=${quizId} AND u.questionId=${questionId}`
         const [results, metadata] = await db.sequelize.query(queryString);
-        console.log("=======results of question score========");
         return results[0];
     }
 
     // marks the first question in the quiz as started
     app.post("/api/quiz/start/:quizCode", async (req, res) => {
-        console.log("post /api/quiz/start/:quizCode " + req.params.quizCode);
         const quizInfo = await getQuizDetails(req.params.quizCode, 1)
         const { quizId, questionId } = quizInfo;
         db.QuizQuestionsAssoc.update(
@@ -48,9 +46,10 @@ module.exports = (app, io) => {
                 questionId
                 }
             }).then(result => {
-                console.log(`${result} rows updated`)
                 req.app.io.to(req.params.quizCode).emit('startGame')
-                return res.json(result);
+                getQuestion(req.params.quizCode, callback => {
+                    req.app.io.to(req.params.quizCode).emit('showQuestion', { newquestion: callback });
+                })
             }).catch(err => {
                 next(err);
             })
@@ -58,7 +57,6 @@ module.exports = (app, io) => {
 
     //get list of users by quiz
     app.get("/api/quiz/users/:quizCode", async (req, res) => {
-        console.log("get /api/quiz/users/:quizCode " + req.params.quizCode);
         const quizInfo = await getQuizDetails(req.params.quizCode, 1)
         const { quizId, questionId } = quizInfo;
         db.QuizScore.findAll({
@@ -76,10 +74,8 @@ module.exports = (app, io) => {
     //used to get the current question for the quiz
     //based on the question marked as 'started'
     app.get("/api/quiz/question/:quizCode", async (req, res) => {
-        console.log("get /api/quiz/question/:quizCode " + req.params.quizCode)
         await getQuestion(req.params.quizCode, callback => {
-            console.log("=======getQuestion returned ======");
-            console.log(callback)
+           req.app.io.to(req.params.quizCode).emit('showQuestion', { callback });
         })
     });
 

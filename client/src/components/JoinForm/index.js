@@ -17,10 +17,8 @@ const JoinForm = () => {
     let history = useHistory();
 
     useEffect(() => {
-        console.log("In useEffect, state:", state);
         gameRef.current.value = state.game;
         nameRef.current.value = state.name;
-        console.log("Check settings: ", gameRef.current, nameRef.current);
     }, []);
 
     const handleSubmit = event => {
@@ -35,8 +33,6 @@ const JoinForm = () => {
                 name: nameRef.current.value
             }
         });
-        console.log("=====dispatch sent, state is now=====");
-        console.log(state.game, state.name)
         //this is the first emit from the client
         //registers the user's socket to this game
         ws.emit('join', { game: gameCode, name: nameRef.current.value, icon: state.icon, color: state.color }, () => {

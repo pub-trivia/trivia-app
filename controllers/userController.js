@@ -20,14 +20,10 @@ const addUser = async ({ id, game, name, icon, color }, cb) => {
     let questionId;
 
     await getQuizId(game, res => {
-        console.log("====quizId made it back======");
-        console.log(res.quizId);
         quizId = res.quizId
     });
     
     await getQuestionId(quizId, 1, res => {
-        console.log("===questionId made it back=====");
-        console.log(res.questionId)
         questionId = res.questionId;
     });
     

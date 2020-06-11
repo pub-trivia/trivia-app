@@ -28,8 +28,6 @@ const Wait = () => {
         ws.on("gameData", () => {
             API.getAllPlayers(game)
                 .then(result => {
-                    console.log("===== socket gameData received =======")
-                    console.log(result.data);
                     dispatch({
                         type: SET_USERS,
                         post: {

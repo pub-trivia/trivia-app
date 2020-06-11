@@ -43,7 +43,6 @@ module.exports = (app) => {
       where: { email: email }
     })
       .then(result => {
-        console.log("/api/login: ", result);
         if (!result) {
           return res.status(400).json({ emailnotfound: "Email not found." });
         }
@@ -78,7 +77,6 @@ module.exports = (app) => {
   app.get("/api/getuser/:userId", (req, res) => {
     db.User.findByPk(req.params.userId)
       .then(result => {
-        console.log("/api/getuser: ", result);
         return res.json(result);
       });
   });
@@ -88,7 +86,6 @@ module.exports = (app) => {
       where: { email: req.params.email }
     })
       .then(result => {
-        console.log(result);
         if (result === 0) {
           // not found 
           return res.status(404).end();

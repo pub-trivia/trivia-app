@@ -2,18 +2,14 @@ import axios from "axios";
 
 export default {
     getUser: (id) => {
-        console.log("Get user reached");
-
         return axios.get(`/api/getuser/${id}`);
     },
 
     signUpUser: (name, email, pw, icon, color) => {
-
         return axios.post("/api/signup", { displayName: name, email, password: pw, icon, color })
     },
 
     loginUser: (email, password) => {
-
         return axios.post("/api/login", { email, password })
     },
 
@@ -33,14 +29,7 @@ export default {
         return axios.get(`/api/quiz/users/${game}`);
     },
 
-    // getQuizbyCode: (game) => {
-    //     console.log("==========getQuizbyCode=========")
-    //     console.log(game);
-    //     return axios.get(`/api/quizbycode/${game}`);
-    // },
-
     getQuizCode: () => {
-        console.log("==========getQuizCode=========");
         return axios.get('/api/getcode');
     },
 
@@ -53,7 +42,6 @@ export default {
     },
 
     getCategories: () => {
-        console.log("==========getCategories========");
         return axios.get('/api/categories');
     },
 

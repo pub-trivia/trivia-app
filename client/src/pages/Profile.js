@@ -18,8 +18,6 @@ function Profile() {
   useEffect(() => {
     API.getUser(id)
       .then(result => {
-        console.log("==== getUser ======");
-        console.log(result.data);
         setEmail(result.data.email);
       })
   }, []);

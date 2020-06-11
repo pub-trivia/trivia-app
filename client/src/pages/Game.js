@@ -23,16 +23,33 @@ const Game = () => {
 
     //this use effect should only run the first time
     useEffect(() => {
-        if(localStorage.currentGame === game){
-            getQuestion();
-        } else {
+        if(localStorage.currentGame !== game){
             history.push('/');
+        } else {
+            //getQuestion();
         }
     }, []);
 
     //this use effect is listening for events coming from the server
     useEffect(() => {
-         //when someone responds, change their state on the dashboard
+        ws.on('showQuestion', ({ newquestion }) => {
+            console.log("useEffect showQuestion received");
+            console.log(newquestion);
+            const { questionId, question, questionType, correctIndex, answer1, answer2, answer3, answer4 } = newquestion;
+                let responses = [];
+                if(questionType === "tf"){
+                    responses = [answer1, answer2]
+                } else {
+                    responses = [answer1, answer2, answer3, answer4]
+                }
+                setQuestion({
+                    questionId,
+                    question,
+                    correctIndex,
+                    responses 
+                });
+        }) 
+        //when someone responds, change their state on the dashboard
          ws.on('respData', ({game}) => {
             API.getResponses(game)
                 .then(result => {
