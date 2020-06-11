@@ -50,7 +50,12 @@ module.exports = (app, io) => {
             }).then(result => {
                 console.log(`${result} rows updated`)
                 req.app.io.to(req.params.quizCode).emit('startGame')
-                return res.json(result);
+                getQuestion(req.params.quizCode, callback => {
+                    console.log("=======getQuestion returned ======");
+                    console.log(callback);
+                     //return res.json(callback);
+                    req.app.io.to(req.params.quizCode).emit('showQuestion', { newquestion: callback });
+                })
             }).catch(err => {
                 next(err);
             })
@@ -79,7 +84,9 @@ module.exports = (app, io) => {
         console.log("get /api/quiz/question/:quizCode " + req.params.quizCode)
         await getQuestion(req.params.quizCode, callback => {
             console.log("=======getQuestion returned ======");
-            console.log(callback)
+            console.log(callback);
+        //     //return res.json(callback);
+           req.app.io.to(req.params.quizCode).emit('showQuestion', { callback });
         })
     });
 

@@ -9,21 +9,13 @@ const getQuestion = async (game, callback) => {
         quizId = res.quizId
     });
     
-    await db.Question.findOne({
-        include: { 
-            model: QuizQuestionsAssoc,
-            where: {
-                quizId,
-                progress: 'started'
-            }
-        }
-    }).then(result => {
-        console.log("returning from getQuestion");
-        console.log(result.dataValues);
-        return callback(result.dataValues);
-    }).catch(err => {
-        next(err);
-    })
+    let queryString =  `SELECT * 
+                          FROM Questions q
+                          INNER JOIN QuizQuestionsAssoc a ON q.questionId = a.questionId
+                          WHERE a.quizId=${quizId} AND a.progress="started";`
+    const [results, metadata] = await db.sequelize.query(queryString)
+    return callback(results[0]);
+    //io.to(game).emit('showQuestion', { newquestion: results[0] });
 }
 
 const getQuizId = async (game, callback) => {
