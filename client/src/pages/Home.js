@@ -14,9 +14,6 @@ const Home = () => {
   const [state, dispatch] = useGameContext();
   const { quizCode } = useParams();
 
-  console.log("=====quizCode====");
-  console.log(quizCode);
-
   useEffect(() => {
     if (localStorage.jwtToken) {
         processToken(localStorage.jwtToken);

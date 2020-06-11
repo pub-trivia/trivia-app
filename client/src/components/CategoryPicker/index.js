@@ -3,7 +3,6 @@ import React from 'react';
 const CategoryPicker = () => {
 
     let categories = API.getCategories();
-    console.log("In CategoryPicker: ", categories);
 
     return (
         <div class="dropdown-content" id="pickCategory">
