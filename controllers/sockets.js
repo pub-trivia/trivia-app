@@ -22,13 +22,6 @@ module.exports = (io) => {
             
         })
     
-        // socket.on('response', async ({ game }, callback) => {
-        // //get the user from the server based on the socket id
-        // const user = await getUser(socket.id);
-    
-        // io.to(user.game).emit('respData', {game: user.game});
-        // })
-    
         socket.on("startquestion", async ({ game }, callback) => {
         const user = await getUser(socket.id);
         //create a new roomTimer if there isn't already one active
