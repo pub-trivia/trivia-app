@@ -2,8 +2,7 @@ import React from 'react';
 import './button.css';
 
 const Button = (props) => {
-    console.log("==> adding button with id:")
-    console.log(props.id)
+    
     return (
         <button type={props.type ? props.type : 'button'}
             className={props.className ? props.className : null}

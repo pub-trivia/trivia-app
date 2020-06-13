@@ -22,12 +22,6 @@ module.exports = (io) => {
             
         })
     
-        socket.on("startquestion", async ({ game }, callback) => {
-        const user = await getUser(socket.id);
-        //create a new roomTimer if there isn't already one active
-        roomTimer(user.game, "question", io);
-        })
-    
         socket.on('scoringComplete', async ({ game }, callback) => {
         const user = await getUser(socket.id);
         console.log(`Scoring is complete - socketid: ${socket.id}`)

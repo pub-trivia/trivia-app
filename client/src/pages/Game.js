@@ -60,8 +60,6 @@ const Game = () => {
         //when someone responds, change the state of the scoreboard
         //and pass array of responses
          ws.on('respData', ({ callback }) => {
-           console.log("==> respData received")
-           console.log(callback);
            setScoreboard(callback);
         })
 
@@ -87,8 +85,7 @@ const Game = () => {
 
     const handleResponse = event => {
         let correct; 
-        console.log("==> game.js handle response")
-        console.log(event.target.id);
+        
         if(parseInt(event.target.id) === parseInt(ques.correctIndex)){
             correct = true;
         } else {
