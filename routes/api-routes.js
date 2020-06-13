@@ -114,8 +114,8 @@ module.exports = function (app) {
         });
         db.QuizQuestionsAssoc.bulkCreate(associations)
           .then(response => {
-              console.log("response from bulkCreate: ", response));
-          }
+              console.log("response from bulkCreate: ", response);
+          })
 
       });
     return;

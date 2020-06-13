@@ -7,10 +7,10 @@ module.exports = (io) => {
     // Set up socket handlers
     io.on('connect', (socket) => {
 
-        socket.on('join', async ({ game, name, icon, color }, callback) => {
+        socket.on('join', async ({ game, userId, name, icon, color }, callback) => {
             console.log(`Socket id on join: ${socket.id}`);
             //creates a record of which socket belongs to this user
-            const { error, user } = await addUser({ id: socket.id, game, name, icon, color })
+            const { error, user } = await addUser({ id: socket.id, game, userId, name, icon, color })
             //throws error if someone in the game
             //is already using this name
             if(error) return callback(error);
@@ -22,12 +22,12 @@ module.exports = (io) => {
             
         })
     
-        socket.on('response', async ({ game }, callback) => {
-        //get the user from the server based on the socket id
-        const user = await getUser(socket.id);
+        // socket.on('response', async ({ game }, callback) => {
+        // //get the user from the server based on the socket id
+        // const user = await getUser(socket.id);
     
-        io.to(user.game).emit('respData', {game: user.game});
-        })
+        // io.to(user.game).emit('respData', {game: user.game});
+        // })
     
         socket.on("startquestion", async ({ game }, callback) => {
         const user = await getUser(socket.id);

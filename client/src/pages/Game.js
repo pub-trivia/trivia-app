@@ -13,21 +13,19 @@ import API from '../utils/API';
 
 const Game = () => {
     const [state, dispatch] = useGameContext();
-    const [selected, setSelected] = useState('');
-    const [responded, setScoreboard] = useState('');
+    const [sel, setSelected] = useState();
+    const [responded, setScoreboard] = useState([]);
     const [ques, setQuestion] = useState();
     const [scoring, setScoring] = useState(false);
     let history = useHistory();
 
-    const { game, name, icon, color } = state;
+    const { game, id, name, icon, color } = state;
 
     //this use effect should only run the first time
     useEffect(() => {
         if(localStorage.currentGame !== game){
             history.push('/');
-        } else {
-            //getQuestion();
-        }
+        } 
     }, []);
 
     //this use effect is listening for events coming from the server
@@ -42,23 +40,32 @@ const Game = () => {
                 } else {
                     responses = [answer1, answer2, answer3, answer4]
                 }
-                setQuestion({
-                    questionId,
-                    question,
-                    correctIndex,
-                    responses 
-                });
-        }) 
-        //when someone responds, change their state on the dashboard
-         ws.on('respData', ({game}) => {
-            API.getResponses(game)
-                .then(result => {
-                    setScoreboard(result.data);
-                })
-            
+                //just in case socket is received more than once
+                //only update state if it is a new question
+                if(!ques || ques.questionId !== questionId){
+                    setScoring(false);
+                    setSelected({
+                        questionId,
+                        response: ''
+                    });
+                    setQuestion({
+                        questionId,
+                        question,
+                        correctIndex,
+                        responses 
+                    });
+                };
+        }); 
+
+        //when someone responds, change the state of the scoreboard
+        //and pass array of responses
+         ws.on('respData', ({ callback }) => {
+           console.log("==> respData received")
+           console.log(callback);
+           setScoreboard(callback);
         })
 
-        //time to show the correct response
+        //show the correct response
         ws.on('showAnswers', ({ text }) => {
             setScoring(true);
             API.getScores(game)
@@ -76,47 +83,23 @@ const Game = () => {
                         })
                 })
         })
-
-        ws.on('nextQuestion', ({ game }) => {
-            getQuestion();
-        })
     }, []);
-    
-    const getQuestion = () => {
-        setScoring(false);
-        setSelected('');
-        API.getQuestion(game)
-            .then(result => {
-                const { questionId, question, questionType, correctIndex, answer1, answer2, answer3, answer4 } = result.data;
-                let responses = [];
-                if(questionType === "tf"){
-                    responses = [answer1, answer2]
-                } else {
-                    responses = [answer1, answer2, answer3, answer4]
-                }
-                setQuestion({
-                    questionId,
-                    question,
-                    correctIndex,
-                    responses 
-                });
-                ws.emit('startquestion', { game }, () => {});
-            })
-    }
 
     const handleResponse = event => {
-        let correct;
-         setSelected(event.target.id);
-         if(parseInt(event.target.id) === parseInt(ques.correctIndex)){
-             correct = true;
-         } else {
-             correct = false;
-         }
-         
-         API.saveResponse(game, name, icon, color, correct)
-            .then(result => {
-                ws.emit('response', { game }, () => {});
-            })  
+        let correct; 
+        console.log("==> game.js handle response")
+        console.log(event.target.id);
+        if(parseInt(event.target.id) === parseInt(ques.correctIndex)){
+            correct = true;
+        } else {
+            correct = false;
+        }
+        setSelected({
+            response: event.target.id,
+            ...state
+        });
+        API.saveResponse(game, id, name, icon, color, ques.questionId, correct);
+          
     }
 
     return (
@@ -127,9 +110,7 @@ const Game = () => {
                 ques.responses.map((resp, index) => {
                     return (
                         <Button 
-                            className={`gamebutton 
-                                            ${parseInt(selected) === parseInt(index) ? 'focus' : null} 
-                                            ${scoring ? `disabled ${index == ques.correctIndex ? 'correct' : null}` : null}`}
+                            className={`gamebutton ${parseInt(sel.response) === parseInt(index) ? 'response' : ''} ${scoring ? `disabled ${index == ques.correctIndex ? 'correct' : ''}` : ''}`}
                             text={resp} 
                             handleClick={!scoring ? (event) => handleResponse(event) : null }
                             id={index}

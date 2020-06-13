@@ -8,7 +8,6 @@ import IconPicker from '../IconPicker';
 import ColorPicker from '../ColorPicker';
 
 import "./JoinForm.css";
-import API from '../../utils/API';
 
 const JoinForm = () => {
     const [state, dispatch] = useGameContext();
@@ -35,7 +34,7 @@ const JoinForm = () => {
         });
         //this is the first emit from the client
         //registers the user's socket to this game
-        ws.emit('join', { game: gameCode, name: nameRef.current.value, icon: state.icon, color: state.color }, () => {
+        ws.emit('join', { game: gameCode, userId: state.id, name: nameRef.current.value, icon: state.icon, color: state.color }, () => {
             //TODO: this should handle if someone is already using this name
         });
         //this pushes the player to the wait screen

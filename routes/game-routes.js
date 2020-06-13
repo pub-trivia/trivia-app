@@ -1,5 +1,5 @@
 const db = require('../models');
-const { getQuestion } = require('../controllers/gameController');
+const { getQuestion, recordResponse } = require('../controllers/gameController');
 
 module.exports = (app, io) => {
 
@@ -84,49 +84,11 @@ module.exports = (app, io) => {
     //then either updates or creates the record
     app.post("/api/quiz/response/:quizCode", async (req, res) => {
         console.log("post /api/quiz/response/:quizCode " + req.params.quizCode)
-        const { displayName, icon, color, correct } = req.body;
-        const qInfo = await getStarted(req.params.quizCode)
-        const { quizId, questionId } = qInfo;
-        db.QuizScore.findOne({
-            where: {
-                quizId, 
-                questionId,
-                displayName,
-                icon,
-                color
-            }
-        }).then(result => {
-            if (!result) {
-                //no record exists, so create one
-                db.QuizScore.create({
-                    quizId,
-                    questionId,
-                    displayName,
-                    icon,
-                    color,
-                    correct
-                }).then(result => {
-                    return res.json(result);
-                }).catch(err => {
-                    next(err);
-                })
-            } else {
-                //if a record already exists, update it
-                db.QuizScore.update(
-                    {correct: correct},
-                    {where: {
-                        quizId,
-                        questionId,
-                        displayName
-                    }
-                }).then(result => {
-                    return res.json(result);
-                }).catch(err => {
-                    next(err);
-                })
-            }
-        }).catch(err => {
-            next(err);
+        const { userId, displayName, icon, color, questionId, correct } = req.body;
+        await recordResponse(req.params.quizCode, userId, displayName, icon, color, questionId, correct, callback => {
+            console.log("==> recordResponse returns");
+            console.log(callback);
+            req.app.io.to(req.params.quizCode).emit('respData', { callback });
         })
     })
 
