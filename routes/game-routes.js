@@ -1,6 +1,6 @@
 const db = require('../models');
 const { getQuestion, recordResponse } = require('../controllers/gameController');
-
+const { roomTimer } = require("../controllers/roomTimer");
 module.exports = (app, io) => {
 
     app.io = io;
@@ -49,7 +49,8 @@ module.exports = (app, io) => {
                 req.app.io.to(req.params.quizCode).emit('startGame')
                 getQuestion(req.params.quizCode, callback => {
                     req.app.io.to(req.params.quizCode).emit('showQuestion', { newquestion: callback });
-                })
+                    roomTimer(req.params.quizCode, "question", req.app.io)
+                });
             }).catch(err => {
                 next(err);
             })
