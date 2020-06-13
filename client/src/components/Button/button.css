@@ -7,6 +7,11 @@
     cursor: not-allowed;
 }
 
+.response {
+    background: #9665D8;
+    transition-duration: 0.5s;
+}
+
 .correct {
     opacity: 1;
     background: #03E4AC;

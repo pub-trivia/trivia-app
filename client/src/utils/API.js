@@ -56,9 +56,8 @@ export default {
         return axios.get(`/api/quiz/question/${game}`);
     },
 
-    saveResponse: (game, displayName, icon, color, correct) => {
-        console.log("======saveResponse======");
-        return axios.post(`/api/quiz/response/${game}`, { displayName, icon, color, correct });
+    saveResponse: (game, userId, displayName, icon, color, questionId, correct) => {
+        return axios.post(`/api/quiz/response/${game}`, { userId, displayName, icon, color, questionId, correct });
     },
 
     getScores: (game) => {

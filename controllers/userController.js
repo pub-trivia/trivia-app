@@ -2,17 +2,20 @@ const users = [];
 const db = require('../models');
 const { getQuizId, getQuestionId } = require('./gameController');
 
-const addUser = async ({ id, game, name, icon, color }, cb) => {
-    name = name.trim().toLowerCase();
-    game = game.trim().toLowerCase();
-
+const addUser = async ({ id, game, userId, name, icon, color }, cb) => {
+    name = name.trim().toUpperCase();
+    game = game.trim().toUpperCase();
+    if (!userId) {
+        userId = 999999999;
+    }
+    
     const existingUser = users.find((user) => user.game === game && user.name === name);
 
     if(existingUser){
         return { error: 'That username is already taken in this game!'}
     }
 
-    const user = { id, game, name, icon, color };
+    const user = { id, game, userId, name, icon, color };
 
     users.push(user);
     
@@ -26,9 +29,12 @@ const addUser = async ({ id, game, name, icon, color }, cb) => {
     await getQuestionId(quizId, 1, res => {
         questionId = res.questionId;
     });
-    
+    //creates the first score value for the user
+    //we use this to populate the waiting room
+    //with users that are in the game
     await db.QuizScore.create({
         quizId,
+        userId,
         questionId,
         displayName: name,
         icon,
