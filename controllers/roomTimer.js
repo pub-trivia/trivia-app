@@ -16,8 +16,6 @@ const roomTimer = async (game, io) => {
     setTimeout(() => {
         clearInterval(timer);
         updateScoreboard(game, callback => {
-            console.log("==> roomTimer updateScoreboard callback result")
-            console.log(callback);
             io.to(game).emit('showAnswers', { scores: callback.scores });
             pauseTimer(game, callback.resp, io);  
         });
@@ -27,8 +25,6 @@ const roomTimer = async (game, io) => {
 
 const pauseTimer = (game, progress, io) => {
     let totalTime = 3000;
-    console.log("==> pause timer progress");
-    console.log(progress);
     
     setTimeout(() => {
         if(progress === "inprogress"){

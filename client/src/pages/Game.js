@@ -32,8 +32,6 @@ const Game = () => {
     //this use effect is listening for events coming from the server
     useEffect(() => {
         ws.on('showQuestion', ({ newquestion }) => {
-            console.log("useEffect showQuestion received");
-            console.log(newquestion);
             const { questionId, question, questionType, correctIndex, answer1, answer2, answer3, answer4 } = newquestion;
                 let responses = [];
                 if(questionType === "tf"){
@@ -67,8 +65,6 @@ const Game = () => {
         //show the correct response
         ws.on('showAnswers', ({ scores }) => {
             setScoring(true);
-            console.log("==> showAnswers scores value");
-            console.log(scores);
             dispatch({
                 type: SET_SCORES,
                 post: {
@@ -79,7 +75,6 @@ const Game = () => {
         })
 
         ws.on('endGame', () => {
-            console.log("==> endGame socket reached")
             history.push('/results');
         })
     }, []);

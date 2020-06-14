@@ -48,8 +48,6 @@ const Wait = () => {
         event.preventDefault();
         API.startQuiz(game)
             .then(result => {
-                console.log("======marked question as started=========")
-                console.log(result);
                 //TODO: handle error in starting game
             })
         

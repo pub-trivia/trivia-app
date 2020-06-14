@@ -14,7 +14,6 @@ const GameResults = () => {
 
     //this use effect should only run the first time
     useEffect(() => {
-        console.log("==> GameResults reached for " + game)
         if (localStorage.currentGame !== game || scores.length === 0) {
             history.push('/');
         } 

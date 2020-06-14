@@ -112,8 +112,6 @@ const recordResponse = async (quizCode, userId, displayName, icon, color, questi
                 color,
                 correct
             }).then(result => {
-                console.log("new response created");
-                console.log(result)
                 getResponses(quizId, questionId, res => {
                     return callback(res)
                 });
@@ -131,8 +129,6 @@ const recordResponse = async (quizCode, userId, displayName, icon, color, questi
                     displayName: name
                 }
             }).then(result => {
-                console.log("response updated");
-                console.log(result);
                 getResponses(quizId, questionId, res => {
                     return callback(res)
                 });
@@ -181,8 +177,6 @@ const calcScores = async (game, scores) => {
                             GROUP BY u.displayName, u.userId, u.icon, u.color
                             ORDER BY score DESC;`
     const [results, metadata] = await db.sequelize.query(queryString);
-    console.log("==> gameController results of score========");
-    console.log(results);
     return scores(results);
 }
 
@@ -235,7 +229,6 @@ const closeQuestion = async (quizId, questionCount, resp) => {
                     })
                 }        
             } else {
-                console.log("==> this question hasn't been answered yet")
                 return resp("inprogress");
             }
         }).catch(err => {
@@ -247,8 +240,6 @@ const closeQuestion = async (quizId, questionCount, resp) => {
 }
 
 const finishQuiz = (quizId, scores) => {
-    console.log("==> finish quiz reached")
-    console.log(quizId);
     db.Quiz.update(
         {isActive: false},
         {where: {

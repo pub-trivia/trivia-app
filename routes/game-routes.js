@@ -43,7 +43,6 @@ module.exports = (app, io) => {
 
     //records the user's response to the question
     app.post("/api/quiz/response/:quizCode", async (req, res) => {
-        console.log("post /api/quiz/response/:quizCode " + req.params.quizCode)
         const { userId, displayName, icon, color, questionId, correct } = req.body;
         await recordResponse(req.params.quizCode, userId, displayName, icon, color, questionId, correct, callback => {
             req.app.io.to(req.params.quizCode).emit('respData', { callback });
