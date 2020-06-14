@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ws } from '../components/socket';
+import { SET_SCORES } from '../utils/actions';
 
 import Timer from '../components/Timer';
 import QText from '../components/QText';
@@ -31,8 +32,6 @@ const Game = () => {
     //this use effect is listening for events coming from the server
     useEffect(() => {
         ws.on('showQuestion', ({ newquestion }) => {
-            console.log("useEffect showQuestion received");
-            console.log(newquestion);
             const { questionId, question, questionType, correctIndex, answer1, answer2, answer3, answer4 } = newquestion;
                 let responses = [];
                 if(questionType === "tf"){
@@ -64,22 +63,19 @@ const Game = () => {
         })
 
         //show the correct response
-        ws.on('showAnswers', ({ text }) => {
+        ws.on('showAnswers', ({ scores }) => {
             setScoring(true);
-            API.getScores(game)
-                .then(result => {
-                    setScoreboard(result.data);
-                    API.completeQuestion(game)
-                        .then(res => {
-                             //and emit the scoringcomplete event
-                            if(res.data.gameStatus === "gameover"){
-                                history.push("/results")
-                            } else {
-                                ws.emit('scoringComplete', { game }, () => {});
-                            }
-                            
-                        })
-                })
+            dispatch({
+                type: SET_SCORES,
+                post: {
+                    scores
+                }
+            })
+            setScoreboard(scores);
+        })
+
+        ws.on('endGame', () => {
+            history.push('/results');
         })
     }, []);
 

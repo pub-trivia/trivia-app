@@ -15,8 +15,9 @@ const addUser = async ({ id, game, userId, name, icon, color }, cb) => {
         return { error: 'That username is already taken in this game!'}
     }
 
+    //associate a socketid with a user and game
+    //this value is destroyed when the socket is disconnected
     const user = { id, game, userId, name, icon, color };
-
     users.push(user);
     
     let quizId;
@@ -50,9 +51,9 @@ const addUser = async ({ id, game, userId, name, icon, color }, cb) => {
 }
 
 const removeUser = (id) => {
-
+    
     const index = users.findIndex((user) => user.id === id);
-
+    
     if(index !== -1){
         return users.splice(index, 1)[0];
     }
