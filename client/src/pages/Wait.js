@@ -12,7 +12,7 @@ const Wait = () => {
     const [state, dispatch] = useGameContext();
     let history = useHistory();
 
-    const { game, name, icon, color, users } = state;
+    const { game, users } = state;
 
     //general useEffect for first run
     useEffect(() => {

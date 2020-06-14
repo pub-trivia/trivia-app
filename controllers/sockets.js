@@ -1,6 +1,4 @@
-const { addUser, removeUser, getUser, getUsersInGame } = require('./userController');
-const { getQuizId } = require('./gameController')
-const { roomTimer } = require("./roomTimer");
+const { addUser, removeUser } = require('./userController');
 const db = require('../models');
 
 module.exports = (io) => {
@@ -20,13 +18,6 @@ module.exports = (io) => {
             //users in the game
             io.to(game).emit('gameData');
             
-        })
-    
-        socket.on('scoringComplete', async ({ game }, callback) => {
-        const user = await getUser(socket.id);
-        console.log(`Scoring is complete - socketid: ${socket.id}`)
-        //add a pause so they can see their scores
-        roomTimer(user.game, "pause", io);
         })
     
         socket.on('disconnect', () => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ws } from '../components/socket';
+import { SET_SCORES } from '../utils/actions';
 
 import Timer from '../components/Timer';
 import QText from '../components/QText';
@@ -64,22 +65,22 @@ const Game = () => {
         })
 
         //show the correct response
-        ws.on('showAnswers', ({ text }) => {
+        ws.on('showAnswers', ({ scores }) => {
             setScoring(true);
-            API.getScores(game)
-                .then(result => {
-                    setScoreboard(result.data);
-                    API.completeQuestion(game)
-                        .then(res => {
-                             //and emit the scoringcomplete event
-                            if(res.data.gameStatus === "gameover"){
-                                history.push("/results")
-                            } else {
-                                ws.emit('scoringComplete', { game }, () => {});
-                            }
-                            
-                        })
-                })
+            console.log("==> showAnswers scores value");
+            console.log(scores);
+            dispatch({
+                type: SET_SCORES,
+                post: {
+                    scores
+                }
+            })
+            setScoreboard(scores);
+        })
+
+        ws.on('endGame', () => {
+            console.log("==> endGame socket reached")
+            history.push('/results');
         })
     }, []);
 

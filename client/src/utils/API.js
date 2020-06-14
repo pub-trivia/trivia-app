@@ -50,34 +50,8 @@ export default {
         return axios.post("/api/quiz", { userId, category, difficulty, questionCount, quizCode });
     },
 
-    getQuestion: (game) => {
-        console.log("=========getQuestion===========");
-        console.log("game: " + game)
-        return axios.get(`/api/quiz/question/${game}`);
-    },
-
     saveResponse: (game, userId, displayName, icon, color, questionId, correct) => {
         return axios.post(`/api/quiz/response/${game}`, { userId, displayName, icon, color, questionId, correct });
-    },
-
-    getScores: (game) => {
-        console.log("=======getScores=====");
-        return axios.get(`/api/quiz/scores/${game}`);
-    },
-
-    completeQuestion: (game) => {
-        console.log("=======completeQuestion======");
-        return axios.post(`/api/quiz/store/${game}`);
-    },
-
-    quizComplete: (game) => {
-        console.log("===========quizComplete========");
-        return axios.post(`/api/quiz/end/${game}`);
-    },
-
-    getResponses: (game) => {
-        console.log("===========getResponses========");
-        return axios.get(`/api/quiz/responses/${game}`);
     }
 
 }

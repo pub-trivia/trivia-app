@@ -23,9 +23,11 @@ const getQuizId = async (game, callback) => {
             isActive: 1  
         }
     }).then(result => {
-        return callback(result.dataValues);
+        if(result){
+            return callback(result.dataValues);
+        } 
     }).catch(err => {
-        next(err)
+        console.log(err)
     })
 }
 
@@ -39,7 +41,27 @@ const getQuestionId = async (quizId, qNum, callback) => {
     }).then(result => {
         return callback(result.dataValues);
     }).catch(err => {
-        next(err)
+        console.log(err)
+    })
+}
+
+const startQuiz = async (quizCode, resp) => {
+    let quizId;
+    
+    await getQuizId(quizCode, res => {
+        quizId = res.quizId
+    });
+
+    await db.QuizQuestionsAssoc.update(
+        {progress: "started"},
+        {where: {
+            quizId,
+            questionOrder: 1
+        }}
+    ).then(result => {
+        return resp(result);
+    }).catch(err => {
+        console.log(err);
     })
 }
 
@@ -51,9 +73,10 @@ const getResponses = async (quizId, questionId, callback) =>{
         },
         order: [['updatedAt', 'DESC']]
     }).then(result => {
+        // TODO: Check if everyone has answered
         return callback(result);
     }).catch(err => {
-        next(err);
+        console.log(err);
     })
 }
 
@@ -119,8 +142,147 @@ const recordResponse = async (quizCode, userId, displayName, icon, color, questi
         }
         
     }).catch(err => {
-        next(err);
+        console.log(err);
     })
 }
 
-module.exports = { getQuizId, getQuestionId, getQuestion, recordResponse }
+const updateScoreboard = async (game, callback) => {
+    let quizId;
+    let questionCount;
+
+    await getQuizId(game, res => {
+        quizId = res.quizId;
+        questionCount = res.questionCount
+    });
+
+    await closeQuestion(quizId, questionCount, resp => {
+        calcScores(game, scores => {
+            if(resp !== "inprogress"){
+                finishQuiz(quizId, scores);
+            }
+            return callback({resp, scores});
+        })    
+    })
+}
+
+const calcScores = async (game, scores) => {
+    let quizId;
+    let questionCount;
+
+    await getQuizId(game, res => {
+        quizId = res.quizId;
+        questionCount = res.questionCount
+    });
+
+    let queryString = `SELECT u.displayName, u.userId, u.icon, u.color, (100 * SUM(u.correct) / ${questionCount}) AS score
+                            FROM quizzes q
+                            INNER JOIN QuizScores u ON q.quizId = u.quizId
+                            WHERE q.quizId=${quizId}
+                            GROUP BY u.displayName, u.userId, u.icon, u.color
+                            ORDER BY score DESC;`
+    const [results, metadata] = await db.sequelize.query(queryString);
+    console.log("==> gameController results of score========");
+    console.log(results);
+    return scores(results);
+}
+
+//mark current question as completed 
+//mark next question as started
+//if no next question, complete quiz
+const closeQuestion = async (quizId, questionCount, resp) => {
+    //find the order of the question being closed
+    let lastQ;
+    let nextQ;
+    await db.QuizQuestionsAssoc.findOne(
+        {where: {
+            quizId,
+            progress: "started"
+        }}
+    ).then(result => {
+        //make sure users have responded to it
+        db.QuizScore.findOne(
+            {where: {
+                quizId,
+                questionId: result.dataValues.questionId
+            }}
+        ).then(aok => {
+            if(aok){
+                lastQ = result.dataValues.questionOrder;
+                nextQ = lastQ + 1;
+                db.QuizQuestionsAssoc.update(
+                    {progress: "completed"},
+                    {where: {
+                        quizId,
+                        questionOrder: lastQ
+                        }
+                    }).then(result => {
+                    }).catch(err => 
+                        console.log(err)
+                    )
+                if(lastQ === questionCount){
+                    return resp("finished");
+                } else {
+                    db.QuizQuestionsAssoc.update(
+                        {progress: "started"},
+                        {where: {
+                            quizId,
+                            questionOrder: nextQ
+                        }}
+                    ).then(result => {
+                        return resp("inprogress");
+                    }).catch(err => {
+                        console.log(err);
+                    })
+                }        
+            } else {
+                console.log("==> this question hasn't been answered yet")
+                return resp("inprogress");
+            }
+        }).catch(err => {
+            console.log(err);
+        })
+    }).catch(err => {
+        console.log(err);
+    })
+}
+
+const finishQuiz = (quizId, scores) => {
+    console.log("==> finish quiz reached")
+    console.log(quizId);
+    db.Quiz.update(
+        {isActive: false},
+        {where: {
+            quizId
+        }}
+    ).then(done => {
+    }).catch(err => {
+        console.log(err)
+    })
+    if (scores[0].userId !== 999999999){
+        db.User.increment(
+            {gamesWon: 1},
+            { where: {
+                userId: scores[0].userId
+            }}
+        ).then(winner => {   
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+    scores.map(user => {
+        if(user.userId !== 999999999){
+            db.User.increment(
+                {gamesPlayed: 1},
+                { where: {
+                    userId: user.userId
+                }}
+            ).then(player => {
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+    })
+        
+}
+
+module.exports = { getQuizId, getQuestionId, getQuestion, recordResponse, updateScoreboard, startQuiz, calcScores }
