@@ -13,7 +13,8 @@ const CreateAQuestion = () => {
     const categoryRef = createRef();
     const questionRef = useRef();
     const diffRef = useRef();
-    // const userIdRef = useRef();
+    const userIdRef = useRef();
+    const trueFalseRef = useRef();
     const questionTypeRef = useRef();
     const answer1Ref = useRef();
     const answer2Ref = useRef();
@@ -24,14 +25,22 @@ const CreateAQuestion = () => {
 
     let userId = state.id;
 
+    if (questionTypeRef.current.value === "tf") {
+        questionRef = trueFalseRef.current.value
+    }
+    else {
+        questionRef = questionRef.current.value
+    }
+
     const handleSubmit = event => {
-        event.preventdefault()
-        console.log("got here");
+        event.preventDefault()
+        console.log("question ref:", trueFalseRef.current.value);
         API.createquestion(
-            userId,
-            categoryRef.current.value,
             questionRef.current.value,
+            trueFalseRef.current.value,
+            categoryRef.current.value,
             diffRef.current.value,
+            userId,
             questionTypeRef.current.value,
             answer1Ref.current.value,
             answer2Ref.current.value,
@@ -39,14 +48,14 @@ const CreateAQuestion = () => {
             answer4Ref.current.value,
             correctIndexRef.current.value
         )
-        console.log("results: ")
-            .then(results =>
-                alert("Question Saved")
+            .then(results => (console.log("results: ", results )),
+            alert ("Your Question has been saved"), 
             )
             .catch(err => console.log("Error: ", err));
     };
 
     useEffect(() => {
+        questionTypeRef.current.value = "tf";
         API.getCategories()
             .then(results => setCategories(results.data));
     }, []);
@@ -70,32 +79,32 @@ const CreateAQuestion = () => {
                     <option value="hard">Hard</option>
                 </select>
 
-                <input type="checkbox" class="switch-input" />
+                <input type="checkbox" className="switch-input" />
 
-                <div class="true-false-question" ref={questionTypeRef} value={"tf"}>
+                <div className="true-false-question" ref={questionTypeRef}>
                     <label>Question
                         <input
                             placeholder="Romania is in the European Union"
                             type="text"
-                            ref={questionRef}
+                            ref={trueFalseRef}
                         />
                     </label>
                     <h3>True False</h3>
-                    <label>Options: <span class="instructions">Please Select the correct answer</span></label>
-                    <div class="tf-options">
-                        <div class="tf-option">
+                    <label>Options: <span className="instructions">Please Select the correct answer</span></label>
+                    <div className="tf-options">
+                        <div className="tf-option">
                             <input type="radio" name="truefalse" ref={correctIndexRef}></input>
                             <label>True</label>
                         </div>
-                        <div class="tf-option">
+                        <div className="tf-option">
                             <input type="radio" name="truefalse" ref={correctIndexRef}></input>
                             <label>False</label>
                         </div>
                     </div>
                 </div>
 
-                <div class="multi-choice-question">
-                    <h3 ref={questionTypeRef} value={"mc"}>Multiple Choice</h3>
+                <div className="multi-choice-question">
+                    <h3 ref={questionTypeRef}>Multiple Choice</h3>
                     <label>Question
                         <input
                             placeholder="Which president served the shortest time in office?"
@@ -104,7 +113,7 @@ const CreateAQuestion = () => {
                         />
                     </label>
                     <label>What is the correct answer
-            <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} ref={answer4Ref} />
+                    <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} ref={answer4Ref} />
                     </label>
                     <label> Suggest some incorrect answers
             <input placeholder="William Howard Taft" type="text" ref={answer1Ref} />
@@ -112,7 +121,7 @@ const CreateAQuestion = () => {
                         <input placeholder="Barack Obama" type="text" ref={answer3Ref} />
                     </label>
                 </div>
-                <Button type="submit" text="SAVE QUESTION" onSubmit={(event) => handleSubmit(event)} />
+                <Button type="submit" text="SAVE QUESTION" />
             </form>
         </div>
     )

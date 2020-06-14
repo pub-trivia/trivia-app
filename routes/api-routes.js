@@ -218,7 +218,8 @@ module.exports = function (app) {
 
 
   app.post("/api/createquestion", (req, res) => {
-    const {
+    console.log("reached api route")
+    let {
       question,
       category,
       difficulty,
