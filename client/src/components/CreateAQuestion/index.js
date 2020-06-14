@@ -25,7 +25,7 @@ const CreateAQuestion = () => {
 
     let userId = state.id;
 
-    if (questionTypeRef.current.value === "tf") {
+    if (questionTypeRef === "tf") {
         questionRef = trueFalseRef.current.value
     }
     else {
