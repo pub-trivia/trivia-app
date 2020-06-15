@@ -25,7 +25,9 @@ const getQuizId = async (game, callback) => {
     }).then(result => {
         if(result){
             return callback(result.dataValues);
-        } 
+        } else {
+            return callback("Inactive");
+        }
     }).catch(err => {
         console.log(err)
     })
@@ -42,6 +44,20 @@ const getQuestionId = async (quizId, qNum, callback) => {
         return callback(result.dataValues);
     }).catch(err => {
         console.log(err)
+    })
+}
+
+const checkStart = async (quizId, resp) => {
+    await db.QuizQuestionsAssoc.findOne({
+        attributes: ['progress'],
+        where: {
+            quizId,
+            questionOrder: 1
+        }
+    }).then(result => {
+        return resp(result.dataValues);
+    }).catch(err => {
+        console.log(err);
     })
 }
 
@@ -276,4 +292,4 @@ const finishQuiz = (quizId, scores) => {
         
 }
 
-module.exports = { getQuizId, getQuestionId, getQuestion, recordResponse, updateScoreboard, startQuiz, calcScores }
+module.exports = { getQuizId, getQuestionId, getQuestion, recordResponse, updateScoreboard, startQuiz, checkStart, calcScores }

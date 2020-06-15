@@ -1,5 +1,5 @@
 const db = require('../models');
-const { startQuiz, recordResponse } = require('../controllers/gameController');
+const { getQuizId, startQuiz, checkStart, recordResponse } = require('../controllers/gameController');
 const { readyTimer } = require("../controllers/roomTimer");
 module.exports = (app, io) => {
 
@@ -50,6 +50,28 @@ module.exports = (app, io) => {
             req.app.io.to(req.params.quizCode).emit('respData', { callback });
             return res.json("recorded");
         })
+    })
+
+    app.get("/api/quiz/validate/:quizCode", async (req, res) => {
+        const quizCode = req.params.quizCode;
+        let quizId;
+
+        await getQuizId(quizCode, resp => {
+            quizId = resp.quizId;
+
+            if(resp === "Inactive"){
+                return res.json({ text: "This quiz is no longer active"});
+            } else {
+                checkStart(quizId, resp => {
+                    if(resp.progress === "started" || resp.progress === "completed"){
+                        return res.json({ text: "This quiz has already started"});
+                    } else {
+                        return res.json(resp);
+                    }
+                })
+            }
+        })
+  
     })
 
 }
