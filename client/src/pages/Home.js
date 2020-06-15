@@ -4,15 +4,14 @@ import jwt_decode from 'jwt-decode';
 import JoinForm from "../components/JoinForm";
 import Header from "../components/Header";
 import Button from '../components/Button';
-import { Link, useParams } from "react-router-dom";
-import { ADD_USER } from '../utils/actions';
+import { Link } from "react-router-dom";
+import { ADD_USER, ADD_GAME } from '../utils/actions';
 import { useGameContext } from '../utils/GlobalState';
 import setAuthToken from '../utils/setAuthToken';
 
 
 const Home = () => {
   const [state, dispatch] = useGameContext();
-  const { quizCode } = useParams();
 
   useEffect(() => {
     if (localStorage.jwtToken) {

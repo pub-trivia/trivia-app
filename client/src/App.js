@@ -23,13 +23,16 @@ const App = () => {
         <GameProvider>
           <Navbar />
           <Route exact path="/" component={Home} />
-          <Route exact path="/join/:quizCode" component={Home} />
+          
           <Route exact path="/wait" component={Wait} />
           <Route exact path="/game" component={Game} />
           <Route exact path="/results" component={GameResults} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
 
+          <Switch>
+            <Route path="/join/:quizCode" component={Home} />
+          </Switch>
           <Switch>
             <PrivateRoute exact path="/profile" component={Profile} />
           </Switch>
