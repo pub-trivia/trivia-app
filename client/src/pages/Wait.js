@@ -18,7 +18,9 @@ const Wait = () => {
     useEffect(() => {
         if(localStorage.currentGame !== game){
             history.push('/');
-        } 
+        } else {
+            getPlayers();
+        }
     }, []);
 
     useEffect(() => {
@@ -26,23 +28,28 @@ const Wait = () => {
         //get all players registered to this game from the db
         //writes the array of users to state
         ws.on("gameData", () => {
-            API.getAllPlayers(game)
-                .then(result => {
-                    dispatch({
-                        type: SET_USERS,
-                        post: {
-                            users: result.data
-                        }
-                    })
-                })
+           getPlayers();
         })
 
         //client receives websocket to start game
         //user is pushed to /game route
         ws.on("startGame", () => {
+            console.log("==> on.startGame reached")
             history.push('/game');
         })
     }, []);
+
+    const getPlayers = () => {
+        API.getAllPlayers(game)
+            .then(result => {
+                dispatch({
+                    type: SET_USERS,
+                    post: {
+                        users: result.data
+                    }
+                })
+            })
+    }
 
     const handleClick = (event) => {
         event.preventDefault();

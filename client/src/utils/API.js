@@ -56,6 +56,10 @@ export default {
 
     validateQuiz: (quizCode) => {
         return axios.get(`/api/quiz/validate/${quizCode}`);
+    },
+
+    addPlayer: (quizCode, userId, displayName, icon, color) => {
+        return axios.post(`/api/quiz/player/${quizCode}`, { userId, displayName, icon, color });
     }
 
 }

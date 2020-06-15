@@ -37,11 +37,21 @@ const JoinForm = () => {
                             name: userName
                         }
                     });
-                    ws.emit('join', { game: gameCode, userId: state.id, name: nameRef.current.value, icon: state.icon, color: state.color }, (result) => {
-                        console.log(result);
-                        //TODO: this should handle if someone is already using this name
-                    });
-                    history.push("/wait");
+                    API.addPlayer(gameCode, state.id, userName, state.icon, state.color)
+                        .then(result => {
+                            console.log("==> result of API.addPlayer")
+                            console.log(result);
+                            if(result.data.error){
+                                alert(result.data.error);
+                            } else {
+                                ws.emit('join', { game: gameCode, name: nameRef.current.value }, (user) => {
+                                    console.log("==> result of emit.join")
+                                    console.log(user)
+                                    history.push("/wait");
+                                })
+                            }
+                    
+                        })
                 } else {
                     //TODO: prettier errors in join form
                     alert(result.data.text);

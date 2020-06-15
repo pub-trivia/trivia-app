@@ -1,5 +1,6 @@
 const db = require('../models');
 const { getQuizId, startQuiz, checkStart, recordResponse } = require('../controllers/gameController');
+const { addPlayer } = require("../controllers/userController");
 const { readyTimer } = require("../controllers/roomTimer");
 module.exports = (app, io) => {
 
@@ -26,6 +27,15 @@ module.exports = (app, io) => {
         await readyTimer(req.params.quizCode, req.app.io);
         return; 
     }) 
+
+    app.post("/api/quiz/player/:quizCode", async (req, res) => {
+        const { userId, displayName, icon, color } = req.body;
+        await addPlayer(req.params.quizCode, userId, displayName, icon, color, callback => {
+            console.log("==> app.post addPlayer returns")
+            console.log(callback);
+            return res.json(callback);
+        })
+    })
 
     //get list of users by quiz
     app.get("/api/quiz/users/:quizCode", async (req, res) => {
