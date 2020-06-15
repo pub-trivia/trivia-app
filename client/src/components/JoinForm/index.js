@@ -23,7 +23,7 @@ const JoinForm = () => {
             gameRef.current.value = state.game;
         }
         nameRef.current.value = state.name;
-    }, []);
+    }, [state.name]);
 
     const handleSubmit = event => {
         event.preventDefault();
