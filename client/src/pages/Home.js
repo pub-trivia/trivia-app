@@ -5,7 +5,7 @@ import JoinForm from "../components/JoinForm";
 import Header from "../components/Header";
 import Button from '../components/Button';
 import { Link } from "react-router-dom";
-import { ADD_USER, ADD_GAME } from '../utils/actions';
+import { ADD_USER } from '../utils/actions';
 import { useGameContext } from '../utils/GlobalState';
 import setAuthToken from '../utils/setAuthToken';
 
