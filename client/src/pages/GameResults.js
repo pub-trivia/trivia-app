@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { ADD_GAME } from '../utils/actions';
 import { useGameContext } from '../utils/GlobalState';
 import PlayerIcon from '../components/PlayerIcons';
 import Scoreboard from '../components/Scoreboard';
@@ -19,6 +20,19 @@ const GameResults = () => {
         } 
     }, []);
 
+    const handleNew = (event) => {
+        //remove currentGame from localstorage
+        localStorage.removeItem('currentGame');
+        //remove currentGame from state
+        dispatch({
+            type: ADD_GAME,
+            post: {
+                game: ''
+            }
+        });
+        history.push('/');
+    }
+    
     return (
         <div className="results-page">
             <h2 className="winner">WINNER</h2>
@@ -34,9 +48,7 @@ const GameResults = () => {
                     
                 </>
                 : null}
-                <Link to="/">
-                    <Button type="button" text="NEW GAME" />
-                </Link>
+            <Button type="button" handleClick={(event) => handleNew(event)} text="NEW GAME" />
         </div>
     )
 }
