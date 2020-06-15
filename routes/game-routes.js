@@ -1,6 +1,6 @@
 const db = require('../models');
-const { startQuiz, calcScores, recordResponse } = require('../controllers/gameController');
-const { roomTimer } = require("../controllers/roomTimer");
+const { startQuiz, recordResponse } = require('../controllers/gameController');
+const { readyTimer } = require("../controllers/roomTimer");
 module.exports = (app, io) => {
 
     app.io = io;
@@ -21,7 +21,9 @@ module.exports = (app, io) => {
         await startQuiz(req.params.quizCode, resp => {
             req.app.io.to(req.params.quizCode).emit('startGame')
         })
-        await roomTimer(req.params.quizCode, req.app.io);
+        //add a pause to ensure everyone is on /game
+        //before the first q is sent
+        await readyTimer(req.params.quizCode, req.app.io);
         return; 
     }) 
 

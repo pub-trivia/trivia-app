@@ -4,6 +4,7 @@ import { ws } from '../components/socket';
 import { SET_SCORES } from '../utils/actions';
 
 import Timer from '../components/Timer';
+import Countdown from '../components/Countdown';
 import QText from '../components/QText';
 import Button from '../components/Button';
 import Scoreboard from '../components/Scoreboard';
@@ -14,6 +15,8 @@ import API from '../utils/API';
 
 const Game = () => {
     const [state, dispatch] = useGameContext();
+    const [gameready, setReady] = useState(false);
+    const [count, setCountdown] = useState();
     const [sel, setSelected] = useState();
     const [responded, setScoreboard] = useState([]);
     const [ques, setQuestion] = useState();
@@ -31,7 +34,12 @@ const Game = () => {
 
     //this use effect is listening for events coming from the server
     useEffect(() => {
+        ws.on('getReady', ({ text }) => {
+            setCountdown(text);
+        });
+
         ws.on('showQuestion', ({ newquestion }) => {
+            setReady(true);
             const { questionId, question, questionType, correctIndex, answer1, answer2, answer3, answer4 } = newquestion;
                 let responses = [];
                 if(questionType === "tf"){
@@ -97,24 +105,29 @@ const Game = () => {
 
     return (
         <>
-            <Timer />
-            <QText text={ques ? ques.question : null} />
-            {ques ? 
-                ques.responses.map((resp, index) => {
-                    return (
-                        <Button 
-                            className={`gamebutton ${parseInt(sel.response) === parseInt(index) ? 'response' : ''} ${scoring ? `disabled ${index == ques.correctIndex ? 'correct' : ''}` : ''}`}
-                            text={resp} 
-                            handleClick={!scoring ? (event) => handleResponse(event) : null }
-                            id={index}
-                            key={index}
-                        />  
-                        )
-                    })
-                : null
-                }
-            {/* Pass an array of user objects showing everyone in the game: name, icon, color, responded (T/F), %Correct */}
-            <Scoreboard users={responded ? responded : null}/>
+            { gameready ? 
+                    <>
+                        <Timer />
+                        <QText text={ques ? ques.question : null} />
+                            {ques ? 
+                                ques.responses.map((resp, index) => {
+                                    return (
+                                        <Button 
+                                            className={`gamebutton ${parseInt(sel.response) === parseInt(index) ? 'response' : ''} ${scoring ? `disabled ${index == ques.correctIndex ? 'correct' : ''}` : ''}`}
+                                            text={resp} 
+                                            handleClick={!scoring ? (event) => handleResponse(event) : null }
+                                            id={index}
+                                            key={index}
+                                        />  
+                                        )
+                                    })
+                                : null
+                                }
+                        {/* Pass an array of user objects showing everyone in the game: name, icon, color, responded (T/F), %Correct */}
+                        <Scoreboard users={responded ? responded : null}/>
+                    </>
+            : <Countdown timer={count} />
+            }
         </>
     )
 }

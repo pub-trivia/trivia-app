@@ -36,5 +36,20 @@ const pauseTimer = (game, progress, io) => {
     }, totalTime)
 }
 
-module.exports = { roomTimer };
+const readyTimer = async (game, io) => {
+    let totalTime = 6000;
+    let timerValue = 5;
+
+    let timer = setInterval(() => {
+        timerValue --;
+        io.to(game).emit('getReady', { text: timerValue})
+    }, 1000);
+
+    setTimeout(() => {
+        clearInterval(timer);
+        roomTimer(game, io);
+    }, totalTime)
+}
+
+module.exports = { readyTimer };
 
