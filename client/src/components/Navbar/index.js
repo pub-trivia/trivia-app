@@ -43,7 +43,7 @@ const Navbar = () => {
             {auth ? 
                 <div className="navbar">
                     <div className="nav-logo">
-                        <img src="./assets/PubTriviaLogo.png" alt="Pub Trivia Logo"/>
+                        <img src="../../assets/PubTriviaLogo.png" alt="Pub Trivia Logo"/>
                     </div>
                     <div className="main-menu">
                         <div className="topnav" id="myTopnav">

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useGameContext } from '../../utils/GlobalState';
 import { ADD_PLAYER } from '../../utils/actions';
 import Button from '../Button';
@@ -14,11 +14,16 @@ const JoinForm = () => {
     let gameRef = useRef();
     let nameRef = useRef();
     let history = useHistory();
+    const { quizCode } = useParams();
 
     useEffect(() => {
-        gameRef.current.value = state.game;
+        if(quizCode){
+            gameRef.current.value = quizCode;
+        } else if (state.game !== '') {
+            gameRef.current.value = state.game;
+        }
         nameRef.current.value = state.name;
-    }, []);
+    }, [state.name]);
 
     const handleSubmit = event => {
         event.preventDefault();
