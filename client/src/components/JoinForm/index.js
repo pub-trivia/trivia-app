@@ -17,8 +17,6 @@ const JoinForm = () => {
     const { quizCode } = useParams();
 
     useEffect(() => {
-        console.log("==> JoinForm quizCode")
-        console.log(quizCode);
         if(quizCode){
             gameRef.current.value = quizCode;
         } else if (state.game !== '') {
