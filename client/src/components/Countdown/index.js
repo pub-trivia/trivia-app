@@ -7,8 +7,7 @@ const Countdown = (props) => {
     const { timer } = props;
 
     useEffect(() => {
-        console.log('use effect for countdown triggered');
-        console.log(timer);
+        console.log("==> get ready to begin")
     }, [timer]);
 
     return (

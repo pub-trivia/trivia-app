@@ -64,6 +64,10 @@ export default {
 
     addPlayer: (quizCode, userId, displayName, icon, color) => {
         return axios.post(`/api/quiz/player/${quizCode}`, { userId, displayName, icon, color });
+    },
+
+    reportQuestion: (questionId) => {
+        return axios.post(`/api/question/moderate/${questionId}`)
     }
 
 }
