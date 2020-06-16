@@ -74,6 +74,82 @@ module.exports = (app) => {
       });
   });
 
+  app.post("/api/update/:userId", (req, res) => {
+    
+    const { displayName, email, password, newpw } = req.body;
+    console.log("==> app.post /api/update/:userId");
+    console.log(displayName, email, password, newpw);
+
+    db.User.findOne({
+      where: { userId: req.params.userId }
+    })
+      .then(result => {
+        console.log("==> result of db.User.findOne");
+        console.log(result);
+        if(displayName !== result.dataValues.displayName){
+            db.User.update(
+                  {displayName: displayName},
+                  {where: {
+                      userId: req.params.userId
+                  }}
+              ).then(name => {
+              }).catch(err => {
+                  console.log(err);
+              })
+        }
+        if(email !== result.dataValues.email){
+            db.User.update(
+                {email: email},
+                {where: {
+                    userId: req.params.userId
+                }}
+            ).then(mail => {
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+        if(newpw){
+          bcrypt.compare(password, result.dataValues.password)
+           .then(isMatch => {
+             if(isMatch){
+                bcrypt.genSalt(10, (err, salt) => {
+                  bcrypt.hash(newpw, salt, (err, hash) => {
+                    if (err) throw err;
+                    db.User.update(
+                      {password: hash},
+                      {where: {
+                          userId: req.params.userId
+                      }}
+                      ).then(pw => {
+                      })
+                      .catch(err => console.log(err));
+                  })
+                }); 
+              } else {
+                return res.status(400).json({ passwordincorrect: "Old password is incorrect" });
+              }
+          })
+        }
+        const payload = {
+          id: result.dataValues.userId,
+          name: displayName,
+          icon: result.dataValues.icon,
+          color: result.dataValues.color
+        };
+
+        jwt.sign(
+          payload,
+          'shhhhhhh',
+          (err, token) => {
+            return res.json({
+              success: true,
+              token: "Bearer " + token
+            });
+          }
+        ); 
+      })
+  })
+
   app.get("/api/getuser/:userId", (req, res) => {
     db.User.findByPk(req.params.userId)
       .then(result => {
