@@ -16,6 +16,8 @@ const CreateAQuestion = () => {
     const userIdRef = useRef();
     const trueFalseRef = useRef();
     const questionTypeRef = useRef();
+    const questionTFRef = useRef();
+    const questionMCRef = useRef();
     const answer1Ref = useRef();
     const answer2Ref = useRef();
     const answer3Ref = useRef();
@@ -25,37 +27,55 @@ const CreateAQuestion = () => {
 
     let userId = state.id;
 
-    if (questionTypeRef === "tf") {
-        questionRef = trueFalseRef.current.value
-    }
-    else {
-        questionRef = questionRef.current.value
-    }
+    // if (questionTypeRef === "tf") {
+    //     questionRef = trueFalseRef.current.value
+    // }
+    // else {
+    //     questionRef = questionRef.current.value
+    // }
 
     const handleSubmit = event => {
-        event.preventDefault()
-        console.log("question ref:", trueFalseRef.current.value);
-        API.createquestion(
-            questionRef.current.value,
-            trueFalseRef.current.value,
-            categoryRef.current.value,
-            diffRef.current.value,
-            userId,
-            questionTypeRef.current.value,
-            answer1Ref.current.value,
-            answer2Ref.current.value,
-            answer3Ref.current.value,
-            answer4Ref.current.value,
-            correctIndexRef.current.value
-        )
-            .then(results => (console.log("results: ", results )),
-            alert ("Your Question has been saved"), 
+        event.preventDefault();
+        console.log("question type:", questionTypeRef.current.value);
+        if (questionTypeRef.current.value === "tf") {
+            console.log("correctIndexRef: ", correctIndexRef);
+            API.createTFQuestion(
+                questionTFRef.current.value,
+                categoryRef.current.value,
+                diffRef.current.value,
+                userId,
+                questionTypeRef.current.value,
+                "True",
+                "False",
+                "",
+                "",
+                correctIndexRef.current.value
             )
-            .catch(err => console.log("Error: ", err));
+                .then(results => (console.log("results: ", results)),
+                    alert("Your Question has been saved"),
+                )
+                .catch(err => console.log("Error: ", err));
+        } else {
+            API.createMCQuestion(
+                questionMCRef.current.value,
+                categoryRef.current.value,
+                diffRef.current.value,
+                userId,
+                answer1Ref.current.value,
+                answer2Ref.current.value,
+                answer3Ref.current.value,
+                answer4Ref.current.value
+            )
+                .then(results => (console.log("results: ", results)),
+                    alert("Your Question has been saved"),
+                )
+                .catch(err => console.log("Error: ", err));
+        }
+
     };
 
     useEffect(() => {
-        questionTypeRef.current.value = "tf";
+        questionTypeRef.current.value = "mc";
         API.getCategories()
             .then(results => setCategories(results.data));
     }, []);
@@ -86,7 +106,7 @@ const CreateAQuestion = () => {
                         <input
                             placeholder="Romania is in the European Union"
                             type="text"
-                            ref={trueFalseRef}
+                            ref={questionTFRef}
                         />
                     </label>
                     <h3>True False</h3>
@@ -109,7 +129,7 @@ const CreateAQuestion = () => {
                         <input
                             placeholder="Which president served the shortest time in office?"
                             type="text"
-                            ref={questionRef}
+                            ref={questionMCRef}
                         />
                     </label>
                     <label>What is the correct answer
