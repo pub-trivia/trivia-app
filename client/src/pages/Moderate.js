@@ -12,8 +12,8 @@ function Moderate() {
         API.getModerationQueue()
             .then(result => {
                 console.log("==> results of getModerationQueue")
-                console.log(result);
-                setQuestions(result);
+                console.log(result.data);
+                setQuestions(result.data);
             })
     }, []);
 
@@ -42,18 +42,15 @@ function Moderate() {
             <div className="row">
                 {modQues ? 
                     <div className="col">
-                        <h2>QUESTIONS AWAITING MODERATION</h2>
-                        {modQues.map((question) => {
+                        <h4>QUESTIONS AWAITING MODERATION</h4>
+                        {modQues.map((question, index) => {
                             return (
                                 <>
                                     <QuestionModInfo
-                                        key={question.questionId}
+                                        key={index}
                                         category={question.category}
                                         question={question.question}
                                         difficulty={question.difficulty}
-                                        total={question.totalCount}
-                                        correct={question.correctCount}
-                                        needsModeration={question.needsModeration}
                                         questionId={question.questionId}
                                     />
                                 </>

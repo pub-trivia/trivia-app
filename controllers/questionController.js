@@ -1,12 +1,12 @@
 const db = require('../models');
 
 const getModQuestions = async (callback) => {
-    db.Questions.findAll({
+    db.Question.findAll({
         where: {
             needsModeration: true
         }
     }).then(result => {
-        return callback(result.dataValues);
+        return callback(result);
     })
 }
 
