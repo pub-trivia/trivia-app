@@ -68,6 +68,10 @@ export default {
 
     reportQuestion: (questionId) => {
         return axios.post(`/api/question/moderate/${questionId}`)
+    },
+
+    getModerationQueue: () => {
+        return axios.get("/api/moderate");
     }
 
 }
