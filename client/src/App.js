@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Signout from './components/Signout';
 import Game from './pages/Game';
 import GameResults from './pages/GameResults';
 import Wait from './pages/Wait';
@@ -41,6 +42,9 @@ const App = () => {
           </Switch>
           <Switch>
             <PrivateRoute exact path="/question" component={Question} />
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path="/signout" component={Signout} />
           </Switch>
         </GameProvider>
       </div>
