@@ -52,6 +52,14 @@ export default {
 
     saveResponse: (game, userId, displayName, icon, color, questionId, correct) => {
         return axios.post(`/api/quiz/response/${game}`, { userId, displayName, icon, color, questionId, correct });
+    },
+
+    validateQuiz: (quizCode) => {
+        return axios.get(`/api/quiz/validate/${quizCode}`);
+    },
+
+    addPlayer: (quizCode, userId, displayName, icon, color) => {
+        return axios.post(`/api/quiz/player/${quizCode}`, { userId, displayName, icon, color });
     }
 
 }
