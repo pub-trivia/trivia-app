@@ -191,31 +191,18 @@ module.exports = function (app) {
       .catch((err) => res.json(err));
   });
 
-  app.put("/api/gameplayed/:userid/:won", (req, res) => {
-    console.log("/api/gameplayed/: ", req.params);
-    const { userid, won } = req.params;
-    var addwin = "";
-    if (won === "true") addwin = "gamesWon = gamesWon + 1,";
-    let query =
-      `UPDATE Users SET ${addwin} gamesPlayed = gamesPlayed + 1 ` +
-      `WHERE userid = ${userid};`;
-    db.sequelize.query(query).then((result) => {
-      res.json(result[0]);
-    });
-  });
-
-  app.put("/api/question/moderate/:questionid", (req, res) => {
-    let questionid = parseInt(req.params.questionid);
-    console.log("/api/question/moderate/:questionid", req.params);
+  app.post("/api/question/moderate/:questionId", (req, res) => {
+    let questionId = parseInt(req.params.questionId);
+    console.log("/api/question/moderate/:questionId", req.params.questionId);
     db.Question.update(
       { needsModeration: true },
-      { where: { questionId: questionid } }
+      { where: { questionId } }
     )
       .then((response) =>
-        res.json(`Question ${questionid} marked for moderation.`)
+        res.json(`Question ${questionId} marked for moderation.`)
       )
       .catch((err) =>
-        res.json(`Update for question ${req.params.questionid} failed. ${err}`)
+        res.json(`Update for question ${req.params.questionId} failed. ${err}`)
       );
   });
 
