@@ -30,16 +30,10 @@ const { Op } = require("sequelize");
 // *POST /api/quiz - create a new quiz, pass in number of questions,
 //       category, difficulty, userId, returns new QuizId (need to get code first!)
 // *POST /api/createquestion - create a new question
-// *POST /api/addquestionscore/ - mark a questionId answered with 
-//     correct true/false for a quiz
-//
-// *GET /api/question/:questionid - get all the information about a question
-//    from the questions table 
+
 // *PUT /api/question/moderate/:questionid - mark for moderation
 //    can call above but doesn't yet work
 //
-// *PUT /api/gameplayed/:userid/:won  call when a user ends a game, 
-//       updates games played, games won
 
 module.exports = function (app) {
   app.get("/api/categories", (req, res) => {
@@ -204,12 +198,6 @@ module.exports = function (app) {
       .catch((err) =>
         res.json(`Update for question ${req.params.questionId} failed. ${err}`)
       );
-  });
-
-  // Added a logout route
-  app.get("/logout", function (req, res) {
-    req.logout();
-    res.redirect("/");
   });
 
   // send message via Twilio 
