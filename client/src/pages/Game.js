@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { decodeHTML } from 'entities';
 import { useHistory } from 'react-router-dom';
 import { ws } from '../components/socket';
 import { SET_SCORES } from '../utils/actions';
@@ -114,7 +115,7 @@ const Game = () => {
                                     return (
                                         <Button 
                                             className={`gamebutton ${parseInt(sel.response) === parseInt(index) ? 'response' : ''} ${scoring ? `disabled ${index == ques.correctIndex ? 'correct' : ''}` : ''}`}
-                                            text={resp} 
+                                            text={decodeHTML(resp)} 
                                             handleClick={!scoring ? (event) => handleResponse(event) : null }
                                             id={index}
                                             key={index}
