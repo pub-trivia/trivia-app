@@ -9,6 +9,10 @@ export default {
         return axios.post("/api/signup", { displayName: name, email, password: pw, icon, color })
     },
 
+    updateUser: (id, name, email, oldpw, newpw) => {
+        return axios.post(`/api/update/${id}`, { displayName: name, email, password: oldpw, newpw })
+    },
+
     loginUser: (email, password) => {
         return axios.post("/api/login", { email, password })
     },
