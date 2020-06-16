@@ -7,8 +7,6 @@ module.exports = (app, io) => {
 
     // marks the first question in the quiz as started
     app.post("/api/quiz/start/:quizCode", async (req, res) => {
-        console.log("==> app.post /api/quiz/start/:quizCode")
-        console.log(req.params.quizCode);
         await startQuiz(req.params.quizCode, resp => {
             req.app.io.to(req.params.quizCode).emit('startGame')
         })
@@ -21,8 +19,6 @@ module.exports = (app, io) => {
     app.post("/api/quiz/player/:quizCode", async (req, res) => {
         const { userId, displayName, icon, color } = req.body;
         await addPlayer(req.params.quizCode, userId, displayName, icon, color, callback => {
-            console.log("==> app.post addPlayer returns")
-            console.log(callback);
             return res.json(callback);
         })
     })
