@@ -17,9 +17,13 @@ const QText = (props) => {
     }
 
     return (
-        <div className="qbox">
-            <span className="qtext">{decodeHTML(props.text)}</span>
-            <button className="report-button" type="button" onClick={(event) => reportQuestion(event)}><i className="fas fa-exclamation"></i></button>
+        <div className="stem">
+            <div className="report">
+                <button className="report-button" type="button" onClick={(event) => reportQuestion(event)}><i className="fas fa-exclamation"></i>&nbsp;Report content</button>
+            </div>
+            <div className="qbox">
+                <span className="qtext">{decodeHTML(props.text)}</span>   
+            </div>
         </div>
     )
 }

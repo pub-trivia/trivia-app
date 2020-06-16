@@ -1,33 +1,43 @@
 .qbox {
     width: 300px;
     display: block;
-    margin: 10px auto;
-    padding: 15px;
+    margin: 0px auto;
+    padding: 15px 15px 15px 15px;
     border: 1px solid black;
     border-radius: 10px;
+}
+
+.stem {
+    margin: 20px 0px;
+
 }
 
 .qtext {
     font-size: 24px;
 }
 
+.report {
+    width: 300px;
+    display: block;
+    margin: auto;
+    padding: 0px;
+}
+
 .report-button {
-    width: 20px;
+    width: auto;
     height: 20px;
     margin: 0 0 0 auto;
-    border-radius: 50%;
-    background-color: #FFFFFF;
+    padding: 0px;
     box-sizing: border-box;
     display: flex;
-    align-items: center;
+    align-items: right;
     justify-content: center;
-    font-size: 14px;
+    font-size: 12px;
     color: #9FA1A0;
-    border: 1px solid #9FA1A0;
+    background-color: transparent;
 }
 
 .report-button:hover {
-    background-color: #FFFFFF;
     color: #F94141;
-    border: 1px solid #F94141;
+    background-color: transparent;
 }
