@@ -1,19 +1,9 @@
-const db = require('../models');
-const { getQuizId, startQuiz, checkStart, recordResponse } = require('../controllers/gameController');
+const { getQuizId, getQuestionId, startQuiz, checkStart, getResponses, recordResponse } = require('../controllers/gameController');
 const { addPlayer } = require("../controllers/userController");
 const { readyTimer } = require("../controllers/roomTimer");
 module.exports = (app, io) => {
 
     app.io = io;
-    //utility function to grab quizId and questionIds
-    const getQuizDetails = async (quiz, qNum) => {
-        let queryString = `SELECT q.quizId, u.questionId, q.questionCount
-                            FROM quizzes q
-                            INNER JOIN QuizQuestionsAssoc u ON q.quizId = u.quizId
-                            WHERE q.quizCode=\"${quiz}\" AND q.isActive=1 AND u.questionOrder=${qNum};`
-        const [results, metadata] = await db.sequelize.query(queryString)
-        return results[0];
-    }
 
     // marks the first question in the quiz as started
     app.post("/api/quiz/start/:quizCode", async (req, res) => {
@@ -39,17 +29,19 @@ module.exports = (app, io) => {
 
     //get list of users by quiz
     app.get("/api/quiz/users/:quizCode", async (req, res) => {
-        const quizInfo = await getQuizDetails(req.params.quizCode, 1)
-        const { quizId, questionId } = quizInfo;
-        db.QuizScore.findAll({
-            where: {
-                quizId,
-                questionId
-            }
-        }).then(result => {
-            return res.json(result);
-        }).catch(err => {
-            next(err);
+        let quizId;
+        let questionId;
+
+        await getQuizId(req.params.quizCode, resp => {
+            quizId = resp.quizId;
+        })
+
+        await getQuestionId(quizId, 1, resp => {
+            questionId = resp.questionId;
+        })
+
+        await getResponses(quizId, questionId, callback => {
+            return res.json(callback);
         })
     })
 
