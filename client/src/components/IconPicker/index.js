@@ -20,7 +20,7 @@ const IconPicker = () => {
         { name: "cat" },
         { name: "puppy" },
         { name: "octopus" },
-        { name: "squirell" }]
+        { name: "squirrel" }]
 
     const toggleIcon = event => {
         dispatch({
@@ -39,7 +39,7 @@ const IconPicker = () => {
                     <div className="icon-choice" key={icon.name}>
                         <input type="radio" name="icon" id={icon.name} value={icon.name} onClick={event => toggleIcon(event)} />
                         <label>
-                            <PlayerIcons icon={icon.name} color='#04D5FB' />
+                            <PlayerIcons icon={icon.name} color={state.icon === icon.name ? state.color : '#DEDEDE'} />
                         </label>
                     </div>
                 )

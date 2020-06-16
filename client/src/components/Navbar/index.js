@@ -43,13 +43,14 @@ const Navbar = () => {
             {auth ? 
                 <div className="navbar">
                     <div className="nav-logo">
-                        <img src="./assets/PubTriviaLogo.png" alt="Pub Trivia Logo"/>
+                        <img src="../../assets/PubTriviaLogo.png" alt="Pub Trivia Logo"/>
                     </div>
                     <div className="main-menu">
                         <div className="topnav" id="myTopnav">
                             <Link to="/">Home</Link>
                             <Link to="/new">Create a Game</Link>
                             <Link to="/question">Create a Question</Link>
+                            <Link to="/signout">Sign Out</Link>
                             {/* <a href="javascript:void(0);" style="font-size:15px;" className="icon" onclick="myFunction()">&#9776;</a> */}
                         </div>
                         <div className="profile-icon"><a href="/profile"><PlayerIcon icon={icon} color={color} /></a></div>

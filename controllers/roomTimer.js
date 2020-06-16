@@ -1,14 +1,12 @@
-const roomTimer = (game, type, io) => {
-    let totalTime;
-    let timerValue;
-        
-    if(type === "question") {
-        totalTime = 16000;
-        timerValue = 16;
-    } else {
-        totalTime = 4000;
-        timerValue = 4;
-    }
+const { updateScoreboard, getQuestion } = require('./gameController');
+
+const roomTimer = async (game, io) => {
+    let totalTime = 16000;
+    let timerValue = 15;
+
+    await getQuestion(game, callback => {
+        io.to(game).emit('showQuestion', { newquestion: callback });
+    })
 
     let timer = setInterval(() => {
         timerValue --;
@@ -17,13 +15,41 @@ const roomTimer = (game, type, io) => {
 
     setTimeout(() => {
         clearInterval(timer);
-        if(type === "question"){
-            io.to(game).emit('showAnswers', { text: "Time's up!"})
-        } else {
-            io.to(game).emit('nextQuestion', { game });
-        }
+        updateScoreboard(game, callback => {
+            io.to(game).emit('showAnswers', { scores: callback.scores });
+            pauseTimer(game, callback.resp, io);  
+        });
+        
     }, totalTime)
 }
 
-module.exports = { roomTimer };
+const pauseTimer = (game, progress, io) => {
+    let totalTime = 3000;
+    
+    setTimeout(() => {
+        if(progress === "inprogress"){
+            roomTimer(game, io);
+        } else {
+            io.to(game).emit('endGame');
+            return;
+        }   
+    }, totalTime)
+}
+
+const readyTimer = async (game, io) => {
+    let totalTime = 6000;
+    let timerValue = 5;
+
+    let timer = setInterval(() => {
+        timerValue --;
+        io.to(game).emit('getReady', { text: timerValue})
+    }, 1000);
+
+    setTimeout(() => {
+        clearInterval(timer);
+        roomTimer(game, io);
+    }, totalTime)
+}
+
+module.exports = { readyTimer };
 

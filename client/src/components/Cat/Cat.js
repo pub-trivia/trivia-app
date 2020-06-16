@@ -9,14 +9,12 @@ const Cat = forwardRef((props, ref) => {
     const wrapperFunction = () => {
         API.getCategories()
         .then(results => {
-        console.log(results.data);
         setCategories(
             results.data
         )})
     }
 
     useEffect(() => {
-        console.log("reached CatDrop")
         wrapperFunction();
     } ,[])
     

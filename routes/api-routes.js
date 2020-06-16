@@ -76,18 +76,7 @@ module.exports = function (app) {
       });
   });
 
-  // // gets the questions that have been assigned to a quiz
-  // app.get("/api/quiz/questions/:quizid", (req, res) => {
-  //   console.log("GET api/quiz/questions: ", req.params);
-  //   const query = `SELECT DISTINCT questionId FROM QuizScores WHERE quizId = ${req.params.quizid} ;`;
-  //   db.sequelize.query(query).then((results) => {
-  //     let questions = results[0].map((question) => question.questionId);
-  //     return res.json(questions);
-  //   });
-  // });
-
   app.post("/api/quiz", (req, res) => {
-    console.log("POST /api/quiz/ ", req.body);
     const { userId, category, difficulty, questionCount, quizCode } = req.body;
     db.Quiz.create({
       userId,
@@ -96,7 +85,6 @@ module.exports = function (app) {
       questionCount,
       quizCode,
     }).then((response) => {
-      console.log("response from Quiz creation: ", response.dataValues);
       getQuizQuestions(response.dataValues.quizId, category, difficulty, questionCount, userId);
       res.json(response.quizCode);
     });
@@ -104,7 +92,6 @@ module.exports = function (app) {
 
   function getQuizQuestions(quizId, category, difficulty, questionCount, userId) {
     // get questions for a quiz 
-    console.log("in getQuizQuestions: ", quizId);
     db.Question.findAll({
       where: {
         category: category,
@@ -125,28 +112,19 @@ module.exports = function (app) {
             progress: null
           };
         });
-        console.log("Data to go into quizQuestionsAssoc: ", associations);
         db.QuizQuestionsAssoc.bulkCreate(associations)
-          .then(response => console.log("response from bulkCreate: ", response));
+          .then(response => {
+              console.log("response from bulkCreate: ", response);
+          })
 
       });
     return;
   }
 
-  // app.get("/api/question/:id", (req, res) => {
-
-  //   let query = `SELECT Q.question, Q.questionId, Q.category, Q.difficulty, SUM(C.correct) AS correctCount, COUNT(C.createdAt) AS totalCount  
-  //       FROM Questions Q LEFT JOIN QuizScores C ON Q.questionId = C.questionId  
-  //       WHERE Q.questionId = ${req.params.id};`;
-  //   db.sequelize.query(query)
-  //     .then(result => res.json(result[0]))
-  //     .catch(err => res.json(err));
-  // });
-
   app.get("/api/getcode", (req, res) => {
     let codeArray = [];
     let quizCode = "A1B2";
-    db.sequelize.query("SELECT quizCode FROM quizzes").then((results) => {
+    db.sequelize.query("SELECT quizCode FROM quizzes WHERE isActive=true").then((results) => {
       codeArray = results[0].map((result) => result.quizCode);
       quizCode = generateRandomCode();
       while (codeArray.indexOf(quizCode) !== -1) {
@@ -175,51 +153,13 @@ module.exports = function (app) {
       }
       randomCode = randomCode + charPicked;
     }
-    console.log("In generateRandomCode: ", randomCode);
     return randomCode;
   };
-
-  // app.get("/api/quizbyid/:quizid", (req, res) => {
-  //   db.Quiz.findOne({
-  //     where: {
-  //       quizId: req.params.quizid,
-  //     },
-  //   }).then((result) => {
-  //     res.json(result);
-  //   });
-  // });
-
-  // app.get("/api/quizbycode/:code", (req, res) => {
-  //   console.log("===========api/quizbycode/:code=======");
-  //   console.log(req.params.code);
-  //   db.Quiz.findOne({
-  //     where: {
-  //       quizCode: req.params.code,
-  //     },
-  //   }).then((result) => {
-  //     res.json(result);
-  //   });
-  // });
-
-  // app.post("/api/addquestionscore", (req, res) => {
-  //   const { quizId, userId, questionId, displayName, icon, color, correct } = req.body;
-  //   db.QuizScore.create({
-  //     quizId,
-  //     userId,
-  //     questionId,
-  //     displayName,
-  //     icon,
-  //     color,
-  //     correct,
-  //   }).then((result) => {
-  //     res.json(result);
-  //   });
-  // });
-
 
   app.post("/api/createtfquestion", (req, res) => {
     console.log("reached /api/createtfquestion");
     let {
+
       question,
       category,
       difficulty,
@@ -333,9 +273,10 @@ module.exports = function (app) {
         process.env.TWILIO_AUTH_TOKEN);
 
     const textList = req.body.phoneNums;
-    textList.forEach(function (value) {
-      console.log(value);
-
+    let currentNumber = "";
+    for (let i = 0; i < textList.length; i++) {
+      currentNumber = textList[i];
+      if (currentNumber === null) continue;
       gameMaker.messages.create({
         to: value,
         from: twilioFrom,
@@ -343,7 +284,8 @@ module.exports = function (app) {
       }, function (err, message) {
         console.log(err);
       });
-    });
+
+    }
 
   })
 };

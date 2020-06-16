@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { SET_AUTH, SET_COLOR, SET_ICON, SET_USERS, ADD_PLAYER, ADD_USER, ADD_GAME, UPDATE_USER } from './actions';
+import { SET_COLOR, SET_ICON, SET_USERS, SET_SCORES, ADD_PLAYER, ADD_USER, ADD_GAME } from './actions';
 
 const GameContext = createContext();
 const { Provider } = GameContext;
@@ -16,15 +16,15 @@ const reducer = (state, action) => {
                 ...state,
                 color: action.post.color
             };
-        case SET_AUTH:
-            return {
-                ...state,
-                auth: action.post.auth
-            };
         case SET_USERS:
             return {
                 ...state,
                 users: action.post.users
+            };
+        case SET_SCORES:
+            return {
+                ...state,
+                scores: action.post.scores
             };
         case ADD_PLAYER:
             return {
@@ -46,13 +46,6 @@ const reducer = (state, action) => {
                 ...state,
                 game: action.post.game
             };
-        case UPDATE_USER:
-            return {
-                ...state,
-                id: action.post.id,
-                name: action.post.name,
-                email: action.post.email,
-            };
         default:
             return state;
     }
@@ -62,12 +55,14 @@ const GameProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
         id: '',
         game: '',
+        gameid: '',
         name: '',
         email: '',
         icon: '',
         color: '',
         auth: false,
-        users: []
+        users: [],
+        scores: []
     });
     console.log("==============state================");
     console.log(state);

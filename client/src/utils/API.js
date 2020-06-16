@@ -2,27 +2,23 @@ import axios from "axios";
 
 export default {
     getUser: (id) => {
-        console.log("Get user reached");
-
         return axios.get(`/api/getuser/${id}`);
     },
 
     signUpUser: (name, email, pw, icon, color) => {
-
         return axios.post("/api/signup", { displayName: name, email, password: pw, icon, color })
     },
 
-    loginUser: (email, password) => {
+    updateUser: (id, name, email, oldpw, newpw) => {
+        return axios.post(`/api/update/${id}`, { displayName: name, email, password: oldpw, newpw })
+    },
 
+    loginUser: (email, password) => {
         return axios.post("/api/login", { email, password })
     },
 
     message: (quizCode, phoneNums) => {
         return axios.post("/api/messages", { quizCode, phoneNums });
-    },
-
-    joinQuiz: (game, displayName, icon, color) => {
-        return axios.post(`/api/join/${game}`, { displayName, icon, color })
     },
 
     startQuiz: (game) => {
@@ -41,14 +37,7 @@ export default {
         return axios.get(`/api/quiz/users/${game}`);
     },
 
-    // getQuizbyCode: (game) => {
-    //     console.log("==========getQuizbyCode=========")
-    //     console.log(game);
-    //     return axios.get(`/api/quizbycode/${game}`);
-    // },
-
     getQuizCode: () => {
-        console.log("==========getQuizCode=========");
         return axios.get('/api/getcode');
     },
 
@@ -61,7 +50,6 @@ export default {
     },
 
     getCategories: () => {
-        console.log("==========getCategories========");
         return axios.get('/api/categories');
     },
 
@@ -70,35 +58,16 @@ export default {
         return axios.post("/api/quiz", { userId, category, difficulty, questionCount, quizCode });
     },
 
-    getQuestion: (game) => {
-        console.log("=========getQuestion===========");
-        console.log("game: " + game)
-        return axios.get(`/api/quiz/question/${game}`);
+    saveResponse: (game, userId, displayName, icon, color, questionId, correct) => {
+        return axios.post(`/api/quiz/response/${game}`, { userId, displayName, icon, color, questionId, correct });
     },
 
-    saveResponse: (game, displayName, icon, color, correct) => {
-        console.log("======saveResponse======");
-        return axios.post(`/api/quiz/response/${game}`, { displayName, icon, color, correct });
+    validateQuiz: (quizCode) => {
+        return axios.get(`/api/quiz/validate/${quizCode}`);
     },
 
-    getScores: (game) => {
-        console.log("=======getScores=====");
-        return axios.get(`/api/quiz/scores/${game}`);
-    },
-
-    completeQuestion: (game) => {
-        console.log("=======completeQuestion======");
-        return axios.post(`/api/quiz/store/${game}`);
-    },
-
-    quizComplete: (game) => {
-        console.log("===========quizComplete========");
-        return axios.post(`/api/quiz/end/${game}`);
-    },
-
-    getResponses: (game) => {
-        console.log("===========getResponses========");
-        return axios.get(`/api/quiz/responses/${game}`);
+    addPlayer: (quizCode, userId, displayName, icon, color) => {
+        return axios.post(`/api/quiz/player/${quizCode}`, { userId, displayName, icon, color });
     }
 
 }

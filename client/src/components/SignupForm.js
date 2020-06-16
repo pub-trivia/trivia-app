@@ -34,9 +34,12 @@ const SignupForm = () => {
             color: result.data.color,
             auth: true
           }
-        });
+        })
         history.push('/login');
       })
+      .catch(err => {
+        alert("Error signing up, email may already be registered.");
+      });
   }
 
   return (

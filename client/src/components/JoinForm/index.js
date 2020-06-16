@@ -1,46 +1,66 @@
 import React, { useRef, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useGameContext } from '../../utils/GlobalState';
 import { ADD_PLAYER } from '../../utils/actions';
+import API from '../../utils/API';
 import Button from '../Button';
+import { ws } from '../socket';
 import IconPicker from '../IconPicker';
 import ColorPicker from '../ColorPicker';
 
+
 import "./JoinForm.css";
-import API from '../../utils/API';
 
 const JoinForm = () => {
     const [state, dispatch] = useGameContext();
     let gameRef = useRef();
     let nameRef = useRef();
     let history = useHistory();
+    const { quizCode } = useParams();
 
     useEffect(() => {
-        console.log("In useEffect, state:", state);
-        gameRef.current.value = state.game;
+        if(quizCode){
+            gameRef.current.value = quizCode;
+        } else if (state.game !== '') {
+            gameRef.current.value = state.game;
+        }
         nameRef.current.value = state.name;
-        console.log("Check settings: ", gameRef.current, nameRef.current);
-    }, []);
+    }, [state.name]);
 
     const handleSubmit = event => {
         event.preventDefault();
-        //TODO: Handle if the quiz code does not match an active quiz
-        localStorage.setItem('currentGame', gameRef.current.value);
-        //TODO: Handle if the displayName selected is not unique for this quiz
-        API.joinQuiz(
-            gameRef.current.value,
-            nameRef.current.value,
-            state.icon,
-            state.color)
-            .then(result => {
-                dispatch({
-                    type: ADD_PLAYER,
-                    post: {
-                        game: gameRef.current.value,
-                        name: nameRef.current.value
-                    }
-                });
-                history.push("/wait");
+        let gameCode = gameRef.current.value.toUpperCase();
+        let userName = nameRef.current.value.toUpperCase();
+        API.validateQuiz(gameCode)
+            .then(result =>{
+                if (!result.data.text) {
+                    localStorage.setItem('currentGame', gameCode);
+                    dispatch({
+                        type: ADD_PLAYER,
+                        post: {
+                            game: gameCode,
+                            name: userName
+                        }
+                    });
+                    API.addPlayer(gameCode, state.id, userName, state.icon, state.color)
+                        .then(result => {
+                            console.log("==> result of API.addPlayer")
+                            console.log(result);
+                            if(result.data.error){
+                                alert(result.data.error);
+                            } else {
+                                ws.emit('join', { game: gameCode, name: nameRef.current.value }, (user) => {
+                                    console.log("==> result of emit.join")
+                                    console.log(user)
+                                    history.push("/wait");
+                                })
+                            }
+                    
+                        })
+                } else {
+                    //TODO: prettier errors in join form
+                    alert(result.data.text);
+                }
             })
     };
 

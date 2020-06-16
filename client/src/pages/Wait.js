@@ -12,45 +12,52 @@ const Wait = () => {
     const [state, dispatch] = useGameContext();
     let history = useHistory();
 
-    const { game, name, icon, color, users } = state;
+    const { game, users } = state;
 
     //general useEffect for first run
     useEffect(() => {
-        if(localStorage.currentGame === game){
-            ws.emit('join', { game, name, icon, color }, () => {});
-            API.startQuiz(game)
-                .then(result => {
-                    console.log("======marked question as started=========")
-                    console.log(result);
-                })
-        } else {
+        if(localStorage.currentGame !== game){
             history.push('/');
-        } 
+        } else {
+            getPlayers();
+        }
     }, []);
 
     useEffect(() => {
-        ws.on("gameData", ({ users }) => {
-            API.getAllPlayers(game)
-                .then(result => {
-                    console.log("===== socket gameData received =======")
-                    console.log(result.data);
-                    dispatch({
-                        type: SET_USERS,
-                        post: {
-                            users: result.data
-                        }
-                    })
-                })
+        //client receives websocket for gameData
+        //get all players registered to this game from the db
+        //writes the array of users to state
+        ws.on("gameData", () => {
+           getPlayers();
         })
 
-        ws.on("startGame", ({ game, users }) => {
+        //client receives websocket to start game
+        //user is pushed to /game route
+        ws.on("startGame", () => {
+            console.log("==> on.startGame reached")
             history.push('/game');
         })
     }, []);
 
+    const getPlayers = () => {
+        API.getAllPlayers(game)
+            .then(result => {
+                dispatch({
+                    type: SET_USERS,
+                    post: {
+                        users: result.data
+                    }
+                })
+            })
+    }
+
     const handleClick = (event) => {
         event.preventDefault();
-        ws.emit("allHere", { game }, () => { });
+        API.startQuiz(game)
+            .then(result => {
+                //TODO: handle error in starting game
+            })
+        
     }
 
 

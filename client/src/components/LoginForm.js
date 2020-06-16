@@ -32,6 +32,10 @@ const LoginForm = () => {
                 const { token } = res.data;
                 processToken(token);
             })
+            .catch(err => {
+                console.log(err);
+                alert("Email address is not registered, go to signup page.");
+            });
     }
 
     const processToken = (token) => {

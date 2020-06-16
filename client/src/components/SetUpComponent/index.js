@@ -17,7 +17,7 @@ const SetUpComponent = () => {
   const [categories, setCategories] = useState([]);
   const [quizCode, setQuizCode] = useState('XXXX');
   const [playerList, setPlayerList] = useState({
-    phoneNums: [{ cellNum: "" }]
+    phoneNums: []
   });
 
   let userId = state.id;
@@ -39,12 +39,12 @@ const SetUpComponent = () => {
       quizCode)
       .then(result => console.log(result))
       .catch(err => console.log("Error: ", err));
-
-    const phoneNums = playerList.phoneNums.map(player => player.cellNum);
-
-    API.message(quizCode, phoneNums)
-      .then(result => console.log(result))
-      .catch(err => console.log(err));
+    if (playerList.phoneNums.length > 0) {
+      const phoneNums = playerList.phoneNums.map(player => player.cellNum);
+      API.message(quizCode, phoneNums)
+        .then(result => console.log(result))
+        .catch(err => console.log(err));
+    }
 
     // set game in 
     dispatch({
@@ -58,9 +58,12 @@ const SetUpComponent = () => {
   };
 
   const handleAddNumber = () => {
-    console.log("In addNumber: ", newNumberRef);
-    console.log("playerList: ", playerList);
-    setPlayerList({ phoneNums: playerList.phoneNums.concat([{ cellNum: newNumberRef.current.value }]) });
+    if (playerList.phoneNums.length === 0) {
+      setPlayerList({ phoneNums: [{ cellNum: newNumberRef.current.value }] });
+    }
+    else {
+      setPlayerList({ phoneNums: playerList.phoneNums.concat([{ cellNum: newNumberRef.current.value }]) });
+    }
   };
 
   const handleChangeNumber = index => event => {
