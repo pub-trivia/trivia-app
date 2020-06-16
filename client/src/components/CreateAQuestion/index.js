@@ -75,7 +75,7 @@ const CreateAQuestion = () => {
     };
 
     useEffect(() => {
-        questionTypeRef.current.value = "mc";
+        questionTypeRef.current.value = "tf";
         API.getCategories()
             .then(results => setCategories(results.data));
     }, []);
@@ -113,11 +113,11 @@ const CreateAQuestion = () => {
                     <label>Options: <span className="instructions">Please Select the correct answer</span></label>
                     <div className="tf-options">
                         <div className="tf-option">
-                            <input type="radio" name="truefalse" ref={correctIndexRef}></input>
+                            <input type="radio" name="truefalse" ref={correctIndexRef} ></input>
                             <label>True</label>
                         </div>
                         <div className="tf-option">
-                            <input type="radio" name="truefalse" ref={correctIndexRef}></input>
+                            <input type="radio" name="truefalse" ref={correctIndexRef} ></input>
                             <label>False</label>
                         </div>
                     </div>

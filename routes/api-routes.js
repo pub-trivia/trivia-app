@@ -114,7 +114,7 @@ module.exports = function (app) {
         });
         db.QuizQuestionsAssoc.bulkCreate(associations)
           .then(response => {
-              console.log("response from bulkCreate: ", response);
+            console.log("response from bulkCreate: ", response);
           })
 
       });
@@ -157,9 +157,8 @@ module.exports = function (app) {
   };
 
   app.post("/api/createtfquestion", (req, res) => {
-    console.log("reached /api/createtfquestion");
+    console.log("reached /api/createtfquestion: ", req.body);
     let {
-
       question,
       category,
       difficulty,
@@ -188,8 +187,8 @@ module.exports = function (app) {
         res.json(newQuestion);
       })
       .catch((err) => res.json(err));
-  }
-  );
+  });
+
 
   app.post("/api/createmcquestion", (req, res) => {
     console.log("reached /api/createmcquestion")
