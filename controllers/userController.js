@@ -56,8 +56,13 @@ const addUserSocket = async ({ id, game, name }, cb) => {
     name = name.trim().toUpperCase();
     game = game.trim().toUpperCase();
     
-    //associate a socketid with a user and game
-    //this value is destroyed when the socket is disconnected
+    //check if user socketid is already associated with another game
+    const index = users.findIndex((user) => user.id === id);
+    // if yes, remove that record
+    if(index !== -1){
+        return users.splice(index, 1)[0];
+    }
+    //associate a socketid with the user and current game
     const user = { id, game, name };
     users.push(user);
     
@@ -74,8 +79,4 @@ const removeUser = (id) => {
     }
 }
 
-const getUser = (id) => users.find((user) => user.id === id);
-
-const getUsersInGame = (game) => users.filter((user) => user.game === game);
-
-module.exports = { addPlayer, addUserSocket, removeUser, getUser, getUsersInGame }
+module.exports = { addPlayer, addUserSocket, removeUser }
