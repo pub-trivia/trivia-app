@@ -67,18 +67,20 @@ const startQuiz = async (quizCode, resp) => {
     await getQuizId(quizCode, res => {
         quizId = res.quizId
     });
-
-    await db.QuizQuestionsAssoc.update(
-        {progress: "started"},
-        {where: {
-            quizId,
-            questionOrder: 1
-        }}
-    ).then(result => {
-        return resp(result);
-    }).catch(err => {
-        console.log(err);
-    })
+    if(quizId){
+        await db.QuizQuestionsAssoc.update(
+            {progress: "started"},
+            {where: {
+                quizId,
+                questionOrder: 1
+            }}
+        ).then(result => {
+            return resp(result);
+        }).catch(err => {
+            console.log(err);
+        })
+    } 
+    
 }
 
 const getResponses = async (quizId, questionId, callback) =>{
@@ -87,7 +89,7 @@ const getResponses = async (quizId, questionId, callback) =>{
             quizId,
             questionId
         },
-        order: [['updatedAt', 'DESC']]
+        order: [['updatedAt', 'ASC']]
     }).then(result => {
         // TODO: Check if everyone has answered
         return callback(result);
@@ -292,4 +294,4 @@ const finishQuiz = (quizId, scores) => {
         
 }
 
-module.exports = { getQuizId, getQuestionId, getQuestion, recordResponse, updateScoreboard, startQuiz, checkStart, calcScores }
+module.exports = { getQuizId, getQuestionId, getQuestion, recordResponse, updateScoreboard, startQuiz, checkStart, getResponses }

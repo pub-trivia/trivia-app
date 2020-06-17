@@ -14,7 +14,9 @@ const CreateAQuestion = () => {
     const questionRef = useRef();
     const diffRef = useRef();
     const userIdRef = useRef();
-    const trueFalseRef = useRef();
+    const trueRef = useRef();
+    const falseRef = useRef();
+    const trueOrFalse = useRef();
     const questionTypeRef = useRef();
     const questionTFRef = useRef();
     const questionMCRef = useRef();
@@ -26,23 +28,20 @@ const CreateAQuestion = () => {
     const [categories, setCategories] = useState([]);
 
     let userId = state.id;
+    var tfIndex;
 
     const handleSubmit = event => {
         event.preventDefault();
         console.log("question type:", questionTypeRef.current.value);
         if (questionTypeRef.current.value === "tf") {
-            console.log("correctIndexRef: ", correctIndexRef);
+            console.log("true or false: ", tfIndex);
+
             API.createTFQuestion(
                 questionTFRef.current.value,
                 categoryRef.current.value,
                 diffRef.current.value,
                 userId,
-                questionTypeRef.current.value,
-                "True",
-                "False",
-                "",
-                "",
-                correctIndexRef.current.value
+                tfIndex
             )
                 .then(results => (console.log("results: ", results)),
                     alert("Your Question has been saved"),
@@ -68,10 +67,14 @@ const CreateAQuestion = () => {
     };
 
     useEffect(() => {
-        questionTypeRef.current.value = "mc";
+        questionTypeRef.current.value = "tf";
         API.getCategories()
             .then(results => setCategories(results.data));
     }, []);
+
+    const setTrueOrFalse = event => {
+        tfIndex = event.target.value;
+    }
 
     return (
         <div>
@@ -92,9 +95,9 @@ const CreateAQuestion = () => {
                     <option value="hard">Hard</option>
                 </select>
 
-                <input type="checkbox" className="switch-input" />
+                <input type="checkbox" className="switch-input" ref={questionTypeRef} />
 
-                <div className="true-false-question" ref={questionTypeRef}>
+                <div className="true-false-question" >
                     <label>Question
                         <input
                             placeholder="Romania is in the European Union"
@@ -106,11 +109,11 @@ const CreateAQuestion = () => {
                     <label>Options: <span className="instructions">Please Select the correct answer</span></label>
                     <div className="tf-options">
                         <div className="tf-option">
-                            <input type="radio" name="truefalse" ref={correctIndexRef}></input>
+                            <input type="radio" name="truefalse" value="0" onClick={event => setTrueOrFalse(event)} ></input>
                             <label><span className="tflabel"></span>True</label>
                         </div>
                         <div className="tf-option">
-                            <input type="radio" name="truefalse" ref={correctIndexRef}></input>
+                            <input type="radio" name="truefalse" value="1" onClick={event => setTrueOrFalse(event)}></input>
                             <label><span className="tflabel"></span>False</label>
                         </div>
                     </div>
