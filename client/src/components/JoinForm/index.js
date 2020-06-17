@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useGameContext } from '../../utils/GlobalState';
-import { ADD_PLAYER } from '../../utils/actions';
+import { ADD_PLAYER, CLEAR_GAME } from '../../utils/actions';
 import API from '../../utils/API';
 import Button from '../Button';
 import { ws } from '../socket';
@@ -40,6 +40,14 @@ const JoinForm = () => {
                         post: {
                             game: gameCode,
                             name: userName
+                        }
+                    });
+                    dispatch({
+                        type: CLEAR_GAME,
+                        post: {
+                            users: [],
+                            scores: [],
+                            responses: []
                         }
                     });
                     API.addPlayer(gameCode, state.id, userName, state.icon, state.color)
