@@ -31,6 +31,7 @@ const App = () => {
           <Route exact path="/results" component={GameResults} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/moderate" component={Moderate} />
 
           <Switch>
             <Route path="/join/:quizCode" component={Home} />
@@ -43,9 +44,6 @@ const App = () => {
           </Switch>
           <Switch>
             <PrivateRoute exact path="/question" component={Question} />
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path="/moderate" component={Moderate} />
           </Switch>
           <Switch>
             <PrivateRoute exact path="/signout" component={Signout} />
