@@ -4,16 +4,22 @@ import API from '../../utils/API';
 // import Toggle from "../Toggle";
 import Button from "../Button";
 import './CreateAQuestion.css';
-// const [state, dispatch] = useGameContext();
+import { useGameContext } from "../../utils/GlobalState";
 // const [categories] = useState([]);
 // import processToken from "../../utils/setAuthToken";
 
 const CreateAQuestion = () => {
+    const [state, dispatch] = useGameContext();
     const categoryRef = createRef();
     const questionRef = useRef();
     const diffRef = useRef();
     const userIdRef = useRef();
-    const questionTypeRef = useRef();
+    const trueRef = useRef();
+    const falseRef = useRef();
+    const trueOrFalse = useRef();
+    const questionTypeRef = useRef("tf");
+    const questionTFRef = useRef();
+    const questionMCRef = useRef();
     const answer1Ref = useRef();
     const answer2Ref = useRef();
     const answer3Ref = useRef();
@@ -21,39 +27,59 @@ const CreateAQuestion = () => {
     const correctIndexRef = useRef();
     const [categories, setCategories] = useState([]);
 
-    // let userId = state.id;
+    let userId = state.id;
+    var tfIndex;
 
     const handleSubmit = event => {
-        event.preventdefault()
-        console.log("got here");
-        API.createquestion(
-            // userId,
-            categoryRef.current.value,
-            questionRef.current.value,
-            diffRef.current.value,
-            questionTypeRef.current.value,
-            answer1Ref.current.value,
-            answer2Ref.current.value,
-            answer3Ref.current.value,
-            answer4Ref.current.value,
-            correctIndexRef.current.value
-        )
-        console.log("results: ")
-            .then(results =>
-                alert("Question Saved")
+        event.preventDefault();
+        console.log("question type:", questionTypeRef.current.value);
+        if (questionTypeRef.current.value === "tf") {
+            console.log("true or false: ", tfIndex);
+
+            API.createTFQuestion(
+                questionTFRef.current.value,
+                categoryRef.current.value,
+                diffRef.current.value,
+                userId,
+                tfIndex
             )
-            .catch(err => console.log("Error: ", err));
+                .then(results => (console.log("results: ", results)),
+                    alert("Your Question has been saved"),
+                )
+                .catch(err => console.log("Error: ", err));
+        } else {
+            API.createMCQuestion(
+                questionMCRef.current.value,
+                categoryRef.current.value,
+                diffRef.current.value,
+                userId,
+                answer1Ref.current.value,
+                answer2Ref.current.value,
+                answer3Ref.current.value,
+                answer4Ref.current.value
+            )
+                .then(results => (console.log("results: ", results)),
+                    alert("Your Question has been saved"),
+                )
+                .catch(err => console.log("Error: ", err));
+        }
+
     };
 
     useEffect(() => {
+        questionTypeRef.current.value = "mc";
         API.getCategories()
             .then(results => setCategories(results.data));
     }, []);
 
+    const setTrueOrFalse = event => {
+        tfIndex = event.target.value;
+    }
+
     return (
         <div>
             <h2>Create Your Own Question</h2>
-            <form onSubmit={(event) => handleSubmit(event)}>
+            <form onSubmit={(event) => handleSubmit(event)} >
                 <label htmlFor="catPicker"><h6>Select a Topic</h6>
                     <select name="catPicker" ref={categoryRef}
                     >
@@ -69,41 +95,41 @@ const CreateAQuestion = () => {
                     <option value="hard">Hard</option>
                 </select>
 
-                <input type="checkbox" class="switch-input" />
+                <input type="checkbox" className="switch-input" ref={questionTypeRef} />
 
-                <div class="true-false-question" ref={questionTypeRef} value={"tf"}>
+                <div className="true-false-question" >
                     <label>Question
                         <input
                             placeholder="Romania is in the European Union"
                             type="text"
-                            ref={questionRef}
+                            ref={questionTFRef}
                         />
                     </label>
                     <h3>True False</h3>
-                    <label>Options: <span class="instructions">Please Select the correct answer</span></label>
-                    <div class="tf-options">
-                        <div class="tf-option">
-                            <input type="radio" name="truefalse" ref={correctIndexRef}></input>
-                            <label>True</label>
+                    <label>Options: <span className="instructions">Please select the correct answer</span></label>
+                    <div className="tf-options">
+                        <div className="tf-option">
+                            <input type="radio" id="trueradio" name="truefalse" value="0" onClick={event => setTrueOrFalse(event)} ></input>
+                            <label for="trueradio"><span className="tflabel"></span>True</label>
                         </div>
-                        <div class="tf-option">
-                            <input type="radio" name="truefalse" ref={correctIndexRef}></input>
-                            <label>False</label>
+                        <div className="tf-option">
+                            <input type="radio" id="falseradio" name="truefalse" value="1" onClick={event => setTrueOrFalse(event)}></input>
+                            <label for="falseradio"><span className="tflabel"></span>False</label>
                         </div>
                     </div>
                 </div>
 
-                <div class="multi-choice-question">
-                    <h3 ref={questionTypeRef} value={"mc"}>Multiple Choice</h3>
+                <div className="multi-choice-question">
+                    <h3 ref={questionTypeRef}>Multiple Choice</h3>
                     <label>Question
                         <input
                             placeholder="Which president served the shortest time in office?"
                             type="text"
-                            ref={questionRef}
+                            ref={questionMCRef}
                         />
                     </label>
                     <label>What is the correct answer
-            <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} ref={answer4Ref} />
+                    <input placeholder="William Henry Harrison" type="text" ref={correctIndexRef} ref={answer4Ref} />
                     </label>
                     <label> Suggest some incorrect answers
             <input placeholder="William Howard Taft" type="text" ref={answer1Ref} />

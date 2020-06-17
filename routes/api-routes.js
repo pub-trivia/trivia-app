@@ -108,7 +108,7 @@ module.exports = function (app) {
         });
         db.QuizQuestionsAssoc.bulkCreate(associations)
           .then(response => {
-              console.log("response from bulkCreate: ", response);
+            console.log("response from bulkCreate: ", response);
           })
 
       });
@@ -150,23 +150,21 @@ module.exports = function (app) {
     return randomCode;
   };
 
-  app.post("/api/createquestion", (req, res) => {
-    const {
+  app.post("/api/createtfquestion", (req, res) => {
+    console.log("reached /api/createtfquestion: ", req.body);
+    let {
       question,
       category,
       difficulty,
       userId,
-      questionType,
-      answer1,
-      answer2,
-      answer3,
-      answer4,
       correctIndex,
     } = req.body;
-    if (questionType === "tf") {
-      answer1 = "True";
-      answer2 = "False";
-    }
+    const questionType = "tf";
+    const answer1 = "True";
+    const answer2 = "False";
+    const answer3 = "";
+    const answer4 = "";
+
     db.Question.create({
       question,
       category,
@@ -185,9 +183,62 @@ module.exports = function (app) {
       .catch((err) => res.json(err));
   });
 
+  app.post("/api/createmcquestion", (req, res) => {
+    console.log("reached /api/createmcquestion")
+    let {
+      question,
+      category,
+      difficulty,
+      userId,
+      answer1,
+      answer2,
+      answer3,
+      answer4
+    } = req.body;
+
+    const questionType = "mc";
+    let answerList = [answer1, answer2, answer3];
+    console.log("Incorrect answers: ", answerList);
+    // randomly insert the correct answer into the answer array
+    let correctIndex = Math.floor(Math.random() * 4);
+    console.log("Calculated correctIndex: ", correctIndex);
+    answerList.splice(correctIndex, 0, answer4);
+    console.log("Creating MC question: ", answerList, correctIndex);
+    db.Question.create({
+      question,
+      category,
+      difficulty,
+      userId,
+      questionType,
+      answer1: answerList[0],
+      answer2: answerList[1],
+      answer3: answerList[2],
+      answer4: answerList[3],
+      correctIndex
+    })
+      .then((newQuestion) => {
+        res.json(newQuestion);
+      })
+      .catch((err) => res.json(err));
+  });
+
+  app.put("/api/gameplayed/:userid/:won", (req, res) => {
+    console.log("/api/gameplayed/: ", req.params);
+    const { userid, won } = req.params;
+    var addwin = "";
+    if (won === "true") addwin = "gamesWon = gamesWon + 1,";
+    let query =
+      `UPDATE Users SET ${addwin} gamesPlayed = gamesPlayed + 1 ` +
+      `WHERE userid = ${userid};`;
+    db.sequelize.query(query).then((result) => {
+      res.json(result[0]);
+    });
+  });
+
   app.post("/api/question/moderate/:questionId", (req, res) => {
     let questionId = parseInt(req.params.questionId);
     console.log("/api/question/moderate/:questionId", req.params.questionId);
+
     db.Question.update(
       { needsModeration: true },
       { where: { questionId } }

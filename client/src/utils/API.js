@@ -25,8 +25,12 @@ export default {
         return axios.post(`/api/quiz/start/${game}`);
     },
 
-    createquestion: (question, category, difficulty, userId, questionType, answer1, answer2, answer3, answer4, correctIndex) => {
-        return axios.post(`/api/createquestion`, {question, category, difficulty, userId, questionType, answer1, answer2, answer3, answer4, correctIndex});
+    createTFQuestion: (question, category, difficulty, userId, correctIndex) => {
+        return axios.post(`/api/createtfquestion`, { question, category, difficulty, userId, correctIndex });
+    },
+
+    createMCQuestion: (question, category, difficulty, userId, answer1, answer2, answer3, answer4) => {
+        return axios.post(`/api/createmcquestion`, { question, category, difficulty, userId, answer1, answer2, answer3, answer4 });
     },
 
     getAllPlayers: (game) => {
