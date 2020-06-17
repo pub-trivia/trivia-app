@@ -17,7 +17,7 @@ const CreateAQuestion = () => {
     const trueRef = useRef();
     const falseRef = useRef();
     const trueOrFalse = useRef();
-    const questionTypeRef = useRef();
+    const questionTypeRef = useRef("tf");
     const questionTFRef = useRef();
     const questionMCRef = useRef();
     const answer1Ref = useRef();
@@ -106,15 +106,15 @@ const CreateAQuestion = () => {
                         />
                     </label>
                     <h3>True False</h3>
-                    <label>Options: <span className="instructions">Please Select the correct answer</span></label>
+                    <label>Options: <span className="instructions">Please select the correct answer</span></label>
                     <div className="tf-options">
                         <div className="tf-option">
-                            <input type="radio" name="truefalse" value="0" onClick={event => setTrueOrFalse(event)} ></input>
-                            <label><span className="tflabel"></span>True</label>
+                            <input type="radio" id="trueradio" name="truefalse" value="0" onClick={event => setTrueOrFalse(event)} ></input>
+                            <label for="trueradio"><span className="tflabel"></span>True</label>
                         </div>
                         <div className="tf-option">
-                            <input type="radio" name="truefalse" value="1" onClick={event => setTrueOrFalse(event)}></input>
-                            <label><span className="tflabel"></span>False</label>
+                            <input type="radio" id="falseradio" name="truefalse" value="1" onClick={event => setTrueOrFalse(event)}></input>
+                            <label for="falseradio"><span className="tflabel"></span>False</label>
                         </div>
                     </div>
                 </div>
