@@ -41,3 +41,11 @@
     right: 50px;
     top: -25px;
 }
+
+.no-resp {
+    opacity: 50%;
+}
+
+.resp {
+    opacity: 100%;
+}
