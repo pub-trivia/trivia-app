@@ -27,13 +27,6 @@ const CreateAQuestion = () => {
 
     let userId = state.id;
 
-    // if (questionTypeRef === "tf") {
-    //     questionRef = trueFalseRef.current.value
-    // }
-    // else {
-    //     questionRef = questionRef.current.value
-    // }
-
     const handleSubmit = event => {
         event.preventDefault();
         console.log("question type:", questionTypeRef.current.value);
@@ -114,11 +107,11 @@ const CreateAQuestion = () => {
                     <div className="tf-options">
                         <div className="tf-option">
                             <input type="radio" name="truefalse" ref={correctIndexRef}></input>
-                            <label>True</label>
+                            <label><span className="tflabel"></span>True</label>
                         </div>
                         <div className="tf-option">
                             <input type="radio" name="truefalse" ref={correctIndexRef}></input>
-                            <label>False</label>
+                            <label><span className="tflabel"></span>False</label>
                         </div>
                     </div>
                 </div>
