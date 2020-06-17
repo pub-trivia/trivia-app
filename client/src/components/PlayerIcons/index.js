@@ -4,7 +4,11 @@ import "./playerIcon.css"
 
 const PlayerIcon = (props) => {
     const { icon, color } = props;
-    const iconUrl = `/assets/${icon}.png`
+    let iconUrl = `/assets/${icon}.png`
+    
+    if(!icon){
+        iconUrl = '/assets/puppy.png'
+    } 
 
     if (icon === "tim") {
         return (
