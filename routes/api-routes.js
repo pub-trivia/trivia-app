@@ -264,8 +264,9 @@ module.exports = function (app) {
     for (let i = 0; i < textList.length; i++) {
       currentNumber = textList[i];
       if (currentNumber === null) continue;
+      console.log("Current number: ", currentNumber);
       gameMaker.messages.create({
-        to: value,
+        to: currentNumber,
         from: twilioFrom,
         body: `<message>The Quiz Maker has invited you to play Pub Trivia! Click the Game Code to play:<![CDATA[<data>https://pub-trivia.herokuapp.com<![CDATA[<text>${req.body.quizCode}</text>]]]]>><![CDATA[</data>]]></message>`,
       }, function (err, message) {
