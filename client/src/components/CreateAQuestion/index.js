@@ -45,7 +45,7 @@ const CreateAQuestion = () => {
             )
                 .then(results => {
                     console.log("results: ", results);
-                    alert("Your Question has been saved");
+                    alert("Your question has been saved");
                     questionTFRef.current.value = "";
                     categoryRef.current.value = "";
                     diffRef.current.value = "";
@@ -64,7 +64,7 @@ const CreateAQuestion = () => {
             )
                 .then(results => {
                     console.log("results: ", results);
-                    alert("Your Question has been saved");
+                    alert("Your question has been saved");
                     questionMCRef.current.value = "";
                     categoryRef.current.value = "";
                     diffRef.current.value = "";
