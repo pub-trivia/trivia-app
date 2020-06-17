@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import GameSetUp from './pages/GameSetUp';
 import PrivateRoute from './components/PrivateRoute';
 import Question from "./pages/Question";
+import Moderate from "./pages/Moderate";
 
 const App = () => {
 
@@ -42,6 +43,9 @@ const App = () => {
           </Switch>
           <Switch>
             <PrivateRoute exact path="/question" component={Question} />
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path="/moderate" component={Moderate} />
           </Switch>
           <Switch>
             <PrivateRoute exact path="/signout" component={Signout} />

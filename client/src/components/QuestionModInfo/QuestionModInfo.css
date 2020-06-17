@@ -1,0 +1,57 @@
+.question-card {
+    max-width: 300px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin: auto; 
+    border-bottom: 1px solid #03E4AC;
+}
+.question {
+    color: #000000;
+    font-size: 14px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 8px; 
+    font-size: 12px;
+    
+}
+
+.purple {
+    color: #9665D8;
+    border-color: #9665D8;
+}
+
+.blue {
+    color: #04D5FB;
+    border-color: #04D5FB;
+}
+
+.edit-button {
+    width: 34px;
+    height: 34px;
+    margin: auto;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #03E4AC;
+    border: 1px solid #03E4AC;
+}
