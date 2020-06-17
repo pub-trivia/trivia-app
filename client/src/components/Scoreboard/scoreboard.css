@@ -43,9 +43,9 @@
 }
 
 .no-resp {
-    opacity: 50%;
+    opacity: 0.5;
 }
 
 .resp {
-    opacity: 100%;
+    opacity: 1.0;
 }
