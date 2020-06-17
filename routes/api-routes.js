@@ -130,8 +130,8 @@ module.exports = function (app) {
 
   const generateRandomCode = () => {
     // generate random combination of capitals and numbers
-    var useChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var useNums = "0123456789";
+    var useChars = "ABCDEFGHIJKLMNPQRSTUVWXYZ";
+    var useNums = "123456789";
     var useCharArray = useChars.split("");
     var useNumArray = useNums.split("");
     let randomCode = "";
