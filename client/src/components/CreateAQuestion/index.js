@@ -67,7 +67,7 @@ const CreateAQuestion = () => {
     };
 
     useEffect(() => {
-        questionTypeRef.current.value = "tf";
+        questionTypeRef.current.value = "mc";
         API.getCategories()
             .then(results => setCategories(results.data));
     }, []);
