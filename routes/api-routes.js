@@ -30,16 +30,10 @@ const { Op } = require("sequelize");
 // *POST /api/quiz - create a new quiz, pass in number of questions,
 //       category, difficulty, userId, returns new QuizId (need to get code first!)
 // *POST /api/createquestion - create a new question
-// *POST /api/addquestionscore/ - mark a questionId answered with 
-//     correct true/false for a quiz
-//
-// *GET /api/question/:questionid - get all the information about a question
-//    from the questions table 
+
 // *PUT /api/question/moderate/:questionid - mark for moderation
 //    can call above but doesn't yet work
 //
-// *PUT /api/gameplayed/:userid/:won  call when a user ends a game, 
-//       updates games played, games won
 
 module.exports = function (app) {
   app.get("/api/categories", (req, res) => {
@@ -189,7 +183,6 @@ module.exports = function (app) {
       .catch((err) => res.json(err));
   });
 
-
   app.post("/api/createmcquestion", (req, res) => {
     console.log("reached /api/createmcquestion")
     let {
@@ -242,25 +235,20 @@ module.exports = function (app) {
     });
   });
 
-  app.put("/api/question/moderate/:questionid", (req, res) => {
-    let questionid = parseInt(req.params.questionid);
-    console.log("/api/question/moderate/:questionid", req.params);
+  app.post("/api/question/moderate/:questionId", (req, res) => {
+    let questionId = parseInt(req.params.questionId);
+    console.log("/api/question/moderate/:questionId", req.params.questionId);
+
     db.Question.update(
       { needsModeration: true },
-      { where: { questionId: questionid } }
+      { where: { questionId } }
     )
       .then((response) =>
-        res.json(`Question ${questionid} marked for moderation.`)
+        res.json(`Question ${questionId} marked for moderation.`)
       )
       .catch((err) =>
-        res.json(`Update for question ${req.params.questionid} failed. ${err}`)
+        res.json(`Update for question ${req.params.questionId} failed. ${err}`)
       );
-  });
-
-  // Added a logout route
-  app.get("/logout", function (req, res) {
-    req.logout();
-    res.redirect("/");
   });
 
   // send message via Twilio 

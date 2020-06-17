@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import PlayerIcon from '../PlayerIcons';
+import { useGameContext } from '../../utils/GlobalState';
 import './scoreboard.css';
 
 const Scoreboard = (props) => {
-    const { users } = props;
+
+    const [state, dispatch] = useGameContext();
+    const { users, scores, responses } = state;
 
     useEffect(() => {
-        console.log('use effect for scoreboard triggered');
-        console.log(props.users);
-    }, [users]);
+        console.log('==> scoreboard useEffect triggered');
+        console.log(scores);
+    }, [scores]);
 
     return (
         <div className="score-board">
@@ -18,10 +21,13 @@ const Scoreboard = (props) => {
             {users
                 ? (
                     <div>
-                        {users.map(({ displayName, icon, color, score }, index) => {
+                        {users.map(({ displayName, icon, color }, index) => {
+                            let score = 0;
+                            let resp = 'no-resp';
 
-                            if (!score) {
-                                score = 0;
+                            if (scores.length !== 0) {
+                                let userscore = scores.filter(score => score.displayName === displayName);
+                                score = userscore[0].score;
                             }
                             
                             var scoreTrackStyles = {
@@ -29,11 +35,18 @@ const Scoreboard = (props) => {
                                 width: `${score}%`
                             }
 
+                            if(responses.length !== 0) {
+                                let userresponse = responses.filter(response => response.displayName === displayName);
+                                if (userresponse.length > 0){
+                                    resp = 'resp';
+                                }
+                            }
+
                             return (
                                 <div className="scores">
                                     <div className="player-section">
                                         <div className="player-name"> {displayName} </div>
-                                        <div className="player-icon-container">
+                                        <div className={`player-icon-container ${resp}`}>
                                             <div className="player-icon-position" style={scoreTrackStyles}>
                                                 <PlayerIcon icon={icon} color={color} />
                                             </div>

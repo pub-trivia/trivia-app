@@ -29,6 +29,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(cors());
 require("./routes/api-routes.js")(app);
 require("./routes/auth-routes.js")(app);
+require("./routes/mod-routes.js")(app);
 require("./routes/game-routes.js")(app, io);
 
 app.get("/*", (req, res) => {

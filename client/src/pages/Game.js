@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { decodeHTML } from 'entities';
 import { useHistory } from 'react-router-dom';
 import { ws } from '../components/socket';
-import { SET_SCORES } from '../utils/actions';
+import { SET_SCORES, SET_RESPONSES } from '../utils/actions';
 
 import Timer from '../components/Timer';
 import Countdown from '../components/Countdown';
@@ -19,7 +19,8 @@ const Game = () => {
     const [gameready, setReady] = useState(false);
     const [count, setCountdown] = useState();
     const [sel, setSelected] = useState();
-    const [responded, setScoreboard] = useState([]);
+    const [response, setResponses] = useState();
+    const [score, setScoreboard] = useState([]);
     const [ques, setQuestion] = useState();
     const [scoring, setScoring] = useState(false);
     let history = useHistory();
@@ -52,6 +53,12 @@ const Game = () => {
                 //only update state if it is a new question
                 if(!ques || ques.questionId !== questionId){
                     setScoring(false);
+                    dispatch({
+                        type: SET_RESPONSES,
+                        post: {
+                            responses: []
+                        }
+                    })
                     setSelected({
                         questionId,
                         response: ''
@@ -68,7 +75,14 @@ const Game = () => {
         //when someone responds, change the state of the scoreboard
         //and pass array of responses
          ws.on('respData', ({ callback }) => {
-           setScoreboard(callback);
+            dispatch({
+                type: SET_RESPONSES,
+                post: {
+                    responses: callback
+                }
+            })
+            setResponses(callback);
+
         })
 
         //show the correct response
@@ -109,7 +123,7 @@ const Game = () => {
             { gameready ? 
                     <>
                         <Timer />
-                        <QText text={ques ? ques.question : null} />
+                        <QText id={ques ? ques.questionId : null} text={ques ? ques.question : null} />
                             {ques ? 
                                 ques.responses.map((resp, index) => {
                                     return (
@@ -125,7 +139,7 @@ const Game = () => {
                                 : null
                                 }
                         {/* Pass an array of user objects showing everyone in the game: name, icon, color, responded (T/F), %Correct */}
-                        <Scoreboard users={responded ? responded : null}/>
+                        <Scoreboard scores={score ? score : null} responses={response ? response : null}/>
                     </>
             : <Countdown timer={count} />
             }
