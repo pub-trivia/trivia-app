@@ -43,9 +43,13 @@ const CreateAQuestion = () => {
                 userId,
                 tfIndex
             )
-                .then(results => (console.log("results: ", results)),
-                    alert("Your Question has been saved"),
-                )
+                .then(results => {
+                    console.log("results: ", results);
+                    alert("Your Question has been saved");
+                    questionTFRef.current.value = "";
+                    categoryRef.current.value = "";
+                    diffRef.current.value = "";
+                })
                 .catch(err => console.log("Error: ", err));
         } else {
             API.createMCQuestion(
@@ -58,11 +62,20 @@ const CreateAQuestion = () => {
                 answer3Ref.current.value,
                 answer4Ref.current.value
             )
-                .then(results => (console.log("results: ", results)),
-                    alert("Your Question has been saved"),
-                )
+                .then(results => {
+                    console.log("results: ", results);
+                    alert("Your Question has been saved");
+                    questionMCRef.current.value = "";
+                    categoryRef.current.value = "";
+                    diffRef.current.value = "";
+                    answer1Ref.current.value = "";
+                    answer2Ref.current.value = "";
+                    answer3Ref.current.value = "";
+                    answer4Ref.current.value = "";
+                })
                 .catch(err => console.log("Error: ", err));
         }
+
 
     };
 
