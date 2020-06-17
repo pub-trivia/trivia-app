@@ -268,7 +268,7 @@ module.exports = function (app) {
       gameMaker.messages.create({
         to: currentNumber,
         from: twilioFrom,
-        body: `<message>The Quiz Maker has invited you to play Pub Trivia! Click the Game Code to play:<![CDATA[<data>https://pub-trivia.herokuapp.com<![CDATA[<text>${req.body.quizCode}</text>]]]]>><![CDATA[</data>]]></message>`,
+        body: `The Quiz Maker has invited you to play Pub Trivia! Click the Game Code to play: https://pub-trivia.herokuapp.com/join/${req.body.quizCode}`,
       }, function (err, message) {
         console.log(err);
       });
