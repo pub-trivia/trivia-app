@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { SET_COLOR, SET_ICON, SET_USERS, SET_SCORES, ADD_PLAYER, ADD_USER, ADD_GAME } from './actions';
+import { SET_COLOR, SET_ICON, SET_USERS, SET_SCORES, ADD_PLAYER, ADD_USER, ADD_GAME, SET_RESPONSES } from './actions';
 
 const GameContext = createContext();
 const { Provider } = GameContext;
@@ -25,6 +25,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 scores: action.post.scores
+            };
+        case SET_RESPONSES:
+            return {
+                ...state,
+                responses: action.post.responses
             };
         case ADD_PLAYER:
             return {
@@ -62,7 +67,8 @@ const GameProvider = ({ value = [], ...props }) => {
         color: '',
         auth: false,
         users: [],
-        scores: []
+        scores: [],
+        responses: []
     });
     console.log("==============state================");
     console.log(state);
